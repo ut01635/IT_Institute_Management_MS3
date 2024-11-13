@@ -30,6 +30,13 @@ import { ContactUsComponent } from './Components/landing/contact-us/contact-us.c
 import { FooterComponent } from './Components/landing/footer/footer.component';
 import { LoginComponent } from './Modals/landing/login/login.component';
 import { EnquiryFormComponent } from './Modals/landing/enquiry-form/enquiry-form.component';
+import { StudentFormComponent } from './Modals/admin/student-form/student-form.component';
+import { CourseFormComponent } from './Modals/admin/course-form/course-form.component';
+import { EnquiryReplayFormComponent } from './Modals/admin/enquiry-replay-form/enquiry-replay-form.component';
+import { NotificationFormComponent } from './Modals/admin/notification-form/notification-form.component';
+import { AnnouncementFormComponent } from './Modals/admin/announcement-form/announcement-form.component';
+import { PaymentFormComponent } from './Modals/admin/payment-form/payment-form.component';
+import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +67,14 @@ import { EnquiryFormComponent } from './Modals/landing/enquiry-form/enquiry-form
     ContactUsComponent,
     FooterComponent,
     LoginComponent,
-    EnquiryFormComponent
+    EnquiryFormComponent,
+    StudentFormComponent,
+    CourseFormComponent,
+    EnquiryReplayFormComponent,
+    NotificationFormComponent,
+    AnnouncementFormComponent,
+    PaymentFormComponent,
+    AdminFormComponent
   ],
   imports: [
     BrowserModule,
