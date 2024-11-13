@@ -1,0 +1,74 @@
+/* Custom CSS */
+.bg-maroon {
+    background-color: #800000; /* Maroon color for the header */
+  }
+  
+  .sidebar {
+    height: 100vh;
+    transition: transform 0.3s ease-in-out;
+    transform: scaleX(1);
+    width: 250px; /* Set width for desktop views */
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  
+  .sidebar .nav-link {
+    padding: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar .nav-item:hover .nav-link {
+    background-color: #444;
+  }
+  
+  .sidebar .nav-link i {
+    font-size: 1.2rem;
+  }
+  
+  .navbar-toggler {
+    border-color: #ffffff;
+  }
+  
+  .navbar-collapse {
+    background-color: #333;
+  }
+  
+  @media (max-width: 767px) {
+    /* On small screens, the sidebar is hidden by default */
+    .sidebar {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      z-index: 1;
+      transition: transform 0.5s ease-in-out;
+    }
+  
+    /* Show sidebar when the 'show' class is added */
+    .sidebar.show {
+      transform: translateX(0);
+    }
+  
+    /* Hide text labels on small screens */
+    .sidebar .nav-item .d-none {
+      display: none;
+    }
+  
+    .nav-item .nav-link {
+      font-size: 1rem;
+    }
+  
+    .btn-dark {
+      font-size: 1.5rem;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+    }
+  }
+  
+  .navbar-toggler-icon {
+    background-color: white;
+  }
+  
