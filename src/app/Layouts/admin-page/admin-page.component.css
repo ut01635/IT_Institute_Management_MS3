@@ -5,18 +5,19 @@
 
 .sidebar {
   height: 100vh;
-  transition: transform 0.3s ease-in-out;
-  transform: scaleX(1);
   width: 80px; /* Default narrow width for the sidebar */
   background: linear-gradient(135deg, #333, #444); /* Black and gray gradient */
   backdrop-filter: blur(10px); /* Blur effect */
   z-index: 1000;
   padding-top: 20px;
+  transition: width 0.8s ease-in-out; /* Apply smooth transition on width */
+  transform: scaleX(1);
 }
 
-.sidebar:hover{
-  width: 200px;
+.sidebar:hover {
+  width: 200px; /* Wider width on hover */
 }
+
 
 .sidebar.show {
   transform: translateX(0);
@@ -37,14 +38,14 @@
 .sidebar .nav-link i {
   font-size: 1.2rem; /* Icon size */
   margin-right: 10px; /* Space between icon and text */
-  transition: font-size 0.3s ease;
+  transition: font-size 0.8s ease;
 }
 
 /* Text next to icons (hidden by default) */
 .sidebar .nav-text {
   display: none; /* Hide text by default */
-  font-size: 1.2rem; /* Default text size */
-  transition: all 0.3s ease;
+  font-size: 1.5rem; /* Default text size */
+  transition: all 0.8s ease;
 }
 
 /* Reports sub-links */

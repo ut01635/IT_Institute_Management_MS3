@@ -23,31 +23,31 @@
       <nav class="col-3 col-md-2 sidebar bg-blurred text-white" [ngClass]="{'show': isSidebarVisible}">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="#" [routerLink]="['/admin/admin-dashboard']">
               <i class="bi bi-house-door"></i>
               <span class="nav-text">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="#" [routerLink]="['/admin/student-list']">
               <i class="bi bi-person"></i>
               <span class="nav-text">Students</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="#" [routerLink]="['/admin/course-list']">
               <i class="bi bi-book"></i>
               <span class="nav-text">Courses</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="#" [routerLink]="['/admin/enquiry-list']">
               <i class="bi bi-envelope"></i>
               <span class="nav-text">Enquiries</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" href="#"[routerLink]="['/admin/payment']" >
               <i class="bi bi-credit-card"></i>
               <span class="nav-text">Payment</span>
             </a>
@@ -55,19 +55,19 @@
           
           <!-- Reports Item (with hover sub-links) -->
           <li class="nav-item report-item">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link text-white" >
               <i class="bi bi-file-earmark-bar-graph"></i>
               <span class="nav-text">Reports</span>
             </a>
             <ul class="nav flex-column ms-3 report-sub-links">
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Student Report</a>
+                <a class="nav-link text-white" href="#" [routerLink]="['/admin/student-report']">Student Report</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Enrollment Report</a>
+                <a class="nav-link text-white" href="#" [routerLink]="['/admin/enrollment-report']">Enrollment Report</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#">Payment Report</a>
+                <a class="nav-link text-white" href="#" [routerLink]="['/admin/payment-report']">Payment Report</a>
               </li>
             </ul>
           </li>
@@ -84,6 +84,7 @@
       <!-- Main Content Area -->
       <main class="col-12 col-md ms-0 ms-md-5 mt-3">
         <h2>Welcome to A-Z Coding Academy</h2>
+        <router-outlet></router-outlet>
         <!-- Add more content here -->
       </main>
     </div>
