@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrl: './admin-page.component.css'
 })
 export class AdminPageComponent {
+  title = 'coding-academy';
+  isSidebarVisible = false; // Default is sidebar hidden on small screens
 
+  // Function to toggle the sidebar visibility
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
 }

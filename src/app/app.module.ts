@@ -37,6 +37,10 @@ import { NotificationFormComponent } from './Modals/admin/notification-form/noti
 import { AnnouncementFormComponent } from './Modals/admin/announcement-form/announcement-form.component';
 import { PaymentFormComponent } from './Modals/admin/payment-form/payment-form.component';
 import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.component';
+import { EnrollmentFormComponent } from './Modals/student/enrollment-form/enrollment-form.component';
+import { ProfileUpdateFormComponent } from './Modals/student/profile-update-form/profile-update-form.component';
+import { PasswordRestFormComponent } from './Modals/student/password-rest-form/password-rest-form.component';
+import { AnnouncementViewComponent } from './Modals/student/announcement-view/announcement-view.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +78,11 @@ import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.compone
     NotificationFormComponent,
     AnnouncementFormComponent,
     PaymentFormComponent,
-    AdminFormComponent
+    AdminFormComponent,
+    EnrollmentFormComponent,
+    ProfileUpdateFormComponent,
+    PasswordRestFormComponent,
+    AnnouncementViewComponent
   ],
   imports: [
     BrowserModule,
