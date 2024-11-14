@@ -31,7 +31,6 @@ body {
 
 .sidebar.show {
   transform: translateX(0);
- 
 }
 
 .sidebar .nav-link {
@@ -46,7 +45,7 @@ body {
 }
 
 .sidebar .nav-link i {
-  font-size: 1.2rem; /* Icon size */
+  font-size: 1.5rem; /* Icon size */
   margin-right: 10px; /* Space between icon and text */
   transition: font-size 0.8s ease;
 }
@@ -71,12 +70,16 @@ body {
 
 /* Show both text and icon on hover */
 .sidebar:hover .nav-item .nav-text {
-  display: inline-block; /* Show text on hover */
+  display: block; /* Show text on hover */
   font-size: 1.5rem; /* Increase text size on hover */
+  transition: width 0.8s ease-in-out; /* Apply smooth transition on width */
+  transform: scaleX(1);
 }
 
 .sidebar .nav-item:hover .nav-link i {
-  font-size: 1.8rem; /* Increase icon size on hover */
+  font-size: 1.5rem; /* Increase icon size on hover */
+  transition: width 1s ease-in-out; /* Apply smooth transition on width */
+  transform: scaleX(1);
 }
 
 /* On small screens (max-width: 767px) */
