@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg  navbar-dark">
     <div class="container-fluid">
       <!-- Brand Logo or Name -->
-      <a class="navbar-brand" href="#">Student Portal</a>
+      <a class="navbar-brand" href="#"><img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 300px; height:50px;"></a>
       
       <!-- Toggler for Mobile View -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,36 +24,36 @@
   
           <!-- Payment Link -->
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/student/payment']">Payment</a>
+            <a class="nav-link" [routerLink]="['/student/payment-details']">Payment</a>
           </li>
   
           <!-- My Courses Link -->
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/my-courses']">My Courses</a>
+            <a class="nav-link" [routerLink]="['/student/enroll-courses']">My Courses</a>
           </li>
   
           <!-- Profile Link -->
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/profile']">Profile</a>
+            <a class="nav-link" [routerLink]="['/student/profile']">Profile</a>
           </li>
           
           <!-- Notification Button -->
           <li class="nav-item">
-            <button class="btn btn-link text-white" [routerLink]="['/notifications']" aria-label="Notifications">
+            <button class="btn btn-link text-white" [routerLink]="['/student/notification']" aria-label="Notifications">
               <i class="bi bi-bell"></i> <!-- Bootstrap icon for Notifications -->
             </button>
           </li>
   
           <!-- Announcement Button -->
           <li class="nav-item">
-            <button class="btn btn-link text-white" [routerLink]="['/announcements']" aria-label="Announcements">
+            <button class="btn btn-link text-white" [routerLink]="['/student/announcement']" aria-label="Announcements">
               <i class="bi bi-megaphone"></i> <!-- Bootstrap icon for Announcements -->
             </button>
           </li>
   
           <!-- Logout Button -->
           <li class="nav-item">
-            <button class="btn btn-link text-white" [routerLink]="['/logout']" aria-label="Logout">
+            <button class="btn btn-link text-white" (click)="logout()" aria-label="Logout">
               <i class="bi bi-box-arrow-right"></i> <!-- Bootstrap icon for Logout -->
             </button>
           </li>
@@ -61,4 +61,14 @@
       </div>
     </div>
   </nav>
+
+  <main class="col-12 col-md ms-0 mt-4">
+    <section style="width: 100%; overflow-y: scroll;" class="shadow p-4 m-2 bg-white rounded ">
+      
+      <div class="container">
+        <h2>Welcome to DevHub, {{studentName}}</h2>
+        <router-outlet></router-outlet>
+      </div>
+    </section>
+  </main>
   
