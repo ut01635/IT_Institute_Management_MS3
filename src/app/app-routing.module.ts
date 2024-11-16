@@ -32,6 +32,7 @@ const routes: Routes = [
   { path:'admin', 
     component:AdminPageComponent,
     children:[
+      {path:'', component:AdminDashboardComponent},
       {path:'admin-dashboard', component:AdminDashboardComponent},
       {path:'student-list', component:StudentListComponent},
       {path:'course-list', component:CourseListComponent},

@@ -4,8 +4,8 @@ body {
   /* background-image: linear-gradient(to right, #243949 0%, #517fa4 100%); */
   background-size: cover;
   height: 100vh; /* Ensures the background covers the full viewport */
-  filter: blur(20%);
-  -webkit-filter: blur(20%); /* For Safari and older browsers */
+  /* filter: blur(20%);
+  -webkit-filter: blur(20%); For Safari and older browsers */
 }
 
 /* Custom CSS */
@@ -66,7 +66,9 @@ body {
   display: block;
 }
 
-
+.report-item .report-sub-links a:hover {
+  background-color: #acaaaa;
+}
 
 /* Show both text and icon on hover */
 .sidebar:hover .nav-item .nav-text {
