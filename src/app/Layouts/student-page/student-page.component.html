@@ -1,1 +1,59 @@
-<p>student-page works!</p>
+<div class="container-fluid">
+    <!-- Header -->
+    <header class="d-flex justify-content-between align-items-center p-3 bg-luxury-green text-white">
+      <!-- Logo Section -->
+      <div class="d-flex align-items-center">
+        <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 200px; height: 50px;">
+      </div>
+  
+      <!-- Navbar Toggle Button for Mobile -->
+      <button class="btn btn-light d-md-none me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i> <!-- Hamburger icon for mobile -->
+      </button>
+  
+      <!-- Navigation Links -->
+      <nav class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav d-flex flex-row">
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="#" [routerLink]="['/student/home']">
+              <i class="bi bi-house-door"></i> Home
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="#" [routerLink]="['/student/dashboard']">
+              <i class="bi bi-grid"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="#" [routerLink]="['/student/payment']">
+              <i class="bi bi-credit-card"></i> Payment
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="#" [routerLink]="['/student/my-courses']">
+              <i class="bi bi-book"></i> My Courses
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="#" [routerLink]="['/student/profile']">
+              <i class="bi bi-person"></i> Profile
+            </a>
+          </li>
+        </ul>
+      </nav>
+  
+      <!-- Right-side Buttons for Notifications, Announcements, Logout -->
+      <div class="d-none d-md-flex">
+        <button class="btn btn-light me-2" aria-label="Notifications" [routerLink]="['/student/notifications']">
+          <i class="bi bi-bell fs-4"></i>
+        </button>
+        <button class="btn btn-light me-2" aria-label="Announcements" [routerLink]="['/student/announcements']">
+          <i class="bi bi-megaphone fs-4"></i>
+        </button>
+        <button class="btn btn-light" aria-label="Logout" [routerLink]="['/student/logout']">
+          <i class="bi bi-box-arrow-right fs-4"></i>
+        </button>
+      </div>
+    </header>
+  </div>
+  
