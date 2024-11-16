@@ -1,11 +1,14 @@
 .navbar-brand img {
-    margin-right: 10px;
-  }
-  
-  .nav-link {
-    font-weight: 500;
-  }
-  
-  .badge {
-    font-size: 0.75rem;
-  }
+  margin-right: 10px;
+}
+
+.nav-link {
+  font-weight: 500;
+}
+
+.badge {
+  font-size: 0.75rem;
+}
+#navbar{
+  background-color: #dfdfdf;
+}

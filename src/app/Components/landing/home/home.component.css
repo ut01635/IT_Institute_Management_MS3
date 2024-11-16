@@ -1,0 +1,8 @@
+.container-fluid {
+  background-image: url("/images/bg_image.jpg");
+  width: 100%;
+  height: 100vh;
+  background-size: cover; /* Ensure the image covers the whole container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
