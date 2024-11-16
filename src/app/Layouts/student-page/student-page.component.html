@@ -1,59 +1,64 @@
-<div class="container-fluid">
-    <!-- Header -->
-    <header class="d-flex justify-content-between align-items-center p-3 bg-luxury-green text-white">
-      <!-- Logo Section -->
-      <div class="d-flex align-items-center">
-        <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 200px; height: 50px;">
-      </div>
-  
-      <!-- Navbar Toggle Button for Mobile -->
-      <button class="btn btn-light d-md-none me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="bi bi-list"></i> <!-- Hamburger icon for mobile -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg  navbar-dark">
+    <div class="container-fluid">
+      <!-- Brand Logo or Name -->
+      <a class="navbar-brand" href="#">Student Portal</a>
+      
+      <!-- Toggler for Mobile View -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
   
-      <!-- Navigation Links -->
-      <nav class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav d-flex flex-row">
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="#" [routerLink]="['/student/home']">
-              <i class="bi bi-house-door"></i> Home
-            </a>
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Home Link -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/student/home']">Home</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="#" [routerLink]="['/student/dashboard']">
-              <i class="bi bi-grid"></i> Dashboard
-            </a>
+  
+          <!-- Dashboard Link -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/student/student-dashboard']">Dashboard</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="#" [routerLink]="['/student/payment']">
-              <i class="bi bi-credit-card"></i> Payment
-            </a>
+  
+          <!-- Payment Link -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/student/payment']">Payment</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="#" [routerLink]="['/student/my-courses']">
-              <i class="bi bi-book"></i> My Courses
-            </a>
+  
+          <!-- My Courses Link -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/my-courses']">My Courses</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="#" [routerLink]="['/student/profile']">
-              <i class="bi bi-person"></i> Profile
-            </a>
+  
+          <!-- Profile Link -->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/profile']">Profile</a>
+          </li>
+          
+          <!-- Notification Button -->
+          <li class="nav-item">
+            <button class="btn btn-link text-white" [routerLink]="['/notifications']" aria-label="Notifications">
+              <i class="bi bi-bell"></i> <!-- Bootstrap icon for Notifications -->
+            </button>
+          </li>
+  
+          <!-- Announcement Button -->
+          <li class="nav-item">
+            <button class="btn btn-link text-white" [routerLink]="['/announcements']" aria-label="Announcements">
+              <i class="bi bi-megaphone"></i> <!-- Bootstrap icon for Announcements -->
+            </button>
+          </li>
+  
+          <!-- Logout Button -->
+          <li class="nav-item">
+            <button class="btn btn-link text-white" [routerLink]="['/logout']" aria-label="Logout">
+              <i class="bi bi-box-arrow-right"></i> <!-- Bootstrap icon for Logout -->
+            </button>
           </li>
         </ul>
-      </nav>
-  
-      <!-- Right-side Buttons for Notifications, Announcements, Logout -->
-      <div class="d-none d-md-flex">
-        <button class="btn btn-light me-2" aria-label="Notifications" [routerLink]="['/student/notifications']">
-          <i class="bi bi-bell fs-4"></i>
-        </button>
-        <button class="btn btn-light me-2" aria-label="Announcements" [routerLink]="['/student/announcements']">
-          <i class="bi bi-megaphone fs-4"></i>
-        </button>
-        <button class="btn btn-light" aria-label="Logout" [routerLink]="['/student/logout']">
-          <i class="bi bi-box-arrow-right fs-4"></i>
-        </button>
       </div>
-    </header>
-  </div>
+    </div>
+  </nav>
   

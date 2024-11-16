@@ -49,14 +49,14 @@ const routes: Routes = [
   { path:'student', 
     component:StudentPageComponent,
     children:[
+      {path:'', component:CourseViewComponent},
       {path:'student-dashboard', component:StudentDashboardComponent},
-      {path:'course', component:CourseViewComponent},
+      {path:'home', component:CourseViewComponent},
       {path:'notification', component:NotificationComponent},
       {path:'Announcement', component:AnnouncementComponent},
       {path:'payment-details', component:PaymentDetailsComponent},
       {path:'enroll-courses', component:EnrollCoursesComponent},
       {path:'profile', component:ProfileComponent},
-      {path:'student-report', component:StudentReportComponent},
     ]
   },
 ];

@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class StudentPageComponent {
 
+  isSidebarVisible = false;  // Initially set the sidebar visibility to false
+
+  // Function to toggle the sidebar visibility on mobile
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
 }

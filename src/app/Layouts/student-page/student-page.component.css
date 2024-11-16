@@ -1,32 +1,16 @@
-/* Custom CSS for the Header */
-.bg-luxury-green {
-    background-color: #1B4D3E; /* Luxury Dark Green for the header */
+/* Customize navbar background color */
+.navbar {
+    background-color: #163d32; /* Luxury dark green */
   }
   
-  header img {
-    max-width: 200px; /* Ensure logo doesn't stretch too large */
-    height: 50px; /* Fixed height for the logo */
+  /* Change the color of the button icons */
+  .nav-item button i {
+    font-size: 1.5rem; /* Optional: increase icon size */
   }
   
-  header button:hover {
-    background-color: #929292; /* Slight hover effect for buttons */
+  /* Hover effect for buttons */
+  .nav-item button:hover {
+    background-color: #333;
+    border-radius: 50%;
   }
-  
-  .navbar-nav .nav-item {
-    padding: 0 1rem; /* Space out the navbar items */
-  }
-  
-  /* Adjust the logo size for smaller screens */
-  @media (max-width: 767px) {
-    header img {
-      max-width: 150px; /* Adjust logo width for mobile */
-      height: 40px; /* Adjust logo height for mobile */
-    }
-  }
-  
-  /* Optional: Improve spacing for buttons */
-  header button {
-    margin-left: 10px;
-  }
-  
   
