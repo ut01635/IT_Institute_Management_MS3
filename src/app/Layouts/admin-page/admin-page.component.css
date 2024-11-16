@@ -1,21 +1,16 @@
-
-body {
-  background-color: #555;
-  /* background-image: linear-gradient(to right, #243949 0%, #517fa4 100%); */
-  background-size: cover;
-  height: 100vh; /* Ensures the background covers the full viewport */
-  /* filter: blur(20%);
-  -webkit-filter: blur(20%); For Safari and older browsers */
-}
-
 /* Custom CSS */
 .bg-maroon {
   background-color: #1e4925; /* Maroon color for the header */
 }
 
-header img{
-  width: 300px;
-  height: 70px;
+header img {
+  width: 100%;
+  max-width: 300px; /* Ensure logo doesn't stretch too large */
+  height: auto;
+}
+
+header button:hover {
+  background-color: #444; /* Slight hover effect for buttons */
 }
 
 .sidebar {
@@ -24,15 +19,9 @@ header img{
   background: linear-gradient(135deg, #333, #444); /* Black and gray gradient */
   backdrop-filter: blur(10px); /* Blur effect */
   z-index: 1000;
-  padding-top: 20px;
+  padding-top: 10px;
   transition: width 0.8s ease-in-out; /* Apply smooth transition on width */
-  transform: scaleX(1);
 }
-
-.sidebar:hover {
-  width: 200px; /* Wider width on hover */
-}
-
 
 .sidebar.show {
   transform: translateX(0);
@@ -52,44 +41,78 @@ header img{
 .sidebar .nav-link i {
   font-size: 1.5rem; /* Icon size */
   margin-right: 10px; /* Space between icon and text */
-  transition: font-size 0.8s ease;
+  transition: font-size 0.3s ease;
 }
 
-/* Text next to icons (hidden by default) */
-.sidebar .nav-text {
-  display: none; /* Hide text by default */
-  font-size: 1.5rem; /* Default text size */
-  transition: all 0.8s ease;
+/* Hover Effect for Sidebar */
+.sidebar:hover {
+  width: 200px; /* Expand width on hover */
+}
+
+.sidebar:hover .nav-item .nav-text {
+  display: block; /* Show text on hover */
+  font-size: 1.2rem; /* Text size on hover */
+}
+
+.sidebar:hover .nav-item:hover .nav-link i {
+  font-size: 1.8rem; /* Increase icon size on hover */
+  transition: font-size 0.3s ease; /* Smooth transition for icon size */
+}
+
+/* Show both text and icon on hover */
+.sidebar:hover .nav-item .nav-text {
+  display: inline-block; /* Show text on hover */
+  font-size: 1.5rem; /* Increase text size on hover */
+  transition: width 0.8s ease-in-out; /* Apply smooth transition on width */
 }
 
 /* Reports sub-links */
 .report-sub-links {
   display: none;
+  position: absolute;  /* Position relative to the nearest positioned ancestor */
+  top: 0;              /* Aligns the sub-links vertically to the top of the parent item */
+  left: 100%;          /* Positions it to the right side of the parent item */
+  background-color: #333; /* Optional: to make it stand out against the page */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds some shadow to make it look like it's floating */
+  z-index: 1000;        /* Ensures the sub-links appear in front of other content */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition for visibility */
+  opacity: 0;
+  visibility: hidden;
 }
 
 .report-item:hover .report-sub-links {
   display: block;
+  opacity: 1;  /* Fade-in effect */
+  visibility: visible;  /* Ensures visibility */
 }
 
 .report-item .report-sub-links a:hover {
-  background-color: #acaaaa;
+  background-color: #acaaaa; /* Hover effect for individual links */
 }
 
-/* Show both text and icon on hover */
-.sidebar:hover .nav-item .nav-text {
-  display: block; /* Show text on hover */
-  font-size: 1.5rem; /* Increase text size on hover */
-  transition: width 0.8s ease-in-out; /* Apply smooth transition on width */
-  transform: scaleX(1);
+.report-item .report-sub-links li {
+  list-style: none;
 }
 
-.sidebar .nav-item:hover .nav-link i {
-  font-size: 1.5rem; /* Increase icon size on hover */
-  transition: width 1s ease-in-out; /* Apply smooth transition on width */
-  transform: scaleX(1);
+.report-sub-links a {
+  text-decoration: none;
+  color: white;
+  display: block; /* Ensures the links are block-level for better clickable area */
+  padding: 5px 10px; /* Optional padding to improve the look */
 }
 
-/* On small screens (max-width: 767px) */
+.report-sub-links a:hover {
+  background-color: #acaaaa; /* Optional hover effect for sub-links */
+}
+
+/* Optional: Make sure the parent item has 'position: relative' so the sub-links are positioned relative to it */
+.report-item {
+  position: relative;
+}
+
+/* Mobile view adjustments */
 @media (max-width: 767px) {
   .sidebar {
     position: absolute;
@@ -99,44 +122,33 @@ header img{
     transition: transform 0.5s ease-in-out;
   }
 
-  /* Show sidebar when the 'show' class is added */
   .sidebar.show {
     transform: translateX(0);
   }
 
+  .sidebar .nav-text {
+    display: none; /* Hide text on small screens */
+  }
+
+  .sidebar .nav-link i {
+    font-size: 1.3rem; /* Smaller icons for mobile */
+  }
+
+  /* Sidebar Toggle Button */
   .btn-light {
     font-size: 1.5rem;
     padding: 0.5rem;
   }
-
-  .sidebar .nav-item .nav-text {
-    display: none; /* Hide text on small screens */
-  }
-
-  .nav-item .nav-link {
-    font-size: 1rem;
-  }
 }
 
-/* On desktop (min-width: 768px) */
+/* Desktop view adjustments */
 @media (min-width: 768px) {
   .sidebar {
     position: relative;
     transform: translateX(0);
   }
 
-  .main-content {
-    margin-left: 260px; /* Sidebar space for desktop views */
-  }
-
-  /* Larger icons on desktop */
-  header .d-flex button i {
-    font-size: 1.8rem;
-  }
-
-  /* Show both text and icon on hover */
-  .sidebar .nav-item:hover .nav-text {
-    display: inline-block; /* Show text on hover */
-    font-size: 1.5rem; /* Increase text size on hover */
+  .sidebar .nav-text {
+    display: inline-block; /* Show text on desktop */
   }
 }
