@@ -1,8 +1,16 @@
 .container-fluid {
   background-image: url("/images/bg_image.jpg");
   width: 100%;
-  height: 100vh;
+  height:fit-content;
   background-size: cover; /* Ensure the image covers the whole container */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.homeText {
+  color: #fff;
+  width: 40%;
+  height: 50%;
+  background-color:rgba(10, 207, 10, 0.5);
+  margin: 5%;
 }
