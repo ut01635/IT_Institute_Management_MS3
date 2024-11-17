@@ -41,6 +41,9 @@ import { EnrollmentFormComponent } from './Modals/student/enrollment-form/enroll
 import { ProfileUpdateFormComponent } from './Modals/student/profile-update-form/profile-update-form.component';
 import { PasswordRestFormComponent } from './Modals/student/password-rest-form/password-rest-form.component';
 import { AnnouncementViewComponent } from './Modals/student/announcement-view/announcement-view.component';
+import { HeaderComponent } from './Components/landing/header/header.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -82,11 +85,14 @@ import { AnnouncementViewComponent } from './Modals/student/announcement-view/an
     EnrollmentFormComponent,
     ProfileUpdateFormComponent,
     PasswordRestFormComponent,
-    AnnouncementViewComponent
+    AnnouncementViewComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

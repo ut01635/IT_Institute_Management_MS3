@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './student-list.component.css'
 })
 export class StudentListComponent {
+onDelete(arg0: any) {
+throw new Error('Method not implemented.');
+}
+onEdit(arg0: any) {
+throw new Error('Method not implemented.');
+}
+students: any;
+searchText: any;
 
 }

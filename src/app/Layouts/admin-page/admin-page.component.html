@@ -1,92 +1,95 @@
-<div class="container-fluid">
-    <!-- Header -->
-    <header class="d-flex justify-content-between align-items-center p-3 bg-maroon text-white" style="width: 100%;">
-      <h1 class="m-0">A-Z Coding Academy</h1>
-      <div class="d-flex align-items-center">
-        <!-- Notifications Icon (without text) -->
-        <button class="btn btn-light me-3" aria-label="Notifications" >
-          <i class="bi bi-bell"></i>
-        </button>
-        
-        <!-- Announcements Icon (without text) -->
-        <button class="btn btn-light me-3" aria-label="Announcements" [routerLink]="['/admin/Annoucement-list']">
-          <i class="bi bi-megaphone"></i>
-        </button>
-  
-        <!-- Mobile Sidebar Toggle Button -->
-        <button class="btn btn-light d-md-none" (click)="toggleSidebar()">☰</button>
-      </div>
-    </header>
-  
-    <!-- Sidebar -->
-    <div class="row">
-      <nav class="col-3 col-md-2 sidebar bg-blurred text-white" [ngClass]="{'show': isSidebarVisible}">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/admin-dashboard']">
-              <i class="bi bi-house-door"></i>
-              <span class="nav-text">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/student-list']">
-              <i class="bi bi-person"></i>
-              <span class="nav-text">Students</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/course-list']">
-              <i class="bi bi-book"></i>
-              <span class="nav-text">Courses</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/enquiry-list']">
-              <i class="bi bi-envelope"></i>
-              <span class="nav-text">Enquiries</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#"[routerLink]="['/admin/payment']" >
-              <i class="bi bi-credit-card"></i>
-              <span class="nav-text">Payment</span>
-            </a>
-          </li>
-          
-          <!-- Reports Item (with hover sub-links) -->
-          <li class="nav-item report-item">
-            <a class="nav-link text-white" >
-              <i class="bi bi-file-earmark-bar-graph"></i>
-              <span class="nav-text">Reports</span>
-            </a>
-            <ul class="nav flex-column ms-3 report-sub-links">
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#" [routerLink]="['/admin/student-report']">Student Report</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#" [routerLink]="['/admin/enrollment-report']">Enrollment Report</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#" [routerLink]="['/admin/payment-report']">Payment Report</a>
-              </li>
-            </ul>
-          </li>
-  
-          <li class="nav-item mt-auto">
-            <a class="nav-link text-white" href="#">
-              <i class="bi bi-box-arrow-right"></i>
-              <span class="nav-text">Logout</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-  
-      <!-- Main Content Area -->
-      <main class="col-12 col-md ms-0 ms-md-5 mt-3">
-        <h2>Welcome to A-Z Coding Academy</h2>
-        <router-outlet></router-outlet>
-        <!-- Add more content here -->
-      </main>
+<div class="">
+  <!-- Header -->
+  <header class="d-flex justify-content-between align-items-center p-3 bg-gray text-white" style="width: 100%;">
+    <h1 class="m-0">
+      <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 300px; height:50px;">
+    </h1>
+    <div class="d-flex align-items-center">
+      <!-- Notifications Icon (without text) -->
+      <button class="btn me-3 btn-lg " aria-label="Notifications" [routerLink]="['/admin/Notification-list']">
+        <i class="bi bi-bell text-green fs-3"></i>
+      </button>
+
+      <!-- Announcements Icon (without text) -->
+      <button class="btn me-3 btn-lg" aria-label="Announcements" [routerLink]="['/admin/Annoucement-list']">
+        <i class="bi bi-megaphone text-green fs-3"></i>
+      </button>
+
+      <!-- Mobile Sidebar Toggle Button -->
+      <button class="btn btn-lg d-md-none" (click)="toggleSidebar()">☰</button>
     </div>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="row">
+    <nav class="col-12 col-md-2 sidebar bg-blurred text-white" [ngClass]="{'show': isSidebarVisible}">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" [routerLink]="['/admin/admin-dashboard']">
+            <i class="bi bi-house-door"></i>
+            <span class="nav-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" [routerLink]="['/admin/student-list']">
+            <i class="bi bi-person"></i>
+            <span class="nav-text">Students</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" [routerLink]="['/admin/course-list']">
+            <i class="bi bi-book"></i>
+            <span class="nav-text">Courses</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" [routerLink]="['/admin/enquiry-list']">
+            <i class="bi bi-envelope"></i>
+            <span class="nav-text">Enquiries</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" [routerLink]="['/admin/payment']">
+            <i class="bi bi-credit-card"></i>
+            <span class="nav-text">Payment</span>
+          </a>
+        </li>
+
+        <!-- Reports Item (with hover sub-links) -->
+        <li class="nav-item report-item">
+          <a class="nav-link text-white">
+            <i class="bi bi-file-earmark-bar-graph"></i>
+            <span class="nav-text">Reports</span>
+          </a>
+          <ul class="flex-column ms-0 report-sub-links">
+            <li><a class="text-white" href="#" [routerLink]="['/admin/student-report']">Student Report</a></li>
+            <li><a class="text-white" href="#" [routerLink]="['/admin/enrollment-report']">Enrollment Report</a></li>
+            <li><a class="text-white" href="#" [routerLink]="['/admin/payment-report']">Payment Report</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#" [routerLink]="['/admin/admin-list']">
+            <i class="bi bi-person"></i>
+            <span class="nav-text">Admins</span>
+          </a>
+        </li>
+
+        <li class="nav-item mt-auto">
+          <a class="nav-link text-danger" href="#">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="nav-text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="col-12 col-md ms-0 mt-3">
+      <section style="width: 100%; overflow-y: scroll;" class="shadow p-4 m-2 bg-white rounded">
+        <h2>{{greeting}}</h2>
+        <router-outlet></router-outlet>
+      </section>
+    </main>
   </div>
-  
+</div>

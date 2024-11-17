@@ -1,0 +1,46 @@
+.course-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-top:4px solid #13361c;
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.course-price {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #13361c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.course-img {
+  height: 200px;
+  object-fit: cover;
+  width: 100%; 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.followbtn{
+    width: 80%;
+    border: 2px solid #13361c;
+    color: #13361c;
+    background-color: #fff;
+}
+.followbtn:hover{
+    background-color: #13361c;
+    color: #fff;
+   
+}
