@@ -1,4 +1,4 @@
-.container-fluid {
+.homeContainer {
   background-image: url("/images/bg_image.jpg");
   width: 100%;
   height:fit-content;
@@ -13,4 +13,13 @@
   height: 50%;
   background-color:rgba(10, 207, 10, 0.5);
   margin: 5%;
+  
 }
+.loginBtn{
+  background-color: #fff;
+  color: #375534;
+ }
+ .loginBtn:hover{
+   background-color: #0f2a1d;
+   color: #fff;
+ }
