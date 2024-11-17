@@ -26,7 +26,7 @@ const routes: Routes = [
   { path:'', 
     component:LandingPageComponent,
     children:[
-      {path:'landing', component:la}
+      
     ]
   },
   { path:'admin', 
