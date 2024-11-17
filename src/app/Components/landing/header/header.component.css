@@ -19,8 +19,10 @@ color: #fff;
 .loginBtn{
  background-color: #375534;
  color: #fff;
+ border: 2px solid #fff;
 }
 .loginBtn:hover{
   background-color: #0f2a1d;
   color: #fff;
+  border: 2px solid #fff;
 }

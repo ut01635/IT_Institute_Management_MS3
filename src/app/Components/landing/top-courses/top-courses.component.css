@@ -1,5 +1,5 @@
 .course-card {
-  border: none;
+  border: 1px solid 13361c;
   border-radius: 15px;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
