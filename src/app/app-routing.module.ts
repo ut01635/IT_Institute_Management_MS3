@@ -21,11 +21,15 @@ import { AnnouncementComponent } from './Components/student/announcement/announc
 import { PaymentDetailsComponent } from './Components/student/payment-details/payment-details.component';
 import { EnrollCoursesComponent } from './Components/student/enroll-courses/enroll-courses.component';
 import { ProfileComponent } from './Components/student/profile/profile.component';
+import { HomeComponent } from './Components/landing/home/home.component';
 
 const routes: Routes = [
   { path:'', 
     component:LandingPageComponent,
     children:[
+      {path:'',component:HomeComponent},
+      {path:'home',component:HomeComponent},
+      
       
     ]
   },
