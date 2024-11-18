@@ -22,6 +22,7 @@ import { PaymentDetailsComponent } from './Components/student/payment-details/pa
 import { EnrollCoursesComponent } from './Components/student/enroll-courses/enroll-courses.component';
 import { ProfileComponent } from './Components/student/profile/profile.component';
 import { HomeComponent } from './Components/landing/home/home.component';
+import { TopCoursesComponent } from './Components/landing/top-courses/top-courses.component';
 
 const routes: Routes = [
   { path:'', 
@@ -29,7 +30,8 @@ const routes: Routes = [
     children:[
       {path:'',component:HomeComponent},
       {path:'home',component:HomeComponent},
-      
+      {path:'courses',component:TopCoursesComponent},
+
       
     ]
   },
