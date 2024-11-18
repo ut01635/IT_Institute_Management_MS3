@@ -23,6 +23,8 @@ import { EnrollCoursesComponent } from './Components/student/enroll-courses/enro
 import { ProfileComponent } from './Components/student/profile/profile.component';
 import { HomeComponent } from './Components/landing/home/home.component';
 import { TopCoursesComponent } from './Components/landing/top-courses/top-courses.component';
+import { OurhistoryComponent } from './Components/landing/ourhistory/ourhistory.component';
+import { ContactUsComponent } from './Components/landing/contact-us/contact-us.component';
 
 const routes: Routes = [
   { path:'', 
@@ -31,8 +33,8 @@ const routes: Routes = [
       {path:'',component:HomeComponent},
       {path:'home',component:HomeComponent},
       {path:'courses',component:TopCoursesComponent},
-
-      
+      {path:'our-history',component:OurhistoryComponent},
+      {path:'contact-us',component:ContactUsComponent } 
     ]
   },
   { path:'admin', 
