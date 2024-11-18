@@ -2,13 +2,13 @@
   border: 1px solid 13361c;
   border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-top:4px solid #13361c;
 }
 
 .course-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.15);
 }
 
 .course-price {
