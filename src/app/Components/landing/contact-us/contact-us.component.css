@@ -1,0 +1,7 @@
+.contact-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .contact-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.15);
+  }
