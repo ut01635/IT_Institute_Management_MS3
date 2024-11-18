@@ -44,6 +44,7 @@ import { AnnouncementViewComponent } from './Modals/student/announcement-view/an
 import { HeaderComponent } from './Components/landing/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { OurhistoryComponent } from './Components/landing/ourhistory/ourhistory.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { FormsModule } from '@angular/forms';
     ProfileUpdateFormComponent,
     PasswordRestFormComponent,
     AnnouncementViewComponent,
-    HeaderComponent
+    HeaderComponent,
+    OurhistoryComponent
   ],
   imports: [
     BrowserModule,
