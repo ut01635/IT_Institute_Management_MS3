@@ -52,7 +52,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     LandingPageComponent,
-    AdminPageComponent,
     StudentPageComponent,
     AdminDashboardComponent,
     StudentListComponent,
@@ -72,10 +71,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     PaymentDetailsComponent,
     EnrollCoursesComponent,
     ProfileComponent,
-    HomeComponent,
-    TopCoursesComponent,
-    ContactUsComponent,
-    FooterComponent,
     LoginComponent,
     EnquiryFormComponent,
     StudentFormComponent,
@@ -88,9 +83,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     EnrollmentFormComponent,
     ProfileUpdateFormComponent,
     PasswordRestFormComponent,
-    AnnouncementViewComponent,
-    HeaderComponent,
-    OurhistoryComponent
+    AnnouncementViewComponent
+
    
   ],
   imports: [
