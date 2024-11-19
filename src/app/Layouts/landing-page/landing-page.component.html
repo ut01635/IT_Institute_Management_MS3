@@ -1,20 +1,13 @@
 <header class="header-area header-sticky">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
           <!-- Logo Start -->
-          <a href="/" class="navbar-brand">
-            <img
-              src="/images/logo_removed.png"
-              alt="Logo"
-              width="100px"
-              height="40px"
-            />
-            Edu Meeting
+          <a href="/" class="navbar-brand col-3 d-flex align-items-center">
+            <h2>DEVHub</h2>
           </a>
           <!-- Logo End -->
-
+  
           <!-- Responsive Toggler -->
           <button
             class="navbar-toggler"
@@ -23,46 +16,43 @@
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
+  
           <!-- Menu Start -->
-          <div
-            class="collapse navbar-collapse justify-content-between"
-            id="navbarNav"
-          >
-            <ul class="navbar-nav">
+          <div class="collapse navbar-collapse col-9" id="navbarNav">
+            <!-- Centering the nav-links in the navbar -->
+            <ul class="navbar-nav w-100 d-flex justify-content-center">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#top"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="meetings.html">Meetings</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#apply">Apply</a>
+                <a class="nav-link active" aria-current="page" href="#top">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#courses">Courses</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="#apply">Apply</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact Us</a>
               </li>
             </ul>
-            <div class="d-flex">
-              <a href="#" class="btn btn-primary">Login / Register</a>
+  
+            <!-- Login Button Inside Toggler (for smaller screens) -->
+            <div class="d-flex justify-content-center mt-3">
+              <a href="#" class="btn btn-primary">Login</a>
             </div>
           </div>
           <!-- Menu End -->
         </nav>
       </div>
     </div>
-  </div>
-</header>
-
+  </header>
+  
+  
+  
+  
+  
 <!-- ***** Header Area End ***** -->
 
 <!-- ***** Main Banner Area Start ***** -->
@@ -701,19 +691,19 @@
             <ul class="list-unstyled">
               <li class="mb-3">
                 <h6>Phone Number</h6>
-                <span>010-020-0340</span>
+                <span>074-3773745</span>
               </li>
               <li class="mb-3">
                 <h6>Email Address</h6>
-                <span>infomeeting.edu</span>
+                <span>{{email}}</span>
               </li>
               <li class="mb-3">
                 <h6>Street Address</h6>
-                <span>Rio de Janeiro - RJ, 22795-008, Brazil</span>
+                <span>no-07 ,kks Road,Jaffna,Srilanka</span>
               </li>
               <li class="mb-3">
                 <h6>Website URL</h6>
-                <span>www.meeting.edu</span>
+                <span><a href="http://localhost:4200"> www.devhub.edu</a></span>
               </li>
             </ul>
           </div>
