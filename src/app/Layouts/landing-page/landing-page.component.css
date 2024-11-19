@@ -1,216 +1,42 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
-/* 
----------------------------------------------
-reset
---------------------------------------------- 
-*/
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
-figure, header, nav, section, article, aside, footer, figcaption {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
+figure, header, nav, section, article, aside, footer, figcaption {margin: 0;padding: 0;border: 0;outline: 0;}
+.clearfix:after {content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0;}
+.clearfix {display: inline-block;}
+html[xmlns] .clearfix {display: block;}
+* html .clearfix {height: 1%;}
+ul, li {padding: 0;margin: 0;list-style: none;}
+header, nav, section, article, aside, footer, hgroup {display: block;}
+* { box-sizing: border-box;}
+html, body {font-family: 'Poppins', sans-serif;font-weight: 400;background-color: #fff;font-size: 16px;-ms-text-size-adjust: 100%;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+a {text-decoration: none !important;color: #3CF;}
+a:hover {color: #FC3;}
+h1, h2, h3, h4, h5, h6 { margin-top: 0px;margin-bottom: 0px;}
+ul {margin-bottom: 0px;
 }
-
-.clearfix:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
-
-.clearfix {
-  display: inline-block;
-}
-
-html[xmlns] .clearfix {
-  display: block;
-}
-
-* html .clearfix {
-  height: 1%;
-}
-
-ul, li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-header, nav, section, article, aside, footer, hgroup {
-  display: block;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  background-color: #fff;
-  font-size: 16px;
-  -ms-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  text-decoration: none !important;
-  color: #3CF;
-}
-
-a:hover {
-	color: #FC3;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-ul {
-  margin-bottom: 0px;
-}
-
-p {
-  font-size: 14px;
-  line-height: 25px;
-  color: #2a2a2a;
-}
-
-img {
-  width: 100%;
-  overflow: hidden;
-}
-
-/* 
----------------------------------------------
-global styles
---------------------------------------------- 
-*/
-html,
-body {
-  background: #fff;
-  font-family: 'Poppins', sans-serif;
-}
-
-::selection {
-  background: #f5a425;
-  color: #fff;
-}
-
-::-moz-selection {
-  background: #f5a425;
-  color: #fff;
-}
-
+p {font-size: 14px;line-height: 25px;color: #2a2a2a;}
+img { width: 100%; overflow: hidden;}
+html,body {background: #fff;font-family: 'Poppins', sans-serif;}::selection { background: #f5a425;color: #fff;}
+::-moz-selection {background: #f5a425; color: #fff;}
 @media (max-width: 991px) {
-  html, body {
-    overflow-x: hidden;
-  }
-  .mobile-top-fix {
-    margin-top: 30px;
-    margin-bottom: 0px;
-  }
-  .mobile-bottom-fix {
-    margin-bottom: 30px;
-  }
-  .mobile-bottom-fix-big {
-    margin-bottom: 60px;
-  }
+  html, body { overflow-x: hidden;}.mobile-top-fix {margin-top: 30px;margin-bottom: 0px;}
+  .mobile-bottom-fix {margin-bottom: 30px;}
+.mobile-bottom-fix-big { margin-bottom: 60px;}}
+.main-button-red a {font-size: 13px; color: #fff; background-color: #a12c2f; padding: 12px 30px; display: inline-block; border-radius: 22px; font-weight: 500; text-transform: uppercase;  transition: all .3s;
 }
-
-.main-button-red a {
-  font-size: 13px;
-  color: #fff;
-  background-color: #a12c2f;
-  padding: 12px 30px;
-  display: inline-block;
-  border-radius: 22px;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: all .3s;
-}
-
-.main-button-red a:hover {
-  opacity: 0.9;
-}
-
-.main-button-yellow a {
-  font-size: 13px;
-  color: #fff;
-  background-color: #f5a425;
-  padding: 12px 30px;
-  display: inline-block;
-  border-radius: 22px;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: all .3s;
-}
-
-.main-button-yellow a:hover {
-  opacity: 0.9;
-}
-
-.section-heading h2 {
-  line-height: 40px;
-  margin-top: 0px;
-  margin-bottom: 50px; 
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(250,250,250,0.15);
-  font-size: 22px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-
-/* 
----------------------------------------------
-header
---------------------------------------------- 
-*/
-
-.sub-header {
-  background-color: #1f272b;
-  position: relative;
-  z-index: 1111;
-}
-
-.sub-header .left-content p {
-  color: #fff;
-  padding: 8px 0px;
-  font-size: 13px;
-}
-
-.sub-header .right-icons {
-  text-align: right;
-  padding: 8px 0px;
-}
-
-.sub-header .right-icons ul li {
-  display: inline-block;
-  margin-left: 15px;
-}
-
-.sub-header .right-icons ul li a {
-  color: #fff;
-  font-size: 14px;
-  transition: all .3s;
-}
-
-.sub-header .right-icons ul li a:hover {
-  color: #f5a425;
-}
-
-.sub-header .left-content p em {
-   font-style: normal;
-   color: #f5a425;
+.main-button-red a:hover { opacity: 0.9;}
+.main-button-yellow a { font-size: 13px;  color: #fff;  background-color: #f5a425;  padding: 12px 30px;  display: inline-block;  border-radius: 22px;  font-weight: 500;  text-transform: uppercase;  transition: all .3s;}
+.main-button-yellow a:hover {opacity: 0.9;}
+.section-heading h2 { line-height: 40px;  margin-top: 0px;  margin-bottom: 50px;   padding-bottom: 20px;  border-bottom: 1px solid rgba(250,250,250,0.15);  font-size: 22px;  font-weight: 700;  text-transform: uppercase;color: #fff;}
+.sub-header {  background-color: #1f272b;  position: relative;  z-index: 1111;}
+.sub-header .left-content p { color: #fff; padding: 8px 0px; font-size: 13px;}
+.sub-header .right-icons { text-align: right; padding: 8px 0px;}
+.sub-header .right-icons ul li {  display: inline-block;  margin-left: 15px;}
+.sub-header .right-icons ul li a { color: #fff; font-size: 14px; transition: all .3s;}
+.sub-header .right-icons ul li a:hover { color: #f5a425;}
+.sub-header .left-content p em {  font-style: normal;   color: #f5a425;
 }
 
 .background-header {
@@ -1498,303 +1324,75 @@ section.meetings-page .pagination {
   text-align: center;
   width: 100%;
   margin-top: 30px;
-  display: inline-block;
-}
-
-section.meetings-page .pagination ul li {
-  display: inline-block;
-}
-
-section.meetings-page .pagination ul li a {
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  border-radius: 10px;
-  color: #1f272b;
-  display: inline-block;
-  text-align: center;
-  line-height: 40px;
-  font-weight: 600;
-  font-size: 15px;
-  transition: all .3s;
-}
-
-section.meetings-page .main-button-red {
-  text-align: center;
-}
-
-section.meetings-page .main-button-red a {
-  padding: 12px 60px;
-  text-align: center;
-  margin-top: 30px;
-}
-
-section.meetings-page .pagination ul li.active a,
-section.meetings-page .pagination ul li a:hover {
-  background-color: #a12c2f;
-  color: #fff;
-}
-
-.meeting-single-item .thumb {
-  position: relative;
-}
-
-.meeting-single-item .thumb img {
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-}
-
-.meeting-single-item .thumb .price {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-}
-
-.meeting-single-item .thumb .price span {
-  font-size: 16px;
-  color: #1f272b;
-  font-weight: 600;
-  background-color: rgba(250,250,250,0.9);
-  padding: 7px 12px;
-  border-radius: 10px;
-}
-
-.meeting-single-item .down-content {
-  background-color: #fff;
-  padding: 40px;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-.meeting-single-item .thumb .date {
-  position: absolute;
-  background-color: rgba(250,250,250,0.9);
-  width: 80px;
-  height: 80px;
-  text-align: center;
-  padding: 15px 0px;
-  border-radius: 10px;
-  right: 20px;
-  top: 20px;
-}
-
-.meeting-single-item .thumb .date h6 {
-  font-size: 13px;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: #a12c2f;
-}
-
-.meeting-single-item .thumb .date span {
-  display: block;
-  color: #1f272b;
-  font-size: 22px;
-  margin-top: 7px;
-}
-
-.meeting-single-item .down-content h4 {
-  font-size: 22px;
-  color: #1f272b;
-  font-weight: 600;
-  display: inline-block;
-  margin-bottom: 15px;
-}
-
-.meeting-single-item .down-content h5 {
-  font-size: 18px;
-  color: #1f272b;
-  font-weight: 700;
-  display: inline-block;
-  margin-bottom: 15px;
-}
-
-.meeting-single-item .down-content p {
-  color: #1f272b;
-  font-size: 14px;
-}
-
-.meeting-single-item .down-content p.description {
-  margin-top: 40px;
-  padding-top: 40px;
-  border-top: 1px solid #eee;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #eee;
-}
-
-.meeting-single-item .down-content .share {
-  margin-top: 40px;
-  padding-top: 40px;
-  border-top: 1px solid #eee;
-}
-
-.meeting-single-item .down-content .share h5 {
-  float: left;
-  margin-right: 10px;
-  margin-bottom: 0px;
-}
-
-.meeting-single-item .down-content .share ul li {
-  display: inline;
-}
-
-.meeting-single-item .down-content .share ul li a {
-  font-size: 14px;
-  color: #1f272b;
-  transition: all .3s;
-}
-
-.meeting-single-item .down-content .share ul li a:hover {
-  color: #f5a425;
-}
-
-/* Meeting item column */
-.templatemo-item-col {
-	width: 31%;
-}
-
+  display: inline-block;}
+section.meetings-page .pagination ul li { display: inline-block;}
+section.meetings-page .pagination ul li a {  width: 40px;  height: 40px;  background-color: #fff;  border-radius: 10px;  color: #1f272b;  display: inline-block;  text-align: center;  line-height: 40px;  font-weight: 600;  font-size: 15px;  transition: all .3s;}
+section.meetings-page .main-button-red { text-align: center;}
+section.meetings-page .main-button-red a {  padding: 12px 60px;  text-align: center;  margin-top: 30px;}
+section.meetings-page .pagination ul li.active a,section.meetings-page .pagination ul li a:hover {  background-color: #a12c2f;  color: #fff;}
+.meeting-single-item .thumb { position: relative;}
+.meeting-single-item .thumb img { border-top-right-radius: 20px; border-top-left-radius: 20px;}
+.meeting-single-item .thumb .price {position: absolute; left: 20px; top: 20px;}
+.meeting-single-item .thumb .price span {  font-size: 16px;  color: #1f272b;  font-weight: 600;  background-color: rgba(250,250,250,0.9);  padding: 7px 12px;  border-radius: 10px;}
+.meeting-single-item .down-content {  background-color: #fff;  padding: 40px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;}
+.meeting-single-item .thumb .date { position: absolute;  background-color: rgba(250,250,250,0.9);  width: 80px;  height: 80px;  text-align: center;  padding: 15px 0px;  border-radius: 10px;  right: 20px;  top: 20px;}
+.meeting-single-item .thumb .date h6 {  font-size: 13px; text-transform: uppercase;  font-weight: 600; color: #a12c2f;}
+.meeting-single-item .thumb .date span {display: block;  color: #1f272b;  font-size: 22px;  margin-top: 7px;}
+.meeting-single-item .down-content h4 {  font-size: 22px; color: #1f272b; font-weight: 600;  display: inline-block; margin-bottom: 15px;}
+.meeting-single-item .down-content h5 {  font-size: 18px; color: #1f272b;  font-weight: 700; display: inline-block; margin-bottom: 15px;}
+.meeting-single-item .down-content p { color: #1f272b;  font-size: 14px;}
+.meeting-single-item .down-content p.description { margin-top: 40px;  padding-top: 40px;  border-top: 1px solid #eee;  margin-bottom: 40px;  padding-bottom: 40px; border-bottom: 1px solid #eee;}
+.meeting-single-item .down-content .share {  margin-top: 40px;  padding-top: 40px;  border-top: 1px solid #eee;}
+.meeting-single-item .down-content .share h5 {  float: left;  margin-right: 10px;  margin-bottom: 0px;}
+.meeting-single-item .down-content .share ul li {  display: inline;}
+.meeting-single-item .down-content .share ul li a { font-size: 14px;  color: #1f272b;  transition: all .3s;}
+.meeting-single-item .down-content .share ul li a:hover { color: #f5a425;}
+.templatemo-item-col {	width: 31%;}
 @media (max-width: 992px) {
-	.templatemo-item-col {
-		width: 45%;
-	}
+	.templatemo-item-col {		width: 45%;	}
 }
-
 @media (max-width: 767px) {
-	.templatemo-item-col {
-		width: 100%;
-	}
+	.templatemo-item-col {		width: 100%;	}
 }
-
-/* 
----------------------------------------------
-responsive
---------------------------------------------- 
-*/
-
 @media (max-width: 1300px) {
-  .services .owl-nav .owl-next{
-    right: -30px;
-  }
-  .services .owl-nav .owl-prev{
-    left: -25px;
-  }
-  .our-courses .owl-nav .owl-next{
-    right: -30px;
-  }
-  .our-courses .owl-nav .owl-prev{
-    left: -25px;
-  }
+  .services .owl-nav .owl-next{    right: -30p  }
+  .services .owl-nav .owl-prev{    left: -25px;}
+  .our-courses .owl-nav .owl-next{    right: -30px;  }
+  .our-courses .owl-nav .owl-prev{    left: -25px  }
 }
-
 @media (max-width: 1200px) {
-  .services .owl-nav .owl-next{
-    right: -70px;
-  }
-  .services .owl-nav .owl-prev{
-    left: -65px;
-  }
-  .our-courses .owl-nav .owl-next{
-    right: -70px;
-  }
-  .our-courses .owl-nav .owl-prev{
-    left: -65px;
-  }
+  .services .owl-nav .owl-next{    right: -70px;  }
+  .services .owl-nav .owl-prev{    left: -65px;  }
+  .our-courses .owl-nav .owl-next{    right: -70px;  }
+  .our-courses .owl-nav .owl-prev{    left: -65px;  }
 }
-
 @media (max-width: 1085px) {
-  .services .owl-nav .owl-next{
-    right: -30px;
-  }
-  .services .owl-nav .owl-prev{
-    left: -25px;
-  }
-  .our-courses .owl-nav .owl-next{
-    right: -30px;
-  }
-  .our-courses .owl-nav .owl-prev{
-    left: -25px;
-  }
+  .services .owl-nav .owl-next{   right: -30px;  } 
+     .services .owl-nav .owl-prev{    left: -25px; } 
+  .our-courses .owl-nav .owl-next{    right: -30px; } 
+   .our-courses .owl-nav .owl-prev{    left: -25px;  }
 }
-
 @media (max-width: 1005px) {
-  .services .owl-nav .owl-next{
-    display: none;
-  }
-  .services .owl-nav .owl-prev{
-    display: none;
-  }
-  .our-courses .owl-nav .owl-next{
-    display: none;
-  }
-  .our-courses .owl-nav .owl-prev{
-    display: none;
-  }
+  .services .owl-nav .owl-next{    display: none;  }
+  .services .owl-nav .owl-prev{    display: none;  }
+  .our-courses .owl-nav .owl-next{    display: none;  }
+  .our-courses .owl-nav .owl-prev{    display: none;  }
 }
-
 @media (max-width: 992px) {
-
-  .main-banner .caption {
-    top: 60%;
-  }
-
-  .main-banner .caption h2 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 22px;
-  }
-
-  .main-banner .caption .main-button-red {
-    margin-top: 15px;
-  }
-
-  .services {
-    margin-top: 60px;
-  }
-
-  section.upcoming-meetings {
-    padding-top: 400px;
-  }
-
-  section.upcoming-meetings .categories {
-    margin-right: 0px;
-    margin-bottom: 30px;
-  }
-
-  .accordions {
-    margin-left: 0px;
-  }
-
-  .new-students {
-    margin-top: 15px;
-  }
-
-  section.our-facts .video {
-    margin-left: 0px;
-    margin-top: 15px;
-  }
-
-  section.contact-us #contact {
-    margin-bottom: 30px;
-  }
-
+  .main-banner .caption {   top: 60%;  }
+  .main-banner .caption h2 {    margin-top: 10px;    margin-bottom: 10px;   font-size: 22px;  }
+  .main-banner .caption .main-button-red {    margin-top: 15px;  }
+  .services {    margin-top: 60px;  }
+  section.upcoming-meetings {   padding-top: 400px;  }
+  section.upcoming-meetings .categories {    margin-right: 0px;    margin-bottom: 30px;  }
+  .accordions {    margin-left: 0px;  }
+  .new-students {   margin-top: 15px; }
+  section.our-facts .video {    margin-left: 0px;    margin-top: 15px; }
+  section.contact-us #contact {    margin-bottom: 30px;  }
 }
-
 @media (max-width: 767px) {
-
-  .sub-header .left-content p {
-    display: none;
-  }
-
-  .sub-header .right-icons {
-    text-align: center;
-  }
-
-  .main-nav .nav .sub-menu {
-    display: none;
-  }
-
-  .header-area .main-nav .nav li ul.sub-menu li a {
-    color: #1f272b;
-  }
-
+  .sub-header .left-content p {    display: none;  }
+  .sub-header .right-icons {    text-align: center; }
+  .main-nav .nav .sub-menu {   display: none;}
+  .header-area .main-nav .nav li ul.sub-menu li a {color: #1f272b;}
 }
