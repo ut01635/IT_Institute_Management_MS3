@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './Layouts/landing-page/landing-page.component';
-import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 import { StudentPageComponent } from './Layouts/student-page/student-page.component';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
 import { StudentListComponent } from './Components/admin/student-list/student-list.component';
@@ -24,10 +23,6 @@ import { AnnouncementComponent } from './Components/student/announcement/announc
 import { PaymentDetailsComponent } from './Components/student/payment-details/payment-details.component';
 import { EnrollCoursesComponent } from './Components/student/enroll-courses/enroll-courses.component';
 import { ProfileComponent } from './Components/student/profile/profile.component';
-import { HomeComponent } from './Components/landing/home/home.component';
-import { TopCoursesComponent } from './Components/landing/top-courses/top-courses.component';
-import { ContactUsComponent } from './Components/landing/contact-us/contact-us.component';
-import { FooterComponent } from './Components/landing/footer/footer.component';
 import { LoginComponent } from './Modals/landing/login/login.component';
 import { EnquiryFormComponent } from './Modals/landing/enquiry-form/enquiry-form.component';
 import { StudentFormComponent } from './Modals/admin/student-form/student-form.component';
@@ -41,11 +36,10 @@ import { EnrollmentFormComponent } from './Modals/student/enrollment-form/enroll
 import { ProfileUpdateFormComponent } from './Modals/student/profile-update-form/profile-update-form.component';
 import { PasswordRestFormComponent } from './Modals/student/password-rest-form/password-rest-form.component';
 import { AnnouncementViewComponent } from './Modals/student/announcement-view/announcement-view.component';
-import { HeaderComponent } from './Components/landing/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { OurhistoryComponent } from './Components/landing/ourhistory/ourhistory.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
+
 
 
 @NgModule({
@@ -83,7 +77,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     EnrollmentFormComponent,
     ProfileUpdateFormComponent,
     PasswordRestFormComponent,
-    AnnouncementViewComponent
+    AnnouncementViewComponent,
+    AdminPageComponent
 
    
   ],
@@ -92,7 +87,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

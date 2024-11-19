@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './Layouts/landing-page/landing-page.component';
-import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
+
 import { StudentPageComponent } from './Layouts/student-page/student-page.component';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
 import { StudentListComponent } from './Components/admin/student-list/student-list.component';
@@ -21,24 +21,15 @@ import { AnnouncementComponent } from './Components/student/announcement/announc
 import { PaymentDetailsComponent } from './Components/student/payment-details/payment-details.component';
 import { EnrollCoursesComponent } from './Components/student/enroll-courses/enroll-courses.component';
 import { ProfileComponent } from './Components/student/profile/profile.component';
-import { HomeComponent } from './Components/landing/home/home.component';
-import { TopCoursesComponent } from './Components/landing/top-courses/top-courses.component';
-import { OurhistoryComponent } from './Components/landing/ourhistory/ourhistory.component';
-import { ContactUsComponent } from './Components/landing/contact-us/contact-us.component';
 
 const routes: Routes = [
   { path:'', 
     component:LandingPageComponent,
     children:[
-      {path:'',component:HomeComponent},
-      {path:'home',component:HomeComponent},
-      {path:'courses',component:TopCoursesComponent},
-      {path:'our-history',component:OurhistoryComponent},
-      {path:'contact-us',component:ContactUsComponent } 
     ]
   },
   { path:'admin', 
-    component:AdminPageComponent,
+    component:ad,
     children:[
       {path:'', component:AdminDashboardComponent},
       {path:'admin-dashboard', component:AdminDashboardComponent},
