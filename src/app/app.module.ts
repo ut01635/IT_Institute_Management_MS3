@@ -45,6 +45,7 @@ import { HeaderComponent } from './Components/landing/header/header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { OurhistoryComponent } from './Components/landing/ourhistory/ourhistory.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { OurhistoryComponent } from './Components/landing/ourhistory/ourhistory.
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

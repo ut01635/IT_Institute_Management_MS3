@@ -8,7 +8,9 @@ import { Course } from './Modal';
 export class CourseService {
 
   constructor(private http:HttpClient) { }
+
+
   getAllCourses(){
-    return this.http.get<Course[]>("https://localhost:7055/api/Course");
+    return this.http.get<Course[]>('https://localhost:7055/api/Course');
   }
 }
