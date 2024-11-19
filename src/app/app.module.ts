@@ -47,6 +47,7 @@ import { FormsModule } from '@angular/forms';
 import { OurhistoryComponent } from './Components/landing/ourhistory/ourhistory.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +91,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AnnouncementViewComponent,
     HeaderComponent,
     OurhistoryComponent
+   
   ],
   imports: [
     BrowserModule,
