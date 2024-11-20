@@ -22,11 +22,13 @@ import { PaymentDetailsComponent } from './Components/student/payment-details/pa
 import { EnrollCoursesComponent } from './Components/student/enroll-courses/enroll-courses.component';
 import { ProfileComponent } from './Components/student/profile/profile.component';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
+import { LoginComponent } from './Modals/landing/login/login.component';
 
 const routes: Routes = [
   { path:'', 
     component:LandingPageComponent,
     children:[
+      {path:'login', component:LoginComponent},
     ]
   },
   { path:'admin', 
@@ -59,6 +61,8 @@ const routes: Routes = [
       {path:'profile', component:ProfileComponent},
     ]
   },
+
+  {path:'form', component:LoginComponent}
 ];
 
 @NgModule({

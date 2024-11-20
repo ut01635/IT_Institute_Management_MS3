@@ -1,23 +1,41 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
-      </div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container p-4 shadow-lg rounded">
+  <p class="h3 text-center font-weight-bold mb-4">Login</p>
+
+  <!-- Email Field -->
+  <div class="mb-3 position-relative">
+    <label for="email" class="form-label">Enter Email</label>
+    <input 
+      id="email" 
+      formControlName="email" 
+      type="email" 
+      class="form-control" 
+      placeholder="Enter your email" 
+      [ngClass]="{'is-invalid': loginForm.get('email')?.touched && loginForm.get('email')?.invalid}" />
+    <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="invalid-feedback">
+      <small *ngIf="loginForm.get('email')?.hasError('required')">Email is required.</small>
+      <small *ngIf="loginForm.get('email')?.hasError('email')">Enter a valid email.</small>
     </div>
   </div>
+
+  <!-- Password Field -->
+  <div class="mb-3 position-relative">
+    <label for="password" class="form-label">Enter Password</label>
+    <input 
+      id="password" 
+      formControlName="password" 
+      type="password" 
+      class="form-control" 
+      placeholder="Enter your password" 
+      [ngClass]="{'is-invalid': loginForm.get('password')?.touched && loginForm.get('password')?.invalid}" />
+    <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="invalid-feedback">
+      <small *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</small>
+      <small *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters long.</small>
+    </div>
+  </div>
+
+  <!-- Forgot Password Link -->
+  <a href="#" class="text-decoration-none">Forgot your password?</a>
+
+  <!-- Submit Button -->
+  <button type="submit" class="submit-btn w-100 mt-4 py-3" [disabled]="loginForm.invalid">Log In</button>
+</form>
