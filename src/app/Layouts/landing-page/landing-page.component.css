@@ -50,3 +50,19 @@
     border-radius: 5px;
     background-color: #fff;
 }
+/* Optional: Custom style for cards in the carousel */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .carousel-inner {
+    padding: 20px;
+  }
+  
+  /* Customize carousel control buttons */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #007bff; /* Set your preferred color */
+    border-radius: 50%;
+  }

@@ -39,6 +39,7 @@ import { AnnouncementViewComponent } from './Modals/student/announcement-view/an
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -85,6 +86,7 @@ import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule
