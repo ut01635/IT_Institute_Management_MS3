@@ -1,0 +1,24 @@
+.social-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.facebook {
+    color: #1877f2;
+}
+
+.github {
+    color: #24292f;
+}
+
+.whatsapp {
+    color: #25D366;
+}
+
+.instagram {
+    color: #e1306c;
+}
+
+.social-icon:hover {
+    transform: scale(1.3); 
+}
