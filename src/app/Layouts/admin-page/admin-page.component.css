@@ -2,17 +2,17 @@
 
 /* Header - Change Background Color to Gray */
 .bg-gray {
-    background-color: #808080; /* Gray color for the header */
+    background-color: #83A6CE; /* Gray color for the header */
   }
   
   
   
-  .text-green{
-    color :  #006400;
+  .text-dark{
+    color :  #0D1E4C;
   }
   
   .bg-green{
-    background-color:  #006400;
+    background-color:  #0D1E4C;
   }
   
   header button:hover {
@@ -36,21 +36,22 @@
   }
   
   /* Sidebar - Hide text by default */
-  .sidebar .nav-text {
-    display: none; /* Hide navigation text by default */
+  .nav-text {
+    display: none;
   }
-  
+
+   /* Hover Effect for Sidebar */
+   .sidebar:hover {
+    width: 200px; /* Expand width on hover */
+  }
   /* Show text when sidebar is hovered */
   .sidebar:hover .nav-text {
-    display: inline-block; /* Show text on hover */
+    display: block; 
     font-size: 1.5rem;
     transition: width 0.8s ease-in-out;
   }
   
-  /* Hover Effect for Sidebar */
-  .sidebar:hover {
-    width: 200px; /* Expand width on hover */
-  }
+ 
   
   .sidebar .nav-link {
     padding: 1rem;

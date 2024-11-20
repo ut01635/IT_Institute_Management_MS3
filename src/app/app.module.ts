@@ -37,7 +37,7 @@ import { ProfileUpdateFormComponent } from './Modals/student/profile-update-form
 import { PasswordRestFormComponent } from './Modals/student/password-rest-form/password-rest-form.component';
 import { AnnouncementViewComponent } from './Modals/student/announcement-view/announcement-view.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 
 
@@ -87,6 +87,7 @@ import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
     AppRoutingModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

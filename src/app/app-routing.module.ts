@@ -21,6 +21,7 @@ import { AnnouncementComponent } from './Components/student/announcement/announc
 import { PaymentDetailsComponent } from './Components/student/payment-details/payment-details.component';
 import { EnrollCoursesComponent } from './Components/student/enroll-courses/enroll-courses.component';
 import { ProfileComponent } from './Components/student/profile/profile.component';
+import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 
 const routes: Routes = [
   { path:'', 
@@ -29,7 +30,7 @@ const routes: Routes = [
     ]
   },
   { path:'admin', 
-    component:AdminDashboardComponent,
+    component:AdminPageComponent,
     children:[
       {path:'', component:AdminDashboardComponent},
       {path:'admin-dashboard', component:AdminDashboardComponent},
