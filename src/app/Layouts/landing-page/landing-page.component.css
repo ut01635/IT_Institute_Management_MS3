@@ -24,23 +24,22 @@
 }
 .back-to-top {
   position: fixed;
-  bottom: 20px; /* Distance from the bottom of the page */
-  right: 20px; /* Distance from the right of the page */
-  z-index: 1000; /* Ensure the button stays on top of other content */
-  border-radius: 5px; /* Make the button round */
-  padding: 10px; /* Adjust size */
-  transition: transform 0.3s ease; /* Smooth transition for scaling on hover */
+  bottom: 20px;
+  right: 20px; 
+  z-index: 1000; 
+  border-radius: 5px;
+  padding: 10px; 
+  transition: transform 0.3s ease; 
 }
-
 .back-to-top:hover {
-  transform: scale(1.3); /* Scale up when hovered */
+  transform: scale(1.3); 
 }
 
 .icons {
-  background-color: rgba(26, 25, 25, 0.521); /* 50% transparent white */
+  background-color: rgba(26, 25, 25, 0.521); 
   transition: transform 0.3s ease, opacity 0.3s ease;
   border-radius: 15px;
-  width: 60%; /* Horizontally center */ /* Vertically center */
+  width: 60%;
 }
 .icons:hover {
   transform: scale(1.1);
@@ -65,7 +64,7 @@
 /* Customize carousel control buttons */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: #007bff; /* Set your preferred color */
+  background-color: #007bff; 
   border-radius: 50%;
 }
 
@@ -74,26 +73,25 @@
 
 
 
-
-
+/* video background */
 /* Make sure the video fills the background */
 #bg-video {
-  position: absolute; /* Position the video behind the content */
+  position: absolute; 
   top: 0;
   left: 0;
-  width: 100%; /* Stretch the video to fill the full width */
-  height: 100%; /* Stretch the video to fill the full height */
-  object-fit: cover; /* Ensure the video covers the area without distortion */
-  z-index: -1; /* Place the video behind the text */
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  z-index: -1;
 }
 
 /* Styling the overlay */
 .video-overlay {
   position: relative;
-  z-index: 1; /* Place the text on top of the video */
-  color: white; /* Set the text color */
-  padding: 100px 0; /* Adjust padding to position the content */
-  text-align: center; /* Center the content */
+  z-index: 1; 
+  color: white; 
+  padding: 100px 0; 
+  text-align: center;
 }
 
 /* Styling the heading and text */
@@ -115,7 +113,7 @@
 /* Button styling */
 .main-button-red a {
   padding: 15px 30px;
-  background-color: #ff4c4c; /* Red color for the button */
+  background-color: #ff4c4c; 
   color: white;
   font-size: 16px;
   text-transform: uppercase;
@@ -125,5 +123,6 @@
 }
 
 .main-button-red a:hover {
-  background-color: #e60000; /* Darker red on hover */
+  background-color: #e60000; 
 }
+/* --------------------------------------------------------------------------- */
