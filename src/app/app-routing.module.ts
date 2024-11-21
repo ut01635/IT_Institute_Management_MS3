@@ -23,12 +23,13 @@ import { EnrollCoursesComponent } from './Components/student/enroll-courses/enro
 import { ProfileComponent } from './Components/student/profile/profile.component';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 import { LoginComponent } from './Modals/landing/login/login.component';
+import { StudentFormComponent } from './Modals/admin/student-form/student-form.component';
 
 const routes: Routes = [
   { path:'', 
     component:LandingPageComponent,
     children:[
-      {path:'login', component:LoginComponent},
+     
     ]
   },
   { path:'admin', 
@@ -62,7 +63,9 @@ const routes: Routes = [
     ]
   },
 
-  {path:'form', component:LoginComponent}
+  {path:'login', component:LoginComponent},
+  {path:'form', component:StudentFormComponent}
+
 ];
 
 @NgModule({

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginRequest } from '../../../Services/Modal';
 
 @Component({
   selector: 'app-login',
@@ -7,23 +9,26 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  loginForm: FormGroup;  // Declare form group for login
+   // Declare the model to bind the form inputs
+   login = {
+    nic: '',          // NIC input field
+    password: '',     // Password input field
+    rememberMe: false // Remember me checkbox (optional)
+  };
 
-  constructor(private fb: FormBuilder) {
-    // Initialize form with form controls and validation
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],  // Email field with validation
-      password: ['', [Validators.required, Validators.minLength(6)]]  // Password field with validation
-    });
+  ngOnInit(): void {
+    // You can initialize any values here, for example:
+    // this.login.nic = 'initial NIC value'; 
   }
 
-  // Submit handler
-  onSubmit() {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);  // Here you can handle form submission
+  // This method will handle form submission
+  onSubmit(): void {
+    if (this.login.nic && this.login.password) {
+      // Perform login logic here, e.g., call API to authenticate
+      console.log('Form Submitted:', this.login);
     } else {
       console.log('Form is invalid');
     }
   }
-
 }
+
