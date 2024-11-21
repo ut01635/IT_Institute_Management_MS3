@@ -1,1 +1,41 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container p-4 shadow-lg rounded">
+  <p class="h3 text-center font-weight-bold mb-4">Login</p>
+
+  <!-- Email Field -->
+  <div class="mb-3 position-relative">
+    <label for="email" class="form-label">Enter Email</label>
+    <input 
+      id="email" 
+      formControlName="email" 
+      type="email" 
+      class="form-control" 
+      placeholder="Enter your email" 
+      [ngClass]="{'is-invalid': loginForm.get('email')?.touched && loginForm.get('email')?.invalid}" />
+    <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="invalid-feedback">
+      <small *ngIf="loginForm.get('email')?.hasError('required')">Email is required.</small>
+      <small *ngIf="loginForm.get('email')?.hasError('email')">Enter a valid email.</small>
+    </div>
+  </div>
+
+  <!-- Password Field -->
+  <div class="mb-3 position-relative">
+    <label for="password" class="form-label">Enter Password</label>
+    <input 
+      id="password" 
+      formControlName="password" 
+      type="password" 
+      class="form-control" 
+      placeholder="Enter your password" 
+      [ngClass]="{'is-invalid': loginForm.get('password')?.touched && loginForm.get('password')?.invalid}" />
+    <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="invalid-feedback">
+      <small *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</small>
+      <small *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 6 characters long.</small>
+    </div>
+  </div>
+
+  <!-- Forgot Password Link -->
+  <a href="#" class="text-decoration-none">Forgot your password?</a>
+
+  <!-- Submit Button -->
+  <button type="submit" class="submit-btn w-100 mt-4 py-3" [disabled]="loginForm.invalid">Log In</button>
+</form>

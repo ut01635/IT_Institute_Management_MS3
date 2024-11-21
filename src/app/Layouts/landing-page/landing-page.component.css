@@ -1,0 +1,68 @@
+.social-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+   
+}
+
+.facebook {
+    color: #1877f2;
+}
+
+.github {
+    color: #24292f;
+}
+
+.whatsapp {
+    color: #25D366;
+}
+
+.instagram {
+    color: #e1306c;
+}
+
+.social-icon:hover {
+    transform: scale(1.3); 
+}
+.back-to-top {
+    position: fixed;
+    bottom: 20px;  /* Distance from the bottom of the page */
+    right: 20px;   /* Distance from the right of the page */
+    z-index: 1000; /* Ensure the button stays on top of other content */
+    border-radius: 5px; /* Make the button round */
+    padding: 10px;  /* Adjust size */
+    transition: transform 0.3s ease; /* Smooth transition for scaling on hover */
+  }
+  
+  .back-to-top:hover {
+    transform: scale(1.3); /* Scale up when hovered */
+  }
+
+.icons{
+    background-color: rgba(26, 25, 25, 0.521); /* 50% transparent white */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 15px;
+    width: 60%; /* Horizontally center */    /* Vertically center */
+    
+}
+.icons:hover{
+    transform: scale(1.1); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: #fff;
+}
+/* Optional: Custom style for cards in the carousel */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .carousel-inner {
+    padding: 20px;
+  }
+  
+  /* Customize carousel control buttons */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: #007bff; /* Set your preferred color */
+    border-radius: 50%;
+  }
