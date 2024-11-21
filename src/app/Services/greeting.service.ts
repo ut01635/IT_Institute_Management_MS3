@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GreetingService {
-  greeting: string='';
 
   constructor() { }
 
-  setGreeting(name:string):string {
+  setGreeting(name:string): Observable<string> {
     const hours = new Date().getHours();
     if (hours >= 5 && hours < 11) {
-      this.greeting = `Hello ${name}, Good Morning`;
-      return this.greeting
+      return of(`Hello ${name}, Good Morning`);     
     } else if (hours >= 11 && hours < 16) {
-      this.greeting = `Hello ${name}, Good Afternoon`;
-      return this.greeting
+      return of(`Hello ${name}, Good Afternoon`);
     } else {
-      this.greeting = `Hello ${name}, Good Evening`;
-      return this.greeting
+      return of(`Hello ${name}, Good Evening`);
     }
   }
 }
