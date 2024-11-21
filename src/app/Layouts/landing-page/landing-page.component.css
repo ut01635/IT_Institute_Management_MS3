@@ -83,6 +83,8 @@
   height: 100%; 
   object-fit: cover; 
   z-index: -1;
+  /* filter: blur(4px);  */
+  opacity: 0.4;
 }
 
 /* Styling the overlay */
@@ -92,6 +94,10 @@
   color: white; 
   padding: 100px 0; 
   text-align: center;
+}
+
+.caption{
+  color: #000;
 }
 
 /* Styling the heading and text */
