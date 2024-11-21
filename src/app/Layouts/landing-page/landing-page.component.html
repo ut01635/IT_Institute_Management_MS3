@@ -41,7 +41,11 @@
 
           <div class="d-flex justify-content-center mt-3">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" [routerLink]="['/ /login']"  >
+            <button
+              type="button"
+              class="btn btn-primary"
+              [routerLink]="['/ /login']"
+            >
               Login
             </button>
           </div>
@@ -54,14 +58,15 @@
 
 <!-- ***** Main Banner Area Start ***** -->
 <section class="section main-banner" id="top" data-section="section1">
-  <video autoplay muted loop id="bg-video">
-    <source src="/public/LandingAssets/course-video.mp4" type="video/mp4" />
-  </video>
   <div class="video-overlay header-text">
-    <div class="container">
+    <div class="container video-container">
+      <video autoplay muted loop id="bg-video">
+        <source src="/LandingAssets/course-video.mp4" type="video/mp4" />
+      </video>
+
       <div class="row">
         <div class="col-lg-12 text-center">
-          <div class="caption">
+          <div class="caption m-5">
             <h6>Hello Students</h6>
             <h2>Welcome to Education</h2>
             <p>

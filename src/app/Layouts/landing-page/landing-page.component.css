@@ -68,3 +68,62 @@
   background-color: #007bff; /* Set your preferred color */
   border-radius: 50%;
 }
+
+
+
+
+
+
+
+
+/* Make sure the video fills the background */
+#bg-video {
+  position: absolute; /* Position the video behind the content */
+  top: 0;
+  left: 0;
+  width: 100%; /* Stretch the video to fill the full width */
+  height: 100%; /* Stretch the video to fill the full height */
+  object-fit: cover; /* Ensure the video covers the area without distortion */
+  z-index: -1; /* Place the video behind the text */
+}
+
+/* Styling the overlay */
+.video-overlay {
+  position: relative;
+  z-index: 1; /* Place the text on top of the video */
+  color: white; /* Set the text color */
+  padding: 100px 0; /* Adjust padding to position the content */
+  text-align: center; /* Center the content */
+}
+
+/* Styling the heading and text */
+.video-overlay .caption h6 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.video-overlay .caption h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.video-overlay .caption p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+/* Button styling */
+.main-button-red a {
+  padding: 15px 30px;
+  background-color: #ff4c4c; /* Red color for the button */
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.main-button-red a:hover {
+  background-color: #e60000; /* Darker red on hover */
+}
