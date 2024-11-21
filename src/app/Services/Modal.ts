@@ -11,3 +11,11 @@ export interface Course{
     nic: string;
     password: string;
   }
+
+  export interface admin {
+    nic:string;
+    name:string;
+    email:string;
+    phone:string;
+    image:string;
+  }
