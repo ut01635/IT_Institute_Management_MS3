@@ -1,5 +1,5 @@
 export interface Course{
- 
+    id:string
     courseName:string
     level:string,
     duration:number,
