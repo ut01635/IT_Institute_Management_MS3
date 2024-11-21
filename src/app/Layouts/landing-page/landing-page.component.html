@@ -7,8 +7,15 @@
         </a>
 
         <!-- Responsive Toggler -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -17,7 +24,9 @@
           <!-- Centering the nav-links in the navbar -->
           <ul class="navbar-nav w-100 d-flex justify-content-center">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#top">Home</a>
+              <a class="nav-link active" aria-current="page" href="#top"
+                >Home</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#courses">Courses</a>
@@ -30,10 +39,12 @@
             </li>
           </ul>
 
-          <!-- Login Button Inside Toggler (for smaller screens) -->
           <div class="d-flex justify-content-center mt-3">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" [routerLink]="['/ /login']"  >
+            <button
+              type="button"
+              class="btn btn-primary"
+              [routerLink]="['/login']"
+            >
               Login
             </button>
           </div>
@@ -57,14 +68,20 @@
             <h6>Hello Students</h6>
             <h2>Welcome to Education</h2>
             <p>
-              This is an edu meeting HTML CSS template provided by
-              <a rel="nofollow" href="https://templatemo.com/page/1" target="_blank">TemplateMo website</a>. This is a
-              Bootstrap v5.1.3 layout. The video background is
-              taken from Pexels website, a group of young people by
-              <a rel="nofollow" href="https://www.pexels.com/@pressmaster" target="_blank">Pressmaster</a>.
+              Welcome to <b>DEVHub</b>, where learning meets innovation! Whether
+              you're just starting your journey or looking to sharpen your
+              skills, we're here to provide you with the best resources, expert
+              guidance, and a vibrant community. Our platform offers a wide
+              range of courses, interactive content, and real-world experiences
+              designed to help you succeed. Dive in, explore new possibilities,
+              and unlock your full potential. Let's build the future, one lesson
+              at a time!
             </p>
+
             <div class="main-button-red">
-              <a href="#contact" class="btn btn-danger scroll-to-section">Join Us Now!</a>
+              <a href="#contact" class="btn btn-danger scroll-to-section"
+                >Join Us Now!</a
+              >
             </div>
           </div>
         </div>
@@ -72,138 +89,171 @@
     </div>
   </div>
 
-    <!-- ***** Main Banner Area End ***** -->
-    <section class="services py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div
-              id="servicesCarousel"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="row d-flex justify-content-center">
-                    <div class="col-md-4 m-1"style="background-image: url(/LandingAssets/bestEducation.jpg); background-size: cover; " >
-                      <div class="card  card-01" >
-                        <div class="card-body">
-                          <h4 class="card-title">Best Education</h4>
-                          <p class="card-text">
-                            "Get access to top-tier education from wherever you
-                            are. Our courses are designed to offer the best
-                            learning experience, combining expert knowledge,
-                            interactive content, and hands-on practice. We
-                            believe in providing education that empowers you to
-                            achieve your goals and equips you with the skills
-                            you need for a successful future."
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 m-1"style="background-image: url(/LandingAssets/bestTeachers.jpg); background-size: cover;">
-                      <div class="card card-01">
-                        <div class="card-body">
-                          <h4 class="card-title">Best Teachers</h4>
-                          <p class="card-text">
-                            "Learn from the best in the industry! Our educators
-                            are highly qualified professionals who are
-                            passionate about teaching. They bring real-world
-                            experience into the classroom, providing students
-                            with practical insights and expert guidance. Whether
-                            you're mastering a new skill or pursuing advanced
-                            knowledge, our teachers are here to guide you every
-                            step of the way."
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 m-1" style="background-image: url(/LandingAssets/BestStudents.jpg); background-size: cover;">
-                      <div class="card card-01">
-                        <div class="card-body">
-                          <h4 class="card-title">Best Students</h4>
-                          <p class="card-text">
-                            "Our platform attracts the brightest and most
-                            motivated students. From high schoolers to working
-                            professionals, everyone here is dedicated to
-                            expanding their knowledge and skills. Join a
-                            community where excellence is the standard, and
-                            where you’ll be challenged, inspired, and supported
-                            by fellow learners striving for success."
-                          </p>
-                        </div>
+  <!-- ***** Main Banner Area End ***** -->
+  <section class="services py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div
+            id="servicesCarousel"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row d-flex d-flex justify-content-evenly">
+                  <div
+                    class="col-md-4 m-1"
+                    style="
+                      background-image: url(/LandingAssets/bestEducation.jpg);
+                      background-size: cover;
+                    "
+                  >
+                    <div class="card card-01">
+                      <div class="card-body">
+                        <h4 class="card-title">Best Education</h4>
+                        <p class="card-text">
+                          "Get access to top-tier education from wherever you
+                          are. Our courses are designed to offer the best
+                          learning experience, combining expert knowledge,
+                          interactive content, and hands-on practice. We believe
+                          in providing education that empowers you to achieve
+                          your goals and equips you with the skills you need for
+                          a successful future."
+                        </p>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="row">
-                    <div class="col-md-4 m-1" style="background-image: url(/LandingAssets/onlineMeetings.jpg); background-size: cover;">
-                      <div class="card card-01">
-                        <div class="card-body">
-                          <h4 class="card-title">Online Meeting</h4>
-                          <p class="card-text">
-                            "Experience seamless online meetings that bring
-                            together students, teachers, and experts from around
-                            the world. With our easy-to-use platform, you can
-                            attend live classes, webinars, and interactive
-                            sessions from the comfort of your home. Stay engaged
-                            with real-time discussions, Q&A, and hands-on
-                            activities – making online learning more interactive
-                            and effective."
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 m-1" style="background-image: url(/LandingAssets/bestNetworking.jpg); background-size: cover;">
-                      <div class="card card-01">
-                        <div class="card-body">
-                          <h4 class="card-title">Best Networking</h4>
-                          <p class="card-text">
-                            "Connect with a global community of learners and
-                            professionals. Our platform fosters meaningful
-                            relationships and provides you with opportunities to
-                            network with like-minded individuals, share ideas,
-                            and collaborate on projects that will help you grow.
-                            Whether you're looking to expand your professional
-                            circle or learn from peers, we make networking
-                            effortless and impactful."
-                          </p>
-                        </div>
+                  <div
+                    class="col-md-4 m-1"
+                    style="
+                      background-image: url(/LandingAssets/bestTeachers.jpg);
+                      background-size: cover;
+                    "
+                  >
+                    <div class="card card-01">
+                      <div class="card-body">
+                        <h4 class="card-title">Best Teachers</h4>
+                        <p class="card-text">
+                          "Learn from the best in the industry! Our educators
+                          are highly qualified professionals who are passionate
+                          about teaching. They bring real-world experience into
+                          the classroom, providing students with practical
+                          insights and expert guidance. Whether you're mastering
+                          a new skill or pursuing advanced knowledge, our
+                          teachers are here to guide you every step of the way."
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#servicesCarousel"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#servicesCarousel"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+              <div class="carousel-item">
+                <div class="row d-flex d-flex justify-content-evenly">
+                  <div
+                    class="col-md-4 m-1"
+                    style="
+                      background-image: url(/LandingAssets/onlineMeetings.jpg);
+                      background-size: cover;
+                    "
+                  >
+                    <div class="card card-01">
+                      <div class="card-body">
+                        <h4 class="card-title">Online Meeting</h4>
+                        <p class="card-text">
+                          "Experience seamless online meetings that bring
+                          together students, teachers, and experts from around
+                          the world. With our easy-to-use platform, you can
+                          attend live classes, webinars, and interactive
+                          sessions from the comfort of your home. Stay engaged
+                          with real-time discussions, Q&A, and hands-on
+                          activities – making online learning more interactive
+                          and effective."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-md-4 m-1"
+                    style="
+                      background-image: url(/LandingAssets/bestNetworking.jpg);
+                      background-size: cover;
+                    "
+                  >
+                    <div class="card card-01">
+                      <div class="card-body">
+                        <h4 class="card-title">Best Networking</h4>
+                        <p class="card-text">
+                          "Connect with a global community of learners and
+                          professionals. Our platform fosters meaningful
+                          relationships and provides you with opportunities to
+                          network with like-minded individuals, share ideas, and
+                          collaborate on projects that will help you grow.
+                          Whether you're looking to expand your professional
+                          circle or learn from peers, we make networking
+                          effortless and impactful."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row d-flex d-flex justify-content-evenly">
+                  <div
+                    class="col-md-4 m-1"
+                    style="
+                      background-image: url(/LandingAssets/BestStudents.jpg);
+                      background-size: cover;
+                    "
+                  >
+                    <div class="card card-01">
+                      <div class="card-body">
+                        <h4 class="card-title">Best Students</h4>
+                        <p class="card-text">
+                          "Our platform attracts the brightest and most
+                          motivated students. From high schoolers to working
+                          professionals, everyone here is dedicated to expanding
+                          their knowledge and skills. Join a community where
+                          excellence is the standard, and where you’ll be
+                          challenged, inspired, and supported by fellow learners
+                          striving for success."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#servicesCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#servicesCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
   <!-- --------------------------------------------------------------course section--------------------------------------------------------------------------- -->
 
@@ -220,14 +270,27 @@
       <div class="row">
         <div class="col-lg-12">
           <!-- Carousel -->
-          <div id="coursesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div
+            id="coursesCarousel"
+            class="carousel slide"
+            data-bs-ride="carousel"
+            data-bs-interval="3000"
+          >
             <div class="carousel-inner">
               <!-- Loop through the courses and create a slide every 3 courses -->
-              <div class="carousel-item" *ngFor="let chunk of chunkCourses(); let i = index" [class.active]="i === 0">
+              <div
+                class="carousel-item"
+                *ngFor="let chunk of chunkCourses(); let i = index"
+                [class.active]="i === 0"
+              >
                 <div class="row">
                   <div class="col-md-4" *ngFor="let course of chunk">
                     <div class="card mb-4">
-                      <img [src]="course.imagePaths" class="card-img-top" alt="Course Image" />
+                      <img
+                        [src]="course.imagePaths"
+                        class="card-img-top"
+                        alt="Course Image"
+                      />
                       <div class="card-body">
                         <h4 class="card-title">{{ course.courseName }}</h4>
                         <p class="card-text">{{ course.duration }}</p>
@@ -242,14 +305,30 @@
             </div>
 
             <!-- Previous Button -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#coursesCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#coursesCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
               <span class="visually-hidden">Previous</span>
             </button>
 
             <!-- Next Button -->
-            <button class="carousel-control-next" type="button" data-bs-target="#coursesCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#coursesCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
               <span class="visually-hidden">Next</span>
             </button>
           </div>
@@ -257,8 +336,6 @@
       </div>
     </div>
   </section>
-
-
 
   <!-- section  for thr facts box -->
   <section class="our-facts py-5">
@@ -305,14 +382,22 @@
         </div>
         <div class="col-lg-6 align-self-center text-center">
           <div class="video">
-            <a href="https://youtu.be/MIufgoKX34M?si=LymGixdLwVu93rR_" target="_blank">
-              <img src="/public/LandingAssets/play-icon.png" alt="Play Video" class="img-fluid" />
+            <a
+              href="https://youtu.be/MIufgoKX34M?si=LymGixdLwVu93rR_"
+              target="_blank"
+            >
+              <img
+                src="/public/LandingAssets/play-icon.png"
+                alt="Play Video"
+                class="img-fluid"
+              />
             </a>
           </div>
         </div>
       </div>
     </div>
   </section>
+
   <section class="apply-now py-5" id="apply">
     <div class="container">
       <div class="row">
@@ -321,24 +406,30 @@
             <div class="col-lg-12 mb-3">
               <div class="card">
                 <div class="card-body">
-                  <h3 class="card-title">APPLY FOR BACHELOR DEGREE</h3>
+                  <h3 class="card-title">
+                    APPLY FOR INTERMEDIATE LEVEL COURSES
+                  </h3>
                   <p class="card-text">
-                    You are allowed to use this edu meeting CSS template for
-                    your school or university or business. You can feel free to
-                    modify or edit this layout.
+                    Enhance your skills with our Intermediate courses. Dive
+                    deeper into complex topics, tackle hands-on projects, and
+                    take your learning to the next level. Perfect for those
+                    looking to build on their existing knowledge and advance
+                    their career.
                   </p>
                   <a href="#contact" class="btn btn-danger">Join Us Now!</a>
                 </div>
               </div>
             </div>
+
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h3 class="card-title">APPLY FOR BACHELOR DEGREE</h3>
+                  <h3 class="card-title">APPLY FOR BEGINNER LEVEL COURSES</h3>
                   <p class="card-text">
-                    You are not allowed to redistribute the template ZIP file on
-                    any other template website. Please contact us for more
-                    information.
+                    Start your learning journey with our Beginner courses. Build
+                    a solid foundation with step-by-step guidance, designed for
+                    those new to the subject. Perfect for gaining the essential
+                    skills to get started.
                   </p>
                   <a href="#contact" class="btn btn-warning">Join Us Now!</a>
                 </div>
@@ -346,81 +437,134 @@
             </div>
           </div>
         </div>
+
         <div class="col-lg-6">
           <div class="accordion" id="accordionExample">
+            <!-- Accordion Item 1: About DevHub -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
-                  About Edu Meeting HTML Template
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  About DevHub Education Platform
                 </button>
               </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample">
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample"
+              >
                 <div class="accordion-body">
                   <p>
-                    If you want to get the latest collection of HTML CSS
-                    templates for your websites, you may visit
-                    <a rel="nofollow" href="https://www.toocss.com/" target="_blank">Too CSS website</a>. If you need a
-                    working contact form script, please visit
-                    <a href="https://templatemo.com/contact" target="_parent">our contact page</a>
-                    for more info.
+                    DevHub is a dynamic learning platform designed to provide
+                    top-quality educational content for students of all levels.
+                    Whether you're a beginner or an experienced professional,
+                    our courses cover a wide range of topics including coding,
+                    design, business, and more. Join a community of learners and
+                    start building the skills you need to succeed!
                   </p>
                 </div>
               </div>
             </div>
+
+            <!-- Accordion Item 2: Course Features -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  HTML CSS Bootstrap Layout
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  Our Courses and Features
                 </button>
               </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#accordionExample">
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample"
+              >
                 <div class="accordion-body">
                   <p>
-                    Etiam posuere metus orci, vel consectetur elit imperdiet eu.
-                    Cras ipsum magna, maximus at semper sit amet, eleifend eget
-                    neque. Nunc facilisis quam purus, sed vulputate augue
-                    interdum vitae. Aliquam a elit massa.
+                    Our platform offers a variety of online courses, from
+                    beginner to advanced levels. Learn at your own pace with
+                    interactive lessons, quizzes, and hands-on projects. Plus,
+                    gain access to expert instructors who provide personalized
+                    feedback to help you grow. Whether you're learning coding,
+                    data science, or digital marketing, DevHub has something for
+                    everyone!
                   </p>
                 </div>
               </div>
             </div>
+
+            <!-- Accordion Item 3: Community Engagement -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Please tell your friends
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  Join Our Community of Learners
                 </button>
               </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                data-bs-parent="#accordionExample">
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingThree"
+                data-bs-parent="#accordionExample"
+              >
                 <div class="accordion-body">
                   <p>
-                    Ut vehicula mauris est, sed sodales justo rhoncus eu. Morbi
-                    porttitor quam velit, at ullamcorper justo suscipit sit
-                    amet. Quisque at suscipit mi, non efficitur velit.
+                    At DevHub, you’re never alone. Connect with like-minded
+                    students and instructors through our community forums,
+                    webinars, and group projects. Share knowledge, ask
+                    questions, and grow together. Become a part of a vibrant and
+                    supportive learning environment.
                   </p>
                 </div>
               </div>
             </div>
+
+            <!-- Accordion Item 4: Share DevHub with Your Network -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  Share this to your colleagues
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour"
+                >
+                  Share DevHub with Your Network
                 </button>
               </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                data-bs-parent="#accordionExample">
+              <div
+                id="collapseFour"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingFour"
+                data-bs-parent="#accordionExample"
+              >
                 <div class="accordion-body">
                   <p>
-                    Maecenas suscipit enim libero, vel lobortis justo
-                    condimentum id. Interdum et malesuada fames ac ante ipsum
-                    primis in faucibus. Sed eleifend metus sit amet magna
-                    tristique, posuere laoreet arcu semper.
+                    Know someone who would benefit from DevHub’s courses? Share
+                    the platform with your colleagues, friends, or family and
+                    help them enhance their skills too. Learning together is the
+                    best way to stay motivated and achieve success.
                   </p>
                 </div>
               </div>
@@ -444,10 +588,17 @@
         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
           <div class="team-item border-2 rounded-1 card">
             <div class="overflow-hidden">
-              <img class="card-img-top" src="/LandingAssets/safeek.jpg" alt="prof:Safeek" />
+              <img
+                class="card-img-top"
+                src="/LandingAssets/safeek.jpg"
+                alt="prof:Safeek"
+              />
             </div>
             <div class="d-flex justify-content-center align-items-center">
-              <div class="position-relative d-flex justify-content-center icons" style="margin-top: -19px">
+              <div
+                class="position-relative d-flex justify-content-center icons"
+                style="margin-top: -19px"
+              >
                 <!-- Facebook Icon -->
                 <a class="btn btn-square mx-1 social-icon facebook" href="">
                   <i class="bi bi-linkedin"></i>
@@ -464,7 +615,10 @@
                 </a>
 
                 <!-- Instagram Icon -->
-                <a class="btn btn-square mx-1 social-icon instagram" href="https://www.instagram.com/person_0618/">
+                <a
+                  class="btn btn-square mx-1 social-icon instagram"
+                  href="https://www.instagram.com/person_0618/"
+                >
                   <i class="bi bi-instagram"></i>
                 </a>
               </div>
@@ -472,7 +626,7 @@
 
             <div class="text-center p-4">
               <h5 class="mb-0">Mohamed Safeek Thajudeen</h5>
-              <small>FRONTEND</small>, <br />
+              <small>FRONTEND</small> , <br />
               <small>BSc IIT UWUSL</small>
             </div>
           </div>
@@ -483,7 +637,10 @@
               <img class="img-fluid" src="/LandingAssets/imthath.jpg" alt="" />
             </div>
             <div class="d-flex justify-content-center align-items-center">
-              <div class="position-relative d-flex justify-content-center icons" style="margin-top: -19px">
+              <div
+                class="position-relative d-flex justify-content-center icons"
+                style="margin-top: -19px"
+              >
                 <!-- Facebook Icon -->
                 <a class="btn btn-square mx-1 social-icon facebook" href="">
                   <i class="bi bi-linkedin"></i>
@@ -500,14 +657,18 @@
                 </a>
 
                 <!-- Instagram Icon -->
-                <a class="btn btn-square mx-1 social-icon instagram" href="https://www.instagram.com/imthath_imt/">
+                <a
+                  class="btn btn-square mx-1 social-icon instagram"
+                  href="https://www.instagram.com/imthath_imt/"
+                >
                   <i class="bi bi-instagram"></i>
                 </a>
               </div>
             </div>
             <div class="text-center p-4">
               <h5 class="mb-0">Mohamed Imthath Hameem</h5>
-              <small>FULLSTACK</small>
+              <small>FULLSTACK</small> , <br />
+              <small>AAT</small>
             </div>
           </div>
         </div>
@@ -517,7 +678,10 @@
               <img class="img-fluid" src="/LandingAssets/piragas.jpg" alt="" />
             </div>
             <div class="d-flex justify-content-center align-items-center">
-              <div class="position-relative d-flex justify-content-center icons" style="margin-top: -19px">
+              <div
+                class="position-relative d-flex justify-content-center icons"
+                style="margin-top: -19px"
+              >
                 <!-- linkdin Icon -->
                 <a class="btn btn-square mx-1 social-icon facebook" href="">
                   <i class="bi bi-linkedin"></i>
@@ -539,8 +703,8 @@
               </div>
             </div>
             <div class="text-center p-4">
-              <h5 class="mb-0">Piragash Pathmarasan </h5>
-              <small>BACKEND</small> <br />
+              <h5 class="mb-0">Piragash Pathmarasan</h5>
+              <small>BACKEND</small> , <br />
               <small>BICT(Hons) UWUSL</small>
             </div>
           </div>
@@ -553,33 +717,54 @@
   <section class="contact-us py-5" id="contact">
     <div class="container">
       <div class="row">
-        <div class="col-lg-9 align-self-center">
+        <div
+          class="card col-lg-8 align-self-center d-flex justify-content-evenly"
+        >
           <div class="row">
             <div class="col-lg-12 mb-4">
               <h2 class="text-center">Let's get in touch</h2>
             </div>
-            <div class="col-md-4 mb-3">
-              <input name="name" type="text" class="form-control" id="name" placeholder="YOUR NAME...*" required />
-            </div>
-            <div class="col-md-4 mb-3">
-              <input name="email" type="email" class="form-control" id="email" placeholder="YOUR EMAIL..." required />
-            </div>
-            <div class="col-md-4 mb-3">
-              <input name="subject" type="text" class="form-control" id="subject" placeholder="SUBJECT...*" required />
+            <div class="d-flex justify-content-around">
+              <div class="col-md-4 mb-3">
+                <input
+                  name="name"
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="YOUR NAME...*"
+                  required
+                />
+              </div>
+              <div class="col-md-4 mb-3">
+                <input
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="YOUR EMAIL..."
+                  required
+                />
+              </div>
             </div>
             <div class="col-lg-12 mb-3">
-              <textarea name="message" class="form-control" id="message" placeholder="YOUR MESSAGE..." rows="5"
-                required></textarea>
+              <textarea
+                name="message"
+                class="form-control"
+                id="message"
+                placeholder="YOUR MESSAGE..."
+                rows="5"
+                required
+              ></textarea>
             </div>
-            <div class="col-lg-12 text-center">
+            <div class="col-lg-12 m-3 text-center">
               <button type="submit" id="form-submit" class="btn btn-primary">
                 SEND MESSAGE NOW
               </button>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 align-self-center">
-          <div class="bg-light p-4 rounded">
+        <div class="col-lg-3 align-self-center m-1">
+          <div class="card bg-light p-4 rounded">
             <ul class="list-unstyled">
               <li class="mb-3">
                 <h6>Phone Number</h6>
@@ -615,10 +800,18 @@
             through quality content and services.
           </p>
           <div class="d-flex pt-2">
-            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+            <a class="btn btn-outline-light btn-social" href=""
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a class="btn btn-outline-light btn-social" href=""
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a class="btn btn-outline-light btn-social" href=""
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a class="btn btn-outline-light btn-social" href=""
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
           </div>
         </div>
         <div class="col-md-4 mb-3">
@@ -647,8 +840,13 @@
           <p class="mb-0">
             &copy; 2022 Edu Meeting Co., Ltd. All Rights Reserved.
             <br />Design by:
-            <a href="https://templatemo.com" target="_parent" class="text-white"
-              title="free css templates">TemplateMo</a>
+            <a
+              href="https://templatemo.com"
+              target="_parent"
+              class="text-white"
+              title="free css templates"
+              >TemplateMo</a
+            >
           </p>
         </div>
       </div>
