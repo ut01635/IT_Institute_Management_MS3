@@ -1,0 +1,179 @@
+/* From Uiverse.io by ammarsaa */
+
+/* Form container */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+  }
+  
+  /* Title */
+  .title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    color: #00bfff;
+  }
+  
+  .title::before,
+  .title::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #00bfff;
+  }
+  
+  .title::before {
+    left: 0;
+  }
+  
+  .title::after {
+    right: 0;
+    animation: pulse 1s linear infinite;
+  }
+  
+  /* Pulsing animation */
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+  
+  /* Message and SignIn style */
+  .message,
+  .signin {
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .signin {
+    text-align: center;
+  }
+  
+  .signin a {
+    color: #00bfff;
+  }
+  
+  .signin a:hover {
+    text-decoration: underline royalblue;
+  }
+  
+  /* Flex container for first and last name inputs */
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  
+  /* Label and input styles */
+  .form label {
+    position: relative;
+  }
+  
+  .form label .input {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    padding: 20px 5px 5px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+  
+  /* Floating labels */
+  .form label .input + span {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 10px;
+    top: 0;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+  
+  .form label .input:placeholder-shown + span {
+    top: 12.5px;
+    font-size: 0.9em;
+  }
+  
+  .form label .input:focus + span,
+  .form label .input:valid + span {
+    color: #00bfff;
+    top: 0;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+  
+  /* Input font size */
+  .input {
+    font-size: medium;
+  }
+  
+  /* Submit button style */
+  .submit {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: 0.3s ease;
+    background-color: #00bfff;
+  }
+  
+  .submit:hover {
+    background-color: #00bfff96;
+  }
+  
+  /* Error messages styling */
+  small.text-danger {
+    font-size: 12px;
+    color: red;
+    display: block;
+    margin-top: 5px;
+  }
+  
+  /* Modal header styles */
+  .modal-header {
+    background-color: #333;
+    color: #fff;
+    border-bottom: 1px solid #444;
+  }
+  
+  /* Modal content styling */
+  .modal-content {
+    background-color: #222;
+    color: #fff;
+    border-radius: 10px;
+  }
+  
+  /* Modal button close style */
+  .btn-close {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  /* Centering the modal */
+  .modal-dialog {
+    max-width: 400px;
+    margin: auto;
+  }
+  
