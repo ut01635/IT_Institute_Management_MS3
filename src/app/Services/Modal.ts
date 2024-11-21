@@ -6,3 +6,8 @@ export interface Course{
     fees: number,
     imagePaths: string
   }
+
+  export interface LoginRequest {
+    nic: string;
+    password: string;
+  }

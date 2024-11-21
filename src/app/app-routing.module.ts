@@ -28,7 +28,7 @@ const routes: Routes = [
   { path:'', 
     component:LandingPageComponent,
     children:[
-      {path:'login', component:LoginComponent},
+     
     ]
   },
   { path:'admin', 
@@ -62,7 +62,7 @@ const routes: Routes = [
     ]
   },
 
-  {path:'form', component:LoginComponent}
+  {path:'login', component:LoginComponent}
 ];
 
 @NgModule({
