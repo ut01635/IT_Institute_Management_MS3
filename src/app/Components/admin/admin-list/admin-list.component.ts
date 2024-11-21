@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { admin } from '../../../Services/Modal';
 
 @Component({
   selector: 'app-admin-list',
@@ -6,14 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './admin-list.component.css'
 })
 export class AdminListComponent {
-searchText: any;
-users: any;
-admins: any;
-onDelete(arg0: any) {
-throw new Error('Method not implemented.');
-}
-onEdit(arg0: any) {
-throw new Error('Method not implemented.');
-}
+  searchText: string = '';
+
+  admins: admin[] = [];
+
+  onDelete(arg0: any) {
+    throw new Error('Method not implemented.');
+  }
+
+  onEdit(arg0: any) {
+    throw new Error('Method not implemented.');
+  }
 
 }

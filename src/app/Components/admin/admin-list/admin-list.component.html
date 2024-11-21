@@ -17,28 +17,27 @@
     <table class="table table-responsive table-bordered">
       <thead>
         <tr>
-          <th>Id</th>
+          <th>Image</th>
+          <th>NIC</th>
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
-          <!-- <th>Password</th> -->
-          <th>Address</th>
-          <th>Task Count</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let admin of admins">
-          <td>{{admin.id}}</td>
+          <td>{{admin.image}}</td>
+          <td>{{admin.nic}}</td>
           <td>{{admin.name}}</td>
           <td>{{admin.email}}</td>
           <td>{{admin.phone}}</td>
           <td>
   
-            <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(admin.id)">
+            <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(admin.nic)">
               <i class="bi bi-pencil"></i></button>
   
-              <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(admin.id)">
+              <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(admin.nic)">
                 <i class="bi bi-trash"></i></button>
           </td>
         </tr>

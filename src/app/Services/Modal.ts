@@ -19,3 +19,11 @@ export interface Course{
     phone:string;
     image:string;
   }
+
+  export interface enquiry{
+    id:string;
+    name:string;
+    email:string;
+    message:string;
+    postdate:string;
+  }
