@@ -6,6 +6,19 @@ export interface Address {
   country?: string;
 }
 
+export interface Student {
+  id: string;
+  nic: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address?: Address;
+  enrollments?: Enrollment[];  
+  imagePath?: string;  
+  isLocked?: boolean;  
+}
+
 
 export interface Course{
     id:string
