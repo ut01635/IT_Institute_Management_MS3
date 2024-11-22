@@ -223,10 +223,11 @@
                         </p>
                       </div>
                     </div>
-                    <div
+                  </div>
+                  <div
                     class="col-md-4 m-1"
                     style="
-                      background-image: url(/public/LandingAssets/bestTeachers.jpg);
+                      background-image: url(/LandingAssets/bestTeachers.jpg);
                       background-size: cover;
                     "
                   >
@@ -243,7 +244,6 @@
                           striving for success."
                         </p>
                       </div>
-                    </div>
                     </div>
                   </div>
                 </div>
@@ -317,13 +317,25 @@
                       />
                       <div class="card-body">
                         <h4 class="card-title">{{ course.courseName }}</h4>
-                        <p class="card-text"[ngStyle]="{
-                          'color': course.level === 'Beginner' ? 'green' : (course.level === 'Intermediate' ? 'blue' : 'black')
-                        }" >{{course.level}}</p>
+                        <p
+                          class="card-text"
+                          [ngStyle]="{
+                            color:
+                              course.level === 'Beginner'
+                                ? 'green'
+                                : course.level === 'Intermediate'
+                                ? 'blue'
+                                : 'black'
+                          }"
+                        >
+                          {{ course.level }}
+                        </p>
                         <p class="card-text">{{ course.duration }} Months</p>
-                        <p class="card-text">{{course.description}}</p>
+                        <p class="card-text">{{ course.description }}</p>
                         <div class="d-flex justify-content-between">
-                          <span class="text-muted">LKR {{ course.fees }}.00</span>
+                          <span class="text-muted"
+                            >LKR {{ course.fees }}.00</span
+                          >
                           <a
                             class="icon-link icon-link-hover"
                             style="--bs-link-hover-color-rgb: 25, 135, 84"
@@ -730,21 +742,33 @@
                 style="margin-top: -19px"
               >
                 <!-- linkdin Icon -->
-                <a class="btn btn-square mx-1 social-icon facebook" href="https://www.linkedin.com/in/pathmarasan-piragash?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ">
+                <a
+                  class="btn btn-square mx-1 social-icon facebook"
+                  href="https://www.linkedin.com/in/pathmarasan-piragash?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app "
+                >
                   <i class="bi bi-linkedin"></i>
                 </a>
 
                 <!-- GitHub Icon -->
-                <a class="btn btn-square mx-1 social-icon github" href="https://github.com/PPPiragash">
+                <a
+                  class="btn btn-square mx-1 social-icon github"
+                  href="https://github.com/PPPiragash"
+                >
                   <i class="bi bi-github"></i>
                 </a>
 
                 <!-- WhatsApp Icon -->
-                <a class="btn btn-square mx-1 social-icon whatsapp" href="https://wa.me/+94766931772">
+                <a
+                  class="btn btn-square mx-1 social-icon whatsapp"
+                  href="https://wa.me/+94766931772"
+                >
                   <i class="bi bi-whatsapp"></i>
                 </a>
                 <!-- facebook -->
-                <a class="btn btn-square mx-1 social-icon facebook" href="https://www.facebook.com/share/1Ccrn8EKtZ/?mibextid=qi2Omg">
+                <a
+                  class="btn btn-square mx-1 social-icon facebook"
+                  href="https://www.facebook.com/share/1Ccrn8EKtZ/?mibextid=qi2Omg"
+                >
                   <i class="bi bi-facebook"></i>
                 </a>
               </div>
