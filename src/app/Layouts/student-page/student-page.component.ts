@@ -15,6 +15,12 @@ export class StudentPageComponent {
   isSidebarVisible = false;  // Initially set the sidebar visibility to false
 studentName :string ='user' ;
 
+activeTab: string = 'home';
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
+
   // Function to toggle the sidebar visibility on mobile
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
