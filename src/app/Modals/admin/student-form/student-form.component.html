@@ -1,159 +1,92 @@
-<div class="container">
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
-    Open Register Modal
-  </button>
 
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="registerModal"
-    tabindex="-1"
-    aria-labelledby="registerModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-darkBlue text-white">
-          <h5 class="modal-title" id="registerModalLabel">Register</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+  <div class="modal-header bg-white text-black">
+    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
+  </div>
+
+
+
+
+  <div class="modal-body">
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-control">
+      <p class="message text-center">
+        Signup now and get full access to our app.
+      </p>
+
+      <div class="row">
+      
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="firstName" type="text" required />
+            <label class="label">First Name</label>
+          </div>
         </div>
-        <div class="modal-body">
-          <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-control">
-            <p class="message text-center">
-              Signup now and get full access to our app.
-            </p>
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="lastName" type="text" required />
+            <label class="label">Last Name</label>
+          </div>
+        </div>
 
-            <div class="row">
-              <!-- First Name and Last Name -->
-              <div class="col-md-6 col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="firstName"
-                    type="text"
-                    required
-                  />
-                  <label class="label">First Name</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="lastName"
-                    type="text"
-                    required
-                  />
-                  <label class="label">Last Name</label>
-                </div>
-              </div>
+       
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="email" type="email" required />
+            <label class="label">Email</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="phone" type="text" required />
+            <label class="label">Phone</label>
+          </div>
+        </div>
 
-              <!-- Email and Phone -->
-              <div class="col-md-6 col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="email"
-                    type="email"
-                    required
-                  />
-                  <label class="label">Email</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="phone"
-                    type="text"
-                    required
-                  />
-                  <label class="label">Phone</label>
-                </div>
-              </div>
+       
+        <div class="col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="addressLine1" type="text" required />
+            <label class="label">Address Line 1</label>
+          </div>
+        </div>
+        <div class="col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="addressLine2" type="text" />
+            <label class="label">Address Line 2</label>
+          </div>
+        </div>
 
-              <!-- Address Lines -->
-              <div class="col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="addressLine1"
-                    type="text"
-                    required
-                  />
-                  <label class="label">Address Line 1</label>
-                </div>
-              </div>
-              <div class="col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="addressLine2"
-                    type="text"
-                  />
-                  <label class="label">Address Line 2</label>
-                </div>
-              </div>
-
-              <!-- City, State, Country, Postal Code -->
-              <div class="col-md-6 col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="city"
-                    type="text"
-                    required
-                  />
-                  <label class="label">City</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="state"
-                    type="text"
-                    required
-                  />
-                  <label class="label">State</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="postalCode"
-                    type="text"
-                    required
-                  />
-                  <label class="label">Postal Code</label>
-                </div>
-              </div>
-              <div class="col-md-6 col-12 mb-3">
-                <div class="input-field">
-                  <input
-                    class="input"
-                    formControlName="country"
-                    type="text"
-                    required
-                  />
-                  <label class="label">Country</label>
-                </div>
-              </div>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="submit-btn" [disabled]="studentForm.invalid">
-              Submit
-            </button>
-          </form>
+       
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="city" type="text" required />
+            <label class="label">City</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="state" type="text" required />
+            <label class="label">State</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="postalCode" type="text" required />
+            <label class="label">Postal Code</label>
+          </div>
+        </div>
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="country" type="text" required />
+            <label class="label">Country</label>
+          </div>
         </div>
       </div>
-    </div>
+
+      
+      <button type="submit" class="submit-btn" [disabled]="studentForm.invalid">
+        Submit
+      </button>
+    </form>
   </div>
-</div>
+

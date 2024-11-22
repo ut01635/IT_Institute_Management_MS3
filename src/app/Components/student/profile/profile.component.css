@@ -1,0 +1,76 @@
+/* Custom Styling for Profile Component */
+.profile-image img {
+    border: 4px solid #fff;
+  }
+  
+  .card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+  }
+  
+  .card p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  button {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .btn {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .profile-image img {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .btn {
+      font-size: 14px;
+    }
+  
+    .col-md-4,
+    .col-md-8 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .card {
+      padding: 20px;
+    }
+  
+    .card p {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .container {
+      margin-top: 30px;
+    }
+  
+    .card {
+      padding: 15px;
+    }
+  
+    .col-md-4,
+    .col-md-8 {
+      margin-bottom: 20px;
+    }
+  
+    .profile-image img {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .btn {
+      font-size: 12px;
+    }
+  }
+  

@@ -1,16 +1,123 @@
+ /* Fix Footer at the Bottom */
+/* body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+} */
+
+main {
+  flex: 1;
+}
+
+/* Footer Icon Size */
+footer .nav-link i {
+  font-size: 1.5rem; /* Default icon size */
+}
+
+/* Footer Links on Mobile (Hide text) */
+@media (max-width: 576px) {
+  footer .nav-link span {
+    display: none; /* Hide text on mobile */
+  }
+}
+
 /* Customize navbar background color */
 .navbar {
-    background-color: #163d32; /* Luxury dark green */
+  background-color: #214164; /* Luxury dark green */
+}
+
+/* Customize navbar icon size */
+.nav-item button i {
+  font-size: 1.5rem; /* Optional: increase icon size */
+}
+
+/* Hover effect for buttons */
+.nav-item button:hover {
+  background-color: #333;
+  border-radius: 50%;
+}
+
+/* Basic Tab Bar Styling */
+.tab-bar {
+  background-color: transparent; /* Remove the white background */
+  border-radius: 2em;
+  box-shadow: 0 0 0.75em rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 0;
+  position: relative; /* Keeps the footer layout intact */
+}
+
+.tab-bar__tabs {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.tab-bar__tab {
+  text-align: center;
+  flex: 1; /* Each tab takes equal space */
+  padding: 10px 0; /* Reduced padding for a more compact footer */
+}
+
+.tab-bar__tab-link {
+  color: white; /* Set text color to white */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem; /* Adjusted padding */
+  transition: color 0.3s, transform 0.3s; /* Added transform transition */
+}
+
+.tab-bar__tab-link:hover,
+.tab-bar__tab-link:focus-visible {
+  color: #007bff; /* Optional: Set hover color to blue for better visibility */
+  transform: scale(1.1); /* Scale up the tab link on hover */
+}
+
+.tab-bar__tab-link.active {
+  color: #007bff; /* Active tab text color */
+}
+
+.tab-bar__tab-name {
+  font-size: 0.75em;
+  font-weight: 500;
+  line-height: 1;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+.tab-bar__tab-link.active .tab-bar__tab-name {
+  opacity: 1;
+}
+
+.bi {
+  font-size: 1.5em;
+}
+
+/* Make tab-bar take full width on large screens */
+@media (min-width: 992px) {
+  .tab-bar {
+    max-width: 100%;
+    border-radius: 0; /* Remove border radius on large screens for full width */
+    margin: 0; /* Remove any centering margins */
   }
-  
-  /* Change the color of the button icons */
-  .nav-item button i {
-    font-size: 1.5rem; /* Optional: increase icon size */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .tab-bar {
+    max-width: 100%;
   }
-  
-  /* Hover effect for buttons */
-  .nav-item button:hover {
-    background-color: #333;
-    border-radius: 50%;
+
+  .tab-bar__tabs {
+    justify-content: space-evenly; /* Space out tabs evenly on smaller screens */
   }
-  
+
+  .tab-bar__tab-link {
+    padding: 0.8rem; /* Adjust padding for better click targets on mobile */
+  }
+}

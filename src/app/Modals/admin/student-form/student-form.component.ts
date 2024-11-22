@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-student-form',
@@ -8,8 +9,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class StudentFormComponent {
   studentForm: FormGroup;
+  studentService: any;
 
-  constructor() {
+
+  constructor(public activeModal: NgbActiveModal) {
+    
     this.studentForm = new FormGroup({
       NIC: new FormControl('', [
         Validators.required,
@@ -46,9 +50,13 @@ export class StudentFormComponent {
     });
   }
 
+ 
   onSubmit() {
     if (this.studentForm.valid) {
-      console.log(this.studentForm.value);
+      this.studentService.addStudent(this.studentForm.value).subscribe(() => {
+        console.log('Student added successfully');
+        this.activeModal.close(); 
+      });
     } else {
       console.log('Form is invalid');
     }

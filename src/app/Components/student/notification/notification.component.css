@@ -1,0 +1,29 @@
+.card-header {
+    background-color: #0e2338d2;
+    font-size: 1.1rem;
+  }
+  
+  .card-body {
+    background-color: #ffffff;
+  }
+  
+  .card-title {
+    font-weight: 600;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* For mobile and tablet screens */
+  @media (max-width: 767px) {
+    .card-header {
+      font-size: 1rem;
+    }
+  
+    .card-title {
+      font-size: 1.2rem;
+    }
+  }
+  

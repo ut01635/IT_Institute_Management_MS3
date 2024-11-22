@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Student } from './Modal';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,19 @@ export class EnrollmentService {
   constructor(private http: HttpClient) { }
 
   
-  getEnrollments(studentNic: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
+  getEnrollments(studentNic: number): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
   }
 
   
-  getCompletedEnrollments(studentNic: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`);
+  getCompletedEnrollments(studentNic: number): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`)
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching completed enrollments', error);
+          return of([]);  
+        })
+      );
   }
+  
 }
