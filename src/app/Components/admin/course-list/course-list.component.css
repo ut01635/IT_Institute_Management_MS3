@@ -3,4 +3,8 @@ img {
     height: auto;
     border-radius: 5px;
   }
+
+  td,th{
+    text-align: center;
+  }
   
