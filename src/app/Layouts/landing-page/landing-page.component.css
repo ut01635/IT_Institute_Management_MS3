@@ -71,7 +71,7 @@
 
 
 
-
+/* ------------------------------------------------------------------------------------- */
 
 /* video background */
 /* Make sure the video fills the background */
@@ -132,3 +132,31 @@
   background-color: #e60000; 
 }
 /* --------------------------------------------------------------------------- */
+/* Glowing Radium Border */
+.glowing-card::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, #00ff00, #00e5ff, #ff00ff, #ff0066, #00ff00);
+  border-radius: 10px;
+  z-index: -1;
+  background-size: 400% 400%;
+  animation: glowing 5s ease-in-out infinite;
+}
+
+/* Animation for glowing effect */
+@keyframes glowing {
+  0% {
+      background-position: 0 0;
+  }
+  50% {
+      background-position: 400% 400%;
+  }
+  100% {
+      background-position: 0 0;
+  }
+}
+/* ------------------------------------------------------------------------------------------- */
