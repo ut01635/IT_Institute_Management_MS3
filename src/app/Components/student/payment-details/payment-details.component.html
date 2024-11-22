@@ -33,9 +33,9 @@
                 <tr *ngFor="let payment of filteredPayments">
                   <td>{{ payment.date }}</td>
                   <td>{{ payment.courseName }}</td>
-                  <td>{{ payment.amount | currency }}</td>
-                  <td>{{ payment.dueAmount | currency }}</td>
-                  <td>{{ payment.totalAmount | currency }}</td>
+                  <td class="text-success">{{ payment.amount | currency }}</td>
+                  <td class="text-danger">{{ payment.dueAmount | currency }}</td>
+                  <td class="text-warning">{{ payment.totalAmount | currency }}</td>
                 </tr>
               </tbody>
             </table>
