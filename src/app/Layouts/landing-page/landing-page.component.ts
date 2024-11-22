@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../../Services/Modal';
 import { CourseService } from '../../Services/course.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,9 +11,25 @@ import { CourseService } from '../../Services/course.service';
 export class LandingPageComponent implements OnInit {
   email: string = 'devhubinstitute@gmail.com';
   courses: Course[] = [];
-  
 
-  constructor(private courseService: CourseService) {}
+  contactForm: FormGroup;
+
+  constructor(private courseService: CourseService, private fb: FormBuilder) {
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', [Validators.required, Validators.minLength(10)]],
+    });
+  }
+
+  onSubmit() {
+    if (this.contactForm.valid) {
+      console.log('Form Submitted', this.contactForm.value);
+      // Handle form submission logic
+    } else {
+      console.log('Form is invalid');
+    }
+  }
 
   ngOnInit() {
     this.courseService.getAllCourses().subscribe(
