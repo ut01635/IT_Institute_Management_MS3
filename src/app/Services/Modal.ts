@@ -1,3 +1,12 @@
+export interface Address {
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  postalCode?: string;
+  country?: string;
+}
+
+
 export interface Course{
     id:string
     courseName:string
