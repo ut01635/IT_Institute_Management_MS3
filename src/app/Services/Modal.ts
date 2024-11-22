@@ -62,3 +62,11 @@ export interface Course {
     message:string;
     date:string;
   }
+
+  export interface Payment {
+    date: string;
+    courseName: string;
+    amount: number;
+    dueAmount: number;
+    totalAmount: number;
+  }
