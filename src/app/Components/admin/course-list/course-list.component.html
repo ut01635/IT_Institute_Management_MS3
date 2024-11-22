@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let course of courses">
+      <tr *ngFor="let course of courses | courseSearch:searchText">
         <td>
           <img src="https://localhost:7055{{course.imagePaths[0]}}" alt="Course Image" class="img-thumbnail" style="width: 50px; height: 50px;">
         </td>
