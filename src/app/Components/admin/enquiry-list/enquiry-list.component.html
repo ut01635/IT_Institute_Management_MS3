@@ -24,7 +24,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let enquiry of enquirys">
-        <td>{{ enquiry.postdate }}</td>
+        <td>{{ enquiry.date | date: 'dd/MM/yyyy' }}</td>
         <td>{{ enquiry.name }}</td>
         <td>{{ enquiry.email }}</td>
         <td>{{ enquiry.message }}</td>

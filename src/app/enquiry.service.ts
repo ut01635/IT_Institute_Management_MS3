@@ -9,7 +9,7 @@ import { enquiry } from './Services/Modal';
 export class EnquiryService {
 
   
-  private enguiryGetApi = 'https://localhost:7055/api/Enquiry'; 
+  private enguiryGetApi = 'https://localhost:7055/api/ContactUs'; 
 
   constructor(private http: HttpClient) { }
 

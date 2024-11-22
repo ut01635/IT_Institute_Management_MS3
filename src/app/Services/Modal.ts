@@ -59,5 +59,5 @@ export interface Course {
     name:string;
     email:string;
     message:string;
-    postdate:string;
+    date:string;
   }
