@@ -1,74 +1,81 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg  navbar-dark">
-    <div class="container-fluid">
-      <!-- Brand Logo or Name -->
-      <a class="navbar-brand" href="#"><img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 300px; height:50px;"></a>
-      
-      <!-- Toggler for Mobile View -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<!-- Navbar (Header) -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <!-- Brand Logo or Name (on the left) -->
+    <a class="navbar-brand" href="#">
+      <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 300px; height:70px;">
+    </a>
+
+    <!-- Toggler for Mobile View -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links (centered) -->
+    <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Dashboard Link -->
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/student/student-dashboard']">Dashboard</a>
+        </li>
+
+        <!-- Payment Link -->
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/student/payment-details']">Payment</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Buttons (Announcement) on Mobile & Desktop -->
+    <div class="d-flex justify-content-end">
+      <!-- Announcement Button (Visible on both mobile and desktop) -->
+      <button class="btn btn-link text-white" [routerLink]="['/student/announcement']" aria-label="Announcements">
+        <i class="bi bi-megaphone"></i> <!-- Bootstrap icon for Announcements -->
       </button>
-  
-      <!-- Navbar Links -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <!-- Home Link -->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/student/home']">Home</a>
-          </li>
-  
-          <!-- Dashboard Link -->
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/student/student-dashboard']">Dashboard</a>
-          </li>
-  
-          <!-- Payment Link -->
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/student/payment-details']">Payment</a>
-          </li>
-  
-          <!-- My Courses Link -->
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/student/enroll-courses']">My Courses</a>
-          </li>
-  
-          <!-- Profile Link -->
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/student/profile']">Profile</a>
-          </li>
-          
-          <!-- Notification Button -->
-          <li class="nav-item">
-            <button class="btn btn-link text-white" [routerLink]="['/student/notification']" aria-label="Notifications">
-              <i class="bi bi-bell"></i> <!-- Bootstrap icon for Notifications -->
-            </button>
-          </li>
-  
-          <!-- Announcement Button -->
-          <li class="nav-item">
-            <button class="btn btn-link text-white" [routerLink]="['/student/announcement']" aria-label="Announcements">
-              <i class="bi bi-megaphone"></i> <!-- Bootstrap icon for Announcements -->
-            </button>
-          </li>
-  
-          <!-- Logout Button -->
-          <li class="nav-item">
-            <button class="btn btn-link text-white" (click)="logout()" aria-label="Logout">
-              <i class="bi bi-box-arrow-right"></i> <!-- Bootstrap icon for Logout -->
-            </button>
-          </li>
-        </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="col-12 col-md ms-0 mt-4">
+  <section style="width: 100%; overflow-y: scroll;" class="shadow p-4 m-2 bg-white rounded ">
+    <div class="container">
+      <h2>Welcome to DevHub, {{studentName}}</h2>
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</main>
+
+<!-- Footer with Links and Icons -->
+<footer class="bg-dark text-white fixed-bottom">
+  <div class="container py-3">
+    <div class="row text-center">
+      <!-- Home Link -->
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+        <a class="nav-link text-white" [routerLink]="['/student/home']">
+          <i class="bi bi-house-door"></i> <span class="d-none d-md-inline">Home</span>
+        </a>
+      </div>
+
+      <!-- Notification (Message) Link -->
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+        <a class="nav-link text-white" [routerLink]="['/student/notification']">
+          <i class="bi bi-bell"></i> <span class="d-none d-md-inline">Notification</span>
+        </a>
+      </div>
+
+      <!-- My Courses Link -->
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+        <a class="nav-link text-white" [routerLink]="['/student/enroll-courses']">
+          <i class="bi bi-journal-bookmark"></i> <span class="d-none d-md-inline">My Courses</span>
+        </a>
+      </div>
+
+      <!-- Profile (Account) Link -->
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+        <a class="nav-link text-white" [routerLink]="['/student/profile']">
+          <i class="bi bi-person-circle"></i> <span class="d-none d-md-inline">Profile</span>
+        </a>
       </div>
     </div>
-  </nav>
-
-  <main class="col-12 col-md ms-0 mt-4">
-    <section style="width: 100%; overflow-y: scroll;" class="shadow p-4 m-2 bg-white rounded ">
-      
-      <div class="container">
-        <h2>Welcome to DevHub, {{studentName}}</h2>
-        <router-outlet></router-outlet>
-      </div>
-    </section>
-  </main>
-  
+  </div>
+</footer>

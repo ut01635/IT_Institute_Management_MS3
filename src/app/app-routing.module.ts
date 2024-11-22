@@ -56,7 +56,7 @@ const routes: Routes = [
       {path:'student-dashboard', component:StudentDashboardComponent},
       {path:'home', component:CourseViewComponent},
       {path:'notification', component:NotificationComponent},
-      {path:'Announcement', component:AnnouncementComponent},
+      {path:'announcement', component:AnnouncementComponent},
       {path:'payment-details', component:PaymentDetailsComponent},
       {path:'enroll-courses', component:EnrollCoursesComponent},
       {path:'profile', component:ProfileComponent},
