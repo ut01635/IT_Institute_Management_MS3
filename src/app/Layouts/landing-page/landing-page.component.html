@@ -295,9 +295,13 @@
                       />
                       <div class="card-body">
                         <h4 class="card-title">{{ course.courseName }}</h4>
-                        <p class="card-text">{{ course.duration }}</p>
+                        <p class="card-text"[ngStyle]="{
+                          'color': course.level === 'Beginner' ? 'green' : (course.level === 'Intermediate' ? 'blue' : 'black')
+                        }" >{{course.level}}</p>
+                        <p class="card-text">{{ course.duration }} Months</p>
+                        <p class="card-text">{{course.description}}</p>
                         <div class="d-flex justify-content-between">
-                          <span class="text-muted">{{ course.fees }}</span>
+                          <span class="text-muted">${{ course.fees }}</span>
                           <a
                             class="icon-link icon-link-hover"
                             style="--bs-link-hover-color-rgb: 25, 135, 84"
