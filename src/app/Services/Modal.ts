@@ -69,3 +69,10 @@ export interface Course {
     dueAmount: number;
     totalAmount: number;
   }
+
+  export interface Announcement{
+    id:string
+    title:string;
+    body:string;
+    date:Date
+  }

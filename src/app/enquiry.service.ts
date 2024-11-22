@@ -17,4 +17,8 @@ export class EnquiryService {
   getEnquiries(): Observable<enquiry[]> {
     return this.http.get<enquiry[]>(this.enguiryGetApi);
   }
+
+  postEnquiry(enquiry: enquiry){
+    return this.http.post(this.enguiryGetApi,enquiry)
+  }
 }
