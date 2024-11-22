@@ -32,7 +32,6 @@ export interface Course {
   description:string; 
 }
 
-
   export interface Enrollment {
     id: string;
     courseId: string;
