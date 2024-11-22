@@ -42,6 +42,7 @@ import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './Pipes/search.pipe';
 import { CourseSearchPipe } from './Pipes/course-search.pipe';
+import { AdminSearchPipe } from './Pipes/admin-search.pipe';
 
 
 
@@ -83,7 +84,8 @@ import { CourseSearchPipe } from './Pipes/course-search.pipe';
     AnnouncementViewComponent,
     AdminPageComponent,
     SearchPipe,
-    CourseSearchPipe
+    CourseSearchPipe,
+    AdminSearchPipe
 
    
   ],
