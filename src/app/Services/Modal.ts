@@ -29,6 +29,15 @@ export interface Course{
     imagePaths: string
   }
 
+  export interface Enrollment {
+    id: string;
+    courseId: string;
+    courseName: string;
+    enrollmentDate: string;
+    isComplete: boolean;
+    paymentPlan: string;
+  }
+
   export interface LoginRequest {
     nic: string;
     password: string;
