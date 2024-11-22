@@ -41,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './Pipes/search.pipe';
+import { CourseSearchPipe } from './Pipes/course-search.pipe';
 
 
 
@@ -81,7 +82,8 @@ import { SearchPipe } from './Pipes/search.pipe';
     PasswordRestFormComponent,
     AnnouncementViewComponent,
     AdminPageComponent,
-    SearchPipe
+    SearchPipe,
+    CourseSearchPipe
 
    
   ],
