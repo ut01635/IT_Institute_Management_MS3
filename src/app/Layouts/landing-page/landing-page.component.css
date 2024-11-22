@@ -129,41 +129,42 @@
   background-color: #e60000;
 }
 /* --------------------------------------------------------------------------- */
-/* Glowing Radium Border */
-.glowing-card::before {
+/* Set relative positioning to the card to ensure positioning of the pseudo-element */
+.box-fact {
+  position: relative;  /* Needed for positioning the ::before pseudo-element */
+  overflow: hidden;    /* Ensures that the glow effect doesn't overflow */
+  border-radius: 10px;  /* Optional: Makes the card corners rounded */
+}
+
+/* Add the animated glowing border using ::before */
+.box-fact::before {
   content: "";
   position: absolute;
   top: -5px;
   left: -5px;
   right: -5px;
   bottom: -5px;
-  background: linear-gradient(
-    45deg,
-    #83a6ce,
-    #26415e,
-    #0b1b32,
-    #0d1e4c,
-    #c48cb3,
-    #e5c9d7
-  );
+  background: linear-gradient(45deg, #83a6ce, #26415e, #0b1b32, #0d1e4c, #c48cb3, #e5c9d7);
   border-radius: 10px;
-  z-index: -1;
   background-size: 400% 400%;
-  animation: glowing 5s ease-in-out infinite;
+  animation: color-shifting-border 5s ease-in-out infinite;
 }
 
-/* Animation for glowing effect */
-@keyframes glowing {
+/* Keyframes for color-shifting effect */
+@keyframes color-shifting-border {
   0% {
-    background-position: 0 0;
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 400% 400%;
+    background-position: 100% 50%;  /* Move the gradient across */
   }
   100% {
-    background-position: 0 0;
+    background-position: 0% 50%;
   }
 }
+
+
+
 /* ------------------------------------------------------------------------------------------- */
 
 #services {
@@ -173,7 +174,8 @@
   background-image: url(/LandingAssets/blackDoodle.jpg);
 }
 #facts {
-  background: #26415e;
+  background: #0b1b32;
+  z-index: -10;
 }
 #apply {
   background-image: url(/LandingAssets/doodle03.png);
