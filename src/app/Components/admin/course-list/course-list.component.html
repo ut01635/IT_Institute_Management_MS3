@@ -25,17 +25,16 @@
     <tbody>
       <tr *ngFor="let course of courses">
         <td>
-          <img [src]="course.imagePaths[0]" alt="Course Image" class="img-thumbnail" style="width: 100px; height: 100px;">
+          <img src="https://localhost:7055/images/courses/e4ddce6f-1310-408f-b05a-e1b897ffdcd4.jpg" alt="Course Image" class="img-thumbnail" style="width: 100px; height: 100px;">
         </td>
         <td>{{ course.courseName }}</td>
         <td>{{ course.duration }} Months</td>
         <td [ngClass]="{
-          'text-danger': course.level === 'High',
-          'text-warning': course.level === 'Low',
+          'text-primary': course.level === 'Beginner',
           'text-success': course.level === 'Intermediate'
         }">{{ course.level }}</td>
         <td>
-          {{ course.fees | currency:'LKR' }}
+          {{ course.fees | currency:'LKR ' }}
         </td>
         <td>
           <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(course.id)">
