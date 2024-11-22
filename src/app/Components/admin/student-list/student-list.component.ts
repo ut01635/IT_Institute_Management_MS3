@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../../Services/student.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
 import { forkJoin } from 'rxjs';
+import { Student } from '../../../Services/Modal';
 
 @Component({
   selector: 'app-student-list',
@@ -10,7 +11,7 @@ import { forkJoin } from 'rxjs';
 })
 export class StudentListComponent implements OnInit {
 
-  students: any[] = [];
+  students: Student[] = [];
   searchText: string = '';
 
   constructor(
@@ -26,24 +27,27 @@ export class StudentListComponent implements OnInit {
   }
 
   fetchEnrollments() {
-    
     this.students.forEach(student => {
+      const nicNumber = Number(student.nic); 
+
+     
       forkJoin([
-        this.enrollmentService.getEnrollments(student.nic),
-        this.enrollmentService.getCompletedEnrollments(student.nic)
+        this.enrollmentService.getEnrollments(nicNumber),
+        this.enrollmentService.getCompletedEnrollments(nicNumber)
       ]).subscribe(([enrollments, completedEnrollments]) => {
+       
         student.enrollingCount = enrollments.length;
         student.completedCount = completedEnrollments.length;
       });
     });
   }
 
-  onEdit(studentNic: number) {
-    console.log("Edit student with NIC: ", studentNic);
-  }
+  // onEdit(studentNic: number) {
+  //   console.log("Edit student with NIC: ", studentNic);
+  // }
 
-  onDelete(studentNic: number) {
-    console.log("Delete student with NIC: ", studentNic);
-  }
+  // onDelete(studentNic: number) {
+  //   console.log("Delete student with NIC: ", studentNic);
+  // }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Student } from './Modal';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   
-  getStudents(): Observable<any[]> {
-    return this.http.get<any[]>(this.GetAllStudentApi);
+  getStudents(): Observable<Student[]> {
+    return this.http.get<Student[]>(this.GetAllStudentApi);
   }
 }

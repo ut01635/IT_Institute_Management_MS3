@@ -7,7 +7,6 @@ export interface Address {
 }
 
 export interface Student {
-  id: string;
   nic: string;
   firstName: string;
   lastName: string;
@@ -17,6 +16,8 @@ export interface Student {
   enrollments?: Enrollment[];  
   imagePath?: string;  
   isLocked?: boolean;  
+  enrollingCount?: number; 
+  completedCount?: number;
 }
 
 
