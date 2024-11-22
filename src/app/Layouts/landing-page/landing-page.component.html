@@ -289,15 +289,25 @@
                   <div class="col-md-4" *ngFor="let course of chunk">
                     <div class="card mb-4">
                       <img
-                      src="https://localhost:7055{{course.imagePaths}}"
+                        src="https://localhost:7055{{ course.imagePaths[0] }}"
                         class="card-img-top"
                         alt="Course Image"
                       />
                       <div class="card-body">
                         <h4 class="card-title">{{ course.courseName }}</h4>
                         <p class="card-text">{{ course.duration }}</p>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-between">
                           <span class="text-muted">{{ course.fees }}</span>
+                          <a
+                            class="icon-link icon-link-hover"
+                            style="--bs-link-hover-color-rgb: 25, 135, 84"
+                            href="#contact"
+                          >
+                            learn more
+                            <!-- <svg class="bi" aria-hidden="true">
+                              <use xlink:href="#arrow-right"></use>
+                            </svg> -->
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -359,8 +369,8 @@
             <div class="col-md-6 mb-4">
               <div class="card text-center">
                 <div class="card-body">
-                  <h3 class="card-title">126</h3>
-                  <p class="card-text">Current Teachers</p>
+                  <h3 class="card-title">32</h3>
+                  <p class="card-text">Available Courses</p>
                 </div>
               </div>
             </div>
@@ -375,8 +385,8 @@
             <div class="col-md-6 mb-4">
               <div class="card text-center">
                 <div class="card-body">
-                  <h3 class="card-title">32</h3>
-                  <p class="card-text">Awards</p>
+                  <h3 class="card-title">5455.0</h3>
+                  <p class="card-text">Entrolments</p>
                 </div>
               </div>
             </div>
@@ -388,11 +398,20 @@
               href="https://youtu.be/MIufgoKX34M?si=LymGixdLwVu93rR_"
               target="_blank"
             >
-              <img
-                src="/public/LandingAssets/play-icon.png"
-                alt="Play Video"
-                class="img-fluid"
-              />
+              <div class="position-relative">
+                <!-- Image -->
+                <img
+                  src="/LandingAssets/video-item-bg.jpg"
+                  alt="Play Video"
+                  class="img-fluid rounded-4"
+                />
+
+                <!-- Play Icon -->
+                <i
+                  class="bi bi-play-circle position-absolute top-50 start-50 translate-middle"
+                  style="font-size: 50px; color: white"
+                ></i>
+              </div>
             </a>
           </div>
         </div>
@@ -855,6 +874,6 @@
     </div>
   </footer>
 </section>
-<a href="#" class="btn btn-primary back-to-top ">
+<a href="#" class="btn btn-primary back-to-top">
   <i class="bi bi-arrow-up"></i>
 </a>
