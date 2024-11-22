@@ -25,18 +25,18 @@
 .back-to-top {
   position: fixed;
   bottom: 20px;
-  right: 20px; 
-  z-index: 1000; 
+  right: 20px;
+  z-index: 1000;
   border-radius: 5px;
-  padding: 10px; 
-  transition: transform 0.3s ease; 
+  padding: 10px;
+  transition: transform 0.3s ease;
 }
 .back-to-top:hover {
-  transform: scale(1.3); 
+  transform: scale(1.3);
 }
 
 .icons {
-  background-color: rgba(26, 25, 25, 0.521); 
+  background-color: rgba(26, 25, 25, 0.521);
   transition: transform 0.3s ease, opacity 0.3s ease;
   border-radius: 15px;
   width: 60%;
@@ -64,24 +64,21 @@
 /* Customize carousel control buttons */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: #007bff; 
+  background-color: #007bff;
   border-radius: 50%;
 }
-
-
-
 
 /* ------------------------------------------------------------------------------------- */
 
 /* video background */
 /* Make sure the video fills the background */
 #bg-video {
-  position: absolute; 
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: -1;
   /* filter: blur(4px);  */
   opacity: 0.4;
@@ -90,13 +87,13 @@
 /* Styling the overlay */
 .video-overlay {
   position: relative;
-  z-index: 1; 
-  color: white; 
-  padding: 100px 0; 
+  z-index: 1;
+  color: white;
+  padding: 100px 0;
   text-align: center;
 }
 
-.caption{
+.caption {
   color: #000;
 }
 
@@ -119,7 +116,7 @@
 /* Button styling */
 .main-button-red a {
   padding: 15px 30px;
-  background-color: #ff4c4c; 
+  background-color: #ff4c4c;
   color: white;
   font-size: 16px;
   text-transform: uppercase;
@@ -129,7 +126,7 @@
 }
 
 .main-button-red a:hover {
-  background-color: #e60000; 
+  background-color: #e60000;
 }
 /* --------------------------------------------------------------------------- */
 /* Glowing Radium Border */
@@ -140,7 +137,15 @@
   left: -5px;
   right: -5px;
   bottom: -5px;
-  background: linear-gradient(45deg, #00ff00, #00e5ff, #ff00ff, #ff0066, #00ff00);
+  background: linear-gradient(
+    45deg,
+    #83a6ce,
+    #26415e,
+    #0b1b32,
+    #0d1e4c,
+    #c48cb3,
+    #e5c9d7
+  );
   border-radius: 10px;
   z-index: -1;
   background-size: 400% 400%;
@@ -150,13 +155,32 @@
 /* Animation for glowing effect */
 @keyframes glowing {
   0% {
-      background-position: 0 0;
+    background-position: 0 0;
   }
   50% {
-      background-position: 400% 400%;
+    background-position: 400% 400%;
   }
   100% {
-      background-position: 0 0;
+    background-position: 0 0;
   }
 }
 /* ------------------------------------------------------------------------------------------- */
+
+#services {
+  background: #0b1b32;
+}
+#courses {
+  background-image: url(/LandingAssets/blackDoodle.jpg);
+}
+#facts {
+  background: #26415e;
+}
+#apply {
+  background-image: url(/LandingAssets/doodle03.png);
+}
+#team {
+  background: #0b1b32;
+}
+#contact {
+  background-image: url(/LandingAssets/blackDoodle.jpg);
+}
