@@ -40,6 +40,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchPipe } from './Pipes/search.pipe';
 
 
 
@@ -79,7 +80,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileUpdateFormComponent,
     PasswordRestFormComponent,
     AnnouncementViewComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    SearchPipe
 
    
   ],
