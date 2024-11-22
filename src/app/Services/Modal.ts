@@ -2,6 +2,7 @@ export interface Address {
   addressLine1: string;
   addressLine2?: string;
   city: string;
+  state:string
   postalCode?: string;
   country?: string;
 }
@@ -60,4 +61,12 @@ export interface Course {
     email:string;
     message:string;
     date:string;
+  }
+
+  export interface Payment {
+    date: string;
+    courseName: string;
+    amount: number;
+    dueAmount: number;
+    totalAmount: number;
   }
