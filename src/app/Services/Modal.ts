@@ -47,11 +47,11 @@ export interface Course {
   }
 
   export interface admin {
-    nic:string;
-    name:string;
-    email:string;
-    phone:string;
-    image:string;
+    nic: string;
+    name: string;
+    email: string;
+    phone: string;
+    imagePath: string; 
   }
 
   export interface enquiry{

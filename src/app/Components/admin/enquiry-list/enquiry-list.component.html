@@ -1,71 +1,45 @@
-<div class="d-flex justify-content-between mb-3">
+<!-- enquiry-list.component.html -->
+<div class="container">
+  <div class="d-flex justify-content-between mb-3">
     <div>
       <input type="text" class="form-control" placeholder="Search enquiry..." [(ngModel)]="searchText">
     </div>
-  
+
     <div>
       <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registerModal">
         New enquiry
       </button>
     </div>
   </div>
-  
+
   <table class="table table-responsive table-bordered">
-      <thead>
-          <tr>
-              <th>Date</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Message</th>
-              <th>Actions</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let enquiry of enquirys">
-              <td>{{enquiry.postdate}}</td>
-              <td>{{enquiry.name}}</td>
-              <td>{{enquiry.email}}</td>
-              <td>{{enquiry.message}}</td>
-              <td>
-                <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onReplay(enquiry.email)">
-                    <i class="bi bi-pencil"></i></button>
-  
-                  <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onView(enquiry.id)">
-                      <i class="bi bi-pencil"></i></button>
-  
-                  <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(enquiry.id)">
-                      <i class="bi bi-trash"></i></button>
-              </td>
-          </tr>
-      </tbody>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let enquiry of enquirys">
+        <td>{{ enquiry.postdate }}</td>
+        <td>{{ enquiry.name }}</td>
+        <td>{{ enquiry.email }}</td>
+        <td>{{ enquiry.message }}</td>
+        <td>
+          <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onReplay(enquiry.email)">
+            <i class="bi bi-pencil"></i> Reply
+          </button>
+          <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onView(enquiry.id)">
+            <i class="bi bi-eye"></i> View
+          </button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(enquiry.id)">
+            <i class="bi bi-trash"></i> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
   </table>
-  
-  
-  <!-- <ng-template #template1>
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Delete Confirmation 1</h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-          <span aria-hidden="true" class="visually-hidden">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <p>Do you want to delete this enquiry?</p>
-        <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
-        <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
-      </div>
-    </ng-template>
-    
-    
-    <ng-template #template2>
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Delete Confirmation 2</h4>
-        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-          <span aria-hidden="true" class="visually-hidden">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <p>Do you want to delete this enquiry?</p>
-        <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
-        <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
-      </div>
-    </ng-template> -->
+</div>
