@@ -27,7 +27,8 @@ export interface Course {
   level: string;
   duration: number;  
   fees: number;  
-  imagePaths: string[];  
+  imagePaths: string[];
+  description:string; 
 }
 
 

@@ -14,6 +14,7 @@
   <table class="table table-responsive table-bordered">
     <thead>
       <tr>
+        <th>Image</th>
         <th>NIC</th>
         <th>Name</th>
         <th>Email</th>
@@ -26,6 +27,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let student of students">
+        <td>
+          <img src="https://localhost:7055{{student.imagePath}}" alt="Student Image" class="img-thumbnail" style="width: 100px; height: 100px;">
+        </td>
         <td>{{ student.nic }}</td>
         <td>{{ student.firstName }} {{ student.lastName }}</td>
         <td>{{ student.email }}</td>
@@ -33,7 +37,7 @@
         <td>
           {{ student.address?.addressLine1 }},
           {{ student.address?.addressLine2 }},
-          {{ student.address?.city }}
+          {{ student.address?.city }}.
         </td>
         <td>{{ student.enrollingCount || 0 }}</td>
         <td>{{ student.completedCount || 0 }}</td>
