@@ -21,14 +21,15 @@ export interface Student {
 }
 
 
-export interface Course{
-    id:string
-    courseName:string
-    level:string,
-    duration:number,
-    fees: number,
-    imagePaths: string
-  }
+export interface Course {
+  id: string;
+  courseName: string;
+  level: string;
+  duration: number;  
+  fees: number;  
+  imagePaths: string[];  
+}
+
 
   export interface Enrollment {
     id: string;
