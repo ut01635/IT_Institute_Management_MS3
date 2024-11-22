@@ -1,16 +1,38 @@
+ /* Fix Footer at the Bottom */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Footer Icon Size */
+footer .nav-link i {
+  font-size: 1.5rem; /* Default icon size */
+}
+
+/* Footer Links on Mobile (Hide text) */
+@media (max-width: 576px) {
+  footer .nav-link span {
+    display: none; /* Hide text on mobile */
+  }
+}
+
 /* Customize navbar background color */
 .navbar {
-    background-color: #163d32; /* Luxury dark green */
-  }
-  
-  /* Change the color of the button icons */
-  .nav-item button i {
-    font-size: 1.5rem; /* Optional: increase icon size */
-  }
-  
-  /* Hover effect for buttons */
-  .nav-item button:hover {
-    background-color: #333;
-    border-radius: 50%;
-  }
-  
+  background-color: #214164; /* Luxury dark green */
+}
+
+/* Customize navbar icon size */
+.nav-item button i {
+  font-size: 1.5rem; /* Optional: increase icon size */
+}
+
+/* Hover effect for buttons */
+.nav-item button:hover {
+  background-color: #333;
+  border-radius: 50%;
+}
