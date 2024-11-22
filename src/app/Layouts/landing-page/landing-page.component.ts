@@ -10,6 +10,7 @@ import { CourseService } from '../../Services/course.service';
 export class LandingPageComponent implements OnInit {
   email: string = 'devhubinstitute@gmail.com';
   courses: Course[] = [];
+  
 
   constructor(private courseService: CourseService) {}
 
