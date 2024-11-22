@@ -44,6 +44,7 @@ import { SearchPipe } from './Pipes/search.pipe';
 import { CourseSearchPipe } from './Pipes/course-search.pipe';
 import { AdminSearchPipe } from './Pipes/admin-search.pipe';
 import { EnquirySearchPipe } from './Pipes/enquiry-search.pipe';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -97,7 +98,8 @@ import { EnquirySearchPipe } from './Pipes/enquiry-search.pipe';
     HttpClientModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

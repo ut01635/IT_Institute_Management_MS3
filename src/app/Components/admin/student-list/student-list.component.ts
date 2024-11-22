@@ -3,6 +3,8 @@ import { StudentService } from '../../../Services/student.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
 import { forkJoin } from 'rxjs';
 import { Student } from '../../../Services/Modal';
+import { StudentFormComponent } from '../../../Modals/admin/student-form/student-form.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-student-list',
@@ -14,9 +16,12 @@ export class StudentListComponent implements OnInit {
   students: Student[] = [];
   searchText: string = '';
 
+
   constructor(
     private studentService: StudentService,
-    private enrollmentService: EnrollmentService
+    private enrollmentService: EnrollmentService,
+    private modalService: NgbModal
+    
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +45,26 @@ export class StudentListComponent implements OnInit {
         student.completedCount = completedEnrollments.length;
       });
     });
+  }
+
+
+
+ 
+  openModal() {
+    
+    const modalRef = this.modalService.open(StudentFormComponent, {
+      size: 'lg'
+    });
+
+    
+    modalRef.result.then(
+      (result: any) => {
+        console.log('Modal closed', result);
+      },
+      (reason: any) => {
+        console.log('Modal dismissed', reason);
+      }
+    );
   }
 
   // onEdit(studentNic: number) {
