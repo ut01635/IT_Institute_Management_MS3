@@ -12,7 +12,7 @@
             <p class="card-text text-white">Level: {{ course.level }}</p>
             <p class="card-text text-white">Duration: {{ course.duration }} months</p>
             <p class="card-text text-white">{{ course.description }}</p>
-            <p class="card-text text-danger">LKR {{ course.price | number:'1.0-0' }}</p>
+            <p class="card-text text-danger">LKR {{ course.price }}</p>
             <div class="buttons d-flex gap-3">
               <button (click)="handleViewCourse(course)" class="btn btn-outline-light">View</button>
               <button (click)="handleFollowCourse(course)" class="btn btn-danger text-danger">Unfollow</button>
