@@ -43,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './Pipes/search.pipe';
 import { CourseSearchPipe } from './Pipes/course-search.pipe';
 import { AdminSearchPipe } from './Pipes/admin-search.pipe';
+import { EnquirySearchPipe } from './Pipes/enquiry-search.pipe';
 
 
 
@@ -85,7 +86,8 @@ import { AdminSearchPipe } from './Pipes/admin-search.pipe';
     AdminPageComponent,
     SearchPipe,
     CourseSearchPipe,
-    AdminSearchPipe
+    AdminSearchPipe,
+    EnquirySearchPipe
 
    
   ],

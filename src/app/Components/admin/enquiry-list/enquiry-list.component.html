@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let enquiry of enquirys">
+      <tr *ngFor="let enquiry of enquirys | enquirySearch:searchText">
         <td>{{ enquiry.date | date: 'dd/MM/yyyy' }}</td>
         <td>{{ enquiry.name }}</td>
         <td>{{ enquiry.email }}</td>
