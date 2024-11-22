@@ -35,13 +35,13 @@
           {{ student.address?.addressLine2 }},
           {{ student.address?.city }}
         </td>
-        <td>{{ getEnrollingCount(student.id) }}</td>
-        <td>{{ getCompletedCount(student.id) }}</td>
+        <td>{{ student.enrollingCount || 0 }}</td>
+        <td>{{ student.completedCount || 0 }}</td>
         <td>
-          <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(student.id)">
+          <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(student.nic)">
             <i class="bi bi-pencil"></i> Edit
           </button>
-          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(student.id)">
+          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(student.nic)">
             <i class="bi bi-trash"></i> Delete
           </button>
         </td>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../../Services/student.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-student-list',
@@ -14,42 +15,35 @@ export class StudentListComponent implements OnInit {
 
   constructor(
     private studentService: StudentService,
-    private enrollmentService: EnrollmentService  
-  ) {}
+    private enrollmentService: EnrollmentService
+  ) { }
 
   ngOnInit(): void {
-    
     this.studentService.getStudents().subscribe((data) => {
       this.students = data;
-      console.log(this.students);
+      this.fetchEnrollments();
     });
   }
 
-
- 
-  getEnrollingCount(studentNic: number): number {
-    let count = 0;
-    this.enrollmentService.getEnrollments(studentNic).subscribe((enrollments) => {
-      count = enrollments.length;
+  fetchEnrollments() {
+    
+    this.students.forEach(student => {
+      forkJoin([
+        this.enrollmentService.getEnrollments(student.nic),
+        this.enrollmentService.getCompletedEnrollments(student.nic)
+      ]).subscribe(([enrollments, completedEnrollments]) => {
+        student.enrollingCount = enrollments.length;
+        student.completedCount = completedEnrollments.length;
+      });
     });
-    return count;
-  }
-
- 
-  getCompletedCount(studentNic: number): number {
-    let count = 0;
-    this.enrollmentService.getCompletedEnrollments(studentNic).subscribe((completedEnrollments) => {
-      count = completedEnrollments.length;
-    });
-    return count;
   }
 
   onEdit(studentNic: number) {
-    console.log("Edit student with ID: ", studentNic);
+    console.log("Edit student with NIC: ", studentNic);
   }
 
   onDelete(studentNic: number) {
-    console.log("Delete student with ID: ", studentNic);
+    console.log("Delete student with NIC: ", studentNic);
   }
 
 }
