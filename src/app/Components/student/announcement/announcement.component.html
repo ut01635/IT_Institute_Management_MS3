@@ -1,6 +1,20 @@
 <div class="container">
-    <div>
-        <h2 class="text-center mb-4">Announcements</h2>
+    <h2 class="text-center mb-4">Announcements</h2>
+
+    <!-- Date Filter Section -->
+    <div class="row mb-4">
+        <div class="col-12 col-md-6">
+            <div class="d-flex flex-column flex-md-row">
+                <div class="mb-3 me-md-3">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date" id="startDate" class="form-control" [(ngModel)]="filterStartDate" name="startDate">
+                </div>
+                <div class="mb-3">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="date" id="endDate" class="form-control" [(ngModel)]="filterEndDate" name="endDate">
+                </div>
+            </div>
+        </div>
     </div>
     
 
@@ -8,7 +22,7 @@
         <!-- Full Screen Column: Taking 100% width and 90% height of the screen -->
         <div class="col-12" style="max-height: 90vh; overflow-y: auto;">
             <!-- Announcement Card -->
-            <div *ngFor="let announcement of announcements">
+            <div *ngFor="let announcement of announcements | dateFilter:filterStartDate:filterEndDate">
                 <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <span class="font-weight-bold text-white">Admin</span>

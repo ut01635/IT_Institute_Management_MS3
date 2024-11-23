@@ -9,6 +9,8 @@ import { AnnouncementService } from '../../../Services/announcement.service';
 })
 export class AnnouncementComponent implements OnInit {
   announcements: Announcement[] = [];
+  filterStartDate: string = '';
+  filterEndDate: string = '';
 
   constructor(private announcementService: AnnouncementService) { }
 
