@@ -88,7 +88,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     SearchPipe,
     CourseSearchPipe,
     AdminSearchPipe,
-    EnquirySearchPipe
+    EnquirySearchPipe,
 
    
   ],

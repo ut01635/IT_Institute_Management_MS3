@@ -1,37 +1,14 @@
 <!-- Navbar (Header) -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
-    <!-- Brand Logo or Name (on the left) -->
+  <div class="container-fluid  mx-4">
     <a class="navbar-brand" href="#">
       <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 300px; height:70px;">
     </a>
 
-    <!-- Toggler for Mobile View -->
-    
-
-    <!-- Navbar Links (centered) -->
-    <div class="collapse navbar-collapse d-lg-flex justify-content-center" id="navbarNav">
-      <ul class="navbar-nav">
-        <!-- Dashboard Link -->
-        <li class="nav-item">
-          <a class="nav-link fs-3" [routerLink]="['/student/student-dashboard']">Dashboard</a>
-        </li>
-
-        <!-- Payment Link -->
-        <li class="nav-item">
-          <a class="nav-link fs-3" [routerLink]="['/student/payment-details']">Payment</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Buttons (Announcement) on Mobile & Desktop -->
     <div class="d-flex justify-content-end">
       <!-- Announcement Button (Visible on both mobile and desktop) -->
       <button class="btn btn-link text-white fs-3" [routerLink]="['/student/announcement']" aria-label="Announcements">
-        <i class="bi bi-megaphone"></i> <!-- Bootstrap icon for Announcements -->
-      </button>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="bi bi-megaphone"></i> 
       </button>
     </div>
   </div>
@@ -71,6 +48,14 @@
           <a class="tab-bar__tab-link" [routerLink]="['/student/enroll-courses']" (click)="setActiveTab('courses')" [class.active]="activeTab === 'courses'">
             <i class="bi bi-journal-bookmark"></i>
             <span class="tab-bar__tab-name">My Courses</span>
+          </a>
+        </li>
+
+        <!-- Payment Tab -->
+        <li class="tab-bar__tab">
+          <a class="tab-bar__tab-link" [routerLink]="['/student/payment-details']" (click)="setActiveTab('payment')" [class.active]="activeTab === 'payment'">
+            <i class="bi bi-credit-card"></i>
+            <span class="tab-bar__tab-name">Payment Histroy</span>
           </a>
         </li>
     

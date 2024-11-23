@@ -1,5 +1,8 @@
 <div class="container">
-    <h2 class="text-center mb-4">Announcements</h2>
+    <div>
+        <h2 class="text-center mb-4">Announcements</h2>
+    </div>
+    
 
     <div class="row mb-4">
         <!-- Full Screen Column: Taking 100% width and 90% height of the screen -->
@@ -16,12 +19,13 @@
                             <h5 class="card-title">{{ announcement.title }}</h5>
                         </div>
                         <div>
-                            <button class="btn btn-primary me-2" (click)="viewAnnouncement(announcement)">
+                            <button class="btn btn-primary me-2" [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#announcementModal'" (click)="viewAnnouncement(announcement)">
                                 <i class="bi bi-eye"></i> View
                             </button>
-                            <button class="btn btn-danger" (click)="deleteAnnouncement(announcement)">
+                            
+                            <!-- <button class="btn btn-danger" (click)="deleteAnnouncement(announcement.id)">
                                 <i class="bi bi-trash"></i> Delete
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
@@ -30,20 +34,21 @@
     </div>
 </div>
 
+
 <!-- Popup Modal -->
 <div class="modal fade" id="announcementModal" tabindex="-1" aria-labelledby="announcementModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="announcementModalLabel">{{ selectedAnnouncement?.title }}</h5>
+                <h5 class="modal-title fs-3" id="announcementModalLabel">{{ selectedAnnouncement?.title }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p><strong>Date:</strong> {{ selectedAnnouncement?.date | date: 'medium' }}</p>
-                <p>{{ selectedAnnouncement?.body }}</p>
+                <p class="fs-5"><strong>Date:</strong> {{ selectedAnnouncement?.date | date: 'medium' }}</p>
+                <p class="fs-5">{{ selectedAnnouncement?.body }}</p>
             </div>
             <div class="modal-footer">
-                <!-- <button class="btn btn-danger" (click)="deleteAnnouncement(selectedAnnouncement)">
+                <!-- <button class="btn btn-danger" (click)="deleteAnnouncement(selectedAnnouncement?.id)">
                     <i class="bi bi-trash"></i> Delete
                 </button> -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -51,3 +56,4 @@
         </div>
     </div>
 </div>
+
