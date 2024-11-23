@@ -47,6 +47,7 @@ import { EnquirySearchPipe } from './Pipes/enquiry-search.pipe';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DateFilterPipe } from './Pipes/date-filter.pipe';
 import { MonthFilterPipe } from './Pipes/month-filter.pipe';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -103,7 +104,8 @@ import { MonthFilterPipe } from './Pipes/month-filter.pipe';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModalModule
+    NgbModalModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

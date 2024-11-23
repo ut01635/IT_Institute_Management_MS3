@@ -1,34 +1,34 @@
 <div class="container">
     <h2 class="text-center mb-4">Announcements</h2>
-    
+
     <div class="d-flex justify-content-around">
         <!-- Date Filter Section -->
-        <div class="row mb-4">
-            <div class="col-12 col-md-6">
-                <div class="d-flex flex-column flex-md-row">
-                    <div class="mb-3 me-md-3">
-                        <label for="startDate" class="form-label">Start Date</label>
-                        <input type="date" id="startDate" class="form-control" [(ngModel)]="filterStartDate"
-                            name="startDate">
-                    </div>
-                    <div class="mb-3">
-                        <label for="endDate" class="form-label">End Date</label>
-                        <input type="date" id="endDate" class="form-control" [(ngModel)]="filterEndDate" name="endDate">
-                    </div>
+        <div class="d-flex justify-content-around mb-4">
+            <div class="row w-100">
+                <!-- Start Date -->
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date" id="startDate" class="form-control" [(ngModel)]="filterStartDate"
+                        name="startDate">
+                </div>
+
+                <!-- End Date -->
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="date" id="endDate" class="form-control" [(ngModel)]="filterEndDate" name="endDate">
                 </div>
             </div>
         </div>
 
         <!-- Month Filter Section -->
-        <div class="row mb-4">
-            <div class="col-12 col-md-6">
-                <div class="d-flex flex-column flex-md-row">
-                    <div class="mb-3 me-md-3">
-                        <label for="month" class="form-label">Month</label>
-                        <select id="month" class="form-control" [(ngModel)]="selectedMonth" name="Month">
-                            <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
-                        </select>
-                    </div>
+        <div class="d-flex justify-content-around mb-4">
+            <div class="row w-100">
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="month" class="form-label">Month</label>
+                    <select id="month" class="form-control custom-month-select" [(ngModel)]="selectedMonth"
+                        name="Month">
+                        <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+                    </select>
                 </div>
             </div>
         </div>
