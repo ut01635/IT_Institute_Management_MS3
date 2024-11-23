@@ -48,6 +48,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DateFilterPipe } from './Pipes/date-filter.pipe';
 import { MonthFilterPipe } from './Pipes/month-filter.pipe';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -105,7 +106,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FormsModule,
     ReactiveFormsModule,
     NgbModalModule,
-    BsDatepickerModule.forRoot()
+    BrowserAnimationsModule,
+    BsDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

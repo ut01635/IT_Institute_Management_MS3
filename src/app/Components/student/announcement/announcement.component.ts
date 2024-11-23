@@ -9,12 +9,12 @@ import { AnnouncementService } from '../../../Services/announcement.service';
 })
 export class AnnouncementComponent implements OnInit {
   announcements: Announcement[] = [];
-  filterStartDate: string = '';
-  filterEndDate: string = '';
   selectedMonth: string = '';
+  selectedDateRange: [Date, Date] | null = null; 
+  selectedAnnouncement: Announcement | null = null;
 
   months = [
-    { value: '', name: 'months' },
+    { value: '', name: 'All Months' },
     { value: '1', name: 'January' },
     { value: '2', name: 'February' },
     { value: '3', name: 'March' },
@@ -29,48 +29,17 @@ export class AnnouncementComponent implements OnInit {
     { value: '12', name: 'December' }
   ];
 
-  constructor(private announcementService: AnnouncementService) { }
+  constructor(private announcementService: AnnouncementService) {}
 
   ngOnInit(): void {
     this.announcementService.getAllAnnouncements().subscribe(
-      data => {
-        this.announcements = data;
-        console.log(this.announcements);
-      },
-      error => {
-        alert(error.error);
-      }
+      (data) => (this.announcements = data),
+      (error) => alert(error.error)
     );
-
-   
-    
   }
-
-  selectedAnnouncement: Announcement | null = null;
 
   viewAnnouncement(announcement: Announcement) {
     this.selectedAnnouncement = announcement;
   }
-
-  deleteAnnouncement(id: string | undefined) {
-    if (!id) {
-        alert("Announcement not selected or already deleted.");
-        return;
-    }
-
-    if (confirm("Are you sure you want to delete this announcement?")) {
-        this.announcementService.deleteAnnouncement(id).subscribe(
-            () => {
-                alert("Announcement deleted successfully!");
-                this.announcements = this.announcements.filter(a => a.id !== id);
-                this.selectedAnnouncement = null;  // Clear the selection after deletion
-            },
-            error => {
-                alert("An error occurred while deleting the announcement.");
-            }
-        );
-    }
-}
-
 }
 

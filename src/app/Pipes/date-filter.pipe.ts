@@ -6,17 +6,22 @@ import { Announcement } from '../Services/Modal';
 })
 export class DateFilterPipe implements PipeTransform {
 
-  transform(announcements: Announcement[], startDate: string, endDate: string): Announcement[] {
-    if (!announcements || (!startDate && !endDate)) {
-      return announcements;
+  transform(
+    announcements: Announcement[],
+    dateRange: [Date, Date] | null
+  ): Announcement[] {
+    if (!announcements || !dateRange || dateRange.length !== 2) {
+      return announcements; // Return all if no valid date range is selected
     }
 
-    return announcements.filter(announcement => {
+    const [startDate, endDate] = dateRange;
+
+    return announcements.filter((announcement) => {
       const announcementDate = new Date(announcement.date);
-      
-      // If startDate and endDate are provided
-      const isAfterStart = startDate ? announcementDate >= new Date(startDate) : true;
-      const isBeforeEnd = endDate ? announcementDate <= new Date(endDate) : true;
+
+      // Check if the announcement date falls within the range
+      const isAfterStart = startDate ? announcementDate >= startDate : true;
+      const isBeforeEnd = endDate ? announcementDate <= endDate : true;
 
       return isAfterStart && isBeforeEnd;
     });
