@@ -46,6 +46,7 @@ import { AdminSearchPipe } from './Pipes/admin-search.pipe';
 import { EnquirySearchPipe } from './Pipes/enquiry-search.pipe';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DateFilterPipe } from './Pipes/date-filter.pipe';
+import { MonthFilterPipe } from './Pipes/month-filter.pipe';
 
 
 
@@ -90,7 +91,8 @@ import { DateFilterPipe } from './Pipes/date-filter.pipe';
     CourseSearchPipe,
     AdminSearchPipe,
     EnquirySearchPipe,
-    DateFilterPipe
+    DateFilterPipe,
+    MonthFilterPipe
 
    
   ],
