@@ -1,73 +1,102 @@
 <!-- Navbar (Header) -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid  mx-4">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #214164;">
+  <div class="container-fluid mx-4">
     <a class="navbar-brand" href="#">
-      <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 300px; height:70px;">
+      <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 200px; height: 50px;">
     </a>
 
     <div class="d-flex justify-content-end">
-      <!-- Announcement Button (Visible on both mobile and desktop) -->
-      <button class="btn btn-link text-white fs-3" [routerLink]="['/student/announcement']" aria-label="Announcements">
-        <i class="bi bi-megaphone"></i> 
+      <!-- Announcement Button -->
+      <button
+        class="btn btn-link text-white fs-4"
+        [routerLink]="['/student/announcement']"
+        aria-label="Announcements"
+      >
+        <i class="bi bi-megaphone"></i>
       </button>
     </div>
   </div>
 </nav>
 
-<main class="col-12 col-md ms-0 m-4">
-  <section style="width: 100%;" class="shadow m-2 bg-white rounded ">
+<!-- Main Content -->
+<main class="container-fluid mt-5 pt-2" style="overflow-y: auto; height: calc(100vh - 100px);">
+  <section class="shadow m-2 bg-white rounded">
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div>
   </section>
 </main>
 
-<!-- Footer with Links and Icons -->
-<footer class="bg-dark text-white fixed-bottom">
-  <div class="container py-2">
+<!-- Footer -->
+<footer class="bg-dark text-white fixed-bottom" style="height: 50px;">
+  <div class="container py-1">
     <nav class="tab-bar">
       <ul class="tab-bar__tabs list-unstyled d-flex justify-content-around">
         <!-- Home Tab -->
         <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" [routerLink]="['/student/home']" (click)="setActiveTab('home')" [class.active]="activeTab === 'home'">
+          <a
+            class="tab-bar__tab-link"
+            [routerLink]="['/student/home']"
+            (click)="setActiveTab('home')"
+            [class.active]="activeTab === 'home'"
+          >
             <i class="bi bi-house-door"></i>
-            <span class="tab-bar__tab-name">Home</span>
+            <span class="tab-bar__tab-name d-none d-md-block">Home</span>
           </a>
         </li>
-    
+
         <!-- Notification Tab -->
         <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" [routerLink]="['/student/notification']" (click)="setActiveTab('notification')" [class.active]="activeTab === 'notification'">
+          <a
+            class="tab-bar__tab-link"
+            [routerLink]="['/student/notification']"
+            (click)="setActiveTab('notification')"
+            [class.active]="activeTab === 'notification'"
+          >
             <i class="bi bi-bell"></i>
-            <span class="tab-bar__tab-name">Message</span>
+            <span class="tab-bar__tab-name d-none d-md-block">Message</span>
           </a>
         </li>
-    
+
         <!-- My Courses Tab -->
         <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" [routerLink]="['/student/enroll-courses']" (click)="setActiveTab('courses')" [class.active]="activeTab === 'courses'">
+          <a
+            class="tab-bar__tab-link"
+            [routerLink]="['/student/enroll-courses']"
+            (click)="setActiveTab('courses')"
+            [class.active]="activeTab === 'courses'"
+          >
             <i class="bi bi-journal-bookmark"></i>
-            <span class="tab-bar__tab-name">My Courses</span>
+            <span class="tab-bar__tab-name d-none d-md-block">My Courses</span>
           </a>
         </li>
 
         <!-- Payment Tab -->
         <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" [routerLink]="['/student/payment-details']" (click)="setActiveTab('payment')" [class.active]="activeTab === 'payment'">
+          <a
+            class="tab-bar__tab-link"
+            [routerLink]="['/student/payment-details']"
+            (click)="setActiveTab('payment')"
+            [class.active]="activeTab === 'payment'"
+          >
             <i class="bi bi-credit-card"></i>
-            <span class="tab-bar__tab-name">Payment Histroy</span>
+            <span class="tab-bar__tab-name d-none d-md-block">Payment</span>
           </a>
         </li>
-    
+
         <!-- Profile Tab -->
         <li class="tab-bar__tab">
-          <a class="tab-bar__tab-link" [routerLink]="['/student/profile']" (click)="setActiveTab('profile')" [class.active]="activeTab === 'profile'">
+          <a
+            class="tab-bar__tab-link"
+            [routerLink]="['/student/profile']"
+            (click)="setActiveTab('profile')"
+            [class.active]="activeTab === 'profile'"
+          >
             <i class="bi bi-person-circle"></i>
-            <span class="tab-bar__tab-name">Account</span>
+            <span class="tab-bar__tab-name d-none d-md-block">Account</span>
           </a>
         </li>
       </ul>
     </nav>
   </div>
 </footer>
-
