@@ -1,10 +1,10 @@
 /* Header and Footer Heights */
 .navbar {
-  height: 50px;
+  height: 80px;
 }
 
 footer {
-  height: 50px;
+  height: 80px;
 }
 
 /* Footer Icon Size */
@@ -39,5 +39,24 @@ footer .bi {
 @media (max-width: 576px) {
   .tab-bar__tab-name {
     display: none; /* Hide text on small screens */
+  }
+
+  .tab-bar__tab-link {
+    padding: 10px;
+  }
+
+  footer .tab-bar__tabs {
+    flex-direction: row;
+  }
+}
+
+/* Adjustments for larger screens (tablets, desktops) */
+@media (min-width: 577px) {
+  .tab-bar__tab-name {
+    display: block; /* Show text on larger screens */
+  }
+
+  .tab-bar__tab-link {
+    padding: 15px;
   }
 }

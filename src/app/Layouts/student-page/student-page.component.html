@@ -1,6 +1,6 @@
 <!-- Navbar (Header) -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #214164;">
-  <div class="container-fluid mx-4">
+  <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 200px; height: 50px;">
     </a>
@@ -19,8 +19,8 @@
 </nav>
 
 <!-- Main Content -->
-<main class="container-fluid mt-5 pt-2" style="overflow-y: auto; height: calc(100vh - 100px);">
-  <section class="shadow m-2 bg-white rounded">
+<main class="container-fluid mt-5 p-3" style="overflow-y: auto; height: calc(100vh - 100px);">
+  <section class="shadow m-2 p-4 bg-white rounded">
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div>
@@ -28,14 +28,14 @@
 </main>
 
 <!-- Footer -->
-<footer class="bg-dark text-white fixed-bottom" style="height: 50px;">
-  <div class="container py-1">
+<footer class="bg-dark text-white fixed-bottom py-2">
+  <div class="container">
     <nav class="tab-bar">
-      <ul class="tab-bar__tabs list-unstyled d-flex justify-content-around">
+      <ul class="tab-bar__tabs list-unstyled d-flex justify-content-around mb-0">
         <!-- Home Tab -->
         <li class="tab-bar__tab">
           <a
-            class="tab-bar__tab-link"
+            class="tab-bar__tab-link d-flex flex-column align-items-center"
             [routerLink]="['/student/home']"
             (click)="setActiveTab('home')"
             [class.active]="activeTab === 'home'"
@@ -48,7 +48,7 @@
         <!-- Notification Tab -->
         <li class="tab-bar__tab">
           <a
-            class="tab-bar__tab-link"
+            class="tab-bar__tab-link d-flex flex-column align-items-center"
             [routerLink]="['/student/notification']"
             (click)="setActiveTab('notification')"
             [class.active]="activeTab === 'notification'"
@@ -61,7 +61,7 @@
         <!-- My Courses Tab -->
         <li class="tab-bar__tab">
           <a
-            class="tab-bar__tab-link"
+            class="tab-bar__tab-link d-flex flex-column align-items-center"
             [routerLink]="['/student/enroll-courses']"
             (click)="setActiveTab('courses')"
             [class.active]="activeTab === 'courses'"
@@ -74,7 +74,7 @@
         <!-- Payment Tab -->
         <li class="tab-bar__tab">
           <a
-            class="tab-bar__tab-link"
+            class="tab-bar__tab-link d-flex flex-column align-items-center"
             [routerLink]="['/student/payment-details']"
             (click)="setActiveTab('payment')"
             [class.active]="activeTab === 'payment'"
@@ -87,7 +87,7 @@
         <!-- Profile Tab -->
         <li class="tab-bar__tab">
           <a
-            class="tab-bar__tab-link"
+            class="tab-bar__tab-link d-flex flex-column align-items-center"
             [routerLink]="['/student/profile']"
             (click)="setActiveTab('profile')"
             [class.active]="activeTab === 'profile'"
