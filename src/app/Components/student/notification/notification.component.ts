@@ -16,15 +16,23 @@ export class NotificationComponent implements OnInit {
   constructor(private notificationService: NotificationService){}
 
   ngOnInit(): void {
-    this.loadNotifications('200206601718')
+    this.loadMessages('200206601718')
   }
 
-  loadNotifications(nic:string){
+  loadMessages(nic:string){
     this.notificationService.getMessageByNIC(nic).subscribe(data=>{
       this.messages = data;
     },error=>{
-      console.log(error.error);
-      
+      console.log(error.error);    
+    })
+  }
+
+  deleteMessage(id:string){
+    this.notificationService.deleteMessage(id).subscribe(data=>{
+      alert('successfilly deleted')
+      this.loadMessages('200206601718')
+    },error=>{
+      alert(error.error)
     })
   }
 }
