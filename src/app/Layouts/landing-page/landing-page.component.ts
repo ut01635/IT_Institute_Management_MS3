@@ -30,17 +30,17 @@ export class LandingPageComponent implements OnInit {
   onSubmit() {
     const enquiry = this.contactForm.value;
     if (this.contactForm.valid) {
-      this.enquiryService.postEnquiry(enquiry).subscribe(data=>{
-        this.enquiryResults = 'your message send successfull'
-        console.log('Form Submitted',data );
-      })
-     
-      // Handle form submission logic
+      this.enquiryService.postEnquiry(enquiry).subscribe(data => {
+        this.enquiryResults = 'Your message was sent successfully';
+        console.log('Form Submitted', data);
+      }, error => {
+        this.enquiryResults = 'Your message failed to send';
+      });
     } else {
       console.log('Form is invalid');
     }
   }
-
+  
   ngOnInit() {
     this.courseService.getAllCourses().subscribe(
       (data) => {
