@@ -1,0 +1,103 @@
+/* Global styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #0a1931; /* Dark background */
+    color: #ffffff; /* White text */
+  }
+  
+  /* Dashboard container */
+  .dashboard-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Welcome message */
+  .welcome-message {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fbe8a6; /* Soft yellow for welcome message */
+  }
+  
+  /* Overview Cards */
+  .overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  /* Individual card styles */
+  .card {
+    background-color: #185adb; /* Blue background for cards */
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px); /* Hover effect for card */
+  }
+  
+  .card h4 {
+    margin: 0 0 10px;
+    font-size: 1.25rem;
+    color: #fbe8a6; /* Soft yellow text for heading */
+  }
+  
+  .card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffd700; /* Gold color for the value text */
+  }
+  
+  /* Charts Section */
+  .charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+  }
+  
+  /* Chart container styles */
+  .chart {
+    background-color: #185adb; /* Blue background for chart containers */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Chart heading */
+  .chart h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #fbe8a6; /* Soft yellow for chart titles */
+  }
+  
+  /* Canvas element */
+  .chart canvas {
+    max-width: 100%;
+    height: 300px; /* Set a fixed height for charts */
+  }
+  
+  /* Responsive for smaller screens */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      padding: 10px;
+    }
+  
+    .overview-cards {
+      grid-template-columns: 1fr 1fr; /* 2 columns on smaller screens */
+    }
+  
+    .charts {
+      grid-template-columns: 1fr; /* 1 column on smaller screens */
+    }
+  }
+  
