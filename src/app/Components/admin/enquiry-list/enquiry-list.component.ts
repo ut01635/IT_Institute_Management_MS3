@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { enquiry } from '../../../Services/Modal';
-import { EnquiryService } from '../../../enquiry.service';
+import { EnquiryService } from '../../../Services/enquiry.service';
+
 
 @Component({
   selector: 'app-enquiry-list',
