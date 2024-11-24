@@ -19,14 +19,14 @@
           <p class="card-text text-white">{{ course.description }}</p>
           <div class="d-flex">
             <p class="card-text text-danger fs-4 mx-2" style="text-decoration-line: line-through;">
-              LKR{{ course.fees + 500 }}.00
+              LKR{{ course.fees + 5000 }}.00
             </p>
-            <p class="card-text text-info fs-4 mx-2">
+            <p class="card-text text-success fs-4 mx-2">
               LKR{{ course.fees }}.00
             </p>
           </div>         
           <div class="buttons d-flex gap-3">
-            <button (click)="selectedCourse = course" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#paymentModal">View</button>
+            <button (click)="selectedCourse = course" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#paymentModal">Follow</button>
           </div>
         </div>
       </div>
@@ -35,9 +35,9 @@
   
 </div>
 
-<!-- Modal for Payment Plan Selection
+<!-- Modal for Payment Plan Selection -->
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="paymentModalLabel">Select Payment Plan</h5>
@@ -46,21 +46,24 @@
       <div class="modal-body">
         <form [formGroup]="paymentForm">
           <div class="mb-3">
-            <label for="paymentPlan" class="form-label">Choose Payment Plan</label>
-            <select id="paymentPlan" formControlName="paymentPlan" class="form-select" required>
-              <option value="" disabled>Select a plan</option>
-              <option value="full">Full Payment</option>
-              <option value="installment">Installment Payment</option>
-            </select>
-            <div *ngIf="paymentForm.get('paymentPlan')?.touched && paymentForm.get('paymentPlan')?.invalid" class="text-danger">
-              Payment plan is required.
+            <div class="input-field">
+              <!-- <label for="paymentPlan" class="label">Choose Payment Plan</label> -->
+              <select id="paymentPlan" formControlName="paymentPlan" class="select" required>
+                <option value="" disabled>Select a plan</option>
+                <option value="full">Full Payment</option>
+                <option value="installment">Installment Payment</option>
+              </select>
+              <div *ngIf="paymentForm.get('paymentPlan')?.touched && paymentForm.get('paymentPlan')?.invalid" class="error-message">
+                Payment plan is required.
+              </div>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="submitPaymentPlan()">Submit</button>
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+        <button type="button" class="btn submit-btn" (click)="submitPaymentPlan()">Submit</button>
       </div>
     </div>
-  </div> -->
+  </div>
+</div>
