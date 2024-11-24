@@ -244,9 +244,9 @@
         <div id="coursesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
           <div class="carousel-inner">
             <!-- Loop through the courses and create a slide every 3 courses -->
-            <div class="carousel-item" *ngFor="let chunk of chunkCourses(); let i = index" [class.active]="i === 0">
+            <div class="carousel-item p-5" *ngFor="let chunk of chunkCourses(); let i = index" [class.active]="i === 0">
               <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let course of chunk">
+                <div class="col-12 col-md-6 col-lg-4" *ngFor="let course of chunk">
                   <div class="card h-100">
                     <!-- Responsive Image -->
                     <img src="https://localhost:7055{{ course.imagePaths[0] }}" class="card-img-top" alt="Course Image" 
@@ -262,12 +262,21 @@
                       </p>
                       <p class="card-text">{{ course.duration }} Months</p>
                       <p class="card-text">{{ course.description }}</p>
-                      <div class="d-flex justify-content-between">
-                        <span>LKR {{ course.fees }}.00</span>
-                        <a class="icon-link icon-link-hover" style="--bs-link-hover-color-rgb: 25, 135, 84" href="#contact">
+                      <div class="d-flex">
+                        <p class="card-text text-danger fs-5 mx-2" style="text-decoration-line: line-through;">
+                          LKR{{ course.fees + 5000 }}.00
+                        </p>
+                        <p class="card-text text-success fs-5 mx-2">
+                          LKR{{ course.fees }}.00
+                        </p>
+                      </div> 
+                      <div class="d-flex justify-content-end">
+                         
+                        <a class="icon-link icon-link-hover text-end" style="--bs-link-hover-color-rgb: 25, 135, 84" href="#contact">
                           learn more
                         </a>
                       </div>
+                      
                     </div>
                   </div>
                 </div>

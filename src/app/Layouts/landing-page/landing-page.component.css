@@ -9,7 +9,7 @@
   color: #fff;
 }
 .card{
-  background-color: #0d1e4c;
+  background-color: #17264e;
   color: #fff;
 }
 
@@ -61,7 +61,7 @@
 .card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin: 15px;
+  margin: 5px;
 }
 
 .card-01 {
@@ -132,17 +132,19 @@ p{
 /* Button styling */
 .main-button-red a {
   padding: 15px 30px;
-  background-color: #ff4c4c;
+  background-color: #182f52;
   color: white;
   font-size: 16px;
   text-transform: uppercase;
   border-radius: 25px;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .main-button-red a:hover {
-  background-color: #e60000;
+  background-color: #0257b8;
+  transform: scale(1.05);
 }
 /* --------------------------------------------------------------------------- */
 /* Set relative positioning to the card to ensure positioning of the pseudo-element */
