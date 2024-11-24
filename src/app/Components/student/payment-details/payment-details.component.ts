@@ -9,14 +9,8 @@ import { Payment } from '../../../Services/Modal';
 export class PaymentDetailsComponent implements OnInit {
   payments: Payment[] = [];
   filteredPayments: Payment[] = [];
-  displayedPayments: Payment[] = [];
-  currentPage: number = 1;
-  rowsPerPage: number = 10;
-  totalPages: number = 0;
-  
   courseNameFilter: string = '';
-  paymentDateFilter: string = '';
-
+  paymentDateFilter: null = null;
   ngOnInit(): void {
     // Sample Payment Data
     this.payments = [
@@ -35,51 +29,5 @@ export class PaymentDetailsComponent implements OnInit {
 
     // Initially, show all payments (no filters applied)
     this.filteredPayments = [...this.payments];
-    this.updatePagination();
   }
-
-  // Method to filter data based on course name and date
-  filterData(): void {
-    // Filter based on course name and date
-    this.filteredPayments = this.payments.filter(payment => {
-      const matchesCourse = payment.courseName.toLowerCase().includes(this.courseNameFilter.toLowerCase());
-      const matchesDate = this.paymentDateFilter ? payment.date === this.paymentDateFilter : true;
-      return matchesCourse && matchesDate;
-    });
-    
-    this.updatePagination();
-  }
-
-  // Update the table for pagination
-  updatePagination(): void {
-    this.totalPages = Math.ceil(this.filteredPayments.length / this.rowsPerPage);
-    this.changePage(this.currentPage);  // This ensures that the table content is updated according to the current page
-  }
-
-  // Change the page number
-  changePage(page: number): void {
-    if (page < 1 || page > this.totalPages) return; // Prevent invalid page numbers
-    
-    this.currentPage = page;
-    
-    // Calculate the range of payments to display for the current page
-    const startIndex = (this.currentPage - 1) * this.rowsPerPage;
-    const endIndex = startIndex + this.rowsPerPage;
-    this.displayedPayments = this.filteredPayments.slice(startIndex, endIndex);
-  }
-
-  // Handle the "previous" button click
-  prevPage(): void {
-    if (this.currentPage > 1) {
-      this.changePage(this.currentPage - 1);
-    }
-  }
-
-  // Handle the "next" button click
-  nextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.changePage(this.currentPage + 1);
-    }
-  }
-
 }

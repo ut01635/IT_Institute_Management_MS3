@@ -3,157 +3,64 @@
 
 <div class="container">
   <h2 class="fs-1 fs-sm-2 fs-md-3 fs-lg-4 fs-xl-5 mb-3">{{greeting}}</h2>
-  <div class="row g-4">
-    <!-- Card 1 -->
-    <div class="col">
+  <div class="row g-4 pb-5">
+    <div *ngFor="let course of courses" class="col">
       <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src='/html.jpg' class="card-img" alt="Card image" />
+        <img src="https://localhost:7055{{course.imagePaths[0]}}" class="card-img" alt="Card image" />
         <div>
-          <h2 class="card-title text-white">HTML</h2>
-          <h3 class="card-subtitle text-white">Basic HTML5</h3>
-          <p class="card-text text-white">Beginner</p>
-          <p class="card-text text-white">3 months</p>
-          <p class="card-text text-white">This Intermediate-level HTML course at DevHub Institute is designed for individuals new to web development.</p>
-          <p class="card-text text-danger">LKR 15000.00</p>
+          <h2 class="card-title text-white fs-1">{{ course.courseName }}</h2>
+          <h3 class="card-subtitle text-white" *ngIf="course.level">
+            {{ course.courseName }} {{ course.level === 'Beginner' ? 'Basics' : 'Advanced' }}
+          </h3>          
+          <p class="card-text fs-4" [ngClass]="course.level === 'Beginner' ? 'text-success' : 'text-info'">
+            {{ course.level }}
+          </p>          
+          <p class="card-text text-white fs-4">{{ course.duration }} Months</p>
+          <p class="card-text text-white">{{ course.description }}</p>
+          <div class="d-flex">
+            <p class="card-text text-danger fs-4 mx-2" style="text-decoration-line: line-through;">
+              LKR{{ course.fees + 500 }}.00
+            </p>
+            <p class="card-text text-info fs-4 mx-2">
+              LKR{{ course.fees }}.00
+            </p>
+          </div>         
           <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile()" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow()" class="btn btn-light text-white">Follow</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="col">
-      <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src='/html.jpg' class="card-img" alt="Card image" />
-        <div>
-          <h2 class="card-title text-white">HTML</h2>
-          <h3 class="card-subtitle text-white">Basic HTML5</h3>
-          <p class="card-text text-white">Beginner</p>
-          <p class="card-text text-white">3 months</p>
-          <p class="card-text text-white">This Intermediate-level HTML course at DevHub Institute is designed for individuals new to web development.</p>
-          <p class="card-text text-danger">LKR 15000.00</p>
-          <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile()" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow()" class="btn btn-light text-white">Follow</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="col">
-      <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src='/html.jpg' class="card-img" alt="Card image" />
-        <div>
-          <h2 class="card-title text-white">HTML</h2>
-          <h3 class="card-subtitle text-white">Basic HTML5</h3>
-          <p class="card-text text-white">Beginner</p>
-          <p class="card-text text-white">3 months</p>
-          <p class="card-text text-white">This Intermediate-level HTML course at DevHub Institute is designed for individuals new to web development.</p>
-          <p class="card-text text-danger">LKR 15000.00</p>
-          <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile()" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow()" class="btn btn-light text-white">Follow</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="col">
-      <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src='/html.jpg' class="card-img" alt="Card image" />
-        <div>
-          <h2 class="card-title text-white">HTML</h2>
-          <h3 class="card-subtitle text-white">Basic HTML5</h3>
-          <p class="card-text text-white">Beginner</p>
-          <p class="card-text text-white">3 months</p>
-          <p class="card-text text-white">This Intermediate-level HTML course at DevHub Institute is designed for individuals new to web development.</p>
-          <p class="card-text text-danger">LKR 15000.00</p>
-          <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile()" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow()" class="btn btn-light text-white">Follow</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="col">
-      <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src='/html.jpg' class="card-img" alt="Card image" />
-        <div>
-          <h2 class="card-title text-white">HTML</h2>
-          <h3 class="card-subtitle text-white">Basic HTML5</h3>
-          <p class="card-text text-white">Beginner</p>
-          <p class="card-text text-white">3 months</p>
-          <p class="card-text text-white">This Intermediate-level HTML course at DevHub Institute is designed for individuals new to web development.</p>
-          <p class="card-text text-danger">LKR 15000.00</p>
-          <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile()" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow()" class="btn btn-light text-white">Follow</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 6 -->
-    <div class="col">
-      <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src='/html.jpg' class="card-img" alt="Card image" />
-        <div>
-          <h2 class="card-title text-white">HTML</h2>
-          <h3 class="card-subtitle text-white">Basic HTML5</h3>
-          <p class="card-text text-white">Beginner</p>
-          <p class="card-text text-white">3 months</p>
-          <p class="card-text text-white">This Intermediate-level HTML course at DevHub Institute is designed for individuals new to web development.</p>
-          <p class="card-text text-danger">LKR 15000.00</p>
-          <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile()" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow()" class="btn btn-light text-white">Follow</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 7 -->
-    <div class="col">
-      <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src='/html.jpg' class="card-img" alt="Card image" />
-        <div>
-          <h2 class="card-title text-white">HTML</h2>
-          <h3 class="card-subtitle text-white">Basic HTML5</h3>
-          <p class="card-text text-white">Beginner</p>
-          <p class="card-text text-white">3 months</p>
-          <p class="card-text text-white">This Intermediate-level HTML course at DevHub Institute is designed for individuals new to web development.</p>
-          <p class="card-text text-danger">LKR 15000.00</p>
-          <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile()" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow()" class="btn btn-light text-white">Follow</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 8 -->
-    <div class="col">
-      <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src='/html.jpg' class="card-img" alt="Card image" />
-        <div>
-          <h2 class="card-title text-white">HTML</h2>
-          <h3 class="card-subtitle text-white">Basic HTML5</h3>
-          <p class="card-text text-white">Beginner</p>
-          <p class="card-text text-white">3 months</p>
-          <p class="card-text text-white">This Intermediate-level HTML course at DevHub Institute is designed for individuals new to web development.</p>
-          <p class="card-text text-danger">LKR 15000.00</p>
-          <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile()" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow()" class="btn btn-light text-white">Follow</button>
+            <button (click)="selectedCourse = course" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#paymentModal">View</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
 </div>
+
+<!-- Modal for Payment Plan Selection
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentModalLabel">Select Payment Plan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="paymentForm">
+          <div class="mb-3">
+            <label for="paymentPlan" class="form-label">Choose Payment Plan</label>
+            <select id="paymentPlan" formControlName="paymentPlan" class="form-select" required>
+              <option value="" disabled>Select a plan</option>
+              <option value="full">Full Payment</option>
+              <option value="installment">Installment Payment</option>
+            </select>
+            <div *ngIf="paymentForm.get('paymentPlan')?.touched && paymentForm.get('paymentPlan')?.invalid" class="text-danger">
+              Payment plan is required.
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="submitPaymentPlan()">Submit</button>
+      </div>
+    </div>
+  </div> -->

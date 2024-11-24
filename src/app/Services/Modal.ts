@@ -32,11 +32,9 @@ export interface Course {
   description:string; 
 }
 
-
   export interface Enrollment {
     id: string;
-    courseId: string;
-    courseName: string;
+    course: Course;
     enrollmentDate: string;
     isComplete: boolean;
     paymentPlan: string;
@@ -69,4 +67,18 @@ export interface Course {
     amount: number;
     dueAmount: number;
     totalAmount: number;
+  }
+
+  export interface Announcement{
+    id:string
+    title:string;
+    body:string;
+    date:Date
+  }
+
+  export interface Message{
+    id:string
+    message:string;
+    studentNIC:string;
+    date:Date
   }

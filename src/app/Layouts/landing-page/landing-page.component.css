@@ -1,6 +1,16 @@
+.header-area{
+  background-color: #0d1e4c;
+}
 .social-icon {
   font-size: 1.5rem;
   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-link{
+  color: #fff;
+}
+.card{
+  background-color: #0d1e4c;
+  color: #fff;
 }
 
 .facebook {
@@ -36,7 +46,7 @@
 }
 
 .icons {
-  background-color: rgba(26, 25, 25, 0.521);
+  background-color: rgba(255, 255, 255, 0.692);
   transition: transform 0.3s ease, opacity 0.3s ease;
   border-radius: 15px;
   width: 60%;
@@ -102,7 +112,13 @@
   font-size: 24px;
   margin-bottom: 10px;
 }
-
+p{
+  cursor: default;
+}
+.Features{
+ background-color: #0d1e4c;
+ color: #fff;
+}
 .video-overlay .caption h2 {
   font-size: 48px;
   margin-bottom: 20px;
@@ -133,22 +149,10 @@
 .box-fact {
   position: relative;  /* Needed for positioning the ::before pseudo-element */
   overflow: hidden;    /* Ensures that the glow effect doesn't overflow */
-  border-radius: 10px;  /* Optional: Makes the card corners rounded */
+  border-radius: 10px; 
+  color: #000; /* Optional: Makes the card corners rounded */
 }
 
-/* Add the animated glowing border using ::before */
-.box-fact::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: linear-gradient(45deg, #83a6ce, #26415e, #0b1b32, #0d1e4c, #c48cb3, #e5c9d7);
-  border-radius: 10px;
-  background-size: 400% 400%;
-  animation: color-shifting-border 5s ease-in-out infinite;
-}
 
 /* Keyframes for color-shifting effect */
 @keyframes color-shifting-border {
@@ -167,24 +171,5 @@
 
 /* ------------------------------------------------------------------------------------------- */
 
-#services {
-  background: #0b1b32;
-}
-#courses {
-  background-image: url(/LandingAssets/blackDoodle.jpg);
-}
-#facts {
-  background: #0b1b32;
-  z-index: -10;
-}
-#apply {
-  background-image: url(/LandingAssets/doodle03.png);
-}
-#team {
-  background: #0b1b32;
-}
-#contact {
-  background-image: url(/LandingAssets/blackDoodle.jpg);
-}
 
 

@@ -1,12 +1,14 @@
 <header class="header-area">
   <div class="container">
     <div class="row">
-     
-      <nav class="navbar navbar-expand-lg navbar-light w-100 ">
-        <a href="/" class="navbar-brand col-3 d-flex align-items-center">
+      <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <a
+          href="/"
+          class="navbar-brand col-3 d-flex align-items-center text-white"
+        >
           <h2>DEVHub</h2>
         </a>
-    
+
         <!-- Responsive Toggler -->
         <button
           class="navbar-toggler"
@@ -19,13 +21,18 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-    
+
         <!-- Menu Start -->
         <div class="collapse navbar-collapse col-9" id="navbarNav">
           <!-- Centering the nav-links in the navbar -->
           <ul class="navbar-nav w-100 d-flex justify-content-center">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#top">Home</a>
+              <a
+                class="nav-link active text-white"
+                aria-current="page"
+                href="#top"
+                >Home</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#courses">Courses</a>
@@ -40,12 +47,12 @@
               <a class="nav-link" href="#contact">Contact Us</a>
             </li>
           </ul>
-    
+
           <div class="d-flex justify-content-center mt-3">
             <!-- Button trigger modal -->
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-primary mb-3"
               [routerLink]="['/login']"
             >
               Login
@@ -57,7 +64,6 @@
     </div>
   </div>
 </header>
-
 
 <!-- ***** Main Banner Area Start ***** -->
 <section class="section main-banner" id="top" data-section="section1">
@@ -275,7 +281,6 @@
 </section>
 
 <!-- --------------------------------------------------------------course section--------------------------------------------------------------------------- -->
-
 <!-- courses.component.html -->
 <section class="our-courses py-5" id="courses">
   <div class="container">
@@ -309,6 +314,7 @@
                       src="https://localhost:7055{{ course.imagePaths[0] }}"
                       class="card-img-top"
                       alt="Course Image"
+                      style="width: 370px; height: 250px"
                     />
                     <div class="card-body">
                       <h4 class="card-title">{{ course.courseName }}</h4>
@@ -328,16 +334,13 @@
                       <p class="card-text">{{ course.duration }} Months</p>
                       <p class="card-text">{{ course.description }}</p>
                       <div class="d-flex justify-content-between">
-                        <span class="text-muted">LKR {{ course.fees }}.00</span>
+                        <span class="">LKR {{ course.fees }}.00</span>
                         <a
                           class="icon-link icon-link-hover"
                           style="--bs-link-hover-color-rgb: 25, 135, 84"
                           href="#contact"
                         >
                           learn more
-                          <!-- <svg class="bi" aria-hidden="true">
-                              <use xlink:href="#arrow-right"></use>
-                            </svg> -->
                         </a>
                       </div>
                     </div>
@@ -378,38 +381,63 @@
 <section class="our-facts py-5" id="facts">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 mb-4 text-white text-center">
+      <div class="col-lg-12 mb-4 text-center">
         <h2>A Few Facts About Our University</h2>
       </div>
+
+      <!-- Left Column: Facts -->
       <div class="col-lg-6 mt-5">
         <div class="row">
-          <div class="col-md-6 mb-4 box-fact">
-            <div class="card text-center ">
-              <div class="card-body">
+          <!-- Fact Box 1 -->
+          <div
+            class="col-md-6 mb-4 p-0 d-flex justify-content-center align-items-center"
+          >
+            <div
+              class="card text-center border shadow-sm p-3 bg-light box-fact"
+            >
+              <div class="card-body p-4">
                 <h3 class="card-title">94%</h3>
                 <p class="card-text">Succesed Students</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 mb-4 box-fact">
-            <div class="card text-center ">
-              <div class="card-body">
+
+          <!-- Fact Box 2 -->
+          <div
+            class="col-md-6 mb-4 p-0 d-flex justify-content-center align-items-center"
+          >
+            <div
+              class="card text-center border shadow-sm p-3 bg-light box-fact"
+            >
+              <div class="card-body p-4">
                 <h3 class="card-title">32</h3>
                 <p class="card-text">Available Courses</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 mb-4 mt-5 box-fact">
-            <div class="card text-center">
-              <div class="card-body">
+
+          <!-- Fact Box 3 -->
+          <div
+            class="col-md-6 mb-4 mt-5 p-0 d-flex justify-content-center align-items-center"
+          >
+            <div
+              class="card text-center border shadow-sm p-3 bg-light box-fact"
+            >
+              <div class="card-body p-4">
                 <h3 class="card-title">2345</h3>
                 <p class="card-text">New Students</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6 mb-4 mt-5 box-fact">
-            <div class="card text-center ">
-              <div class="card-body">
+
+          <!-- Fact Box 4 -->
+          <div
+            class="col-md-6 mb-4 mt-5 p-0 d-flex justify-content-center align-items-center"
+          >
+            <div
+              class="card text-center border shadow-sm p-3 bg-light box-fact"
+            >
+              <div class="card-body p-4">
                 <h3 class="card-title">5455.0</h3>
                 <p class="card-text">Entrolments</p>
               </div>
@@ -417,28 +445,20 @@
           </div>
         </div>
       </div>
+
+      <!-- Right Column: Video Thumbnail -->
       <div class="col-lg-6 align-self-center text-center">
         <div class="video">
-          <a
-            href="https://youtu.be/MIufgoKX34M?si=LymGixdLwVu93rR_"
-            target="_blank"
-          >
-            <div class="position-relative">
-              <!-- Image -->
-              <img
-                src="/LandingAssets/vedio cover.png"
-                alt="Play Video"
-                class="img-fluid rounded-4"
-                style="width: 820px"
-              />
-
-              <!-- Play Icon -->
-              <i
-                class="bi bi-play-circle position-absolute top-50 start-50 translate-middle"
-                style="font-size: 50px; color: white"
-              ></i>
-            </div>
-          </a>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/MIufgoKX34M?si=SQ81YoM8FrQIwqrz"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
     </div>
@@ -488,7 +508,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
               <button
-                class="accordion-button"
+                class="accordion-button Features"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseOne"
@@ -521,7 +541,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
               <button
-                class="accordion-button collapsed"
+                class="accordion-button collapsed Features"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseTwo"
@@ -554,7 +574,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
               <button
-                class="accordion-button collapsed"
+                class="accordion-button collapsed Features"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseThree"
@@ -586,7 +606,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingFour">
               <button
-                class="accordion-button collapsed"
+                class="accordion-button collapsed Features"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseFour"
@@ -620,154 +640,172 @@
 
 <!-- Team Start -->
 <section id="team">
-<div class="container py-5">
-  <div class="container">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-      <h6 class="section-title  text-center text-primary px-3">
-        COORDINATORS
-      </h6>
-      <h1 class="mb-5 text-white">Meet Our Team</h1>
-    </div>
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="team-item border-2 rounded-1 card">
-          <div class="overflow-hidden">
-            <img
-              class="card-img-top"
-              src="/LandingAssets/safeek.jpg"
-              alt="prof:Safeek"
-            />
-          </div>
-          <div class="d-flex justify-content-center align-items-center">
-            <div
-              class="position-relative d-flex justify-content-center icons"
-              style="margin-top: -19px"
-            >
-              <!-- Facebook Icon -->
-              <a class="btn btn-square mx-1 social-icon facebook" href="">
-                <i class="bi bi-linkedin"></i>
-              </a>
-
-              <!-- GitHub Icon -->
-              <a class="btn btn-square mx-1 social-icon github" href="">
-                <i class="bi bi-github"></i>
-              </a>
-
-              <!-- WhatsApp Icon -->
-              <a class="btn btn-square mx-1 social-icon whatsapp" href="">
-                <i class="bi bi-whatsapp"></i>
-              </a>
-
-              <!-- Instagram Icon -->
-              <a
-                class="btn btn-square mx-1 social-icon instagram"
-                href="https://www.instagram.com/person_0618/"
-              >
-                <i class="bi bi-instagram"></i>
-              </a>
+  <div class="container py-5">
+    <div class="container">
+      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center text-primary px-3">
+          COORDINATORS
+        </h6>
+        <h1 class="mb-5">Meet Our Team</h1>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="team-item border-2 rounded-1 card">
+            <div class="overflow-hidden">
+              <img
+                class="card-img-top"
+                src="/LandingAssets/safeek.jpg"
+                alt="prof:Safeek"
+              />
             </div>
-          </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div
+                class="position-relative d-flex justify-content-center icons"
+                style="margin-top: -19px"
+              >
+                <!-- Facebook Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon facebook"
+                  href="https://www.linkedin.com/in/safeek-mohamed-0ab486302?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app "
+                >
+                  <i class="bi bi-linkedin"></i>
+                </a>
 
-          <div class="text-center p-4">
-            <h5 class="mb-0">Mohamed Safeek Thajudeen</h5>
-            <small>FRONTEND</small> , <br />
-            <small>BSc IIT UWUSL</small>
+                <!-- GitHub Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon github"
+                  href="https://github.com/SafeekMohamed18"
+                >
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <!-- WhatsApp Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon whatsapp"
+                  href="https://wa.me/+94743773745"
+                >
+                  <i class="bi bi-whatsapp"></i>
+                </a>
+
+                <!-- Instagram Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon instagram"
+                  href="https://www.instagram.com/person_0618/"
+                >
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="text-center p-4">
+              <h5 class="mb-0">Mohamed Safeek Thajudeen</h5>
+              <small>FRONTEND</small> , <br />
+              <small>BSc IIT UWUSL</small>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-        <div class="team-item border-2 rounded-1 card">
-          <div class="overflow-hidden">
-            <img class="img-fluid" src="/LandingAssets/imthath.jpg" alt="" />
-          </div>
-          <div class="d-flex justify-content-center align-items-center">
-            <div
-              class="position-relative d-flex justify-content-center icons"
-              style="margin-top: -19px"
-            >
-              <!-- Facebook Icon -->
-              <a class="btn btn-square mx-1 social-icon facebook" href="">
-                <i class="bi bi-linkedin"></i>
-              </a>
-
-              <!-- GitHub Icon -->
-              <a class="btn btn-square mx-1 social-icon github" href="">
-                <i class="bi bi-github"></i>
-              </a>
-
-              <!-- WhatsApp Icon -->
-              <a class="btn btn-square mx-1 social-icon whatsapp" href="">
-                <i class="bi bi-whatsapp"></i>
-              </a>
-
-              <!-- Instagram Icon -->
-              <a
-                class="btn btn-square mx-1 social-icon instagram"
-                href="https://www.instagram.com/imthath_imt/"
-              >
-                <i class="bi bi-instagram"></i>
-              </a>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+          <div class="team-item border-2 rounded-1 card">
+            <div class="overflow-hidden">
+              <img class="img-fluid" src="/LandingAssets/imthath.jpg" alt="" />
             </div>
-          </div>
-          <div class="text-center p-4">
-            <h5 class="mb-0">Mohamed Imthath Hameem</h5>
-            <small>FULLSTACK</small> , <br />
-            <small>AAT</small>
+            <div class="d-flex justify-content-center align-items-center">
+              <div
+                class="position-relative d-flex justify-content-center icons"
+                style="margin-top: -19px"
+              >
+                <!-- linkedin Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon facebook"
+                  href="https://www.linkedin.com/in/mohamed-imthath-006a62270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                >
+                  <i class="bi bi-linkedin"></i>
+                </a>
+
+                <!-- GitHub Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon github"
+                  href="https://github.com/ut01635"
+                >
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <!-- WhatsApp Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon whatsapp"
+                  href="https://wa.me/+94768210306"
+                >
+                  <i class="bi bi-whatsapp"></i>
+                </a>
+
+                <!-- Instagram Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon instagram"
+                  href="https://www.instagram.com/imthath_imt/"
+                >
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </div>
+            </div>
+            <div class="text-center p-4">
+              <h5 class="mb-0">Mohamed Imthath Hameem</h5>
+              <small>FULLSTACK</small> , <br />
+              <small>AAT</small>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-        <div class="team-item border-2 rounded-1 card">
-          <div class="overflow-hidden">
-            <img class="img-fluid" src="/LandingAssets/piragas.jpg" alt="" />
-          </div>
-          <div class="d-flex justify-content-center align-items-center">
-            <div
-              class="position-relative d-flex justify-content-center icons"
-              style="margin-top: -19px"
-            >
-              <!-- linkdin Icon -->
-              <a
-                class="btn btn-square mx-1 social-icon facebook"
-                href="https://www.linkedin.com/in/pathmarasan-piragash?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app "
-              >
-                <i class="bi bi-linkedin"></i>
-              </a>
-
-              <!-- GitHub Icon -->
-              <a
-                class="btn btn-square mx-1 social-icon github"
-                href="https://github.com/PPPiragash"
-              >
-                <i class="bi bi-github"></i>
-              </a>
-
-              <!-- WhatsApp Icon -->
-              <a
-                class="btn btn-square mx-1 social-icon whatsapp"
-                href="https://wa.me/+94766931772"
-              >
-                <i class="bi bi-whatsapp"></i>
-              </a>
-              <!-- facebook -->
-              <a
-                class="btn btn-square mx-1 social-icon facebook"
-                href="https://www.facebook.com/share/1Ccrn8EKtZ/?mibextid=qi2Omg"
-              >
-                <i class="bi bi-facebook"></i>
-              </a>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+          <div class="team-item border-2 rounded-1 card">
+            <div class="overflow-hidden">
+              <img class="img-fluid" src="/LandingAssets/piragas.jpg" alt="" />
             </div>
-          </div>
-          <div class="text-center p-4">
-            <h5 class="mb-0">Piragash Pathmarasan</h5>
-            <small>BACKEND</small> , <br />
-            <small>BICT(Hons) UWUSL</small>
+            <div class="d-flex justify-content-center align-items-center">
+              <div
+                class="position-relative d-flex justify-content-center icons"
+                style="margin-top: -19px"
+              >
+                <!-- linkdin Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon facebook"
+                  href="https://www.linkedin.com/in/pathmarasan-piragash?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app "
+                >
+                  <i class="bi bi-linkedin"></i>
+                </a>
+
+                <!-- GitHub Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon github"
+                  href="https://github.com/PPPiragash"
+                >
+                  <i class="bi bi-github"></i>
+                </a>
+
+                <!-- WhatsApp Icon -->
+                <a
+                  class="btn btn-square mx-1 social-icon whatsapp"
+                  href="https://wa.me/+94766931772"
+                >
+                  <i class="bi bi-whatsapp"></i>
+                </a>
+                <!-- facebook -->
+                <a
+                  class="btn btn-square mx-1 social-icon facebook"
+                  href="https://www.facebook.com/share/1Ccrn8EKtZ/?mibextid=qi2Omg"
+                >
+                  <i class="bi bi-facebook"></i>
+                </a>
+              </div>
+            </div>
+            <div class="text-center p-4">
+              <h5 class="mb-0">Piragash Pathmarasan</h5>
+              <small>BACKEND</small> , <br />
+              <small>BICT(Hons) UWUSL</small>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </section>
 <!-- Team End -->
 
@@ -781,63 +819,98 @@
           <div class="col-lg-12 mb-4">
             <h2 class="text-center">Let's get in touch</h2>
           </div>
-          <div class="d-flex justify-content-around">
-            <div class="col-md-4 mb-3">
-              <input
-                name="name"
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="YOUR NAME...*"
-                required
-              />
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="d-flex justify-content-around">
+              <div class="col-md-5 mb-3">
+                <input
+                  formControlName="name"
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="YOUR NAME...*"
+                />
+                <div
+                  *ngIf="
+                    contactForm.get('name')?.invalid &&
+                    contactForm.get('name')?.touched
+                  "
+                  class="text-danger form-text"
+                >
+                  Name is required and must be at least 3 characters long.
+                </div>
+              </div>
+              <div class="col-md-5 mb-3">
+                <input
+                  formControlName="email"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="YOUR EMAIL..."
+                />
+                <div
+                  *ngIf="
+                    contactForm.get('email')?.invalid &&
+                    contactForm.get('email')?.touched
+                  "
+                  class="text-danger form-text"
+                >
+                  Please enter a valid email address.
+                </div>
+              </div>
             </div>
-            <div class="col-md-4 mb-3">
-              <input
-                name="email"
-                type="email"
+            <div class="col-lg-12 mb-3">
+              <textarea
+                formControlName="message"
                 class="form-control"
-                id="email"
-                placeholder="YOUR EMAIL..."
-                required
-              />
+                id="message"
+                placeholder="YOUR MESSAGE..."
+                rows="5"
+              ></textarea>
+              <div
+                *ngIf="
+                  contactForm.get('message')?.invalid &&
+                  contactForm.get('message')?.touched
+                "
+                class="text-danger form-text"
+              >
+                Message is required and must be at least 10 characters long.
+              </div>
             </div>
-          </div>
-          <div class="col-lg-12 mb-3">
-            <textarea
-              name="message"
-              class="form-control"
-              id="message"
-              placeholder="YOUR MESSAGE..."
-              rows="5"
-              required
-            ></textarea>
-          </div>
-          <div class="col-lg-12 m-3 text-center">
-            <button type="submit" id="form-submit" class="btn btn-primary">
-              SEND MESSAGE NOW
-            </button>
-          </div>
+            <div class="col-lg-12 m-3 text-center">
+              <button
+                type="submit"
+                id="form-submit"
+                class="btn btn-primary"
+                [disabled]="contactForm.invalid"
+              >
+                SEND MESSAGE NOW
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <div class="col-lg-3 align-self-center m-1">
         <div class="card bg-light p-4 rounded">
           <ul class="list-unstyled">
             <li class="mb-3">
-              <h6>Phone Number</h6>
-              <span>+94-74-3773745</span>
+              <h6 class="text-primary fw-bold">Phone Number</h6>
+              <span class="text-dark">+94-74-3773745</span>
             </li>
             <li class="mb-3">
-              <h6>Email Address</h6>
-              <span>{{ email }}</span>
+              <h6 class="text-primary fw-bold">Email Address</h6>
+              <span class="text-dark">{{ email }}</span>
             </li>
             <li class="mb-3">
-              <h6>Street Address</h6>
-              <span>no-07 ,kks Road,Jaffna,Srilanka</span>
+              <h6 class="text-primary fw-bold">Street Address</h6>
+              <span class="text-dark">No-07, KKS Road, Jaffna, Sri Lanka</span>
             </li>
             <li class="mb-3">
-              <h6>Website URL</h6>
-              <span><a href="http://localhost:4200"> www.devhub.edu</a></span>
+              <h6 class="text-primary fw-bold">Website URL</h6>
+              <span class="text-dark">
+                <a href="http://localhost:4200" class="text-decoration-none">
+                  www.devhub.edu
+                </a>
+              </span>
             </li>
           </ul>
         </div>
@@ -849,36 +922,34 @@
 <footer class="footer bg-dark text-white py-4">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 mb-3">
+      <!-- About Us Column -->
+      <div class="col-md-3 mb-3">
         <h5>About Us</h5>
         <p>
-          Edu Meeting Co., Ltd. is dedicated to providing the best educational
-          resources and meetings. We strive to empower students and educators
-          through quality content and services.
+          At DevHub Academy, we provide programming courses tailored for
+          beginners and intermediate learners. Our mission is to empower
+          students with essential coding skills and knowledge to excel in the
+          tech industry.
         </p>
         <div class="d-flex pt-2">
-          <!-- Twitter Icon -->
-          <a class="btn btn-outline-light btn-social" href="">
+          <!-- Social Media Icons -->
+          <a class="btn btn-outline-light btn-social me-2" href="">
             <i class="bi bi-twitter"></i>
           </a>
-
-          <!-- Facebook Icon -->
-          <a class="btn btn-outline-light btn-social" href="">
+          <a class="btn btn-outline-light btn-social me-2" href="">
             <i class="bi bi-facebook"></i>
           </a>
-
-          <!-- YouTube Icon -->
-          <a class="btn btn-outline-light btn-social" href="">
+          <a class="btn btn-outline-light btn-social me-2" href="">
             <i class="bi bi-youtube"></i>
           </a>
-
-          <!-- LinkedIn Icon -->
-          <a class="btn btn-outline-light btn-social" href="">
+          <a class="btn btn-outline-light btn-social me-2" href="">
             <i class="bi bi-linkedin"></i>
           </a>
         </div>
       </div>
-      <div class="col-md-4 mb-3">
+
+      <!-- Quick Links Column -->
+      <div class="col-md-3 mb-3">
         <h5>Quick Links</h5>
         <ul class="list-unstyled">
           <li><a href="#top" class="text-white">Home</a></li>
@@ -887,29 +958,52 @@
           <li><a href="#contact" class="text-white">Contact Us</a></li>
         </ul>
       </div>
-      <div class="col-md-4 mb-3">
+
+      <!-- Contact Info Column -->
+      <div class="col-md-3 mb-3">
         <h5>Contact Info</h5>
         <ul class="list-unstyled">
-          <li><i class="bi bi-telephone-fill"></i> 010-020-0340</li>
-          <li><i class="bi bi-envelope-fill"></i> infomeeting.edu</li>
           <li>
-            <i class="bi bi-geo-alt-fill"></i> Rio de Janeiro - RJ, 22795-008,
-            Brazil
+            <i class="bi bi-telephone-fill"></i>
+            <a class="text-white" href="https://wa.me/+94766931772"
+              >+94768210306</a
+            >
+          </li>
+          <li><i class="bi bi-envelope-fill"></i> {{ email }}</li>
+          <li>
+            <i class="bi bi-geo-alt-fill"></i> KKS Road, Jaffna, Sri Lanka
           </li>
         </ul>
       </div>
+
+      <!-- Google Map Column -->
+      <div class="col-md-3 mb-3">
+        <h5>Our Location</h5>
+        <div class="ratio ratio-16x9">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1455.8509956634448!2d80.0079896276668!3d9.666176961881327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afe570010da0795%3A0x642cc900b494e9a3!2sUnicom%20TIC!5e0!3m2!1sen!2slk!4v1723119162409!5m2!1sen!2slk"
+            width="600"
+            height="550"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
     </div>
+
     <div class="row">
       <div class="col-12 text-center">
         <p class="mb-0">
-          &copy; 2022 Edu Meeting Co., Ltd. All Rights Reserved.
+          &copy; 2024 DevHub .co, Ltd. All Rights Reserved.
           <br />Design by:
           <a
-            href="https://templatemo.com"
+            href="https://github.com/ut01635"
             target="_parent"
             class="text-white"
-            title="free css templates"
-            >TemplateMo</a
+            title="DevHub"
+            >DevHub</a
           >
         </p>
       </div>

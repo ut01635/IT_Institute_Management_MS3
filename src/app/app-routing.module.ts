@@ -24,6 +24,7 @@ import { ProfileComponent } from './Components/student/profile/profile.component
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 import { LoginComponent } from './Modals/landing/login/login.component';
 import { StudentFormComponent } from './Modals/admin/student-form/student-form.component';
+import { CourseFormComponent } from './Modals/admin/course-form/course-form.component';
 
 const routes: Routes = [
   { path:'', 
@@ -64,7 +65,7 @@ const routes: Routes = [
   },
 
   {path:'login', component:LoginComponent},
-  {path:'form', component:StudentFormComponent}
+  {path:'form', component:CourseFormComponent}
 
 ];
 

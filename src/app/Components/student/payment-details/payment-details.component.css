@@ -1,0 +1,37 @@
+/* Input field with dark blue background */
+input[bsDaterangepicker] {
+    background-color: #003366; /* Dark blue background */
+    color: white; /* White text color */
+    border: 1px solid #003366; /* Dark blue border */
+  }
+  
+  /* Daterangepicker container with dark blue theme */
+  .theme-dark-blue .bs-datepicker {
+    background-color: #003366; /* Dark blue background */
+    color: white; /* White text color */
+  }
+  
+  /* Header of the calendar with dark blue background */
+  .theme-dark-blue .bs-datepicker-head {
+    background-color: #003366; /* Dark blue background */
+    color: white; /* White text color */
+  }
+  
+  /* Hover effect on the days */
+  .theme-dark-blue .bs-datepicker-body .day:hover {
+    background-color: #00509e; /* Lighter blue for hovered days */
+    color: white; /* White text color */
+  }
+  
+  /* Selected date in the calendar */
+  .theme-dark-blue .bs-datepicker-body .selected {
+    background-color: #00509e; /* Lighter blue for selected date */
+    color: white; /* White text color */
+  }
+  
+  /* Today's date */
+  .theme-dark-blue .bs-datepicker-body .today {
+    background-color: #006bb3; /* Different shade of blue for today's date */
+    color: white; /* White text color */
+  }
+  

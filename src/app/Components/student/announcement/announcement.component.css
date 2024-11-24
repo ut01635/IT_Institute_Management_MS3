@@ -1,0 +1,103 @@
+/* For better spacing and visual clarity */
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  .card {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .card-header {
+    background-color: #283a4e;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .modal-content {
+    border-radius: 10px;
+  }
+  
+  button {
+    border-radius: 5px;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+
+
+.custom-month-select {
+    width: auto;
+    min-width: 120px;  /* Set a minimum width to prevent it from being too small */
+    display: inline-block;
+    padding-left: 10px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-around {
+    justify-content: space-between;
+  }
+
+  .theme-dark-blue .bs-datepicker {
+    background-color: #214164; /* Dark blue background */
+    color: white; /* Text color */
+}
+
+.theme-dark-blue .bs-datepicker .bs-datepicker-body .bs-datepicker-head {
+    background-color: #1b2d4f; /* Slightly darker blue for header */
+    color: #fbe8a6; /* Light yellow for header text */
+}
+
+.theme-dark-blue .bs-datepicker .bs-datepicker-body .bs-datepicker-table td,
+.theme-dark-blue .bs-datepicker .bs-datepicker-body .bs-datepicker-table th {
+    color: white; /* Table text color */
+}
+
+.theme-dark-blue .bs-datepicker .bs-datepicker-body .bs-datepicker-table td.is-highlighted {
+    background-color: #f4976c; /* Highlighted dates */
+    color: white;
+}
+
+.announcement-body {
+  white-space: pre-line; /* Preserve newlines in the body text */
+  word-wrap: break-word; /* Ensure long words don't overflow */
+}
+
+
+  
+  /* Ensuring better mobile responsiveness */
+  @media (max-width: 768px) {
+    .d-flex {
+      flex-direction: column;
+    }
+  }
+  

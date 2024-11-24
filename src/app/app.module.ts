@@ -45,6 +45,11 @@ import { CourseSearchPipe } from './Pipes/course-search.pipe';
 import { AdminSearchPipe } from './Pipes/admin-search.pipe';
 import { EnquirySearchPipe } from './Pipes/enquiry-search.pipe';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { DateFilterPipe, MessageDateFilterPipe } from './Pipes/date-filter.pipe';
+import { MonthFilterPipe } from './Pipes/month-filter.pipe';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 
 
 
@@ -88,7 +93,11 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     SearchPipe,
     CourseSearchPipe,
     AdminSearchPipe,
-    EnquirySearchPipe
+    EnquirySearchPipe,
+    DateFilterPipe,
+    MonthFilterPipe,
+    DateRangeFilterPipe,
+    MessageDateFilterPipe
 
    
   ],
@@ -99,7 +108,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModalModule
+    NgbModalModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
