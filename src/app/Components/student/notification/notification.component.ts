@@ -1,53 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../../../Services/notification.service';
+import { Message } from '../../../Services/Modal';
 
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
   styleUrl: './notification.component.css'
 })
-export class NotificationComponent {
+export class NotificationComponent implements OnInit {
 
-  messages = [
-    {
-      title: 'New Update Available',
-      content: 'A new update has been released for your courses. Please check it out!',
-      date: 'Nov 22, 2024'
-    },
-    {
-      title: 'Important Announcement',
-      content: 'The semester exams are approaching. Please check your schedule.',
-      date: 'Nov 20, 2024'
-    },
-    {
-      title: 'Reminder: Assignment Deadline',
-      content: 'Don’t forget to submit your assignment by the end of the week.',
-      date: 'Nov 18, 2024'
-    },
-    {
-      title: 'Reminder: Assignment Deadline',
-      content: 'Don’t forget to submit your assignment by the end of the week.',
-      date: 'Nov 18, 2024'
-    },
-    {
-      title: 'Reminder: Assignment Deadline',
-      content: 'Don’t forget to submit your assignment by the end of the week.',
-      date: 'Nov 18, 2024'
-    },
-    {
-      title: 'New Update Available',
-      content: 'A new update has been released for your courses. Please check it out!',
-      date: 'Nov 22, 2024'
-    },
-    {
-      title: 'Important Announcement',
-      content: 'The semester exams are approaching. Please check your schedule.',
-      date: 'Nov 20, 2024'
-    },
-    {
-      title: 'Reminder: Assignment Deadline',
-      content: 'Don’t forget to submit your assignment by the end of the week.',
-      date: 'Nov 18, 2024'
-    }
 
-  ];
+
+  messages:Message[] = [];
+
+  constructor(private notificationService: NotificationService){}
+
+  ngOnInit(): void {
+    this.loadNotifications('200206601718')
+  }
+
+  loadNotifications(nic:string){
+    this.notificationService.getMessageByNIC(nic).subscribe(data=>{
+      this.messages = data;
+    },error=>{
+      console.log(error.error);
+      
+    })
+  }
 }

@@ -76,3 +76,10 @@ export interface Course {
     body:string;
     date:Date
   }
+
+  export interface Message{
+    id:string
+    message:string;
+    studentNIC:string;
+    date:Date
+  }
