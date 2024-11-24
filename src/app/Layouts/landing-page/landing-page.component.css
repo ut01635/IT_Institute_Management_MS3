@@ -46,7 +46,7 @@
 }
 
 .icons {
-  background-color: rgba(26, 25, 25, 0.521);
+  background-color: rgba(255, 255, 255, 0.692);
   transition: transform 0.3s ease, opacity 0.3s ease;
   border-radius: 15px;
   width: 60%;
@@ -112,7 +112,13 @@
   font-size: 24px;
   margin-bottom: 10px;
 }
-
+p{
+  cursor: default;
+}
+.Features{
+ background-color: #0d1e4c;
+ color: #fff;
+}
 .video-overlay .caption h2 {
   font-size: 48px;
   margin-bottom: 20px;
@@ -147,20 +153,6 @@
   color: #000; /* Optional: Makes the card corners rounded */
 }
 
-/* Add the animated glowing border using ::before */
-/* .box-fact::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: linear-gradient(45deg, #83a6ce, #26415e, #0b1b32, #0d1e4c, #c48cb3, #e5c9d7);
-  border-radius: 10px;
- 
-  background-size: 400% 400%;
-  animation: color-shifting-border 5s ease-in-out infinite;
-} */
 
 /* Keyframes for color-shifting effect */
 @keyframes color-shifting-border {
