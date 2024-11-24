@@ -1,11 +1,23 @@
 <div class="container">
     <h2 class="text-center mb-4">Messages</h2>
+    <div class="col-md-4 d-flex justify-content-end">
+        <div class="d-flex">
+            <label for="messageDate"><i class="bi bi-calendar-date-fill fs-1 mx-3"></i></label>
+            <input type="text" id="messageDate" placeholder="Filter by Date" class="form-control theme-dark-blue"
+                bsDatepicker [bsConfig]="{
+                     isAnimated: true,
+                     adaptivePosition: true,
+                     containerClass: 'theme-dark-blue',
+                     rangeInputFormat: 'YYYY-MM-DD'
+                   }" autocomplete="off" [(ngModel)]="messageDateFilter" />
+        </div>
 
-    <div class="row mb-4">
+    </div>
+    <div class="row mb-4 mt-3">
         <!-- Full Screen Column: Taking 100% width and 90% height of the screen -->
         <div class="col-12" style=" width: 100vw;">
             <!-- Notification Card -->
-            <div *ngFor="let message of messages">
+            <div *ngFor="let message of messages | messageDateFilter:messageDateFilter!">
                 <div class="card mb-4">
                     <div class="card-header  d-flex justify-content-between align-items-center">
                         <span class="font-weight-bold text-white">Admin</span>
@@ -13,11 +25,15 @@
                     </div>
                     <div class="card-body d-flex justify-content-between">
                         <div>
-                            <h5 class="card-title">{{ message.message }}</h5>
+                            <h5 class="card-text text-center text-md-start fs-4 fs-sm-5 fs-md-3 fs-lg-2">
+                                {{ message.message }}
+                              </h5>
+                              
                             <!-- <p class="card-text">{{ message.content }}</p> -->
                         </div>
                         <div>
-                            <button type="button" class="btn btn-white" (click)="deleteMessage(message.id)"><i class="bi bi-trash text-danger fs-3"></i></button>
+                            <button type="button" class="btn btn-white" (click)="deleteMessage(message.id)"><i
+                                    class="bi bi-trash text-danger fs-3"></i></button>
                         </div>
 
                     </div>

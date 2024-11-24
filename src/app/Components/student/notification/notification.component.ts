@@ -12,6 +12,7 @@ export class NotificationComponent implements OnInit {
 
 
   messages:Message[] = [];
+  messageDateFilter: null = null;
 
   constructor(private notificationService: NotificationService){}
 
@@ -29,7 +30,7 @@ export class NotificationComponent implements OnInit {
 
   deleteMessage(id:string){
     this.notificationService.deleteMessage(id).subscribe(data=>{
-      alert('successfilly deleted')
+      alert('successfully deleted')
       this.loadMessages('200206601718')
     },error=>{
       alert(error.error)
