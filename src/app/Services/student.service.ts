@@ -17,4 +17,8 @@ export class StudentService {
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(this.GetAllStudentApi);
   }
+
+  addStudent(formData: FormData): Observable<Student> {
+    return this.http.post<Student>(this.GetAllStudentApi, formData);
+  }
 }
