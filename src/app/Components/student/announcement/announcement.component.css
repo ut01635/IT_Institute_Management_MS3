@@ -87,6 +87,12 @@
     color: white;
 }
 
+.announcement-body {
+  white-space: pre-line; /* Preserve newlines in the body text */
+  word-wrap: break-word; /* Ensure long words don't overflow */
+}
+
+
   
   /* Ensuring better mobile responsiveness */
   @media (max-width: 768px) {
