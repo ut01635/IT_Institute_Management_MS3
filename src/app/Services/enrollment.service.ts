@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Student } from './Modal';
+import { Enrollment, Student } from './Modal';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,10 @@ export class EnrollmentService {
           return of([]);  
         })
       );
+  }
+
+  createEnrollment(enrollment:Enrollment){
+    return this.http.post(this.enrollmentUrl, enrollment)
   }
   
 }

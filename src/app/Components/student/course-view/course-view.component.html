@@ -26,8 +26,7 @@
             </p>
           </div>         
           <div class="buttons d-flex gap-3">
-            <button (click)="handleProfile(course)" class="btn btn-outline-light">view</button>
-            <button (click)="handleFollow(course)" class="btn btn-light text-white">Follow</button>
+            <button (click)="selectedCourse = course" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#paymentModal">View</button>
           </div>
         </div>
       </div>
@@ -35,3 +34,33 @@
   </div>
   
 </div>
+
+<!-- Modal for Payment Plan Selection
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentModalLabel">Select Payment Plan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="paymentForm">
+          <div class="mb-3">
+            <label for="paymentPlan" class="form-label">Choose Payment Plan</label>
+            <select id="paymentPlan" formControlName="paymentPlan" class="form-select" required>
+              <option value="" disabled>Select a plan</option>
+              <option value="full">Full Payment</option>
+              <option value="installment">Installment Payment</option>
+            </select>
+            <div *ngIf="paymentForm.get('paymentPlan')?.touched && paymentForm.get('paymentPlan')?.invalid" class="text-danger">
+              Payment plan is required.
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="submitPaymentPlan()">Submit</button>
+      </div>
+    </div>
+  </div> -->
