@@ -1,69 +1,55 @@
 <div class="container mt-5">
-    <div class="main-body">
-      <!-- Filter Section -->
-      <div class="filter-container mb-3">
-        <div class="row">
-          <div class="col-md-6">
-            <label for="courseName">Course Name</label>
-            <input type="text" id="courseName" [(ngModel)]="courseNameFilter" (input)="filterData()" class="form-control" placeholder="Search by Course Name">
-          </div>
-          <div class="col-md-6">
-            <label for="paymentDate">Payment Date</label>
-            <input type="date" id="paymentDate" [(ngModel)]="paymentDateFilter" (change)="filterData()" class="form-control">
-          </div>
+  <div class="main-body">
+    <!-- Filter Section -->
+    <div class="filter-container mb-3">
+      <div class="row">
+        <div class="col-md-6">
+          <!-- <label for="courseName">Course Name</label> -->
+          <input type="text" id="courseName" [(ngModel)]="courseNameFilter" class="form-control" placeholder="Search by Course Name">
         </div>
+        <div class="col-md-6">
+          <!-- <label for="dateRange">Select Date Range</label> -->
+          <input type="text" id="dateRange" placeholder="Select Date Range" class="form-control theme-dark-blue" 
+                 bsDatepicker
+                 [bsConfig]="{
+                   isAnimated: true,
+                   adaptivePosition: true,
+                   containerClass: 'theme-dark-blue',
+                   rangeInputFormat: 'YYYY-MM-DD'
+                 }" autocomplete="off" [(ngModel)]="paymentDateFilter" />
+        </div>
+        
       </div>
-  
-      <!-- Payment Details Table -->
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Payment Details</h4>
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Course Name</th>
-                  <th>Paid Amount</th>
-                  <th>Due Amount</th>
-                  <th>Total Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let payment of filteredPayments">
-                  <td>{{ payment.date }}</td>
-                  <td>{{ payment.courseName }}</td>
-                  <td class="text-success">{{ payment.amount | currency }}</td>
-                  <td class="text-danger">{{ payment.dueAmount | currency }}</td>
-                  <td class="text-warning">{{ payment.totalAmount | currency }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-  
-          <!-- Pagination -->
-          <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-              <li class="page-item" [class.disabled]="currentPage === 1">
-                <button class="page-link" (click)="prevPage()">Previous</button>
-              </li>
-              <li class="page-item" [class.active]="currentPage === 1">
-                <button class="page-link" (click)="changePage(1)">1</button>
-              </li>
-              <li class="page-item" [class.active]="currentPage === 2">
-                <button class="page-link" (click)="changePage(2)">2</button>
-              </li>
-              <li class="page-item" [class.active]="currentPage === 3">
-                <button class="page-link" (click)="changePage(3)">3</button>
-              </li>
-              <li class="page-item" [class.disabled]="currentPage === totalPages">
-                <button class="page-link" (click)="nextPage()">Next</button>
-              </li>
-            </ul>
-          </nav>
+    </div>
+
+    <!-- Payment Details Table -->
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Payment Details</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Course Name</th>
+                <th>Paid Amount</th>
+                <th>Due Amount</th>
+                <th>Total Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Apply dateFilter pipe and search pipe directly in the ngFor loop -->
+              <tr *ngFor="let payment of filteredPayments | dateFilter: paymentDateFilter! | search: courseNameFilter">
+                <td>{{ payment.date }}</td>
+                <td>{{ payment.courseName }}</td>
+                <td class="text-success">{{ payment.amount | currency }}</td>
+                <td class="text-danger">{{ payment.dueAmount | currency }}</td>
+                <td class="text-warning">{{ payment.totalAmount | currency }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
-  
-  
+</div>

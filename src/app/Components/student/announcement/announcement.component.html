@@ -29,7 +29,7 @@
         <div class="col-12">
             <!-- Check if announcements exist after filtering -->
             <ng-container
-                *ngIf="announcements | dateFilter:selectedDateRange | monthFilter:selectedMonth as filteredAnnouncements; else noResults">
+                *ngIf="announcements | dateRangeFilter:selectedDateRange | monthFilter:selectedMonth as filteredAnnouncements; else noResults">
                 <div *ngFor="let announcement of filteredAnnouncements">
                     <div class="card mb-4">
                         <div
