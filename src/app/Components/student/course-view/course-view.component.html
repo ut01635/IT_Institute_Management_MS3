@@ -12,12 +12,19 @@
           <h3 class="card-subtitle text-white" *ngIf="course.level">
             {{ course.courseName }} {{ course.level === 'Beginner' ? 'Basics' : 'Advanced' }}
           </h3>          
-          <p class="card-text text-white fs-4" [ngClass]="course.level === 'Beginner' ? 'text-success' : 'text-info'">
+          <p class="card-text fs-4" [ngClass]="course.level === 'Beginner' ? 'text-success' : 'text-info'">
             {{ course.level }}
           </p>          
           <p class="card-text text-white fs-4">{{ course.duration }} Months</p>
           <p class="card-text text-white">{{ course.description }}</p>
-          <p class="card-text text-danger fs-4">LKR{{ course.fees }}.00</p>
+          <div class="d-flex">
+            <p class="card-text text-danger fs-4 mx-2" style="text-decoration-line: line-through;">
+              LKR{{ course.fees + 500 }}.00
+            </p>
+            <p class="card-text text-info fs-4 mx-2">
+              LKR{{ course.fees }}.00
+            </p>
+          </div>         
           <div class="buttons d-flex gap-3">
             <button (click)="handleProfile(course)" class="btn btn-outline-light">view</button>
             <button (click)="handleFollow(course)" class="btn btn-light text-white">Follow</button>
