@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { enquiry } from './Services/Modal';
+import { enquiry } from './Modal';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnquiryService {
 
-  
   private enguiryGetApi = 'https://localhost:7055/api/ContactUs'; 
 
   constructor(private http: HttpClient) { }
@@ -21,4 +20,5 @@ export class EnquiryService {
   postEnquiry(enquiry: enquiry){
     return this.http.post(this.enguiryGetApi,enquiry)
   }
+
 }
