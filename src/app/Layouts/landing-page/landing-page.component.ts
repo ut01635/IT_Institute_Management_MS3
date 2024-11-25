@@ -61,5 +61,6 @@ export class LandingPageComponent implements OnInit {
     }
     return chunks;
   }
+  
 }
 
