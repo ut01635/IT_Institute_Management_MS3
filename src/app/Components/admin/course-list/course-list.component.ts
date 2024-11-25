@@ -34,9 +34,28 @@ export class CourseListComponent implements OnInit {
     console.log("Edit course with ID: ", courseId);
   }
 
+
   onDelete(courseId: string) {
-    console.log("Delete course with ID: ", courseId);
+    
+    const confirmDelete = window.confirm("Are you sure you want to delete this course?");
+    
+    if (confirmDelete) {
+      
+      this.courseService.deleteCourse(courseId).subscribe(
+        (response) => {
+          console.log("Course deleted successfully", response);
+          alert("Course deleted successfully");
+       
+          this.courseService.getAllCourses();  
+        },
+        (error) => {
+          console.error("Error deleting course", error);
+          alert("An error occurred while deleting the course.");
+        }
+      );
+    }
   }
+
 
   // Method to open the modal from this component
   // openModal() {

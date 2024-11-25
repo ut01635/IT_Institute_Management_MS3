@@ -41,8 +41,15 @@ export class CourseService {
     );
   }
 
+  deleteCourse(courseId: string) {
+    return this.http.delete(`${this.courseApi}/${courseId}`).pipe(
+      catchError((error) => {
+        console.error('Error deleting course', error);
+        throw error;
+      })
+    );
+  }
 
-  
   refreshCourseList(): void {
     this.getAllCourses(); 
   }

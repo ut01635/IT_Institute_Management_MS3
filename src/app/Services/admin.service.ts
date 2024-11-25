@@ -37,6 +37,16 @@ export class AdminService {
     );
   }
 
+  deleteAdmin(nic: string) {
+    const deleteUrl = `${this.getAdminurl}/${nic}`;
+    return this.http.delete(deleteUrl).pipe(
+      catchError((error) => {
+        console.error('Error deleting admin', error);
+        throw error;
+      })
+    );
+  }
+
   
   refreshAdminList(): void {
     this.getAdmins().subscribe((admins) => {
@@ -44,5 +54,5 @@ export class AdminService {
     });
   }
 
-  
+
 }
