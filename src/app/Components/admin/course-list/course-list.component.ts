@@ -21,13 +21,13 @@ export class CourseListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadCourses();
-  }
-
-  loadCourses() {
-    this.courseService.getAllCourses().subscribe(data => {
-      this.courses = data;
+   
+    this.courseService.courses$.subscribe((courses) => {
+      this.courses = courses;
     });
+
+    
+    this.courseService.getAllCourses();
   }
 
   onEdit(courseId: string) {
