@@ -7,7 +7,7 @@
   
   
   
-  .text-dark{
+  .text-hover-darkBlue{
     color :  #0D1E4C;
   }
   
@@ -36,17 +36,17 @@
   }
   
   /* Sidebar - Hide text by default */
-  .nav-text {
-    display: none;
+  .sidebar span {
+    opacity: 0;
   }
 
    /* Hover Effect for Sidebar */
    .sidebar:hover {
-    width: 200px; /* Expand width on hover */
+    width: 250px; /* Expand width on hover */
   }
   /* Show text when sidebar is hovered */
   .sidebar:hover .nav-text {
-    display: block; 
+    opacity: 1; 
     font-size: 1.5rem;
     transition: width 0.8s ease-in-out;
   }

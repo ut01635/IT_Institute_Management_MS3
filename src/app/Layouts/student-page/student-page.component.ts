@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-student-page',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class StudentPageComponent {
  
   constructor(
-    private router:Router
+    private router:Router,
+    private authservice: AuthService
   ){}
 
   isSidebarVisible = false;  // Initially set the sidebar visibility to false
@@ -27,7 +29,7 @@ activeTab: string = 'home';
   }
 
   logout() {
-    
+    this.authservice.logout()
     }
 
 }

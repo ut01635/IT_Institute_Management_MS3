@@ -77,7 +77,7 @@
   padding: 20px;
 }
 
-/* Customize carousel control buttons */
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   background-color: #007bff;
@@ -86,7 +86,7 @@
 
 /* ------------------------------------------------------------------------------------- */
 
-/* video background */
+
 /* Make sure the video fills the background */
 #bg-video {
   position: absolute;
