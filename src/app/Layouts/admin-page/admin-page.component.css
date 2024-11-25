@@ -36,8 +36,8 @@
   }
   
   /* Sidebar - Hide text by default */
-  .nav-text {
-    display: none;
+  .sidebar span {
+    opacity: 0;
   }
 
    /* Hover Effect for Sidebar */
@@ -46,7 +46,7 @@
   }
   /* Show text when sidebar is hovered */
   .sidebar:hover .nav-text {
-    display: block; 
+    opacity: 1; 
     font-size: 1.5rem;
     transition: width 0.8s ease-in-out;
   }
