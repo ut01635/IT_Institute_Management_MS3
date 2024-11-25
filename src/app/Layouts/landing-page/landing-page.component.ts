@@ -43,10 +43,10 @@ export class LandingPageComponent implements OnInit {
   
   ngOnInit() {
     this.courseService.getAllCourses().subscribe(
-      (data) => {
+      (data: Course[]) => {
         this.courses = data;
       },
-      (error) => {
+      (error: any) => {
         alert('Course fetch failed');
       }
     );
