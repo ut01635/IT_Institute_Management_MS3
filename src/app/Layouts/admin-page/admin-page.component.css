@@ -7,7 +7,7 @@
   
   
   
-  .text-dark{
+  .text-hover-darkBlue{
     color :  #0D1E4C;
   }
   
@@ -42,7 +42,7 @@
 
    /* Hover Effect for Sidebar */
    .sidebar:hover {
-    width: 200px; /* Expand width on hover */
+    width: 250px; /* Expand width on hover */
   }
   /* Show text when sidebar is hovered */
   .sidebar:hover .nav-text {
