@@ -11,6 +11,15 @@ export class AdminPageComponent {
   isSidebarVisible = false; // Default is sidebar hidden on small screens
   isDarkMode = false; // Default to light mode
 
+
+  activeTab: string = 'dashboard'; // Default to 'dashboard'
+
+  // Function to set the active tab
+  setActiveTab(tabName: string): void {
+    this.activeTab = tabName;
+  }
+
+
   // Function to toggle the sidebar visibility
   toggleSidebar() {
     this.isSidebarVisible = true; // Toggle the sidebar visibility
