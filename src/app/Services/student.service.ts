@@ -42,6 +42,22 @@ export class StudentService {
   }
 
 
+  deleteStudent(nic: string): Observable<void> {
+    const deleteUrl = `${this.GetAllStudentApi}/${nic}`;
+    return this.http.delete<void>(deleteUrl).pipe(
+      catchError((error) => {
+        if (error.status === 404) {
+          alert(`Student with NIC ${nic} not found.`);
+        } else {
+          console.error('Error deleting student', error);
+          alert('An error occurred while deleting the student.');
+        }
+        throw error;
+      })
+    );
+  }
+  
+
   refreshStudentList(): void {
     this.getStudents(); 
   }
