@@ -26,10 +26,14 @@ export class StudentListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.studentService.getStudents().subscribe((data) => {
-      this.students = data;
+    
+    this.studentService.students$.subscribe((students) => {
+      this.students = students;
       this.fetchEnrollments();
     });
+
+    
+    this.studentService.getStudents();
   }
 
   fetchEnrollments() {
