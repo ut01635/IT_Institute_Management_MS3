@@ -29,9 +29,9 @@ export class LoginComponent {
 
           // Decode the JWT token to get user details (including the Role)
           const userDetails: userDetails = jwtDecode(response);
-          
+
           localStorage.setItem('Role',userDetails.Role );
-          localStorage.setItem('Role',userDetails.nic );
+          localStorage.setItem('NIC',userDetails.nic );
           // Check the Role value directly and navigate accordingly
           if (userDetails.Role === 'Admin') {
             // Navigate to Admin Dashboard

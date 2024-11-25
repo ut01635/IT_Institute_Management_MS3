@@ -39,6 +39,7 @@ const routes: Routes = [
     path: 'admin',
     component: AdminPageComponent,
     canActivate: [AuthGuard],
+    data: { role: 'Admin' },
     children: [
       { path: '', component: AdminDashboardComponent },
       { path: 'admin-dashboard', component: AdminDashboardComponent },
@@ -57,6 +58,7 @@ const routes: Routes = [
   {
     path: 'student',
     canActivate: [AuthGuard],
+    data: { role: 'Student' },
     component: StudentPageComponent,
     children: [
       { path: '', component: CourseViewComponent },
@@ -71,7 +73,9 @@ const routes: Routes = [
   },
 
   { path: 'login', component: LoginComponent },
-  { path: 'form', component: CourseFormComponent }
+  { path: 'form', component: CourseFormComponent },
+
+  { path: '', redirectTo: '/', pathMatch: 'full' }
 
 ];
 
