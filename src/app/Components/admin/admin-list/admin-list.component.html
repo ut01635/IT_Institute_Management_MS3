@@ -6,7 +6,7 @@
     </div>
 
     <div>
-      <button type="button" class="btn btn-dark" [routerLink]="['/add-admin']">
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#adminModal" (click)="openModal()">
         New Admin
       </button>
     </div>
