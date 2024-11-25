@@ -30,7 +30,7 @@ export class LandingPageComponent implements OnInit {
   onSubmit() {
     const enquiry = this.contactForm.value;
     if (this.contactForm.valid) {
-      this.enquiryService.postEnquiry(enquiry).subscribe(data => {
+      this.enquiryService.postEnquiry(enquiry)?.subscribe(data => {
         this.enquiryResults = 'Your message was sent successfully';
         console.log('Form Submitted', data);
       }, error => {

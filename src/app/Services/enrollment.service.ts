@@ -29,7 +29,9 @@ export class EnrollmentService {
   }
 
   createEnrollment(enrollment:Enrollment){
-    return this.http.post(this.enrollmentUrl, enrollment)
+    return this.http.post(this.enrollmentUrl, enrollment, {
+      responseType: 'text'
+    })
   }
   
 }
