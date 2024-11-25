@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from '../../../Services/admin.service';
 import { HttpClient } from '@angular/common/http';
@@ -21,12 +21,29 @@ export class AdminFormComponent {
     private fb: FormBuilder
   ) {
     this.adminForm = this.fb.group({
-      nic: ['', Validators.required],
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      password: ['', Validators.required],
-      image: [null, Validators.required]
+      nic: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{9}[vxzVXZ]$|^\d{12}$/),
+      ]),
+      name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern(
+          /^\+?(\d{1,4})?[\s\-]?\(?\d{1,4}?\)?[\s\-]?\d{1,4}[\s\-]?\d{1,4}[\s\-]?\d{1,4}$/
+        ),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/
+        ),
+      ]),
+      image: new FormControl(null)
+
     });
   }
 
