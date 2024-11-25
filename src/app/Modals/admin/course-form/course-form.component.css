@@ -95,7 +95,7 @@
   }
   
   /* Styling for error messages */
-.error-message {
+  .error-message {
     color: #ff4d4d;
     font-size: 12px;
     margin-top: 5px;
