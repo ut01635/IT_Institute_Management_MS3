@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginRequest } from './Modal';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthService {
 
   AuthURL:string = 'https://localhost:7055/api/Auth/login'
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router ) { }
 
   login(loginRequest: LoginRequest) {
     return this.http.post(this.AuthURL, loginRequest, {
@@ -23,5 +24,10 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+
+  logout(){
+    localStorage.removeItem("Token");
+    this.router.navigate(['/'])
   }
 }
