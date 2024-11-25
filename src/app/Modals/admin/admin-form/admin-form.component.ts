@@ -51,7 +51,7 @@ export class AdminFormComponent {
       this.adminService.addAdmin(formData).subscribe(
         response => {
           alert('Admin added successfully!');
-          this.adminService.refreshAdminList(); // Refresh the admin list
+          this.adminService.refreshAdminList(); 
           this.activeModal.close();
         },
         error => {

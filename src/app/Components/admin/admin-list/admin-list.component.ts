@@ -17,12 +17,13 @@ export class AdminListComponent {
   constructor(private adminService: AdminService,private modalService: NgbModal) {}
 
   ngOnInit(): void {
-    this.adminService.getAdmins().subscribe((data) => {
+    this.adminService.admins$.subscribe((data) => {
       this.admins = data;
     });
 
-    this.adminService.getAdmins();
+    this.adminService.refreshAdminList();
   }
+  
 
   onDelete(nic: string): void {
     

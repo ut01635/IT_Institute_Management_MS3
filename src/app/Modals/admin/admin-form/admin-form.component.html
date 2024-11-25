@@ -1,4 +1,4 @@
-<!-- admin-form.component.html -->
+
 <div class="modal-header bg-white text-black">
     <h5 class="modal-title" id="adminModalLabel">Add Admin</h5>
     <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
@@ -9,7 +9,7 @@
       <p class="message text-center">Add a new admin to the system.</p>
   
       <div class="row">
-        <!-- NIC Field -->
+       
         <div class="col-md-6 col-12 mb-3">
           <div class="input-field">
             <input class="input" formControlName="nic" type="text" required />
@@ -20,7 +20,7 @@
           </div>
         </div>
   
-        <!-- Name Field -->
+        
         <div class="col-md-6 col-12 mb-3">
           <div class="input-field">
             <input class="input" formControlName="name" type="text" required />
@@ -28,7 +28,7 @@
           </div>
         </div>
   
-        <!-- Email Field -->
+       
         <div class="col-md-6 col-12 mb-3">
           <div class="input-field">
             <input class="input" formControlName="email" type="email" required />
@@ -36,7 +36,7 @@
           </div>
         </div>
   
-        <!-- Phone Field -->
+        
         <div class="col-md-6 col-12 mb-3">
           <div class="input-field">
             <input class="input" formControlName="phone" type="text" required />
@@ -44,7 +44,7 @@
           </div>
         </div>
   
-        <!-- Password Field -->
+       
         <div class="col-md-6 col-12 mb-3">
           <div class="input-field">
             <input class="input" formControlName="password" type="password" required />
@@ -52,7 +52,7 @@
           </div>
         </div>
   
-        <!-- Image Upload Field -->
+       
         <div class="col-12 mb-3">
           <div class="input-field">
             <input class="input" type="file" formControlName="image" (change)="onImageChange($event)" required />
