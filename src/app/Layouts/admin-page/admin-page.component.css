@@ -24,141 +24,190 @@
   }
   
   
-  /* Sidebar Styles */
+ /* Custom CSS */
+
+/* Sidebar Styles */
+.sidebar {
+  height: 90vh;
+  width: 80px; /* Default narrow width for the sidebar */
+  background: linear-gradient(135deg, #333, #444); /* Black and gray gradient */
+  backdrop-filter: blur(10px); /* Blur effect */
+  z-index: 1000;
+  padding-top: 10px;
+  transition: width 0.8s ease-in-out; /* Smooth transition on width */
+}
+
+/* Sidebar - Hide text by default */
+.sidebar span {
+  opacity: 0;
+}
+
+/* Hover Effect for Sidebar */
+.sidebar:hover {
+  width: 250px; /* Expand width on hover */
+}
+
+/* Show text when sidebar is hovered */
+.sidebar:hover .nav-text {
+  opacity: 1;
+  font-size: 1.5rem;
+  transition: width 0.8s ease-in-out;
+}
+
+.sidebar .nav-link {
+  padding: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .nav-item:hover .nav-link {
+  background-color: #555;
+}
+
+.sidebar .nav-link i {
+  font-size: 1.5rem; /* Icon size */
+  margin-right: 10px; /* Space between icon and text */
+  transition: font-size 0.3s ease;
+}
+
+/* Hover Effect for Sidebar Icons */
+.sidebar:hover .nav-item:hover .nav-link i {
+  font-size: 1.8rem; /* Increase icon size on hover */
+  transition: font-size 0.3s ease;
+}
+
+/* Reports sub-links */
+.report-sub-links {
+  display: none;
+  position: absolute;  /* Position relative to the nearest positioned ancestor */
+  top: 33%;             /* Aligns the sub-links vertically to the top of the parent item */
+  left: 75%;          /* Positions it to the right side of the parent item */
+  background-color: #333; /* Optional: to make it stand out against the page */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds some shadow to make it look like it's floating */
+  z-index: 1000;        /* Ensures the sub-links appear in front of other content */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition for visibility */
+  opacity: 0;
+  visibility: hidden;
+}
+
+.report-item:hover .report-sub-links {
+  display: block;
+  opacity: 1;  /* Fade-in effect */
+  visibility: visible;  /* Ensures visibility */
+}
+
+.report-item .report-sub-links a:hover {
+  background-color: #acaaaa; /* Hover effect for individual links */
+}
+
+.report-item .report-sub-links li {
+  list-style: none;
+}
+
+.report-sub-links a {
+  text-decoration: none;
+  color: white;
+  display: block; /* Ensures the links are block-level for better clickable area */
+  padding: 5px 10px; /* Optional padding to improve the look */
+}
+
+.report-sub-links a:hover {
+  background-color: #acaaaa; /* Optional hover effect for sub-links */
+}
+
+/* Mobile view adjustments */
+@media (max-width: 767px) {
   .sidebar {
-    height: 100vh;
-    width: 80px; /* Default narrow width for the sidebar */
-    background: linear-gradient(135deg, #333, #444); /* Black and gray gradient */
-    backdrop-filter: blur(10px); /* Blur effect */
-    z-index: 1000;
-    padding-top: 10px;
-    transition: width 0.8s ease-in-out; /* Smooth transition on width */
-  }
-  
-  /* Sidebar - Hide text by default */
-  .sidebar span {
-    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: 1;
+    transition: transform 0.5s ease-in-out;
   }
 
-   /* Hover Effect for Sidebar */
-   .sidebar:hover {
-    width: 250px; /* Expand width on hover */
+  .sidebar.show {
+    transform: translateX(0);
   }
-  /* Show text when sidebar is hovered */
-  .sidebar:hover .nav-text {
-    opacity: 1; 
-    font-size: 1.5rem;
-    transition: width 0.8s ease-in-out;
+
+  .sidebar .nav-text {
+    display: none; /* Hide text on small screens */
   }
-  
- 
-  
-  .sidebar .nav-link {
-    padding: 1rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-  }
-  
-  .sidebar .nav-item:hover .nav-link {
-    background-color: #555;
-  }
-  
+
   .sidebar .nav-link i {
-    font-size: 1.5rem; /* Icon size */
-    margin-right: 10px; /* Space between icon and text */
-    transition: font-size 0.3s ease;
+    font-size: 1.3rem; /* Smaller icons for mobile */
   }
-  
-  /* Hover Effect for Sidebar Icons */
-  .sidebar:hover .nav-item:hover .nav-link i {
-    font-size: 1.8rem; /* Increase icon size on hover */
-    transition: font-size 0.3s ease;
+
+  /* Sidebar Toggle Button */
+  .btn-light {
+    font-size: 1.5rem;
+    padding: 0.5rem;
   }
-  
-  /* Reports sub-links */
-  .report-sub-links {
-    display: none;
-    position: absolute;  /* Position relative to the nearest positioned ancestor */
-    top: 0;              /* Aligns the sub-links vertically to the top of the parent item */
-    left: 100%;          /* Positions it to the right side of the parent item */
-    background-color: #333; /* Optional: to make it stand out against the page */
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds some shadow to make it look like it's floating */
-    z-index: 1000;        /* Ensures the sub-links appear in front of other content */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition for visibility */
-    opacity: 0;
-    visibility: hidden;
-  }
-  
-  .report-item:hover .report-sub-links {
-    display: block;
-    opacity: 1;  /* Fade-in effect */
-    visibility: visible;  /* Ensures visibility */
-  }
-  
-  .report-item .report-sub-links a:hover {
-    background-color: #acaaaa; /* Hover effect for individual links */
-  }
-  
-  .report-item .report-sub-links li {
-    list-style: none;
-  }
-  
-  .report-sub-links a {
-    text-decoration: none;
-    color: white;
-    display: block; /* Ensures the links are block-level for better clickable area */
-    padding: 5px 10px; /* Optional padding to improve the look */
-  }
-  
-  .report-sub-links a:hover {
-    background-color: #acaaaa; /* Optional hover effect for sub-links */
-  }
-  
-  /* Optional: Make sure the parent item has 'position: relative' so the sub-links are positioned relative to it */
-  .report-item {
+}
+
+/* Desktop view adjustments */
+@media (min-width: 768px) {
+  .sidebar {
     position: relative;
+    transform: translateX(0);
   }
-  
-  /* Mobile view adjustments */
-  @media (max-width: 767px) {
-    .sidebar {
-      position: absolute;
-      top: 0;
-      left: -100%;
-      z-index: 1;
-      transition: transform 0.5s ease-in-out;
-    }
-  
-    .sidebar.show {
-      transform: translateX(0);
-    }
-  
-    .sidebar .nav-text {
-      display: none; /* Hide text on small screens */
-    }
-  
-    .sidebar .nav-link i {
-      font-size: 1.3rem; /* Smaller icons for mobile */
-    }
-  
-    /* Sidebar Toggle Button */
-    .btn-light {
-      font-size: 1.5rem;
-      padding: 0.5rem;
-    }
+
+  .sidebar .nav-text {
+    display: inline-block; /* Show text on desktop */
   }
-  
-  /* Desktop view adjustments */
-  @media (min-width: 768px) {
-    .sidebar {
-      position: relative;
-      transform: translateX(0);
-    }
-  
-    .sidebar .nav-text {
-      display: inline-block; /* Show text on desktop */
-    }
-  }
+}
+
+/* Toggle Button Styles */
+.sidebar .btn-toggle-mode {
+  position: absolute;
+  bottom: 20px; /* Position at the bottom of the sidebar */
+  left: 50%;
+  transform: translateX(-50%); /* Center the button horizontally */
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar .btn-toggle-mode i {
+  transition: transform 0.3s ease;
+}
+
+.sidebar .btn-toggle-mode:hover {
+  background-color: #444; /* Light hover effect */
+  border-radius: 50%;
+}
+
+/* Light Mode (default) */
+.sidebar.light-mode {
+  background: linear-gradient(135deg, #999999, #b9b9b9); /* Light theme gradient */
+}
+
+.sidebar .light-mode .report-item{
+  background:linear-gradient(135deg, #999999, #b9b9b9) ;
+}
+
+.sidebar.light-mode .nav-link {
+  color: #333; /* Light theme text color */
+}
+
+.sidebar.light-mode .nav-item:hover .nav-link {
+  background-color: #ddd;
+}
+
+/* Dark Mode */
+.sidebar.dark-mode {
+  background: linear-gradient(135deg, #333, #444); /* Dark theme gradient */
+}
+
+.sidebar.dark-mode .nav-link {
+  color: #fff; /* Dark theme text color */
+}
+
+.sidebar.dark-mode .nav-item:hover .nav-link {
+  background-color: #555;
+}
