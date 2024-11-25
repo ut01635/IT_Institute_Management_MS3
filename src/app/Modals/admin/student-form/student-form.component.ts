@@ -14,6 +14,7 @@ export class StudentFormComponent {
   imageFile: File | null = null;
 
   constructor(public activeModal: NgbActiveModal, private studentService: StudentService, private http: HttpClient) {
+   
     this.studentForm = new FormGroup({
       NIC: new FormControl('', [
         Validators.required,
@@ -38,19 +39,23 @@ export class StudentFormComponent {
         ),
       ]),
       image: new FormControl(null),
-      addressLine1: new FormControl('', [Validators.required]),
-      addressLine2: new FormControl(''),
-      city: new FormControl('', [Validators.required]),
-      state: new FormControl('', [Validators.required]),
-      postalCode: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^\d{5}(-\d{4})?$/),
-      ]),
-      country: new FormControl('', [Validators.required]),
+      
+     
+      address: new FormGroup({
+        addressLine1: new FormControl('', [Validators.required]),
+        addressLine2: new FormControl(''),
+        city: new FormControl('', [Validators.required]),
+        state: new FormControl('', [Validators.required]),
+        postalCode: new FormControl('', [
+          Validators.required,
+          Validators.pattern(/^\d{5}(-\d{4})?$/),
+        ]),
+        country: new FormControl('', [Validators.required]),
+      }),
     });
   }
 
-  // Method to handle image file upload
+ 
   onImageChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -58,50 +63,45 @@ export class StudentFormComponent {
     }
   }
 
- onSubmit(): void {
-  if (this.studentForm.valid) {
-    const formData = new FormData();
-
-    // Append each form field to FormData
-    Object.keys(this.studentForm.value).forEach(key => {
-      // Exclude the 'image' field because it's handled separately
-      if (key !== 'image' && this.studentForm.value[key]) {
-        formData.append(key, this.studentForm.value[key]);
+  
+  onSubmit(): void {
+    if (this.studentForm.valid) {
+      const formData = new FormData();
+  
+    
+      Object.keys(this.studentForm.value).forEach(key => {
+        if (key !== 'image' && this.studentForm.value[key]) {
+          if (key === 'address') {
+           
+            const address = this.studentForm.get('address')?.value;
+            Object.keys(address).forEach(addressKey => {
+              formData.append(`address.${addressKey}`, address[addressKey]);
+            });
+          } else {
+            formData.append(key, this.studentForm.value[key]);
+          }
+        }
+      });
+  
+     
+      if (this.imageFile) {
+        formData.append('image', this.imageFile, this.imageFile.name);
       }
-    });
-
-    // Append the image if it exists
-    if (this.imageFile) {
-      formData.append('image', this.imageFile, this.imageFile.name);
+  
+      
+      this.studentService.addStudent(formData).subscribe(
+        (response) => {
+          console.log('Student added successfully');
+          this.activeModal.close();
+        },
+        (error: any) => {
+          console.error('Error adding student', error);
+        }
+      );
+    } else {
+      console.log('Form is invalid');
     }
-
-    // Construct the Address object and append it to FormData as JSON
-    const address = {
-      addressLine1: this.studentForm.get('addressLine1')?.value,
-      addressLine2: this.studentForm.get('addressLine2')?.value || '',
-      city: this.studentForm.get('city')?.value,
-      state: this.studentForm.get('state')?.value,
-      postalCode: this.studentForm.get('postalCode')?.value || '',
-      country: this.studentForm.get('country')?.value || '',
-    };
-
-    // Send the Address as a JSON string
-    formData.append('address', JSON.stringify(address));
-
-    // Call the service to add the student
-    this.studentService.addStudent(formData).subscribe(
-      (response) => {
-        console.log('Student added successfully');
-        this.activeModal.close();
-      },
-      (error: any) => {
-        console.error('Error adding student', error);
-      }
-    );
-  } else {
-    console.log('Form is invalid');
   }
-}
-
+  
 
 }
