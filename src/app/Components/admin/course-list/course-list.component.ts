@@ -48,7 +48,7 @@ export class CourseListComponent implements OnInit {
 
   openModal() {
     
-    const modalRef = this.modalService.open(this.courseFormComponent, {
+    const modalRef = this.modalService.open(CourseFormComponent, {
       size: 'lg'
     });
 
