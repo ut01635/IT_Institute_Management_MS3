@@ -28,6 +28,8 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem("Token");
+    localStorage.removeItem("NIC");
+    localStorage.removeItem("Role");
     this.router.navigate(['/'])
   }
 }
