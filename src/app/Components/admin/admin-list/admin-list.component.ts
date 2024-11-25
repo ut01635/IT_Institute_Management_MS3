@@ -23,11 +23,27 @@ export class AdminListComponent {
 
     this.adminService.refreshAdminList();
   }
-  
+
 
   onDelete(nic: string): void {
     
-    console.log('Delete admin with NIC:', nic);
+    const confirmDelete = window.confirm("Are you sure you want to delete this admin?");
+    
+    if (confirmDelete) {
+      
+      this.adminService.deleteAdmin(nic).subscribe(
+        (response) => {
+          console.log("Admin deleted successfully", response);
+          alert("Admin deleted successfully");
+          
+          this.adminService.refreshAdminList();
+        },
+        (error) => {
+          console.error("Error deleting admin", error);
+          alert("An error occurred while deleting the admin.");
+        }
+      );
+    }
   }
 
   onEdit(nic: string): void {
