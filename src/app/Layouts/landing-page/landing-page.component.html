@@ -17,7 +17,7 @@
           <!-- Centering the nav-links in the navbar -->
           <ul class="navbar-nav w-100 d-flex justify-content-center">
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#top">Home</a>
+              <a class="nav-link" href="#top">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#courses">Courses</a>
@@ -35,7 +35,7 @@
 
           <div class="d-flex justify-content-center mt-3">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary mb-3" [routerLink]="['/login']">
+            <button type="button" class="btn login mb-3 fw-bolder " [routerLink]="['/login']">
               Login
             </button>
           </div>
@@ -70,8 +70,8 @@
               at a time!
             </p>
 
-            <div class="main-button-red">
-              <a href="#contact" class="btn btn-danger scroll-to-section">Join Us Now!</a>
+            <div class="main-button">
+              <a href="#contact" class="btn scroll-to-section fw-bolder">Join Us Now!</a>
             </div>
           </div>
         </div>
@@ -82,6 +82,7 @@
 <!-- ***** Main Banner Area End ***** -->
 <section class="services py-5" id="services">
   <div class="container">
+    <h2 class="section-heading text-center">Our Services</h2>
     <div class="row">
       <div class="col-lg-12">
         <div id="servicesCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -213,20 +214,20 @@
               </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+            <!-- Previous Button -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
+              <span class="text-darkbule fs-2 rounded" aria-hidden="true"><i class="bi bi-caret-left-fill "></i></span>
+            </button>
+  
+            <!-- Next Button -->
+            <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
+              <span class="text-darkbule fs-2 rounded" aria-hidden="true"><i class="bi bi-caret-right-fill "></i></span>
+            </button>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 <!-- --------------------------------------------------------------course section--------------------------------------------------------------------------- -->
 <!-- courses.component.html -->
 <section class="our-courses py-5" id="courses">
@@ -241,7 +242,7 @@
     <div class="row">
       <div class="col-lg-12">
         <!-- Carousel -->
-        <div id="coursesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div id="coursesCarousel" class="carousel slide px-5" data-bs-ride="carousel" data-bs-interval="3000">
           <div class="carousel-inner">
             <!-- Loop through the courses and create a slide every 3 courses -->
             <div class="carousel-item p-5" *ngFor="let chunk of chunkCourses(); let i = index" [class.active]="i === 0">
@@ -249,36 +250,47 @@
                 <div class="col-12 col-md-6 col-lg-4" *ngFor="let course of chunk">
                   <div class="card h-100">
                     <!-- Responsive Image -->
-                    <img src="https://localhost:7055{{ course.imagePaths[0] }}" class="card-img-top" alt="Course Image" 
+                    <img src="https://localhost:7055{{ course.imagePaths[0] }}" class="card-img-top border border-primary" alt="Course Image" 
                       style="object-fit: cover; width: 100%; height: 200px;" />
-              
-                    <div class="card-body">
-                      <h4 class="card-title">{{ course.courseName }}</h4>
+                  
+                    <div class="card-body d-flex flex-column">
+                      <h4 class="card-title text-darkbule">{{ course.courseName }}</h4>
+                      
                       <p class="card-text" [ngStyle]="{
                           color: course.level === 'Beginner' ? 'green' : 
                                  course.level === 'Intermediate' ? 'blue' : 'black'
                         }">
                         {{ course.level }}
                       </p>
-                      <p class="card-text">{{ course.duration }} Months</p>
-                      <p class="card-text">{{ course.description }}</p>
-                      <div class="d-flex">
-                        <p class="card-text text-danger fs-5 mx-2" style="text-decoration-line: line-through;">
-                          LKR{{ course.fees + 5000 }}.00
-                        </p>
-                        <p class="card-text text-success fs-5 mx-2">
-                          LKR{{ course.fees }}.00
-                        </p>
-                      </div> 
-                      <div class="d-flex justify-content-end">
-                         
-                        <a class="icon-link icon-link-hover text-end" style="--bs-link-hover-color-rgb: 25, 135, 84" href="#contact">
-                          learn more
-                        </a>
-                      </div>
                       
+                      <p class="card-text text-dark">{{ course.duration }} Months</p>
+                      
+                      <p class="card-text text-dark">{{ course.description }}</p>
+                  
+                      <!-- Pricing and Learn More Section -->
+                      <div class="d-flex justify-content-between align-items-end mt-auto">
+                       
+                        <div>
+                          <p class="text-danger fs-5 " style="text-decoration-line: line-through;">
+                            LKR{{ course.fees + 5000 }}.00
+                          </p>
+                          <p class="card-text text-success fs-5 ">
+                            LKR{{ course.fees }}.00
+                          </p>
+                        </div>
+                        
+                       
+                        <div class="d-flex align-items-end">
+                          <a class="icon-link icon-link-hover text-end" style="--bs-link-hover-color-rgb: 25, 135, 84" href="#contact">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  
+                  
+                  
                 </div>
               </div>
               
@@ -287,14 +299,14 @@
 
           <!-- Previous Button -->
           <button class="carousel-control-prev" type="button" data-bs-target="#coursesCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="text-darkbule fs-2 rounded" aria-hidden="true"><i class="bi bi-caret-left-fill "></i></span>
+    
           </button>
 
           <!-- Next Button -->
           <button class="carousel-control-next" type="button" data-bs-target="#coursesCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="text-darkbule fs-2 rounded" aria-hidden="true"><i class="bi bi-caret-right-fill "></i></span>
+           
           </button>
         </div>
       </div>
@@ -302,7 +314,7 @@
   </div>
 </section>
 
-<!-- section  for thr facts box -->
+
 <section class="our-facts py-5" id="facts">
   <div class="container">
     <div class="row">
@@ -314,19 +326,19 @@
       <div class="col-lg-6 mt-5">
         <div class="row">
           <!-- Fact Box 1 -->
-          <div class="col-md-6 mb-4 p-0 d-flex justify-content-center align-items-center">
-            <div class="card text-center border shadow-sm p-3 bg-light box-fact">
-              <div class="card-body p-4">
+          <div class="col-md-6 mb-4 d-flex justify-content-center">
+            <div class="card text-center border shadow-sm p-4 bg-light box-fact">
+              <div class="card-body">
                 <h3 class="card-title">94%</h3>
-                <p class="card-text">Succesed Students</p>
+                <p class="card-text">Successed Students</p>
               </div>
             </div>
           </div>
 
           <!-- Fact Box 2 -->
-          <div class="col-md-6 mb-4 p-0 d-flex justify-content-center align-items-center">
-            <div class="card text-center border shadow-sm p-3 bg-light box-fact">
-              <div class="card-body p-4">
+          <div class="col-md-6 mb-4 d-flex justify-content-center">
+            <div class="card text-center border shadow-sm p-4 bg-light box-fact">
+              <div class="card-body">
                 <h3 class="card-title">32</h3>
                 <p class="card-text">Available Courses</p>
               </div>
@@ -334,9 +346,9 @@
           </div>
 
           <!-- Fact Box 3 -->
-          <div class="col-md-6 mb-4 mt-5 p-0 d-flex justify-content-center align-items-center">
-            <div class="card text-center border shadow-sm p-3 bg-light box-fact">
-              <div class="card-body p-4">
+          <div class="col-md-6 mb-4 d-flex justify-content-center">
+            <div class="card text-center border shadow-sm p-4 bg-light box-fact">
+              <div class="card-body">
                 <h3 class="card-title">2345</h3>
                 <p class="card-text">New Students</p>
               </div>
@@ -344,11 +356,11 @@
           </div>
 
           <!-- Fact Box 4 -->
-          <div class="col-md-6 mb-4 mt-5 p-0 d-flex justify-content-center align-items-center">
-            <div class="card text-center border shadow-sm p-3 bg-light box-fact">
-              <div class="card-body p-4">
+          <div class="col-md-6 mb-4 d-flex justify-content-center">
+            <div class="card text-center border shadow-sm p-4 bg-light box-fact">
+              <div class="card-body">
                 <h3 class="card-title">5455.0</h3>
-                <p class="card-text">Entrolments</p>
+                <p class="card-text">Enrollments</p>
               </div>
             </div>
           </div>
@@ -357,16 +369,18 @@
 
       <!-- Right Column: Video Thumbnail -->
       <div class="col-lg-6 align-self-center text-center">
-        <div class="video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/MIufgoKX34M?si=SQ81YoM8FrQIwqrz"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.youtube.com/embed/MIufgoKX34M?si=SQ81YoM8FrQIwqrz"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <section class="apply-now py-5" id="apply">
   <div class="container">
@@ -512,8 +526,8 @@
         <h1 class="mb-5">Meet Our Team</h1>
       </div>
       <div class="row g-4">
-        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-          <div class="team-item border-2 rounded-1 card">
+        <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.1s">
+          <div class="team-item border-2 rounded-1 card cardBlue shadow-lg">
             <div class="overflow-hidden">
               <img class="card-img-top" src="/LandingAssets/safeek.jpg" alt="prof:Safeek" />
             </div>
@@ -544,13 +558,13 @@
 
             <div class="text-center p-4">
               <h5 class="mb-0">Mohamed Safeek Thajudeen</h5>
-              <small>FRONTEND</small> , <br />
-              <small>BSc IIT UWUSL</small>
+              <small>FRONTEND</small> <br />
+              <small>BIIT UWUSL</small>
             </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-          <div class="team-item border-2 rounded-1 card">
+          <div class="team-item border-2 rounded-1 card cardBlue shadow-lg">
             <div class="overflow-hidden">
               <img class="img-fluid" src="/LandingAssets/imthath.jpg" alt="" />
             </div>
@@ -586,7 +600,7 @@
           </div>
         </div>
         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-          <div class="team-item border-2 rounded-1 card">
+          <div class="team-item border-2 rounded-1 card cardBlue shadow-lg">
             <div class="overflow-hidden">
               <img class="img-fluid" src="/LandingAssets/piragas.jpg" alt="" />
             </div>
@@ -630,14 +644,14 @@
 <section class="contact-us py-5" id="contact">
   <div class="container">
     <div class="row">
-      <div class="card col-lg-8 align-self-center d-flex justify-content-evenly">
+      <div class="card col-lg-8 align-self-center d-flex justify-content-evenly grtInTouch shadow-lg">
         <div class="row">
           <div class="col-lg-12 mb-4">
-            <h2 class="text-center">Let's get in touch</h2>
+            <h2 class="text-center text-dark">Let's get in touch</h2>
           </div>
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-            <div class="d-flex justify-content-around">
-              <div class="col-md-5 mb-3">
+            <div class="d-flex justify-content-around p-1">
+              <div class="col-md-6 mx-1 mb-3">
                 <input formControlName="name" type="text" class="form-control" id="name" placeholder="YOUR NAME...*" />
                 <div *ngIf="
                     contactForm.get('name')?.invalid &&
@@ -646,7 +660,7 @@
                   Name is required and must be at least 3 characters long.
                 </div>
               </div>
-              <div class="col-md-5 mb-3">
+              <div class="col-md-6 mb-3">
                 <input formControlName="email" type="email" class="form-control" id="email"
                   placeholder="YOUR EMAIL..." />
                 <div *ngIf="
@@ -707,12 +721,14 @@
     </div>
   </div>
 </section>
+<a href="#" class="btn btn-primary back-to-top">
+  <i class="bi bi-arrow-up"></i></a>
 
 <footer class="footer bg-dark text-white py-4">
   <div class="container">
     <div class="row">
       <!-- About Us Column -->
-      <div class="col-md-3 mb-3">
+      <div class="col-12 col-md-3 mb-3">
         <h5>About Us</h5>
         <p>
           At DevHub Academy, we provide programming courses tailored for
@@ -722,23 +738,23 @@
         </p>
         <div class="d-flex pt-2">
           <!-- Social Media Icons -->
-          <a class="btn btn-outline-light btn-social me-2" href="">
+          <a class="btn btn-outline-light btn-social me-2" href="#">
             <i class="bi bi-twitter"></i>
           </a>
-          <a class="btn btn-outline-light btn-social me-2" href="">
+          <a class="btn btn-outline-light btn-social me-2" href="#">
             <i class="bi bi-facebook"></i>
           </a>
-          <a class="btn btn-outline-light btn-social me-2" href="">
+          <a class="btn btn-outline-light btn-social me-2" href="#">
             <i class="bi bi-youtube"></i>
           </a>
-          <a class="btn btn-outline-light btn-social me-2" href="">
+          <a class="btn btn-outline-light btn-social me-2" href="#">
             <i class="bi bi-linkedin"></i>
           </a>
         </div>
       </div>
 
       <!-- Quick Links Column -->
-      <div class="col-md-3 mb-3">
+      <div class="col-12 col-md-3 mb-3">
         <h5>Quick Links</h5>
         <ul class="list-unstyled">
           <li><a href="#top" class="text-white">Home</a></li>
@@ -749,7 +765,7 @@
       </div>
 
       <!-- Contact Info Column -->
-      <div class="col-md-3 mb-3">
+      <div class="col-12 col-md-3 mb-3">
         <h5>Contact Info</h5>
         <ul class="list-unstyled">
           <li>
@@ -764,7 +780,7 @@
       </div>
 
       <!-- Google Map Column -->
-      <div class="col-md-3 mb-3">
+      <div class="col-12 col-md-3 mb-3">
         <h5>Our Location</h5>
         <div class="ratio ratio-16x9">
           <iframe
@@ -775,8 +791,9 @@
       </div>
     </div>
 
+    <!-- Footer Bottom -->
     <div class="row">
-      <div class="col-12 text-center">
+      <div class="col-12 text-center mt-4">
         <p class="mb-0">
           &copy; 2024 DevHub .co, Ltd. All Rights Reserved.
           <br />Design by:
@@ -787,6 +804,4 @@
   </div>
 </footer>
 
-<a href="#" class="btn btn-primary back-to-top">
-  <i class="bi bi-arrow-up"></i>
-</a>
+

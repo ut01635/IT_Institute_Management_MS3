@@ -26,10 +26,14 @@ export class StudentListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.studentService.getStudents().subscribe((data) => {
-      this.students = data;
+    
+    this.studentService.students$.subscribe((students) => {
+      this.students = students;
       this.fetchEnrollments();
     });
+
+    
+    this.studentService.getStudents();
   }
 
   fetchEnrollments() {
@@ -72,8 +76,21 @@ export class StudentListComponent implements OnInit {
   //   console.log("Edit student with NIC: ", studentNic);
   // }
 
-  // onDelete(studentNic: number) {
-  //   console.log("Delete student with NIC: ", studentNic);
-  // }
+  onDelete(studentNic: string): void {
+    const confirmDelete = window.confirm('Are you sure you want to delete this student?');
+
+    if (confirmDelete) {
+      this.studentService.deleteStudent(studentNic).subscribe(
+        () => {
+          alert('Student deleted successfully!');
+          this.studentService.refreshStudentList();
+        },
+        (error) => {
+          console.error('Error deleting student:', error);
+          alert('An error occurred while deleting the student.');
+        }
+      );
+    }
+  }
 
 }

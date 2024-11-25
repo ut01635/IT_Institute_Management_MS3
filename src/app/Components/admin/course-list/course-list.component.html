@@ -5,7 +5,7 @@
     </div>
 
     <div>
-      <button type="button" class="btn btn-dark" (click)="openModal()">
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#courseModal" (click)="openModal()">
         New Course
       </button>
     </div>
@@ -19,6 +19,7 @@
         <th>Duration (Months)</th>
         <th>Level</th>
         <th>Fees (LKR)</th>
+        <th>Description</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -36,6 +37,7 @@
         <td>
           {{ course.fees | currency:'LKR ' }}
         </td>
+        <td>{{course.description}}</td>
         <td>
           <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(course.id)">
             <i class="bi bi-pencil"></i> Edit

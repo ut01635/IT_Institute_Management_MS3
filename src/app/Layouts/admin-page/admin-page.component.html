@@ -12,78 +12,118 @@
   
         <!-- Announcements Icon (without text) -->
         <button class="btn me-3 btn-lg fw-bold" aria-label="Announcements" [routerLink]="['/admin/Annoucement-list']">
-          <i class="bi bi-megaphone text-darkBlue fs-3 fw-bold"></i>
+          <i class="bi bi-megaphone text-white fs-3 fw-bold"></i>
         </button>
   
         <!-- Mobile Sidebar Toggle Button -->
-        <button class="btn btn-lg d-md-none fw-bold" (click)="toggleSidebar()"><i class="bi bi-list text-darkBlue fs-3 fw-bold"></i></button>
+        <button class="btn btn-lg d-md-none fw-bold" (click)="toggleSidebar()"><i class="bi bi-list text-white fs-3 fw-bold"></i></button>
       </div>
     </header>
   
-    <!-- Sidebar -->
+
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <div class="row">
-      <nav class="col-12 col-md-2 sidebar bg-blurred text-white" [ngClass]="{'show': isSidebarVisible}">
+      <nav class="col-12 col-md-2 sidebar bg-blurred text-white" [ngClass]="{'show': isSidebarVisible, 'dark-mode': isDarkMode, 'light-mode': !isDarkMode}">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/admin-dashboard']">
+            <a class="nav-link" href="#" [routerLink]="['/admin/admin-dashboard']"
+               (click)="setActiveTab('dashboard')"
+               [class.active]="activeTab === 'dashboard'">
               <i class="bi bi-house-door"></i>
-              <span class="nav-text">Dashboard</span>
+              <span class="nav-text side-text">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/student-list']">
+            <a class="nav-link" href="#" [routerLink]="['/admin/student-list']"
+               (click)="setActiveTab('students')"
+               [class.active]="activeTab === 'students'">
               <i class="bi bi-person"></i>
               <span class="nav-text">Students</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/course-list']">
+            <a class="nav-link" href="#" [routerLink]="['/admin/course-list']"
+               (click)="setActiveTab('courses')"
+               [class.active]="activeTab === 'courses'">
               <i class="bi bi-book"></i>
               <span class="nav-text">Courses</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/enquiry-list']">
+            <a class="nav-link" href="#" [routerLink]="['/admin/enquiry-list']"
+               (click)="setActiveTab('enquiries')"
+               [class.active]="activeTab === 'enquiries'">
               <i class="bi bi-envelope"></i>
               <span class="nav-text">Enquiries</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/payment']">
+            <a class="nav-link" href="#" [routerLink]="['/admin/payment']"
+               (click)="setActiveTab('payment')"
+               [class.active]="activeTab === 'payment'">
               <i class="bi bi-credit-card"></i>
               <span class="nav-text">Payment</span>
             </a>
           </li>
-  
+        
           <!-- Reports Item (with hover sub-links) -->
           <li class="nav-item report-item">
-            <a class="nav-link text-white">
+            <a class="nav-link" (click)="setActiveTab('reports')"
+               [class.active]="activeTab === 'reports'">
               <i class="bi bi-file-earmark-bar-graph"></i>
               <span class="nav-text">Reports</span>
             </a>
-            <ul class="flex-column ms-0 report-sub-links">
-              <li><a class="text-white" href="#" [routerLink]="['/admin/student-report']">Student Report</a></li>
-              <li><a class="text-white" href="#" [routerLink]="['/admin/enrollment-report']">Enrollment Report</a></li>
-              <li><a class="text-white" href="#" [routerLink]="['/admin/payment-report']">Payment Report</a></li>
+            <ul class="flex-column ms-0 w-100 report-sub-links">
+              <li><a href="#" [routerLink]="['/admin/student-report']"
+                     (click)="setActiveTab('student-report')"
+                     [class.active]="activeTab === 'student-report'">Student Report</a></li>
+              <li><a href="#" [routerLink]="['/admin/enrollment-report']"
+                     (click)="setActiveTab('enrollment-report')"
+                     [class.active]="activeTab === 'enrollment-report'">Enrollment Report</a></li>
+              <li><a href="#" [routerLink]="['/admin/payment-report']"
+                     (click)="setActiveTab('payment-report')"
+                     [class.active]="activeTab === 'payment-report'">Payment Report</a></li>
             </ul>
           </li>
-  
+        
           <li class="nav-item">
-            <a class="nav-link text-white" href="#" [routerLink]="['/admin/admin-list']">
+            <a class="nav-link" href="#" [routerLink]="['/admin/admin-list']"
+               (click)="setActiveTab('admins')"
+               [class.active]="activeTab === 'admins'">
               <i class="bi bi-person"></i>
               <span class="nav-text">Admins</span>
             </a>
           </li>
-  
+        
           <li class="nav-item mt-auto">
-            <a class="nav-link text-danger" href="#">
+            <a class="nav-link text-danger" href="#" (click)="logout()">
               <i class="bi bi-box-arrow-right"></i>
               <span class="nav-text">Logout</span>
             </a>
           </li>
         </ul>
+        
+    
+        <!-- Dark/Light Mode Toggle Button -->
+        <div class="d-flex justify-content-end align-items-end w-100">
+          <button class="btn btn-toggle-mode  toggle-button" (click)="toggleTheme()">
+            <label class="switch">
+              <!-- Checkbox input to trigger theme toggle -->
+              <input type="checkbox" [checked]="isDarkMode" (change)="toggleTheme()" />
+              <div class="slider round">
+                <!-- Sun and Moon Icons -->
+                <div class="sun-moon">
+                  <i class="bi bi-sun" *ngIf="isDarkMode"></i>
+                  <i class="bi bi-moon" *ngIf="!isDarkMode"></i>
+                </div>
+              </div>
+            </label>
+          </button>
+        </div>
+       
+        
       </nav>
-  
+    
       <!-- Main Content Area -->
       <main class="col-12 col-md ms-0 mt-3 container-fluid">
         <section style="width: 100%; overflow-y: scroll;" class="shadow p-4 m-2 bg-white rounded">
@@ -91,4 +131,6 @@
         </section>
       </main>
     </div>
+    
+    
   </div>

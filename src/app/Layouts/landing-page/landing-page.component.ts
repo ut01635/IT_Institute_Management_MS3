@@ -30,7 +30,7 @@ export class LandingPageComponent implements OnInit {
   onSubmit() {
     const enquiry = this.contactForm.value;
     if (this.contactForm.valid) {
-      this.enquiryService.postEnquiry(enquiry).subscribe(data => {
+      this.enquiryService.postEnquiry(enquiry)?.subscribe(data => {
         this.enquiryResults = 'Your message was sent successfully';
         console.log('Form Submitted', data);
       }, error => {
@@ -43,10 +43,10 @@ export class LandingPageComponent implements OnInit {
   
   ngOnInit() {
     this.courseService.getAllCourses().subscribe(
-      (data) => {
+      (data: Course[]) => {
         this.courses = data;
       },
-      (error) => {
+      (error: any) => {
         alert('Course fetch failed');
       }
     );
@@ -61,5 +61,6 @@ export class LandingPageComponent implements OnInit {
     }
     return chunks;
   }
+  
 }
 

@@ -25,47 +25,59 @@ import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
 import { LoginComponent } from './Modals/landing/login/login.component';
 import { StudentFormComponent } from './Modals/admin/student-form/student-form.component';
 import { CourseFormComponent } from './Modals/admin/course-form/course-form.component';
+import { AuthGuard } from './authGuard/auth.guard';
+import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.component';
 
 const routes: Routes = [
-  { path:'', 
-    component:LandingPageComponent,
-    children:[
-     
+  {
+    path: '',
+    component: LandingPageComponent,
+    children: [
+
     ]
   },
-  { path:'admin', 
-    component:AdminPageComponent,
-    children:[
-      {path:'', component:AdminDashboardComponent},
-      {path:'admin-dashboard', component:AdminDashboardComponent},
-      {path:'student-list', component:StudentListComponent},
-      {path:'course-list', component:CourseListComponent},
-      {path:'enquiry-list', component:EnquiryListComponent},
-      {path:'Notification-list', component:NotificationListComponent},
-      {path:'Annoucement-list', component:AnnouncementListComponent},
-      {path:'payment', component:PaymentComponent},
-      {path:'student-report', component:StudentReportComponent},
-      {path:'enrollment-report', component:EnrollmentReportComponent},
-      {path:'payment-report', component:PaymentReportComponent},
-      {path:'admin-list', component:AdminListComponent},
+  {
+    path: 'admin',
+    component: AdminPageComponent,
+    canActivate: [AuthGuard],
+    data: { role: 'Admin' },
+    children: [
+      { path: '', component: AdminDashboardComponent },
+      { path: 'admin-dashboard', component: AdminDashboardComponent },
+      { path: 'student-list', component: StudentListComponent },
+      { path: 'course-list', component: CourseListComponent },
+      { path: 'enquiry-list', component: EnquiryListComponent },
+      { path: 'Notification-list', component: NotificationListComponent },
+      { path: 'Annoucement-list', component: AnnouncementListComponent },
+      { path: 'payment', component: PaymentComponent },
+      { path: 'student-report', component: StudentReportComponent },
+      { path: 'enrollment-report', component: EnrollmentReportComponent },
+      { path: 'payment-report', component: PaymentReportComponent },
+      { path: 'admin-list', component: AdminListComponent },
     ]
   },
-  { path:'student', 
-    component:StudentPageComponent,
-    children:[
-      {path:'', component:CourseViewComponent},
-      {path:'student-dashboard', component:StudentDashboardComponent},
-      {path:'home', component:CourseViewComponent},
-      {path:'notification', component:NotificationComponent},
-      {path:'announcement', component:AnnouncementComponent},
-      {path:'payment-details', component:PaymentDetailsComponent},
-      {path:'enroll-courses', component:EnrollCoursesComponent},
-      {path:'profile', component:ProfileComponent},
+  {
+    path: 'student',
+    canActivate: [AuthGuard],
+    data: { role: 'Student' },
+    component: StudentPageComponent,
+    children: [
+      { path: '', component: CourseViewComponent },
+      { path: 'student-dashboard', component: StudentDashboardComponent },
+      { path: 'home', component: CourseViewComponent },
+      { path: 'notification', component: NotificationComponent },
+      { path: 'announcement', component: AnnouncementComponent },
+      { path: 'payment-details', component: PaymentDetailsComponent },
+      { path: 'enroll-courses', component: EnrollCoursesComponent },
+      { path: 'profile', component: ProfileComponent },
     ]
   },
 
-  {path:'login', component:LoginComponent},
-  {path:'form', component:CourseFormComponent}
+  { path: 'login', component: LoginComponent },
+  { path: 'form', component: CourseFormComponent },
+  {path:'adminForm',component:AdminFormComponent},
+
+  { path: '', redirectTo: '/', pathMatch: 'full' }
 
 ];
 

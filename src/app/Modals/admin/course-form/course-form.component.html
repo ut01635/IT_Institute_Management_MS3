@@ -1,115 +1,91 @@
-<button class="btn btn-primary" (click)="open(content)">
-    <i class="bi bi-plus-circle"></i> Add New Course
-  </button>
+<div class="modal-header bg-white text-black">
+  <h5 class="modal-title" id="courseModalLabel">Add Course</h5>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
+</div>
 
-<!-- Modal for Course Form -->
-<ng-template #content let-modal>
-    <div class="modal-header bg-white text-black">
-      <h5 class="modal-title" id="modal-basic-title">Add New Course</h5>
-      <button type="button" class="btn-close" (click)="modal.close()" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="form-control">
-        <div class="row">
-          <div class="col-md-6 col-12 mb-3">
-            <div class="input-field">
-              <input 
-                class="input" 
-                formControlName="courseName" 
-                type="text" 
-                required 
-                [ngClass]="{'is-invalid': f['courseName']?.touched && f['courseName']?.invalid}" 
-              />
-              <label class="label">Course Name</label>
-              <div *ngIf="f['courseName']?.touched && f['courseName']?.invalid" class="error-message">
-                <small *ngIf="f['courseName']?.hasError('required')">Course Name is required.</small>
-                <small *ngIf="f['courseName']?.hasError('maxlength')">Course Name cannot exceed 100 characters.</small>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-6 col-12 mb-3">
-            <div class="input-field">
-              <select 
-                class="input" 
-                formControlName="level" 
-                required 
-                [ngClass]="{'is-invalid': f['level']?.touched && f['level']?.invalid}">
-                <option value="" disabled selected>Select Level</option>
-                <option *ngFor="let level of levels" [value]="level">{{ level }}</option>
-              </select>
-              <div *ngIf="f['level']?.touched && f['level']?.invalid" class="error-message">
-                <small *ngIf="f['level']?.hasError('required')">Level is required.</small>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-6 col-12 mb-3">
-            <div class="input-field">
-              <select 
-                class="input" 
-                formControlName="duration" 
-                required 
-                [ngClass]="{'is-invalid': f['duration']?.touched && f['duration']?.invalid}">
-                <option value="" disabled selected>Select Duration</option>
-                <option *ngFor="let duration of durations" [value]="duration">{{ duration }} months</option>
-              </select>
-              <div *ngIf="f['duration']?.touched && f['duration']?.invalid" class="error-message">
-                <small *ngIf="f['duration']?.hasError('required')">Duration is required.</small>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-6 col-12 mb-3">
-            <div class="input-field">
-              <input 
-                class="input" 
-                formControlName="fees" 
-                type="number" 
-                required 
-                [ngClass]="{'is-invalid': f['fees']?.touched && f['fees']?.invalid}" 
-              />
-              <label class="label">Fees</label>
-              <div *ngIf="f['fees']?.touched && f['fees']?.invalid" class="error-message">
-                <small *ngIf="f['fees']?.hasError('required')">Fees are required.</small>
-                <small *ngIf="f['fees']?.hasError('min')">Fees must be greater than 0.</small>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-12 mb-3">
-            <div class="input-field">
-              <input 
-                class="input" 
-                formControlName="images" 
-                type="file" 
-                required 
-                multiple 
-                [ngClass]="{'is-invalid': f['images']?.touched && f['images']?.invalid}"
-              />
-              <div *ngIf="f['images']?.touched && f['images']?.invalid" class="error-message">
-                <small *ngIf="f['images']?.hasError('required')">At least one image is required.</small>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-12 mb-3">
-            <div class="input-field">
-              <textarea 
-                class="input" 
-                formControlName="description"
-                [ngClass]="{'is-invalid': f['description']?.touched && f['description']?.invalid}">
-              </textarea>
-              <label class="label">Description (optional)</label>
-            </div>
+<div class="modal-body">
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="form-control">
+    <p class="message text-center">Add a new course to the catalog.</p>
+
+    <div class="row">
+      <!-- Course Name Field -->
+      <div class="col-md-6 col-12 mb-3">
+        <div class="input-field">
+          <input class="input" formControlName="courseName" type="text" required />
+          <label class="label">Course Name</label>
+          <div *ngIf="courseForm.get('courseName')?.touched && courseForm.get('courseName')?.invalid" class="error-message">
+            <small *ngIf="courseForm.get('courseName')?.hasError('required')">Course Name is required.</small>
           </div>
         </div>
-  
-        <button type="submit" class="submit-btn" [disabled]="courseForm.invalid" style="width: 100%">
-          <i class="bi bi-save"></i> Save Course
-        </button>
-      </form>
+      </div>
+
+      <!-- Level Field -->
+      <div class="col-md-6 col-12 mb-3">
+        <div class="input-field">
+          <select class="input" formControlName="level" required>
+            <option value="" disabled selected>Select Level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+          </select>
+          <label class="label">Level</label>
+          <div *ngIf="courseForm.get('level')?.touched && courseForm.get('level')?.invalid" class="error-message">
+            <small *ngIf="courseForm.get('level')?.hasError('required')">Level is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duration Field (Dropdown with options for 2 months and 6 months) -->
+      <div class="col-md-6 col-12 mb-3">
+        <div class="input-field">
+          <select class="input" formControlName="duration" required>
+            <option value="" disabled selected>Select Duration</option>
+            <option value="2">2 Months</option>
+            <option value="6">6 Months</option>
+          </select>
+          <label class="label">Duration (Months)</label>
+          <div *ngIf="courseForm.get('duration')?.touched && courseForm.get('duration')?.invalid" class="error-message">
+            <small *ngIf="courseForm.get('duration')?.hasError('required')">Duration is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fees Field -->
+      <div class="col-md-6 col-12 mb-3">
+        <div class="input-field">
+          <input class="input" formControlName="fees" type="number" required />
+          <label class="label">Fees</label>
+          <div *ngIf="courseForm.get('fees')?.touched && courseForm.get('fees')?.invalid" class="error-message">
+            <small *ngIf="courseForm.get('fees')?.hasError('required')">Fees are required.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Field -->
+      <div class="col-12 mb-3">
+        <div class="input-field">
+          <textarea class="input" formControlName="description" required></textarea>
+          <label class="label">Course Description</label>
+          <div *ngIf="courseForm.get('description')?.touched && courseForm.get('description')?.invalid" class="error-message">
+            <small *ngIf="courseForm.get('description')?.hasError('required')">Description is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Upload (Multiple Images) -->
+      <div class="col-12 mb-3">
+        <div class="input-field">
+          <input class="input" type="file" formControlName="images" (change)="onImageChange($event)" multiple />
+          <label class="label">Course Images</label>
+          <div *ngIf="courseForm.get('images')?.touched && courseForm.get('images')?.invalid" class="error-message">
+            <small *ngIf="courseForm.get('images')?.hasError('required')">Images are required.</small>
+          </div>
+        </div>
+      </div>
     </div>
-  </ng-template>
-  
-  
+
+    <!-- Submit Button -->
+    <button type="submit" class="submit-btn" [disabled]="courseForm.invalid">
+      <i class="bi bi-save"></i> Save Course
+    </button>
+  </form>
+</div>

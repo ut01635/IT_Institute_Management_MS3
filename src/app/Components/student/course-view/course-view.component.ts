@@ -25,7 +25,7 @@ export class CourseViewComponent implements OnInit {
       this.greeting = data;
     });
 
-    this.courseService.getAllCourses().subscribe(data=>{
+    this.courseService.getAllCourses().subscribe((data: Course[])=>{
       this.courses = data
     })
 
