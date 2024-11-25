@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../../Services/Modal';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,16 +10,10 @@ import { LoginRequest } from '../../../Services/Modal';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-   // Declare the model to bind the form inputs
-   login = {
-    nic: '',          // NIC input field
-    password: '',     // Password input field
-    rememberMe: false // Remember me checkbox (optional)
-  };
+  login: LoginRequest;
 
-  ngOnInit(): void {
-    // You can initialize any values here, for example:
-    // this.login.nic = 'initial NIC value'; 
+  constructor(private router: Router, private loginService: AuthService) {
+    this.login = { nic: '', password: '' };
   }
 
   // This method will handle form submission
