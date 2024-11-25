@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StudentService } from '../../../Services/student.service';
 import { HttpClient } from '@angular/common/http';
+import { StudentListComponent } from '../../../Components/admin/student-list/student-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-form',
@@ -13,8 +15,8 @@ export class StudentFormComponent {
   studentForm: FormGroup;
   imageFile: File | null = null;
 
-  constructor(public activeModal: NgbActiveModal, private studentService: StudentService, private http: HttpClient) {
-   
+  constructor(public activeModal: NgbActiveModal, private studentService: StudentService, private http: HttpClient, private router: Router) {
+
     this.studentForm = new FormGroup({
       NIC: new FormControl('', [
         Validators.required,
@@ -39,8 +41,8 @@ export class StudentFormComponent {
         ),
       ]),
       image: new FormControl(null),
-      
-     
+
+
       address: new FormGroup({
         addressLine1: new FormControl('', [Validators.required]),
         addressLine2: new FormControl(''),
@@ -55,7 +57,7 @@ export class StudentFormComponent {
     });
   }
 
- 
+
   onImageChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -63,16 +65,13 @@ export class StudentFormComponent {
     }
   }
 
-  
+
   onSubmit(): void {
     if (this.studentForm.valid) {
       const formData = new FormData();
-  
-    
       Object.keys(this.studentForm.value).forEach(key => {
         if (key !== 'image' && this.studentForm.value[key]) {
           if (key === 'address') {
-           
             const address = this.studentForm.get('address')?.value;
             Object.keys(address).forEach(addressKey => {
               formData.append(`address.${addressKey}`, address[addressKey]);
@@ -82,17 +81,22 @@ export class StudentFormComponent {
           }
         }
       });
-  
-     
+
       if (this.imageFile) {
         formData.append('image', this.imageFile, this.imageFile.name);
       }
-  
-      
+
       this.studentService.addStudent(formData).subscribe(
         (response) => {
-          console.log('Student added successfully');
+          alert('Student added successfully');
+
+
+
+          this.studentService.refreshStudentList();
           this.activeModal.close();
+
+
+
         },
         (error: any) => {
           console.error('Error adding student', error);
@@ -102,6 +106,6 @@ export class StudentFormComponent {
       console.log('Form is invalid');
     }
   }
-  
+
 
 }

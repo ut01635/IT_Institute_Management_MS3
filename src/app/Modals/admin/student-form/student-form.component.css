@@ -60,6 +60,12 @@
   padding-right: 5px;
 }
 
+.error-message {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 .submit-btn {
   margin-top: 30px;
   height: 55px;

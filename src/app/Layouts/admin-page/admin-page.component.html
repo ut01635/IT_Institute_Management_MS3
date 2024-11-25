@@ -12,11 +12,11 @@
   
         <!-- Announcements Icon (without text) -->
         <button class="btn me-3 btn-lg fw-bold" aria-label="Announcements" [routerLink]="['/admin/Annoucement-list']">
-          <i class="bi bi-megaphone text-darkBlue fs-3 fw-bold"></i>
+          <i class="bi bi-megaphone text-white fs-3 fw-bold"></i>
         </button>
   
         <!-- Mobile Sidebar Toggle Button -->
-        <button class="btn btn-lg d-md-none fw-bold" (click)="toggleSidebar()"><i class="bi bi-list text-darkBlue fs-3 fw-bold"></i></button>
+        <button class="btn btn-lg d-md-none fw-bold" (click)="toggleSidebar()"><i class="bi bi-list text-white fs-3 fw-bold"></i></button>
       </div>
     </header>
   
@@ -27,7 +27,7 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="#" [routerLink]="['/admin/admin-dashboard']">
               <i class="bi bi-house-door"></i>
-              <span class="nav-text">Dashboard</span>
+              <span class="nav-text side-text">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
@@ -76,7 +76,7 @@
           </li>
   
           <li class="nav-item mt-auto">
-            <a class="nav-link text-danger" href="#">
+            <a class="nav-link text-danger" href="#" (click)="logout()">
               <i class="bi bi-box-arrow-right"></i>
               <span class="nav-text">Logout</span>
             </a>

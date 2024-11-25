@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginRequest } from '../../../Services/Modal';
+import { LoginRequest, userDetails } from '../../../Services/Modal';
 import { AuthService } from '../../../Services/auth.service';
 
 import { jwtDecode } from 'jwt-decode';
@@ -28,8 +28,10 @@ export class LoginComponent {
           localStorage.setItem('Token', response);
 
           // Decode the JWT token to get user details (including the Role)
-          const userDetails: any = jwtDecode(response);
+          const userDetails: userDetails = jwtDecode(response);
 
+          localStorage.setItem('Role',userDetails.Role );
+          localStorage.setItem('NIC',userDetails.nic );
           // Check the Role value directly and navigate accordingly
           if (userDetails.Role === 'Admin') {
             // Navigate to Admin Dashboard

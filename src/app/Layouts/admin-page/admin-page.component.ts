@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -15,9 +16,13 @@ export class AdminPageComponent {
     this.isSidebarVisible = true; // Toggle the sidebar visibility
   }
 
-  constructor() {
+  constructor(private authservice:AuthService) {
     
   }
+
+  logout() {
+    this.authservice.logout()
+    }
 
  
 }
