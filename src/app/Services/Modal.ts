@@ -45,6 +45,11 @@ export interface Course {
     password: string;
   }
 
+  export interface userDetails{
+    nic:string;
+    Role:string;
+  }
+
   export interface admin {
     nic: string;
     name: string;
