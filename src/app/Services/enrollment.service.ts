@@ -13,12 +13,12 @@ export class EnrollmentService {
   constructor(private http: HttpClient) { }
 
   
-  getEnrollments(studentNic: number): Observable<Student[]> {
+  getEnrollments(studentNic: string): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
   }
 
   
-  getCompletedEnrollments(studentNic: number): Observable<Student[]> {
+  getCompletedEnrollments(studentNic: string): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`)
       .pipe(
         catchError((error) => {
@@ -26,6 +26,11 @@ export class EnrollmentService {
           return of([]);  
         })
       );
+  }
+
+  getReadingEnrollments(studentNic:string){
+ "/nic/200206601718/notcompleted"
+ return this.http.get<any[]>(`${this.enrollmentUrl}/nic/${studentNic}/notcompleted`)
   }
 
   createEnrollment(enrollment:Enrollment){

@@ -38,7 +38,7 @@ export class StudentListComponent implements OnInit {
 
   fetchEnrollments() {
     this.students.forEach(student => {
-      const nicNumber = Number(student.nic); 
+      const nicNumber:string = (student.nic); 
 
      
       forkJoin([
@@ -77,6 +77,8 @@ export class StudentListComponent implements OnInit {
   // }
 
   onDelete(studentNic: string): void {
+
+    
     const confirmDelete = window.confirm('Are you sure you want to delete this student?');
 
     if (confirmDelete) {
