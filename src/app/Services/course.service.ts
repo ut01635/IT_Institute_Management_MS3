@@ -14,7 +14,10 @@ export class CourseService {
   private coursesSubject = new BehaviorSubject<Course[]>([]);
   public courses$ = this.coursesSubject.asObservable();
 
+
   constructor(private http: HttpClient) { }
+
+
 
   getAllCourses(): any {
     this.http.get<Course[]>(this.courseApi).pipe(
@@ -27,10 +30,21 @@ export class CourseService {
     });
   }
 
+
+
   addCourse(formData: FormData): Observable<Course> {
     return this.http.post<Course>(this.courseApi, formData).pipe(
       catchError((error) => {
         console.error('Error adding course', error);
+        throw error;
+      })
+    );
+  }
+
+  deleteCourse(courseId: string) {
+    return this.http.delete(`${this.courseApi}/${courseId}`).pipe(
+      catchError((error) => {
+        console.error('Error deleting course', error);
         throw error;
       })
     );

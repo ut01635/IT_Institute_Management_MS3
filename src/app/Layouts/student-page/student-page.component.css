@@ -15,13 +15,13 @@ footer .bi {
 /* Tab Hover Effects */
 .tab-bar__tab-link:hover,
 .tab-bar__tab-link:focus-visible {
-  color: #fbe8a6; /* Original hover color */
+  color: #868685; /* Original hover color */
   transform: scale(1.1);
 }
 
 /* Active Tab Style */
 .tab-bar__tab-link.active {
-  color: #f4976c; /* Original active color */
+  color: #ffffff; /* Original active color */
 }
 
 /* Footer Tab Names */

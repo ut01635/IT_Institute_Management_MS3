@@ -9,12 +9,15 @@ import { admin } from './Modal';
 export class AdminService {
 
   private getAdminurl = 'https://localhost:7055/api/Admin';
+
+
   private adminsSubject = new BehaviorSubject<admin[]>([]);
   public admins$ = this.adminsSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  // Fetch the list of admins from the API
+  
+
   getAdmins(): Observable<admin[]> {
     return this.http.get<admin[]>(this.getAdminurl).pipe(
       catchError((error) => {
@@ -24,7 +27,7 @@ export class AdminService {
     );
   }
 
-  // Add a new admin
+  
   addAdmin(formData: FormData): Observable<admin> {
     return this.http.post<admin>(this.getAdminurl, formData).pipe(
       catchError((error) => {
@@ -34,10 +37,22 @@ export class AdminService {
     );
   }
 
-  // Refresh the admin list by re-fetching the data from the API
+  deleteAdmin(nic: string) {
+    const deleteUrl = `${this.getAdminurl}/${nic}`;
+    return this.http.delete(deleteUrl).pipe(
+      catchError((error) => {
+        console.error('Error deleting admin', error);
+        throw error;
+      })
+    );
+  }
+
+  
   refreshAdminList(): void {
     this.getAdmins().subscribe((admins) => {
-      this.adminsSubject.next(admins); // Update the BehaviorSubject with the new list
+      this.adminsSubject.next(admins); 
     });
   }
+
+
 }

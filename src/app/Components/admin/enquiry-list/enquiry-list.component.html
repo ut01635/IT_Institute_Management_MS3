@@ -22,15 +22,15 @@
         <td>{{ enquiry.name }}</td>
         <td>{{ enquiry.email }}</td>
         <td>{{ enquiry.message }}</td>
-        <td>
-          <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onReplay(enquiry.email)">
-            <i class="bi bi-pencil"></i> Reply
+        <td class="d-flex">
+          <button type="button" class="btn btn-warning me-3 btn-lg" (click)="onReplay(enquiry.email)">
+            <i class="bi bi-pencil"></i>
           </button>
-          <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onView(enquiry.id)">
+          <!-- <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onView(enquiry.id)">
             <i class="bi bi-eye"></i> View
-          </button>
-          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(enquiry.id)">
-            <i class="bi bi-trash"></i> Delete
+          </button> -->
+          <button type="button" class="btn btn-danger btn-lg" (click)="onDelete(enquiry.id)">
+            <i class="bi bi-trash"></i> 
           </button>
         </td>
       </tr>
