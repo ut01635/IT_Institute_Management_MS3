@@ -1,1 +1,70 @@
-<p>admin-form works!</p>
+
+<div class="modal-header bg-white text-black">
+    <h5 class="modal-title" id="adminModalLabel">Add Admin</h5>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
+  </div>
+  
+  <div class="modal-body">
+    <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" class="form-control">
+      <p class="message text-center">Add a new admin to the system.</p>
+  
+      <div class="row">
+       
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="nic" type="text" required />
+            <label class="label">NIC</label>
+            <div *ngIf="adminForm.get('nic')?.touched && adminForm.get('nic')?.invalid" class="error-message">
+              <small *ngIf="adminForm.get('nic')?.hasError('required')">NIC is required.</small>
+            </div>
+          </div>
+        </div>
+  
+        
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="name" type="text" required />
+            <label class="label">Name</label>
+          </div>
+        </div>
+  
+       
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="email" type="email" required />
+            <label class="label">Email</label>
+          </div>
+        </div>
+  
+        
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="phone" type="text" required />
+            <label class="label">Phone</label>
+          </div>
+        </div>
+  
+       
+        <div class="col-md-6 col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="password" type="password" required />
+            <label class="label">Password</label>
+          </div>
+        </div>
+  
+       
+        <div class="col-12 mb-3">
+          <div class="input-field">
+            <input class="input" type="file" formControlName="image" (change)="onImageChange($event)" required />
+            <label class="label">Admin Image</label>
+          </div>
+        </div>
+      </div>
+  
+      <button type="submit" class="submit-btn" [disabled]="adminForm.invalid">
+        <i class="bi bi-save"></i> Save Admin
+      </button>
+    </form>
+  </div>
+  
+
