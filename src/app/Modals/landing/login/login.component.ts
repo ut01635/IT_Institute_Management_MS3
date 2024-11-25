@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoginRequest } from '../../../Services/Modal';
 import { AuthService } from '../../../Services/auth.service';
 
+import { jwtDecode } from 'jwt-decode';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,10 +21,39 @@ export class LoginComponent {
   // This method will handle form submission
   onSubmit(): void {
     if (this.login.nic && this.login.password) {
-      // Perform login logic here, e.g., call API to authenticate
-      console.log('Form Submitted:', this.login);
+      // Call the login service method
+      this.loginService.login(this.login).subscribe(
+        (response: string) => {
+          // Store the token in localStorage
+          localStorage.setItem('Token', response);
+
+          // Decode the JWT token to get user details (including the Role)
+          const userDetails: any = jwtDecode(response);
+
+          // Check the Role value directly and navigate accordingly
+          if (userDetails.Role === 'Admin') {
+            // Navigate to Admin Dashboard
+            this.router.navigate(['/admin']);
+          } else if (userDetails.Role === 'Student') {
+            // Navigate to Student Dashboard
+            this.router.navigate(['/student']);
+          } else if (userDetails.Role === 'MasterAdmin') {
+            // Navigate to MasterAdmin Dashboard
+            this.router.navigate(['/admin']);
+          } else {
+            // Handle unexpected role
+            console.error('Unrecognized role');
+            alert('Role is unrecognized or missing.');
+          }
+        },
+        (error) => {
+          console.error('Login failed:', error);
+          alert('Invalid credentials or server error!');
+        }
+      );
     } else {
       console.log('Form is invalid');
+      alert('Please enter both NIC and password.');
     }
   }
 }
