@@ -47,6 +47,16 @@ export class AdminService {
     );
   }
 
+
+  updateAdmin(nic: string, formData: FormData): Observable<admin> {
+    const updateUrl = `${this.getAdminurl}/${nic}`;
+    return this.http.put<admin>(updateUrl, formData).pipe(
+      catchError((error) => {
+        console.error('Error updating admin', error);
+        throw error;
+      })
+    );
+  }
   
   refreshAdminList(): void {
     this.getAdmins().subscribe((admins) => {
