@@ -1,1 +1,91 @@
-<p>announcement-list works!</p>
+<div class="container mt-4">
+    <h2 class="text-center mb-4 text-darkbule fw-bolder">Announcements</h2>
+
+    <!-- Filters Section -->
+    <div class="row mb-4">
+        <!-- Date Range Picker -->
+        <div class="col-12 col-md-6 mb-3">
+            <!-- <label for="dateRange" class="form-label">Select Date Range</label> -->
+            <input type="text" id="dateRange" placeholder="Select Date Range" class="form-control theme-dark-blue"
+                bsDaterangepicker [bsConfig]="{
+                    isAnimated: true,
+                    adaptivePosition: true,
+                    containerClass: 'theme-dark-blue',
+                    rangeInputFormat: 'YYYY-MM-DD'
+                }" autocomplete="off" [(ngModel)]="selectedDateRange" />
+        </div>
+
+        <!-- Month Filter -->
+        <div class="col-12 col-md-6 mb-3">
+            <!-- <label for="month" class="form-label">Month</label> -->
+            <select id="month" class="form-control custom-month-select" [(ngModel)]="selectedMonth">
+                <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Announcements List -->
+    <div class="row">
+        <div class="col-12">
+            <!-- Check if announcements exist after filtering -->
+            <ng-container
+                *ngIf="announcements | dateRangeFilter:selectedDateRange | monthFilter:selectedMonth as filteredAnnouncements; else noResults">
+                <div *ngFor="let announcement of filteredAnnouncements">
+                    <div class="card mb-4">
+                        <div
+                            class="card-header d-flex justify-content-between align-items-center bg-darkblue text-white">
+                            <span>Admin</span>
+                            <span>{{ announcement.date | date: 'medium' }}</span>
+                        </div>
+                        <div class="card-body d-flex justify-content-between">
+                            <div>
+                                <h5 class="card-title text-darkbule">{{ announcement.title }}</h5>
+                            </div>
+                            <div>
+                                <button class="btn btn-secondary me-2" [attr.data-bs-toggle]="'modal'"
+                                    [attr.data-bs-target]="'#announcementModal'"
+                                    (click)="viewAnnouncement(announcement)">
+                                    <i class="bi bi-eye"></i> View
+                                </button>
+                                <button class="btn btn-danger me-2"
+                                    (click)="onDelete(announcement.id)">
+                                    <i class="bi bi-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- No Results Fallback -->
+            <ng-template #noResults>
+                <div class="text-center text-muted my-4">
+                    <i class="bi bi-info-circle" style="font-size: 2rem;"></i>
+                    <p class="mt-3">No announcements found for the selected filters.</p>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<!-- Announcement View Modal -->
+<div class="modal fade" id="announcementModal" tabindex="-1" aria-labelledby="announcementModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-darkbule" id="announcementModalLabel">{{ selectedAnnouncement?.title }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Date:</strong> {{ selectedAnnouncement?.date | date: 'medium' }}</p>
+                <p><strong>Details:</strong></p>
+                <!-- Display body with newlines preserved -->
+                <p class="announcement-body">{{ selectedAnnouncement?.body }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
