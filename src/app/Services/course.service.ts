@@ -19,16 +19,21 @@ export class CourseService {
 
 
 
-  getAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.courseApi).pipe(
+  getAllCourses(): any {
+    this.http.get<Course[]>(this.courseApi).pipe(
       catchError((error) => {
         console.error('Error fetching courses', error);
-        // Use throwError to propagate the error to the subscriber
-        return throwError(() => error);
+        return throwError(() => error); 
       })
+    ).subscribe(
+      (courses: Course[]) => {
+        this.coursesSubject.next(courses); 
+      },
+      (error) => {
+        console.error('Failed to load courses', error);
+      }
     );
   }
-  
 
 
   addCourse(formData: FormData): Observable<Course> {
@@ -39,6 +44,17 @@ export class CourseService {
       })
     );
   }
+
+
+  updateCourse(courseId: string, formData: FormData): Observable<Course> {
+    return this.http.put<Course>(`${this.courseApi}/${courseId}`, formData).pipe(
+      catchError((error) => {
+        console.error('Error updating course', error);
+        throw error;
+      })
+    );
+  }
+
 
   deleteCourse(courseId: string) {
     return this.http.delete(`${this.courseApi}/${courseId}`).pipe(

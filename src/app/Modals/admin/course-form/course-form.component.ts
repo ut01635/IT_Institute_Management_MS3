@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseService } from '../../../Services/course.service';
 import { HttpClient } from '@angular/common/http';
+import { Course } from '../../../Services/Modal';
 
 @Component({
   selector: 'app-course-form',
@@ -10,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './course-form.component.css'
 })
 export class CourseFormComponent implements OnInit {
+  @Input() course: Course | null = null;
   courseForm: FormGroup;
   imageFiles: File[] = [];  
 
@@ -29,9 +31,10 @@ export class CourseFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+    if (this.course) {
+      this.courseForm.patchValue(this.course); 
+    }
   }
-
  
   onImageChange(event: any): void {
     const files = event.target.files;
@@ -60,21 +63,36 @@ export class CourseFormComponent implements OnInit {
         });
       }
 
+      if (this.course) {
+        
+        this.courseService.updateCourse(this.course.id, formData).subscribe(
+          (response) => {
+            alert('Course updated successfully');
+            this.courseService.refreshCourseList();
+            this.activeModal.close();
+            
+          },
+          (error) => {
+            alert('Error updating course , ' + error.message);
+          }
+        );
+      }
+      else{
+        this.courseService.addCourse(formData).subscribe(
+          (response) => {
+            alert('Course added successfully');
+            this.courseService.refreshCourseList();  
+            this.activeModal.close(); 
+          },
+          (error) => {
+            alert('Error adding course , '+ error);
+          }
+        );
+      }
       
-      this.courseService.addCourse(formData).subscribe(
-        (response) => {
-          alert('Course added successfully');
-          this.courseService.refreshCourseList();  
-          this.activeModal.close(); 
-        },
-        (error) => {
-          console.error('Error adding course', error);
-        }
-      );
-    } else {
-      console.log('Form is invalid');
-      this.courseForm.markAllAsTouched();  
-    }
+    
+    }  
+    
   }
 
   

@@ -15,6 +15,7 @@ export class LandingPageComponent implements OnInit {
   courses: Course[] = [];
   enquiryResults:string = ''
   contactForm: FormGroup;
+  errorMessage!: string;
 
   constructor(
     private courseService: CourseService,
@@ -41,13 +42,17 @@ export class LandingPageComponent implements OnInit {
     }
   }
   
-  ngOnInit() {
-    this.courseService.getAllCourses().subscribe(
+  ngOnInit(): void {
+    this.courseService.getAllCourses();
+
+   
+    this.courseService.courses$.subscribe(
       (data: Course[]) => {
-        this.courses = data;
+        this.courses = data;  
       },
       (error: any) => {
-        alert('Course fetch failed');
+        this.errorMessage = 'Failed to load courses';  
+        console.error('Error loading courses:', error);  
       }
     );
   }
