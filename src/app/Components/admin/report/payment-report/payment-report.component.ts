@@ -10,6 +10,16 @@ import { Payment } from '../../../../Services/Modal';
 export class PaymentReportComponent implements OnInit {
   payments: Payment[] = []; // Array to hold enrollment data
   paymentDateFilter: null = null;
+  studentNameOrNicFilter: string = '';
+  selectedCourse: string = '';
+  
+  // Example static data for courses
+  courses = [
+    { id: '1', name: 'Math 101' },
+    { id: '2', name: 'Science 101' },
+    { id: '3', name: 'History 101' },
+    // Add more courses dynamically if needed
+  ];
 
   constructor(private paymentService: PaymentService) {}
   
