@@ -21,13 +21,4 @@ export class PaymentReportComponent implements OnInit {
     // You could fetch payment data from an API here
   }
 
-  previousPage(): void {
-    console.log('Previous page clicked');
-    // Logic for pagination
-  }
-
-  nextPage(): void {
-    console.log('Next page clicked');
-    // Logic for pagination
-  }
 }

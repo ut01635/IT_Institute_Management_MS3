@@ -19,13 +19,4 @@ export class EnrollmentReportComponent  implements OnInit {
   ngOnInit(): void {
   }
 
-  previousPage(): void {
-    console.log('Previous page clicked');
-    // Add logic for pagination
-  }
-
-  nextPage(): void {
-    console.log('Next page clicked');
-    // Add logic for pagination
-  }
 }

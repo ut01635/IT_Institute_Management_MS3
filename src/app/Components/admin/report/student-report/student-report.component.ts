@@ -21,13 +21,5 @@ export class StudentReportComponent  implements OnInit {
     // Fetch data from API or service if needed
   }
 
-  previousPage(): void {
-    console.log('Previous page clicked');
-    // Add pagination logic here if needed
-  }
 
-  nextPage(): void {
-    console.log('Next page clicked');
-    // Add pagination logic here if needed
-  }
 }
