@@ -26,5 +26,4 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     // this.renderIncomeChart();
     // this.renderEnrollmentChart();
   }
-
 }
