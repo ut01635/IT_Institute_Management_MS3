@@ -32,7 +32,7 @@ export class CourseFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.course) {
-      this.courseForm.patchValue(this.course);  // Populate the form for editing
+      this.courseForm.patchValue(this.course); 
     }
   }
  
@@ -64,7 +64,7 @@ export class CourseFormComponent implements OnInit {
       }
 
       if (this.course) {
-        // Update the existing course
+        
         this.courseService.updateCourse(this.course.id, formData).subscribe(
           (response) => {
             alert('Course updated successfully');
@@ -73,7 +73,7 @@ export class CourseFormComponent implements OnInit {
             
           },
           (error) => {
-            alert('Error updating course , ' +error);
+            alert('Error updating course , ' + error.message);
           }
         );
       }

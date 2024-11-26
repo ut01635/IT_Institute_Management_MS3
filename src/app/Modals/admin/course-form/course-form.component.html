@@ -8,7 +8,7 @@
     <p class="message text-center">{{ course ? 'Edit the course details' : 'Add a new course to the catalog.' }}</p>
 
     <div class="row">
-      <!-- Course Name Field -->
+     
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
           <input class="input" formControlName="courseName" type="text" required />
@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <!-- Level Field -->
+     
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
           <select class="input" formControlName="level" required>
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <!-- Duration Field (Dropdown with options for 2 months and 6 months) -->
+    
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
           <select class="input" formControlName="duration" required>
@@ -49,7 +49,7 @@
         </div>
       </div>
 
-      <!-- Fees Field -->
+     
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
           <input class="input" formControlName="fees" type="number" required />
@@ -60,7 +60,7 @@
         </div>
       </div>
 
-      <!-- Description Field -->
+    
       <div class="col-12 mb-3">
         <div class="input-field">
           <textarea class="input" formControlName="description" required></textarea>
@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <!-- Image Upload (Multiple Images) -->
+    
       <div class="col-12 mb-3">
         <div class="input-field">
           <input class="input" type="file" formControlName="images" (change)="onImageChange($event)" multiple />
@@ -83,7 +83,7 @@
       </div>
     </div>
 
-    <!-- Submit Button -->
+   
     <button type="submit" class="submit-btn" [disabled]="courseForm.invalid">
       <i class="bi bi-save"></i>{{ course ? 'Update' : 'Save' }} Course
     </button>
