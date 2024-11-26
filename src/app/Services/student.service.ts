@@ -31,6 +31,7 @@ export class StudentService {
       });
   }
 
+  
 
   addStudent(formData: FormData): Observable<Student> {
     return this.http.post<Student>(this.GetAllStudentApi, formData).pipe(
@@ -39,6 +40,10 @@ export class StudentService {
         throw error;
       })
     );
+  }
+
+  updateStudent(nic: string, studentData: FormData): Observable<Student> {
+    return this.http.put<Student>(`${this.GetAllStudentApi}/${nic}`, studentData);
   }
 
 
