@@ -1,11 +1,15 @@
 <div class="modal-header bg-white text-black">
-  <h5 class="modal-title" id="registerModalLabel">Register</h5>
+  <h5 class="modal-title" id="registerModalLabel">
+    {{ isEditMode ? 'Update Student' : 'Register Student' }}
+  </h5>
   <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
 </div>
 
 <div class="modal-body">
   <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-control">
-    <p class="message text-center">Signup now and get full access to our app.</p>
+    <p class="message text-center">
+      {{ isEditMode ? 'Update the student details below' : 'Signup now and get full access to our app.' }}
+    </p>
 
     <div class="row">
      
@@ -139,7 +143,7 @@
 
    
     <button type="submit" class="submit-btn" [disabled]="studentForm.invalid">
-      Submit
+      {{ isEditMode ? 'Update' : 'Submit' }}
     </button>
   </form>
 </div>

@@ -41,6 +41,10 @@ export class StudentService {
     );
   }
 
+  updateStudent(nic: string, studentData: FormData): Observable<Student> {
+    return this.http.put<Student>(`${this.GetAllStudentApi}/${nic}`, studentData);
+  }
+
 
   deleteStudent(nic: string): Observable<void> {
     const deleteUrl = `${this.GetAllStudentApi}/${nic}`;
