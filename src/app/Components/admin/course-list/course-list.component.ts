@@ -34,16 +34,12 @@ export class CourseListComponent implements OnInit {
 
 
   
-  onEdit(course: Course): void {
-    this.selectedCourse = course;
+  onEdit(courseId: number): void {
+    const courseToEdit = this.courses.find(course => course.courseId === courseId);
     const modalRef = this.modalService.open(CourseFormComponent, {
       size: 'lg'
     });
-    modalRef.componentInstance.course = course;  // Pass course to form component
-    modalRef.result.then(
-      () => this.loadCourses(),  // Refresh list after edit
-      () => {}
-    );
+    modalRef.componentInstance.courseToEdit = courseToEdit;
   }
 
 

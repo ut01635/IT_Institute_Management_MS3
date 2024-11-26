@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from '../../../Services/admin.service';
 import { HttpClient } from '@angular/common/http';
+import { admin } from '../../../Services/Modal';
 
 @Component({
   selector: 'app-admin-form',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './admin-form.component.css'
 })
 export class AdminFormComponent {
-
+  @Input() adminToEdit: admin | null = null;
   adminForm: FormGroup;
   imageFile: File | null = null;
 
@@ -47,6 +48,14 @@ export class AdminFormComponent {
     });
   }
 
+  ngOnInit(): void {
+    
+    if (this.adminToEdit) {
+      this.adminForm.patchValue(this.adminToEdit);
+    }
+  }
+
+
   onImageChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -60,22 +69,38 @@ export class AdminFormComponent {
       Object.keys(this.adminForm.value).forEach(key => {
         formData.append(key, this.adminForm.value[key]);
       });
-      
+
       if (this.imageFile) {
         formData.append('image', this.imageFile, this.imageFile.name);
       }
 
-      this.adminService.addAdmin(formData).subscribe(
-        response => {
-          alert('Admin added successfully!');
-          this.adminService.refreshAdminList(); 
-          this.activeModal.close();
-        },
-        error => {
-          console.error('Error adding admin:', error);
-        }
-      );
+      if (this.adminToEdit) {
+       
+        this.adminService.updateAdmin(this.adminToEdit.nic, formData).subscribe(
+          response => {
+            alert('Admin updated successfully!');
+            this.adminService.refreshAdminList();
+            this.activeModal.close();
+          },
+          error => {
+            console.error('Error updating admin:', error);
+          }
+        );
+      } else {
+       
+        this.adminService.addAdmin(formData).subscribe(
+          response => {
+            alert('Admin added successfully!');
+            this.adminService.refreshAdminList();
+            this.activeModal.close();
+          },
+          error => {
+            console.error('Error adding admin:', error);
+          }
+        );
+      }
     }
   }
-
 }
+
+

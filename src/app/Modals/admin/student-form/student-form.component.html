@@ -1,6 +1,6 @@
 <div class="modal-header bg-white text-black">
   <h5 class="modal-title" id="registerModalLabel">
-    {{ isEditMode ? 'Update Student' : 'Register Student' }}
+    {{ studentToEdit ? 'Update Student' : 'Register Student' }}
   </h5>
   <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
 </div>
@@ -8,18 +8,18 @@
 <div class="modal-body">
   <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-control">
     <p class="message text-center">
-      {{ isEditMode ? 'Update the student details below' : 'Signup now and get full access to our app.' }}
+      {{ studentToEdit ? 'Update the student details below' : 'Signup now and get full access to our app.' }}
     </p>
 
     <div class="row">
      
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
-          <input class="input" formControlName="NIC" type="text" required />
+          <input class="input" formControlName="nic" type="text" required />
           <label class="label">NIC</label>
-          <div *ngIf="studentForm.get('NIC')?.touched && studentForm.get('NIC')?.invalid" class="error-message">
-            <small *ngIf="studentForm.get('NIC')?.hasError('required')">NIC is required.</small>
-            <small *ngIf="studentForm.get('NIC')?.hasError('pattern')">Invalid NIC format.</small>
+          <div *ngIf="studentForm.get('nic')?.touched && studentForm.get('nic')?.invalid" class="error-message">
+            <small *ngIf="studentForm.get('nic')?.hasError('required')">NIC is required.</small>
+            <small *ngIf="studentForm.get('nic')?.hasError('pattern')">Invalid NIC format.</small>
           </div>
         </div>
       </div>
@@ -143,7 +143,7 @@
 
    
     <button type="submit" class="submit-btn" [disabled]="studentForm.invalid">
-      {{ isEditMode ? 'Update' : 'Submit' }}
+      {{ studentToEdit ? 'Update' : 'Submit' }}
     </button>
   </form>
 </div>

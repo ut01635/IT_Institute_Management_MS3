@@ -51,7 +51,7 @@ export class StudentListComponent implements OnInit {
 
   openModal() {
     const modalRef = this.modalService.open(StudentFormComponent, { size: 'lg' });
-    modalRef.componentInstance.isEditMode = false; // Add a flag for new student
+    modalRef.componentInstance.isEditMode = false; 
     modalRef.result.then((result: any) => {
       console.log('Modal closed', result);
     }, (reason: any) => {
@@ -59,16 +59,13 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-  editStudent(student: Student) {
-    const modalRef = this.modalService.open(StudentFormComponent, { size: 'lg' });
-    modalRef.componentInstance.isEditMode = true;  // Add a flag for edit mode
-    modalRef.componentInstance.studentData = student; // Pass the selected student data for editing
-    console.log(student.nic);
-    modalRef.result.then((result: any) => {
-      console.log('Modal closed', result);
-    }, (reason: any) => {
-      console.log('Modal dismissed', reason);
+
+  editStudent(nic: string): void {
+    const studentToEdit = this.students.find(student => student.nic === nic);
+    const modalRef = this.modalService.open(StudentFormComponent, {
+      size: 'lg'
     });
+    modalRef.componentInstance.studentToEdit = studentToEdit;
   }
 
   onDelete(studentNic: string): void {

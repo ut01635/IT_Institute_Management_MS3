@@ -1,11 +1,15 @@
 <div class="modal-header bg-white text-black">
-    <h5 class="modal-title" id="adminModalLabel">Add Admin</h5>
+  <h5 class="modal-title" id="adminModalLabel">
+    {{ adminToEdit ? 'Update Admin' : 'Register Admin' }}
+  </h5>
     <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
   </div>
   
   <div class="modal-body">
     <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" class="form-control">
-      <p class="message text-center">Add a new admin to the system.</p>
+      <p class="message text-center">
+        {{ adminToEdit ? 'Update admin information' : 'Add a new admin to the system.' }}
+      </p>
   
       <div class="row">
        
@@ -83,7 +87,7 @@
   
       
       <button type="submit" class="submit-btn" [disabled]="adminForm.invalid">
-        <i class="bi bi-save"></i> Save Admin
+        <i class="bi bi-save"></i>{{ adminToEdit ? 'Update Admin' : 'Save Admin' }}
       </button>
     </form>
   </div>
