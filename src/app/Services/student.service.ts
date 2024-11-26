@@ -31,6 +31,7 @@ export class StudentService {
       });
   }
 
+  
 
   addStudent(formData: FormData): Observable<Student> {
     return this.http.post<Student>(this.GetAllStudentApi, formData).pipe(
