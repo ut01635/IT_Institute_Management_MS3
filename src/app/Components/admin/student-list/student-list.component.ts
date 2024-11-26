@@ -27,9 +27,13 @@ export class StudentListComponent implements OnInit {
     this.studentService.students$.subscribe((students) => {
       this.students = students;
       this.fetchEnrollments();
+      console.log(this.students);
     });
 
     this.studentService.getStudents();
+
+    
+    
   }
 
   fetchEnrollments() {
@@ -83,5 +87,42 @@ export class StudentListComponent implements OnInit {
       );
     }
   }
+
+  toggleLockOrUnlock(student: any): void {
+    if (student.IsLocked) {
+      this.toggleUnlock(student);  // Pass the entire student object
+    } else {
+      this.toggleLock(student);  // Pass the entire student object
+    }
+  }
+  
+  toggleLock(student: any) {
+    this.studentService.lockAccount(student.nic).subscribe(
+      (data) => {
+        alert("Account locked with NIC: " + student.nic);
+        // Update the student.IsLocked value directly here
+        student.IsLocked = true;
+        // this.studentService.getStudents();
+      },
+      (error) => {
+        alert("Account locking failed for NIC: " + student.nic);
+      }
+    );
+  }
+  
+  toggleUnlock(student: any) {
+    this.studentService.dirrectUnlockAccount(student.nic).subscribe(
+      (data) => {
+        alert("Account unlocked with NIC: " + student.nic);
+        // Update the student.IsLocked value directly here
+        student.IsLocked = false;
+        // this.studentService.getStudents();
+      },
+      (error) => {
+        alert("Account unlocking failed for NIC: " + student.nic);
+      }
+    );
+  }
+  
 
 }

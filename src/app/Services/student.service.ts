@@ -9,7 +9,7 @@ import { Student } from './Modal';
 export class StudentService {
 
   
-  private GetAllStudentApi = 'https://localhost:7055/api/Students';
+  private BaseStudentURL = 'https://localhost:7055/api/Students';
 
   private studentsSubject = new BehaviorSubject<Student[]>([]);
   public students$ = this.studentsSubject.asObservable();
@@ -19,7 +19,7 @@ export class StudentService {
 
   getStudents(): void {
     this.http
-      .get<Student[]>(this.GetAllStudentApi)
+      .get<Student[]>(this.BaseStudentURL)
       .pipe(
         catchError((error) => {
           console.error('Error fetching students', error);
@@ -34,7 +34,7 @@ export class StudentService {
   
 
   addStudent(formData: FormData): Observable<Student> {
-    return this.http.post<Student>(this.GetAllStudentApi, formData).pipe(
+    return this.http.post<Student>(this.BaseStudentURL, formData).pipe(
       catchError((error) => {
         console.error('Error adding student', error);
         throw error;
@@ -43,12 +43,12 @@ export class StudentService {
   }
 
   updateStudent(nic: string, studentData: FormData): Observable<Student> {
-    return this.http.put<Student>(`${this.GetAllStudentApi}/${nic}`, studentData);
+    return this.http.put<Student>(`${this.BaseStudentURL}/${nic}`, studentData);
   }
 
 
   deleteStudent(nic: string): Observable<void> {
-    const deleteUrl = `${this.GetAllStudentApi}/${nic}`;
+    const deleteUrl = `${this.BaseStudentURL}/${nic}`;
     return this.http.delete<void>(deleteUrl).pipe(
       catchError((error) => {
         if (error.status === 404) {
@@ -65,5 +65,15 @@ export class StudentService {
 
   refreshStudentList(): void {
     this.getStudents(); 
+  }
+
+
+  lockAccount(nic:string){
+   // https://localhost:7055/api/Students/123456789V/lock
+   return this.http.put(`${this.BaseStudentURL}/${nic}/lock`,nic)
+  }
+
+  dirrectUnlockAccount(nic:string){
+    return this.http.put(`${this.BaseStudentURL}/${nic}/Directunlock`,nic)
   }
 }
