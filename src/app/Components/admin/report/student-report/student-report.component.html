@@ -1,47 +1,124 @@
-<div class="container my-5">
-    <h2 class="text-center mb-4">Student Report</h2>
-  
-    <!-- Filters Section (Optional) -->
-    <div class="row mb-4">
-      <div class="col-md-4">
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" class="form-control" />
-      </div>
-      <div class="col-md-4">
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate" class="form-control" />
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-primary mt-4">Filter</button>
+<!-- student-report.component.html -->
+<main id="student-report" class="container card mt-2">
+  <h1 class="text-center mb-5">Student Report</h1>
+
+  <!-- Form Section -->
+  <form [formGroup]="reportForm" (ngSubmit)=" onsubmit()">
+    <div id="search-container" class="container">
+      <div class="row">
+        <!-- NIC Input Field -->
+        <div class="col-12 col-md-8 mb-3">
+          <input
+            type="text"
+            id="search-by-nic"
+            placeholder="NIC number"
+            class="form-control"
+            style="height: 50px;"
+            formControlName="nic"
+          />
+          <!-- Error Message -->
+          <div
+            *ngIf="reportForm.controls['nic'].invalid && reportForm.controls['nic'].touched"
+            class="text-danger mt-1"
+          >
+            NIC number is required.
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="col-12 col-md-4 mb-3">
+          <button
+            type="submit"
+            id="report-generate-btn"
+            class="btn btn-success w-100 "
+            style="height: 50px;"
+          >
+            <i class="bi bi-search"></i> Generate Report
+          </button>
+        </div>
       </div>
     </div>
-  
-    <!-- Student Data Table -->
-    <div class="table-responsive">
-      <table class="table table-bordered table-striped">
-        <thead>
+  </form>
+
+  <!-- Report Container -->
+  <div id="report-container" class="mt-4" *ngIf="reportData">
+
+    <!-- Personal Details -->
+    <div class="personal-details">
+      <h2 class="ms-3">Personal Details</h2>
+      <table class="table table-responsive">
+        <tr>
+          <td><strong>NIC Number:</strong></td>
+          <td><input type="text" id="nic" class="form-control" [(ngModel)]="reportData.nic" disabled></td>
+        </tr>
+        <tr>
+          <td><strong>Full Name:</strong></td>
+          <td><input type="text" id="name" class="form-control" [(ngModel)]="reportData.name" disabled></td>
+        </tr>
+        <tr>
+          <td><strong>Email:</strong></td>
+          <td><input type="text" id="email" class="form-control" [(ngModel)]="reportData.email" disabled></td>
+        </tr>
+        <tr>
+          <td><strong>Phone No:</strong></td>
+          <td><input type="text" id="phone" class="form-control" [(ngModel)]="reportData.phone" disabled></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Course Details -->
+    <div class="course-details mt-4">
+      <h2><i class="bi bi-book"></i> Course Details</h2>
+      <select id="EnrollCourses" class="form-select" aria-label="Course selection" [(ngModel)]="selectedCourse"
+        (change)="selectCourse()">
+        <option selected>Following Course</option>
+        <option *ngFor="let course of reportData.courses" [value]="course.id">{{ course.name }}</option>
+      </select>
+    </div>
+
+    <!-- Payment Details -->
+    <div class="payment-details mt-4">
+      <h2><i class="bi bi-credit-card"></i> Payment Details</h2>
+
+      <!-- Payment Info Table -->
+      <table class="table table-bordered table-responsive">
+        <tr>
+          <td><strong>Course Fee:</strong></td>
+          <td><input type="text" id="fee" class="form-control" [(ngModel)]="reportData.fee" disabled></td>
+        </tr>
+        <tr>
+          <td><strong>Payment Plan:</strong></td>
+          <td><input type="text" id="paymentPlan" class="form-control" [(ngModel)]="reportData.paymentPlan" disabled>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Paid Amount:</strong></td>
+          <td><input type="text" id="paidAmount" class="form-control text-success" [(ngModel)]="reportData.paidAmount"
+              disabled></td>
+        </tr>
+        <tr>
+          <td><strong>Due Amount:</strong></td>
+          <td><input type="text" id="dueAmount" class="form-control text-danger" [(ngModel)]="reportData.dueAmount"
+              disabled></td>
+        </tr>
+      </table>
+
+      <!-- Payment History Table -->
+      <table class="table mt-4 table-responsive">
+        <thead class="table-dark">
           <tr>
-            <th>#</th>
-            <th>Student Name</th>
-            <th>Enrollment Number</th>
-            <th>Course</th>
-            <th>Grade</th>
-            <th>Status</th>
+            <th>Date</th>
+            <th>Course Name</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let student of students">
-            <td>{{ student.id }}</td>
-            <td>{{ student.name }}</td>
-            <td>{{ student.enrollmentNumber }}</td>
-            <td>{{ student.course }}</td>
-            <td>{{ student.grade }}</td>
-            <td>{{ student.status }}</td>
+          <tr *ngFor="let payment of reportData.payments">
+            <td>{{ payment.date }}</td>
+            <td>{{ payment.courseName }}</td>
+            <td>{{ payment.amount | currency }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-  
- 
   </div>
-  
+</main>
