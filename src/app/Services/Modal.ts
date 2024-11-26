@@ -73,7 +73,7 @@ export interface Payment {
   amount: number;
   dueAmount: number;
   totalAmount: number;
-  student:Student;
+  student?:Student;
 }
 
 export interface Announcement {
