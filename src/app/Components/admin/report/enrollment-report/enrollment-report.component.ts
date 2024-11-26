@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EnrollmentService } from '../../../../Services/enrollment.service';
+import { Enrollment } from '../../../../Services/Modal';
 
 @Component({
   selector: 'app-enrollment-report',
@@ -6,17 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './enrollment-report.component.css'
 })
 export class EnrollmentReportComponent  implements OnInit {
+  enrollments: Enrollment[] = []; // Array to hold enrollment data
 
-  enrollments: any[] = [
-    { id: 1, name: 'John Doe', email: 'johndoe@example.com', enrollmentDate: new Date(), status: 'Active' },
-    { id: 2, name: 'Jane Smith', email: 'janesmith@example.com', enrollmentDate: new Date(), status: 'Inactive' },
-    { id: 3, name: 'Sarah Lee', email: 'sarahlee@example.com', enrollmentDate: new Date(), status: 'Active' },
-    // Add more sample data
-  ];
-
-  constructor() { }
-
+  constructor(private enrollmentService: EnrollmentService) {}
+  
   ngOnInit(): void {
+    this.enrollmentService.getallEnrollement().subscribe(
+      (data: any[]) => {
+        this.enrollments = data; // Assign the fetched data to the array
+        console.log('Enrollments fetched successfully:', this.enrollments);
+      },
+      (error) => {
+        console.error('Error fetching enrollments:', error);
+      }
+    );
   }
+
 
 }

@@ -17,30 +17,39 @@
     </div>
   
     <!-- Report Table -->
-    <div class="table-responsive">
-      <table class="table table-bordered table-striped">
-        <thead>
+    <div class="table-responsive mt-4">
+      <table class="table table-bordered table-striped text-center">
+        <thead class="table-dark">
           <tr>
-            <th>#</th>
+            <th>NIC</th>
             <th>Name</th>
-            <th>Email</th>
+            <th>Course</th>
+            <th>Fees (LKR)</th>
             <th>Enrollment Date</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Sample data -->
           <tr *ngFor="let enrollment of enrollments">
-            <td>{{ enrollment.id }}</td>
-            <td>{{ enrollment.name }}</td>
-            <td>{{ enrollment.email }}</td>
-            <td>{{ enrollment.enrollmentDate | date:'short' }}</td>
-            <td>{{ enrollment.status }}</td>
+            <td>{{ enrollment.student.nic }}</td>
+            <td>{{ enrollment.student.firstName }} {{ enrollment.student.lastName }}</td>
+            <td>{{ enrollment.course.courseName }}</td>
+            <td>{{ enrollment.course.fees | currency: 'LKR' }}</td>
+            <td>{{ enrollment.enrollmentDate | date: 'dd-MM-yyyy' }}</td>
+            <td>
+              <span 
+                [ngClass]="{
+                  'text-success': enrollment.isComplete,
+                  'text-warning': !enrollment.isComplete
+                }">
+                {{ enrollment.isComplete ? 'Completed' : 'Pending' }}
+              </span>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-  
+    
 
 
   </div>
