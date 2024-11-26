@@ -11,7 +11,7 @@ import { Course } from '../../../Services/Modal';
   styleUrl: './course-form.component.css'
 })
 export class CourseFormComponent implements OnInit {
-  @Input() course: Course | null = null;
+  @Input() courseToEdit: Course | null = null;
   courseForm: FormGroup;
   imageFiles: File[] = [];  
 
@@ -31,8 +31,8 @@ export class CourseFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.course) {
-      this.courseForm.patchValue(this.course); 
+    if (this.courseToEdit) {
+      this.courseForm.patchValue(this.courseToEdit); 
     }
   }
  
@@ -63,9 +63,9 @@ export class CourseFormComponent implements OnInit {
         });
       }
 
-      if (this.course) {
+      if (this.courseToEdit) {
         
-        this.courseService.updateCourse(this.course.id, formData).subscribe(
+        this.courseService.updateCourse(this.courseToEdit.id, formData).subscribe(
           (response) => {
             alert('Course updated successfully');
             this.courseService.refreshCourseList();
