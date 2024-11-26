@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrollmentService } from '../../../../Services/enrollment.service';
+import { Enrollment } from '../../../../Services/Modal';
 
 @Component({
   selector: 'app-enrollment-report',
@@ -7,7 +8,7 @@ import { EnrollmentService } from '../../../../Services/enrollment.service';
   styleUrl: './enrollment-report.component.css'
 })
 export class EnrollmentReportComponent  implements OnInit {
-  enrollments: any[] = []; // Array to hold enrollment data
+  enrollments: Enrollment[] = []; // Array to hold enrollment data
 
   constructor(private enrollmentService: EnrollmentService) {}
   
