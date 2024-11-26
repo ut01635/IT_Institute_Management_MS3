@@ -9,6 +9,7 @@ import { Payment } from '../../../../Services/Modal';
 })
 export class PaymentReportComponent implements OnInit {
   payments: Payment[] = []; // Array to hold enrollment data
+  paymentDateFilter: null = null;
 
   constructor(private paymentService: PaymentService) {}
   

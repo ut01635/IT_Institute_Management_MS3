@@ -1,19 +1,37 @@
-<div class="container my-5">
-  <h2 class="text-center mb-4">Payment Report</h2>
+<div class="container">
+  <div class="container mt-5">
+    <!-- Payment Report Heading and Total Income Card -->
+    <div class="row mb-4 align-items-center">
+      <!-- Left Side: Payment Report Heading -->
+      <div class="col-12 col-md-6">
+        <h2 class="text-darkblue">Payment Report</h2>
+      </div>
+  
+      <!-- Right Side: Total Income Card -->
+      <div class="col-12 col-md-6 d-flex justify-content-end">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body d-flex">
+            <h5 class="card-title">Total Income</h5>
+            <p class="card-text mx-3">$10,000</p> <!-- Replace with dynamic value -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
 
   <!-- Filters Section -->
   <div class="row mb-4">
-    <div class="col-md-4">
-      <label for="startDate">Start Date:</label>
-      <input type="date" id="startDate" class="form-control" />
-    </div>
-    <div class="col-md-4">
-      <label for="endDate">End Date:</label>
-      <input type="date" id="endDate" class="form-control" />
-    </div>
-    <div class="col-md-4">
-      <button class="btn btn-primary mt-4">Filter</button>
-    </div>
+    <!-- <label for="dateRange">Select Date Range</label> -->
+    <input type="text" id="dateRange" placeholder="Select Date" class="form-control theme-dark-blue" 
+    bsDatepicker
+    [bsConfig]="{
+      isAnimated: true,
+      adaptivePosition: true,
+      containerClass: 'theme-dark-blue',
+      rangeInputFormat: 'YYYY-MM-DD'
+    }" autocomplete="off" [(ngModel)]="paymentDateFilter" />
   </div>
 
   <!-- Payment Data Table -->

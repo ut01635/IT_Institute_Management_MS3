@@ -11,6 +11,8 @@ export class PaymentDetailsComponent implements OnInit {
   filteredPayments: Payment[] = [];
   courseNameFilter: string = '';
   paymentDateFilter: null = null;
+
+  
   ngOnInit(): void {
     // Sample Payment Data
     this.payments = [
