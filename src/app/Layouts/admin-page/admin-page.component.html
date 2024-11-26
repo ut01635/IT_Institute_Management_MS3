@@ -15,16 +15,29 @@
         <i class="bi bi-megaphone text-white fs-3 fw-bold"></i>
       </button>
 
+      <div class="d-flex justify-content-center">
+        <img 
+        [src]="baseUrl + admin?.imagePath" 
+          alt="User Profile Picture" 
+          class="rounded-circle img-fluid" 
+          style="max-width: 50px; object-fit: cover;">
+      </div>
+      
+
       <!-- Mobile Sidebar Toggle Button -->
-      <button class="btn btn-lg d-md-none fw-bold" (click)="toggleSidebar()"><i
-          class="bi bi-list text-white fs-3 fw-bold"></i></button>
+      <button class="btn btn-primary btn-lg d-md-none fw-bold p-2" type="button" data-bs-toggle="collapse"
+        data-bs-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
+        <i class="bi bi-list fs-3"></i>
+      </button>
+
+
     </div>
   </header>
 
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <div class="d-flex">
-    <div class="">
+    <div >
       <nav class="col-12 col-md-2 sidebar bg-blurred text-white"
         [ngClass]="{'show': isSidebarVisible, 'dark-mode': isDarkMode, 'light-mode': !isDarkMode}">
         <ul class="nav flex-column">
@@ -80,7 +93,7 @@
             </ul>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item"  *ngIf="userRole === 'MasterAdmin'">
             <a class="nav-link" href="#" [routerLink]="['/admin/admin-list']" (click)="setActiveTab('admins')"
               [class.active]="activeTab === 'admins'">
               <i class="bi bi-person"></i>

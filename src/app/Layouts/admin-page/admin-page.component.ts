@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
+import { AdminService } from '../../Services/admin.service';
+import { admin } from '../../Services/Modal';
 
 @Component({
   selector: 'app-admin-page',
@@ -10,9 +12,14 @@ export class AdminPageComponent {
   title = 'DevHub';
   isSidebarVisible = false; // Default is sidebar hidden on small screens
   isDarkMode = false; // Default to light mode
+  admin:admin | null= null;
+  baseUrl: string = 'https://localhost:7055';
+  userRole:string = ''
+  
 
 
   activeTab: string = 'dashboard'; // Default to 'dashboard'
+
 
   // Function to set the active tab
   setActiveTab(tabName: string): void {
@@ -25,7 +32,7 @@ export class AdminPageComponent {
     this.isSidebarVisible = true; // Toggle the sidebar visibility
   }
 
-  constructor(private authservice:AuthService) {
+  constructor(private authservice:AuthService, private adminService:AdminService) {
     
   }
   
@@ -35,6 +42,14 @@ export class AdminPageComponent {
     const savedTheme = localStorage.getItem('sidebar-theme');
     this.isDarkMode = savedTheme === 'dark';
     this.updateTheme();
+
+    this.userRole = localStorage.getItem('Role') as string;
+    const nic:string = localStorage.getItem('NIC') as string;
+    this.adminService.getAdminByNic(nic).subscribe(data=>{
+      this.admin = data
+    },error=>{
+      console.log(error.error);     
+    })
   }
 
   // Toggle between dark and light mode
