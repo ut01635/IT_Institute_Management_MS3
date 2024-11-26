@@ -1,48 +1,118 @@
-<div class="container my-5">
-    <h2 class="text-center mb-4">Enrollment Report</h2>
-  
-    <!-- Filters Section (optional) -->
-    <div class="row mb-4">
-      <div class="col-md-4">
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" class="form-control" />
+<div class="container">
+  <div class="container">
+    <!-- Payment Report Heading and Cards -->
+    <div class="row mb-4 align-items-center">
+      <!-- Left Side: Payment Report Heading -->
+      <div class="col-12 col-md-6">
+        <h2 class="text-darkblue">Enrollment Report</h2>
       </div>
-      <div class="col-md-4">
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate" class="form-control" />
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-primary mt-4">Filter</button>
+
+      <!-- Right Side: Cards (Total Enrollment and Current Month Income) -->
+      <div class="col-12 col-md-6 d-flex justify-content-end gap-3">
+        <!-- Total Enrollment Card -->
+        <div class="card shadow-lg" style="width: 18rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <div class="card-body d-flex">
+            <h5 class="card-title">Total Enrollments</h5>
+            <p class="card-text mx-3 fs-3">1000</p> <!-- Replace with dynamic value -->
+          </div>
+        </div>
+
+        <!-- Current Month Income Card -->
+        <div class="card shadow-lg" style="width: 18rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <div class="card-body d-flex">
+            <h5 class="card-title">{{currentMonth}} Enrollments</h5>
+            <p class="card-text mx-3 fs-3">100</p> <!-- Replace with dynamic value -->
+          </div>
+        </div>
       </div>
     </div>
-  
-    <!-- Report Table -->
-    <div class="table-responsive mt-4">
-      <table class="table table-bordered table-striped text-center">
-        <thead class="table-dark">
-          <tr>
-            <th>NIC</th>
-            <th>Name</th>
-            <th>Course</th>
-            <th>Fees (LKR)</th>
-            <th>Enrollment Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let enrollment of enrollments">
-            <td>{{ enrollment.student.nic }}</td>
-            <td>{{ enrollment.student.firstName }} {{ enrollment.student.lastName }}</td>
-            <td>{{ enrollment.course.courseName }}</td>
-            <td>{{ enrollment.course.fees | currency: 'LKR' }}</td>
-            <td>{{ enrollment.enrollmentDate | date: 'dd-MM-yyyy' }}</td>
-            <td> <span  [ngClass]="{'text-success': enrollment.isComplete,'text-warning': !enrollment.isComplete}">{{ enrollment.isComplete ? 'Completed' : 'Pending' }}</span> </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-
-
   </div>
-  
+
+
+  <!-- Filters Section -->
+<div class="container">
+  <!-- Filter Button with Bootstrap Icon -->
+  <button class="btn btn-primary mb-3" (click)="toggleFilters()">
+    <i class="bi bi-funnel-fill"></i> Filter
+  </button>
+
+  <!-- Filter Options (Initially hidden) -->
+  <div *ngIf="filtersVisible">
+    <div class="row mb-4">
+      <!-- Date Range Picker and Month Filter in the Same Row -->
+      <div class="col-12 col-md-6 mb-3">
+        <!-- Date Range Picker -->
+        <input type="text" id="dateRange" placeholder="Select Date Range" class="form-control theme-dark-blue"
+          bsDaterangepicker [bsConfig]="{
+              isAnimated: true,
+              adaptivePosition: true,
+              containerClass: 'theme-dark-blue',
+              rangeInputFormat: 'YYYY-MM-DD'
+          }" autocomplete="off" [(ngModel)]="selectedDateRange" />
+      </div>
+
+      <div class="col-12 col-md-6 mb-3">
+        <!-- Month Filter -->
+        <select id="month" class="form-control custom-month-select" [(ngModel)]="selectedMonth">
+          <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Filters for Course, Student Name / NIC, and Status in a New Row -->
+    <div class="row mb-4">
+      <div class="col-12 col-md-4 mb-3">
+        <!-- Course Name Filter -->
+        <select class="form-control" id="courseFilter" [(ngModel)]="selectedCourse" [ngModelOptions]="{standalone: true}">
+          <option value="" disabled>Select Course</option>
+          <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-4 mb-3">
+        <!-- Student Name or NIC Filter -->
+        <input type="text" id="studentSearch" class="form-control" placeholder="Search by Name or NIC"
+          [(ngModel)]="studentSearch" />
+      </div>
+
+      <div class="col-12 col-md-4 mb-3">
+        <!-- Status Filter -->
+        <select id="status" class="form-control" [(ngModel)]="selectedStatus">
+          <option value="" disabled>Select status</option>
+          <option value="complete">Complete</option>
+          <option value="reading">Reading</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<!-- Report Table -->
+<div class="table-responsive mt-4">
+  <table class="table table-bordered table-striped text-center">
+    <thead class="table-dark">
+      <tr>
+        <th>NIC</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Fees (LKR)</th>
+        <th>Enrollment Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let enrollment of enrollments">
+        <td>{{ enrollment.student.nic }}</td>
+        <td>{{ enrollment.student.firstName }} {{ enrollment.student.lastName }}</td>
+        <td>{{ enrollment.course.courseName }}</td>
+        <td>{{ enrollment.course.fees | currency: 'LKR' }}</td>
+        <td>{{ enrollment.enrollmentDate | date: 'dd-MM-yyyy' }}</td>
+        <td> <span [ngClass]="{'text-success': enrollment.isComplete,'text-warning': !enrollment.isComplete}">{{
+            enrollment.isComplete ? 'Completed' : 'Pending' }}</span> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

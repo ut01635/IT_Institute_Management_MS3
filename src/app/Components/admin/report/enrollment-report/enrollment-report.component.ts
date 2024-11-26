@@ -7,11 +7,49 @@ import { Enrollment } from '../../../../Services/Modal';
   templateUrl: './enrollment-report.component.html',
   styleUrl: './enrollment-report.component.css'
 })
-export class EnrollmentReportComponent  implements OnInit {
+export class EnrollmentReportComponent implements OnInit {
   enrollments: Enrollment[] = []; // Array to hold enrollment data
+  selectedMonth: string = '';
+  selectedDateRange: [Date, Date] | null = null;
+  selectedCourse: string = '';
+  studentSearch: string = "";
+  selectedStatus: string = "";
+  currentMonth = ""
 
-  constructor(private enrollmentService: EnrollmentService) {}
-  
+  filtersVisible = false; // Initially filters are hidden
+
+  // Toggle the visibility of the filters section
+  toggleFilters() {
+    this.filtersVisible = !this.filtersVisible;
+  }
+
+
+  months = [
+    { value: '', name: 'All Months' },
+    { value: '1', name: 'January' },
+    { value: '2', name: 'February' },
+    { value: '3', name: 'March' },
+    { value: '4', name: 'April' },
+    { value: '5', name: 'May' },
+    { value: '6', name: 'June' },
+    { value: '7', name: 'July' },
+    { value: '8', name: 'August' },
+    { value: '9', name: 'September' },
+    { value: '10', name: 'October' },
+    { value: '11', name: 'November' },
+    { value: '12', name: 'December' }
+  ];
+
+  courses: { id: string, name: string }[] = [
+    { id: '1', name: 'Mathematics' },
+    { id: '2', name: 'Physics' },
+    { id: '3', name: 'Chemistry' },
+    // Add more courses dynamically or fetch from a service
+  ];
+
+
+  constructor(private enrollmentService: EnrollmentService) { }
+
   ngOnInit(): void {
     this.enrollmentService.getallEnrollement().subscribe(
       (data: any[]) => {
@@ -22,7 +60,16 @@ export class EnrollmentReportComponent  implements OnInit {
         console.error('Error fetching enrollments:', error);
       }
     );
+
+    this.getCurrentMonth()
   }
 
+  getCurrentMonth(): void {
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const currentDate = new Date();
+    this.currentMonth = monthNames[currentDate.getMonth()];
+  }
 
 }
