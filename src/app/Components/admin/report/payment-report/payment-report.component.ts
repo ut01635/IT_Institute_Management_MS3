@@ -1,4 +1,6 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, inject, } from '@angular/core';
+import { PaymentService } from '../../../../Services/payment.service';
+import { Payment } from '../../../../Services/Modal';
 
 @Component({
   selector: 'app-payment-report',
@@ -6,19 +8,19 @@ import { Component, OnInit, } from '@angular/core';
   styleUrl: './payment-report.component.css'
 })
 export class PaymentReportComponent implements OnInit {
+  payments: Payment[] = []; // Array to hold enrollment data
 
-  // Sample payment data
-  payments = [
-    { id: 1, customerName: 'John Doe', transactionId: 'TXN001', amount: 100.50, paymentDate: new Date(), status: 'Completed' },
-    { id: 2, customerName: 'Jane Smith', transactionId: 'TXN002', amount: 250.75, paymentDate: new Date(), status: 'Pending' },
-    { id: 3, customerName: 'Sarah Lee', transactionId: 'TXN003', amount: 175.20, paymentDate: new Date(), status: 'Completed' },
-    { id: 4, customerName: 'Mike Brown', transactionId: 'TXN004', amount: 50.00, paymentDate: new Date(), status: 'Failed' }
-  ];
-
-  constructor() { }
-
+  constructor(private paymentService: PaymentService) {}
+  
   ngOnInit(): void {
-    // You could fetch payment data from an API here
+    this.paymentService.getAllPayments().subscribe(
+      (data: Payment[]) => {
+        this.payments = data; 
+        console.log('Enrollments fetched successfully:', this.payments);
+      },
+      (error) => {
+        console.error('Error fetching enrollments:', error);
+      }
+    );
   }
-
 }

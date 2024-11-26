@@ -25,8 +25,8 @@ export class EnrollmentService {
         })
       );
   }
-  getallEnrollement(): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this.enrollmentUrl}`);
+  getallEnrollement(): Observable<Enrollment[]> {
+    return this.http.get<Enrollment[]>(`${this.enrollmentUrl}`);
   }
 
   getReadingEnrollments(studentNic: string) {
