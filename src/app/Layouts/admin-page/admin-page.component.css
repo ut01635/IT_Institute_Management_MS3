@@ -87,9 +87,9 @@ header button:hover i {
 /* Reports sub-links */
 .report-sub-links {
   display: none;
-  position: absolute;
+  /* position: absolute;
   top: 36%;
-  left: 75%;
+  left: 75%; */
   background-color: #696969;
   padding: 10px;
   border-radius: 5px;

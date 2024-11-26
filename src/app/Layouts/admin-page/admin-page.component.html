@@ -65,12 +65,12 @@
           </li>
 
           <!-- Reports Item (with hover sub-links) -->
-          <li class="nav-item report-item">
+          <li class="nav-item report-item position-relative">
             <a class="nav-link" (click)="setActiveTab('reports')" [class.active]="activeTab === 'reports'">
               <i class="bi bi-file-earmark-bar-graph"></i>
               <span class="nav-text">Reports</span>
             </a>
-            <ul class="flex-column ms-0 w-100 report-sub-links">
+            <ul class="flex-column ms-0 w-100 report-sub-links position-absolute start-100 top-0 p-2 rounded shadow">
               <li><a href="#" [routerLink]="['/admin/student-report']" (click)="setActiveTab('student-report')"
                   [class.active]="activeTab === 'student-report'">Student Report</a></li>
               <li><a href="#" [routerLink]="['/admin/enrollment-report']" (click)="setActiveTab('enrollment-report')"
@@ -98,7 +98,7 @@
 
 
         <!-- Dark/Light Mode Toggle Button -->
-        <div class="d-flex justify-content-end align-items-end w-100">
+        <div class="position-fixed bottom-0 end-0 p-3 me-3">
           <button class="btn btn-toggle-mode  toggle-button" (click)="toggleTheme()">
             <label class="switch">
               <!-- Checkbox input to trigger theme toggle -->
@@ -115,11 +115,13 @@
         </div>
       </nav>
     </div>
-    <div class="" style="width: 90vw">
-      <!-- Main Content Area -->
-      <section style="width: 100%; overflow-y: scroll;" class="shadow p-4 m-4 bg-white rounded">
-        <router-outlet></router-outlet>
+    <!-- Main Content -->
+    <main class="container-fluid mt-5 p-3" style="overflow-y: auto; height: calc(80vh - 100px);">
+      <section class="shadow m-2 p-4 bg-white rounded mt-5">
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
       </section>
-    </div>
+    </main>
   </div>
 </div>
