@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Course } from './Modal';
-import { BehaviorSubject, Observable, catchError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +19,16 @@ export class CourseService {
 
 
 
-  getAllCourses(): any {
-    this.http.get<Course[]>(this.courseApi).pipe(
+  getAllCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(this.courseApi).pipe(
       catchError((error) => {
         console.error('Error fetching courses', error);
-        return [];
+        // Use throwError to propagate the error to the subscriber
+        return throwError(() => error);
       })
-    ).subscribe((courses) => {
-      this.coursesSubject.next(courses); 
-    });
+    );
   }
-
+  
 
 
   addCourse(formData: FormData): Observable<Course> {
