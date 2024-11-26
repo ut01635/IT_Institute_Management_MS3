@@ -47,6 +47,7 @@ export class AnnouncementListComponent {
     this.selectedAnnouncement = announcement;
   }
 
+
   onDelete(id:string){
     if(confirm('Do you want delete this announcement')){
       this.announcementService.deleteAnnouncement(id).subscribe(data=>{
