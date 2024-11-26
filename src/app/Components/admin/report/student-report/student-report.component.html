@@ -1,1 +1,57 @@
-<p>student-report works!</p>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Student Report</h2>
+  
+    <!-- Filters Section (Optional) -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary mt-4">Filter</button>
+      </div>
+    </div>
+  
+    <!-- Student Data Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Student Name</th>
+            <th>Enrollment Number</th>
+            <th>Course</th>
+            <th>Grade</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students">
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.enrollmentNumber }}</td>
+            <td>{{ student.course }}</td>
+            <td>{{ student.grade }}</td>
+            <td>{{ student.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Pagination (Optional) -->
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link" (click)="previousPage()">Previous</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  

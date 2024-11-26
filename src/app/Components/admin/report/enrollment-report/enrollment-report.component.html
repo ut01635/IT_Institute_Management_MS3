@@ -1,1 +1,56 @@
-<p>enrollment-report works!</p>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Enrollment Report</h2>
+  
+    <!-- Filters Section (optional) -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary mt-4">Filter</button>
+      </div>
+    </div>
+  
+    <!-- Report Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Enrollment Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample data -->
+          <tr *ngFor="let enrollment of enrollments">
+            <td>{{ enrollment.id }}</td>
+            <td>{{ enrollment.name }}</td>
+            <td>{{ enrollment.email }}</td>
+            <td>{{ enrollment.enrollmentDate | date:'short' }}</td>
+            <td>{{ enrollment.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Pagination (Optional) -->
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link" (click)="previousPage()">Previous</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  

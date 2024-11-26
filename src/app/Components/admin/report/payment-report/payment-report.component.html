@@ -1,1 +1,57 @@
-<p>payment-report works!</p>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Payment Report</h2>
+  
+    <!-- Filters Section -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" class="form-control" />
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary mt-4">Filter</button>
+      </div>
+    </div>
+  
+    <!-- Payment Data Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer Name</th>
+            <th>Transaction ID</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <td>{{ payment.id }}</td>
+            <td>{{ payment.customerName }}</td>
+            <td>{{ payment.transactionId }}</td>
+            <td>{{ payment.amount | currency }}</td>
+            <td>{{ payment.paymentDate | date: 'short' }}</td>
+            <td>{{ payment.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Pagination (Optional) -->
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-4">
+      <ul class="pagination">
+        <li class="page-item">
+          <button class="page-link" (click)="previousPage()">Previous</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
