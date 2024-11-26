@@ -8,17 +8,19 @@ import { enquiry } from './Modal';
 })
 export class EnquiryService {
 
-  private enguiryGetApi = 'https://localhost:7055/api/ContactUs'; 
+  private enquiryBaseURL = 'https://localhost:7055/api/ContactUs'; 
 
   constructor(private http: HttpClient) { }
 
  
   getEnquiries(): Observable<enquiry[]> {
-    return this.http.get<enquiry[]>(this.enguiryGetApi);
+    return this.http.get<enquiry[]>(this.enquiryBaseURL);
   }
 
   postEnquiry(enquiry: enquiry){
-    return this.http.post(this.enguiryGetApi,enquiry)
+    return this.http.post(this.enquiryBaseURL,enquiry,{
+      responseType: 'text'
+    })
   }
 
 }
