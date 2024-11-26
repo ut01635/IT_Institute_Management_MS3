@@ -1,11 +1,11 @@
 <div class="modal-header bg-white text-black">
-  <h5 class="modal-title" id="courseModalLabel">Add Course</h5>
+  <h5 class="modal-title" id="courseModalLabel">{{ course ? 'Edit Course' : 'Add Course' }}</h5>
   <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
 </div>
 
 <div class="modal-body">
   <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="form-control">
-    <p class="message text-center">Add a new course to the catalog.</p>
+    <p class="message text-center">{{ course ? 'Edit the course details' : 'Add a new course to the catalog.' }}</p>
 
     <div class="row">
       <!-- Course Name Field -->
@@ -85,7 +85,7 @@
 
     <!-- Submit Button -->
     <button type="submit" class="submit-btn" [disabled]="courseForm.invalid">
-      <i class="bi bi-save"></i> Save Course
+      <i class="bi bi-save"></i>{{ course ? 'Update' : 'Save' }} Course
     </button>
   </form>
 </div>

@@ -14,6 +14,7 @@ export class CourseListComponent implements OnInit {
 
   searchText: string = '';
   courses: Course[] = [];
+  selectedCourse: Course | null = null;
 
   constructor(
     private courseService: CourseService,
@@ -21,17 +22,28 @@ export class CourseListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+    this.loadCourses();
+  }
+
+  loadCourses(): void {
     this.courseService.courses$.subscribe((courses) => {
       this.courses = courses;
     });
-
-    
     this.courseService.getAllCourses();
   }
 
-  onEdit(courseId: string) {
-    console.log("Edit course with ID: ", courseId);
+
+  
+  onEdit(course: Course): void {
+    this.selectedCourse = course;
+    const modalRef = this.modalService.open(CourseFormComponent, {
+      size: 'lg'
+    });
+    modalRef.componentInstance.course = course;  // Pass course to form component
+    modalRef.result.then(
+      () => this.loadCourses(),  // Refresh list after edit
+      () => {}
+    );
   }
 
 

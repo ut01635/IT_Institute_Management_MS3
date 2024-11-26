@@ -41,6 +41,17 @@ export class CourseService {
     );
   }
 
+
+  updateCourse(courseId: string, formData: FormData): Observable<Course> {
+    return this.http.put<Course>(`${this.courseApi}/${courseId}`, formData).pipe(
+      catchError((error) => {
+        console.error('Error updating course', error);
+        throw error;
+      })
+    );
+  }
+
+  
   deleteCourse(courseId: string) {
     return this.http.delete(`${this.courseApi}/${courseId}`).pipe(
       catchError((error) => {
