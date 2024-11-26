@@ -2,7 +2,7 @@
     <h2 class="text-center text-darkblue mb-4">Messages</h2>
     <div class="col-12 d-flex flex-wrap">
         <!-- Filter Input Section -->
-        <div class="d-flex flex-grow-1 align-items-center mb-3 mb-md-0">
+        <div class="d-flex align-items-center mb-3 mb-md-0">
             <label for="messageDate" class="me-2">
                 <i class="bi bi-calendar-date-fill fs-3"></i>
             </label>
@@ -10,7 +10,7 @@
                 type="text" 
                 id="messageDate" 
                 placeholder="Filter by Date" 
-                class="form-control theme-dark-blue flex-grow-1 w-50" 
+                class="form-control theme-dark-blue flex-grow-1" 
                 bsDatepicker 
                 [bsConfig]="{
                     isAnimated: true,
@@ -33,7 +33,7 @@
     
     <div class="row mb-4 mt-3">
         <!-- Full Screen Column: Taking 100% width and 90% height of the screen -->
-        <div class="col-12" style=" width: 100vw;">
+        <div class="col-12" style=" width: 100vw; overflow-y: auto;">
             <!-- Notification Card -->
             <div *ngFor="let message of messages | messageDateFilter:messageDateFilter!">
                 <div class="card mb-4">
