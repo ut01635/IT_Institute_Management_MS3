@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrollmentService } from '../../../../Services/enrollment.service';
 import { Enrollment } from '../../../../Services/Modal';
+import { CourseService } from '../../../../Services/course.service';
 
 @Component({
   selector: 'app-enrollment-report',
@@ -8,23 +9,18 @@ import { Enrollment } from '../../../../Services/Modal';
   styleUrl: './enrollment-report.component.css'
 })
 export class EnrollmentReportComponent implements OnInit {
-  enrollments: Enrollment[] = []; // Array to hold enrollment data
+  enrollments: Enrollment[] = [];
+  filteredEnrollments: Enrollment[] = [];
   selectedMonth: string = '';
   selectedDateRange: [Date, Date] | null = null;
   selectedCourse: string = '';
   studentSearch: string = "";
   selectedStatus: string = "";
-  currentMonth = ""
+  currentMonth: string = "";
 
-  filtersVisible = false; // Initially filters are hidden
+  filtersVisible = false;
   totalEnrollments: any;
   currentMonthEnrollments: any;
-
-  // Toggle the visibility of the filters section
-  toggleFilters() {
-    this.filtersVisible = !this.filtersVisible;
-  }
-
 
   months = [
     { value: '', name: 'All Months' },
@@ -42,31 +38,41 @@ export class EnrollmentReportComponent implements OnInit {
     { value: '12', name: 'December' }
   ];
 
-  courses: { id: string, name: string }[] = [
-    { id: '1', name: 'Mathematics' },
-    { id: '2', name: 'Physics' },
-    { id: '3', name: 'Chemistry' },
-    // Add more courses dynamically or fetch from a service
-  ];
+  courses: { id: string, name: string }[] = [];  // Now dynamically populated
+  selectedCourseName: string = ''; // Store selected course name for display in the UI
 
-
-  constructor(private enrollmentService: EnrollmentService) { }
+  constructor(
+    private enrollmentService: EnrollmentService,
+    private courseService: CourseService // Inject the CourseService
+  ) { }
 
   ngOnInit(): void {
+    // Fetch enrollments and courses data
     this.enrollmentService.getallEnrollement().subscribe(
-      (data: any[]) => {
-        this.enrollments = data; // Assign the fetched data to the array
-        console.log('Enrollments fetched successfully:', this.enrollments);
-
+      (data: Enrollment[]) => {
+        this.enrollments = data;
         this.calculateTotalEnrollments();
         this.calculateCurrentMonthEnrollments();
+        this.filteredEnrollments = [...this.enrollments]; // Initialize with all enrollments
       },
       (error) => {
         console.error('Error fetching enrollments:', error);
       }
     );
 
-    this.getCurrentMonth()
+    this.courseService.getAllCourses().subscribe(
+      (courses: any[]) => {
+        this.courses = courses.map(course => ({
+          id: course.id, // Assuming the course object has an 'id' and 'name'
+          name: course.courseName
+        }));
+      },
+      (error: any) => {
+        console.error('Error fetching courses:', error);
+      }
+    );
+
+    this.getCurrentMonth();
   }
 
   getCurrentMonth(): void {
@@ -77,18 +83,34 @@ export class EnrollmentReportComponent implements OnInit {
     this.currentMonth = monthNames[currentDate.getMonth()];
   }
 
-
   calculateTotalEnrollments(): void {
     this.totalEnrollments = this.enrollments.length;
   }
 
-  // Calculate the number of enrollments for the current month
   calculateCurrentMonthEnrollments(): void {
     const currentMonthIndex = new Date().getMonth();
     this.currentMonthEnrollments = this.enrollments.filter(enrollment => {
       const enrollmentDate = new Date(enrollment.enrollmentDate);
       return enrollmentDate.getMonth() === currentMonthIndex;
     }).length;
+  }
+
+  toggleFilters(): void {
+    this.filtersVisible = !this.filtersVisible;
+  }
+
+  applyFilters(): void {
+    this.filteredEnrollments = this.enrollments.filter(enrollment => {
+      const matchSearch = this.studentSearch ? (enrollment.student.firstName.toLowerCase().includes(this.studentSearch.toLowerCase()) || 
+                                                 enrollment.student.nic.toLowerCase().includes(this.studentSearch.toLowerCase())) : true;
+      const matchDateRange = this.selectedDateRange ? new Date(enrollment.enrollmentDate) >= new Date(this.selectedDateRange[0]) &&
+                                                      new Date(enrollment.enrollmentDate) <= new Date(this.selectedDateRange[1]) : true;
+      const matchMonth = this.selectedMonth ? new Date(enrollment.enrollmentDate).getMonth() + 1 === +this.selectedMonth : true;
+      const matchCourse = this.selectedCourse ? enrollment.course.id === this.selectedCourse : true;
+      const matchStatus = this.selectedStatus ? (this.selectedStatus === 'complete' ? enrollment.isComplete : !enrollment.isComplete) : true;
+
+      return matchSearch && matchDateRange && matchMonth && matchCourse && matchStatus;
+    });
   }
 
 
