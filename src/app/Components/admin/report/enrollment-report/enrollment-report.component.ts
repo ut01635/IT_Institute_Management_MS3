@@ -17,6 +17,8 @@ export class EnrollmentReportComponent implements OnInit {
   currentMonth = ""
 
   filtersVisible = false; // Initially filters are hidden
+  totalEnrollments: any;
+  currentMonthEnrollments: any;
 
   // Toggle the visibility of the filters section
   toggleFilters() {
@@ -55,6 +57,9 @@ export class EnrollmentReportComponent implements OnInit {
       (data: any[]) => {
         this.enrollments = data; // Assign the fetched data to the array
         console.log('Enrollments fetched successfully:', this.enrollments);
+
+        this.calculateTotalEnrollments();
+        this.calculateCurrentMonthEnrollments();
       },
       (error) => {
         console.error('Error fetching enrollments:', error);
@@ -71,5 +76,20 @@ export class EnrollmentReportComponent implements OnInit {
     const currentDate = new Date();
     this.currentMonth = monthNames[currentDate.getMonth()];
   }
+
+
+  calculateTotalEnrollments(): void {
+    this.totalEnrollments = this.enrollments.length;
+  }
+
+  // Calculate the number of enrollments for the current month
+  calculateCurrentMonthEnrollments(): void {
+    const currentMonthIndex = new Date().getMonth();
+    this.currentMonthEnrollments = this.enrollments.filter(enrollment => {
+      const enrollmentDate = new Date(enrollment.enrollmentDate);
+      return enrollmentDate.getMonth() === currentMonthIndex;
+    }).length;
+  }
+
 
 }
