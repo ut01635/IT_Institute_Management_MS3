@@ -110,7 +110,14 @@
         <td>{{ enrollment.student.firstName }} {{ enrollment.student.lastName }}</td>
         <td>{{ enrollment.course.courseName }}</td>
         <td>{{ enrollment.course.fees | currency: 'LKR ' }}</td>
-        <td>{{ enrollment.paymentPlan }}</td>
+        <td>
+          <span [ngClass]="{
+            'text-success': enrollment.paymentPlan === 'Full',
+            'text-primary': enrollment.paymentPlan === 'Installment'
+          }">
+            {{ enrollment.paymentPlan }}
+          </span>
+        </td>
         <td>{{ enrollment.enrollmentDate | date: 'dd-MM-yyyy' }}</td>
         <td> <span [ngClass]="{'text-success': enrollment.isComplete,'text-warning': !enrollment.isComplete}">{{
             enrollment.isComplete ? 'Completed' : 'Pending' }}</span> </td>
