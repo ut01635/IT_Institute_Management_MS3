@@ -30,7 +30,6 @@ export class EnrollmentService {
   }
 
   getReadingEnrollments(studentNic: string) {
-    '/nic/200206601718/notcompleted';
     return this.http.get<any[]>(
       `${this.enrollmentUrl}/nic/${studentNic}/notcompleted`
     );
