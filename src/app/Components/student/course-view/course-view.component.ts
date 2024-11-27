@@ -3,6 +3,7 @@ import { GreetingService } from '../../../Services/greeting.service';
 import { CourseService } from '../../../Services/course.service';
 import { Course } from '../../../Services/Modal';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { EnrollmentService } from '../../../Services/enrollment.service';
 
 @Component({
   selector: 'app-course-view',
@@ -13,11 +14,16 @@ export class CourseViewComponent implements OnInit {
 
   greeting:string = ''
   adminName:string = "User"
+  nic:string = ""
   // Reactive form for payment plan
   paymentForm!: FormGroup ;
   selectedCourse: any;
   
-  constructor(private greetinService : GreetingService, private courseService:CourseService, private fb: FormBuilder){}
+  constructor(
+    private greetinService : GreetingService, 
+    private courseService:CourseService, 
+    private enrollmentService:EnrollmentService,
+    private fb: FormBuilder){}
 
 
   ngOnInit(): void {
@@ -25,10 +31,9 @@ export class CourseViewComponent implements OnInit {
       this.greeting = data;
     });
 
-    this.courseService.getAllCourses().subscribe((data: Course[])=>{
-      this.courses = data
-    })
+    this.loadCourses()
 
+    this.nic = localStorage.getItem('NIC') || '';
     this.paymentForm = this.fb.group({
       paymentPlan: ['', Validators.required]
     });
@@ -36,17 +41,27 @@ export class CourseViewComponent implements OnInit {
   // Array of course objects to be rendered dynamically
   courses:Course[] = [];
 
-
+  loadCourses(): void {
+    this.courseService.courses$.subscribe((courses) => {
+      this.courses = courses;
+    });
+    this.courseService.getAllCourses();
+  }
    
  
    
  
   
   //  Submit Payment Plan
-   submitPaymentPlan(): void {
+   submitPaymentPlan(Id : string): void {
+         const enrolmentDate={
+            paymentPlan : this.paymentForm.value,
+            studentNIC : this.nic,
+            courseId : Id
+          }
      if (this.paymentForm.valid) {
        const selectedPlan = this.paymentForm.get('paymentPlan')?.value;
-       alert(`You have selected the ${selectedPlan} payment plan for the course ${this.selectedCourse.courseName}`);
+       alert(`You have selected the ${selectedPlan} payment plan for the course ${Id}`);
        this.paymentForm.reset();
      }
    }
