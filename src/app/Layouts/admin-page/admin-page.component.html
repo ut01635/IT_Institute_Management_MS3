@@ -1,9 +1,11 @@
 <div class="">
   <!-- Header -->
   <header class="d-flex justify-content-between align-items-center p-3 bg-gray text-white" style="width: 100%;">
-    <h1 class="m-0">
-      <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 300px; height:50px;">
+    <h1 class="m-0 text-center">
+      <img src="/Header_Image.png" alt="logo" class="img-fluid mx-auto d-block"
+        style="max-width: 100%; height: auto; max-height: 50px;" />
     </h1>
+
     <div class="d-flex align-items-center">
       <!-- Notifications Icon (without text) -->
       <button class="btn me-3 btn-lg fw-bold" aria-label="Notifications" [routerLink]="['/admin/Notification-list']">
@@ -16,18 +18,13 @@
       </button>
 
       <div class="d-flex justify-content-center">
-        <img 
-        [src]="baseUrl + admin?.imagePath" 
-          alt="User Profile Picture" 
-          class="rounded-circle img-fluid" 
+        <img [src]="baseUrl + admin?.imagePath" alt="User Profile Picture" class="rounded-circle img-fluid p-2"
           style="max-width: 50px; object-fit: cover;">
       </div>
-      
 
-      <!-- Mobile Sidebar Toggle Button -->
-      <button class="btn btn-primary btn-lg d-md-none fw-bold p-2" type="button" data-bs-toggle="collapse"
-        data-bs-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
-        <i class="bi bi-list fs-3"></i>
+      <!-- Button to toggle the sidebar on small screens -->
+      <button class="btn me-3 btn-lg fw-bold d-md-none" type="button" (click)="toggleSidebar()">
+        <i class="bi bi-list text-white fs-3 fw-bold"></i>
       </button>
 
 
@@ -37,8 +34,8 @@
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <div class="d-flex">
-    <div >
-      <nav class="col-12 col-md-2 sidebar bg-blurred text-white"
+    <div>
+      <nav id="sidebar" class="col-12 col-md-2 sidebar bg-blurred text-white collapse d-md-block"
         [ngClass]="{'show': isSidebarVisible, 'dark-mode': isDarkMode, 'light-mode': !isDarkMode}">
         <ul class="nav flex-column">
           <li class="nav-item">
@@ -93,7 +90,7 @@
             </ul>
           </li>
 
-          <li class="nav-item"  *ngIf="userRole === 'MasterAdmin'">
+          <li class="nav-item" *ngIf="userRole === 'MasterAdmin'">
             <a class="nav-link" href="#" [routerLink]="['/admin/admin-list']" (click)="setActiveTab('admins')"
               [class.active]="activeTab === 'admins'">
               <i class="bi bi-person"></i>

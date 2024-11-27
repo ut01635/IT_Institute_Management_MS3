@@ -50,7 +50,7 @@ export class LoginComponent {
         },
         (error) => {
           console.error('Login failed:', error);
-          alert('Invalid credentials or server error!');
+          alert(error.error);
         }
       );
     } else {

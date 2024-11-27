@@ -27,9 +27,9 @@ export class AdminPageComponent {
   }
 
 
-  // Function to toggle the sidebar visibility
+  // Function to toggle sidebar visibility
   toggleSidebar() {
-    this.isSidebarVisible = true; // Toggle the sidebar visibility
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 
   constructor(private authservice:AuthService, private adminService:AdminService) {
