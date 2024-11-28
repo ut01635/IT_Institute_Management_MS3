@@ -72,7 +72,7 @@ export interface Payment {
   courseName: string;
   amount: number;
   dueAmount: number;
-  totalAmount: number;
+  totalPaidAmount: number;
   student?:Student;
 }
 

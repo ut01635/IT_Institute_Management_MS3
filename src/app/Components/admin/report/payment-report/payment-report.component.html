@@ -59,10 +59,11 @@
           <th>Student NIC</th>
           <th>Student Name</th>
           <th>Course Name</th>
-          <th>Fees</th>
-          <th>Payment Amount</th>
+          <th>Fees (LKR)</th>
+          <th>Total Paid Amount (LKR)</th>
+          <th>Due Amount (LKR)</th>
           <th>Payment Date</th>
-          <th>Deu Amount</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -72,10 +73,11 @@
             {{ payment.student?.firstName }} {{ payment.student?.lastName }}
           </td>
           <td>{{ payment.courseName }}</td>
-          <td>{{ payment.totalAmount }}</td>
-          <td>{{ payment.amount | currency }}</td>
+          <td>{{ payment.amount | currency:'LKR ' }}</td>
+          <td>{{ payment.totalPaidAmount | currency:'LKR ' }}</td>
+          <td>{{ payment.dueAmount  | currency:'LKR ' }}</td>
           <td>{{ payment.date | date : "short" }}</td>
-          <td>{{ payment.dueAmount }}</td>
+          
         </tr>
       </tbody>
     </table>
