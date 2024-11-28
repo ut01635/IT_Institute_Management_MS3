@@ -85,4 +85,8 @@ export class StudentService {
   dirrectUnlockAccount(nic:string){
     return this.http.put(`${this.BaseStudentURL}/${nic}/Directunlock`,nic)
   }
+
+  getStudentProfile(nic:string){
+    return this.http.get
+  }
 }

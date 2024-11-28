@@ -90,3 +90,27 @@ export interface Message {
   studentNIC: string;
   date: Date;
 }
+
+export interface StudentProfileDto {
+  nic: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  isLocked: boolean;
+  failedLoginAttempts: number;
+  imagePath: string;
+  address: Address;
+  socialMediaLinks: SocialMediaLinks;
+  enrollments: Enrollment[];
+}
+
+export interface SocialMediaLinks {
+  id: string;
+  linkedIn?: string;
+  instagram?: string;
+  facebook?: string;
+  gitHub?: string;
+  whatsApp?: string;
+  studentNic?: string;
+}
