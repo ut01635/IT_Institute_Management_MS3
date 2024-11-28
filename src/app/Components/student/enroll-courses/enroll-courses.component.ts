@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrollmentService } from '../../../Services/enrollment.service';
-import { Course } from '../../../Services/Modal';
+import { Course, Enrollment } from '../../../Services/Modal';
 
 @Component({
   selector: 'app-enroll-courses',
@@ -8,12 +8,17 @@ import { Course } from '../../../Services/Modal';
   styleUrl: './enroll-courses.component.css'
 })
 export class EnrollCoursesComponent implements OnInit {
-  courses:Course[] = [];
+  enrollments:Enrollment[] = [];
 
   constructor(private enrollmentService:EnrollmentService){}
 
   ngOnInit(): void {
-    this.enrollmentService.getallEnrollement();
+    this.enrollmentService.getallEnrollement().subscribe(data=>{
+      this.enrollments = data
+    }, erorr=>{
+      console.log(erorr.erorr);
+      
+    });
   }
   handleViewCourse(course: any) {
     console.log('Viewing course:', course.title);
