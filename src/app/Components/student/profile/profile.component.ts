@@ -1,32 +1,33 @@
-import { Component } from '@angular/core';
-import { Student } from '../../../Services/Modal';
+import { Component, OnInit } from '@angular/core';
+import { Student, StudentProfileDto } from '../../../Services/Modal';
+import { StudentService } from '../../../Services/student.service';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
-  // For demo purposes, we'll use some static data
-  userProfile :Student = {
-    firstName: 'John',
-    lastName: 'Doe',
-    nic: '123456789',
-    phone: '+1234567890',
-    email: 'john.doe@example.com',
-    address:{
-      addressLine1: '1234 Elm St',
-      addressLine2: 'Apt 101',
-      city: 'Springfield',
-      state: 'IL',
-      postalCode: '62701',
-      country: 'USA'
-    }
-   
-  };
+export class ProfileComponent implements OnInit {
+  studentProfile!: StudentProfileDto;
+
+  constructor(private studentService: StudentService, private authservice:AuthService) {}
+
+  ngOnInit(): void {
+    const nic = localStorage.getItem('NIC')|| ''
+    this.studentService.getStudentProfile(nic).subscribe(
+      (data) => {
+        this.studentProfile = data;
+        console.log(this.studentProfile);
+      },
+      (error) => {
+        console.error('Error fetching student profile', error);
+      }
+    );
+  }
 
   handleLogout() {
-    // Add your logout logic here
+    this.authservice.logout()
     console.log('User logged out');
   }
 
