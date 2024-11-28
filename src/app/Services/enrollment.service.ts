@@ -40,4 +40,8 @@ export class EnrollmentService {
       responseType: 'text',
     });
   }
+
+  getEnrollmentById(enrollmentId: string): Observable<Enrollment> {
+    return this.http.get<Enrollment>(`${this.enrollmentUrl}/${enrollmentId}`);
+  }
 }

@@ -13,7 +13,7 @@ export class DateFilterPipe implements PipeTransform {
 
     // Filter announcements that match the selected date (ignoring the time part)
     return payments.filter(payments => {
-      const announcementDate = new Date(payments.date);
+      const announcementDate = new Date(payments.paymentDate);
       
       // Compare only the date parts, not the time parts
       return announcementDate.toDateString() === selectedDate.toDateString();

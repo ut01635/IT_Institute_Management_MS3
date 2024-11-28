@@ -68,12 +68,14 @@ export interface enquiry {
 }
 
 export interface Payment {
-  date: string;
+  paymentDate: string;
   courseName: string;
   amount: number;
   dueAmount: number;
   totalPaidAmount: number;
-  student?:Student;
+  student:Student;
+  enrollmentId:string;
+  enrollment:Enrollment;
 }
 
 export interface Announcement {

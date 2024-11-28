@@ -1,55 +1,43 @@
 <div class="container">
-  <div class="container">
-    <!-- Payment Report Heading and Total Income Card -->
-    <div class="row mb-4 align-items-center">
-      <!-- Left Side: Payment Report Heading -->
-      <div class="col-12 col-md-6">
-        <h2 class="text-darkblue">Payment Report</h2>
-      </div>
-  
-      <!-- Right Side: Total Income Card -->
-      <div class="col-12 col-md-6 d-flex justify-content-end">
-        <div class="card shadow-lg" style="width: 18rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-          <div class="card-body d-flex">
-            <h5 class="card-title">Total Income</h5>
-            <p class="card-text mx-3">$10,000</p> <!-- Replace with dynamic value -->
-          </div>
+  <!-- Heading Section -->
+  <div class="row mb-4 align-items-center">
+    <div class="col-12 col-md-6">
+      <h2 class="text-darkblue">Payment Report</h2>
+    </div>
+    <div class="col-12 col-md-6 d-flex justify-content-end">
+      <div class="card shadow-lg" style="width: 18rem;">
+        <div class="card-body d-flex">
+          <h5 class="card-title">Total Income</h5>
+          <p class="card-text mx-3">{{ totalIncome | currency: 'LKR ' }}</p>
         </div>
       </div>
     </div>
   </div>
-  
-  
 
   <!-- Filters Section -->
-<div class="row mb-4">
-  <!-- Date Range Filter (Responsive) -->
-  <div class="col-12 col-md-4 mb-3">
-    <input type="text" id="dateRange" placeholder="Select Date" class="form-control theme-dark-blue" 
-      bsDatepicker
-      [bsConfig]="{
-        isAnimated: true,
-        adaptivePosition: true,
-        containerClass: 'theme-dark-blue',
-        rangeInputFormat: 'YYYY-MM-DD'
-      }" autocomplete="off" [(ngModel)]="paymentDateFilter" />
-  </div>
+  <div class="row mb-4">
+    <!-- Date Range Filter -->
+    <div class="col-12 col-md-4 mb-3">
+      <input type="text" id="dateRange" placeholder="Select Date" class="form-control theme-dark-blue" 
+        bsDatepicker
+        [bsConfig]="{ isAnimated: true, adaptivePosition: true, containerClass: 'theme-dark-blue', rangeInputFormat: 'YYYY-MM-DD' }"
+        autocomplete="off" [(ngModel)]="paymentDateFilter" (ngModelChange)="applyFilters()" />
+    </div>
 
-  <!-- Search by Student Name or NIC (Responsive) -->
-  <div class="col-12 col-md-4 mb-3">
-    <input type="text" id="studentFilter" placeholder="Filters by Student Name or NIC...." class="form-control"
-      [(ngModel)]="studentNameOrNicFilter" />
-  </div>
+    <!-- Student Name or NIC Filter -->
+    <div class="col-12 col-md-4 mb-3">
+      <input type="text" id="studentFilter" placeholder="Filter by Student Name or NIC..." class="form-control"
+        [(ngModel)]="studentNameOrNicFilter" (ngModelChange)="applyFilters()" />
+    </div>
 
-  <!-- Search by Course Name (Responsive) -->
-  <div class="col-12 col-md-4 mb-3">
-    <select class="form-control" id="courseFilter" [(ngModel)]="selectedCourse" [ngModelOptions]="{standalone: true}">
-      <option value="" disabled>Select Course</option>
-      <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
-    </select>
+    <!-- Course Filter -->
+    <div class="col-12 col-md-4 mb-3">
+      <select class="form-control" id="courseFilter" [(ngModel)]="selectedCourse" (ngModelChange)="applyFilters()">
+        <option value="" disabled>Select Course</option>
+        <option *ngFor="let course of courses" [value]="course.courseId">{{ course.courseName }}</option>
+      </select>
+    </div>
   </div>
-</div>
-
 
   <!-- Payment Data Table -->
   <div class="table-responsive">
@@ -59,25 +47,21 @@
           <th>Student NIC</th>
           <th>Student Name</th>
           <th>Course Name</th>
-          <th>Fees (LKR)</th>
+          <th>Course Fees (LKR)</th>
           <th>Total Paid Amount (LKR)</th>
           <th>Due Amount (LKR)</th>
           <th>Payment Date</th>
-          
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let payment of payments">
-          <td>{{ payment.student?.nic }}</td>
-          <td>
-            {{ payment.student?.firstName }} {{ payment.student?.lastName }}
-          </td>
-          <td>{{ payment.courseName }}</td>
-          <td>{{ payment.amount | currency:'LKR ' }}</td>
+        <tr *ngFor="let payment of filteredPayments">
+          <td>{{ payment.enrollment?.student?.nic }}</td>
+          <td>{{ payment.enrollment?.student?.firstName }} {{ payment.enrollment?.student?.lastName }}</td>
+          <td>{{ payment.enrollment?.course?.courseName }}</td>
+          <td>{{ payment.enrollment?.course?.fees | currency:'LKR ' }}</td>
           <td>{{ payment.totalPaidAmount | currency:'LKR ' }}</td>
-          <td>{{ payment.dueAmount  | currency:'LKR ' }}</td>
-          <td>{{ payment.date | date : "short" }}</td>
-          
+          <td>{{ payment.dueAmount | currency:'LKR ' }}</td>
+          <td>{{ payment.paymentDate | date : "dd-MM-yyyy" }}</td>
         </tr>
       </tbody>
     </table>
