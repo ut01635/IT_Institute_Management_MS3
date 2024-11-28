@@ -22,7 +22,6 @@ export interface Student {
 }
 
 export interface Course {
-  courseId: number;
   id: string;
   courseName: string;
   level: string;
