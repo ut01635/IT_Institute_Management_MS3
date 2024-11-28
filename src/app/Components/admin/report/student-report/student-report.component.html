@@ -1,37 +1,24 @@
-<!-- student-report.component.html -->
+
 <main id="student-report" class="container card mt-2">
   <h1 class="text-center mb-5">Student Report</h1>
 
-  <!-- Form Section -->
+  
   <form [formGroup]="reportForm" (ngSubmit)="onsubmit()">
     <div id="search-container" class="container">
       <div class="row">
-        <!-- NIC Input Field -->
+       
         <div class="col-12 col-md-8 mb-3">
-          <input
-            type="text"
-            id="search-by-nic"
-            placeholder="NIC number"
-            class="form-control"
-            style="height: 50px;"
-            formControlName="nic"
-          />
-          <!-- Error Message -->
-          <div
-            *ngIf="reportForm.controls['nic'].invalid && reportForm.controls['nic'].touched"
-            class="text-danger mt-1"
-          >
+          <input type="text" id="search-by-nic" placeholder="NIC number" class="form-control" style="height: 50px;"
+            formControlName="nic" />
+         
+          <div *ngIf="reportForm.controls['nic'].invalid && reportForm.controls['nic'].touched"
+            class="text-danger mt-1">
             NIC number is required.
           </div>
         </div>
-        <!-- Submit Button -->
+        
         <div class="col-12 col-md-4 mb-3">
-          <button
-            type="submit"
-            id="report-generate-btn"
-            class="btn btn-success w-100 "
-            style="height: 50px;"
-          >
+          <button type="submit" id="report-generate-btn" class="btn btn-success w-100 " style="height: 50px;">
             <i class="bi bi-search"></i> Generate Report
           </button>
         </div>
@@ -39,12 +26,12 @@
     </div>
   </form>
 
-  <!-- Report Container -->
+  
   <div id="report-container" class="mt-4" *ngIf="reportData">
 
-    <!-- Personal Details -->
+    
     <div class="personal-details">
-      <h2 class="ms-3">Personal Details</h2>
+      <h2><i class="bi bi-person-circle"></i>  Personal Details</h2>
       <table class="table table-responsive">
         <tr>
           <td><strong>NIC Number:</strong></td>
@@ -64,60 +51,111 @@
         </tr>
       </table>
     </div>
+    <hr>
 
-    <!-- Course Details -->
-    <div class="course-details mt-4">
-      <h2><i class="bi bi-book"></i> Course Details</h2>
-      <select id="EnrollCourses" class="form-select" aria-label="Course selection" [(ngModel)]="selectedCourse"
-        (change)="selectCourse()">
-        <option *ngIf="!reportData.courses?.length" disabled>No courses found</option>
-        <option value="" disabled>Select Course</option>
-        <option *ngFor="let course of reportData.courses" [value]="course.id">{{ course.courseName }}</option>
-      </select>
-    </div>
 
-    <!-- Payment Details -->
-    <div class="payment-details mt-4">
-      <h2><i class="bi bi-credit-card"></i> Payment Details</h2>
 
-      <!-- Payment Info Table -->
-      <table class="table table-bordered table-responsive">
-        <tr>
-          <td><strong>Course Fee:</strong></td>
-          <!-- Use Angular's CurrencyPipe for formatting -->
-          <td><input type="text" id="fee" class="form-control" [value]="reportData.fee | currency: 'LKR ': 'symbol' : '1.00'" disabled></td>
-        </tr>
-        <tr>
-          <td><strong>Payment Plan:</strong></td>
-          <td><input type="text" id="paymentPlan" class="form-control" [(ngModel)]="reportData.paymentPlan" disabled></td>
-        </tr>
-        <tr>
-          <td><strong>Paid Amount:</strong></td>
-          <td><input type="text" id="paidAmount" class="form-control text-success" [value]="reportData.paidAmount | currency: 'LKR ': 'symbol' : '1.0-0'" disabled></td>
-        </tr>
-        <tr>
-          <td><strong>Due Amount:</strong></td>
-          <td><input type="text" id="dueAmount" class="form-control text-danger" [value]="reportData.dueAmount | currency: 'LKR ': 'symbol' : '1.0-0'" disabled></td>
-        </tr>
-      </table>
-
-      <!-- Payment History Table -->
-      <table class="table mt-4 table-responsive">
+    <div class="table-responsive mt-4">
+      <h2><i class="bi bi-person-check"></i> Enrollment History</h2>
+      <table class="table table-bordered table-striped text-center">
         <thead class="table-dark">
           <tr>
-            <th>Date</th>
-            <th>Course Name</th>
-            <th>Amount</th>
+            <th>Course</th>
+            <th>Fees (LKR)</th>
+            <th>Payment Plan</th>
+            <th>Enrollment Date</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let payment of reportData.payments">
-            <td>{{ payment.paymentDate | date: 'short' }}</td>
-            <td>{{ payment.courseName }}</td>
-            <td>{{ payment.totalPaidAmount | currency: 'LKR': 'symbol' : '1.0-0' }}</td>
+          <tr *ngFor="let enrollment of enrollments">
+            
+            
+            <td>{{ enrollment.course.courseName }}</td>
+            <td>{{ enrollment.course.fees | currency: 'LKR ' }}</td>
+            <td>
+              <span [ngClass]="{
+                'text-success': enrollment.paymentPlan === 'Full',
+                'text-primary': enrollment.paymentPlan === 'Installment'
+              }">
+                {{ enrollment.paymentPlan }}
+              </span>
+            </td>
+            <td>{{ enrollment.enrollmentDate | date: 'dd-MM-yyyy' }}</td>
+            <td>
+              <span [ngClass]="{'text-success': enrollment.isComplete, 'text-warning': !enrollment.isComplete}">
+                {{ enrollment.isComplete ? 'Completed' : 'Reading' }}
+              </span>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
+
+    <hr>
+
+  <div class="payment-details mt-4">
+    <h2><i class="bi bi-credit-card"></i> Payment Details</h2>
+
+   
+    <table class="table table-bordered table-responsive">
+      <tr>
+        <td><strong>Select Course:</strong></td>
+        <td><select id="EnrollCourses" class="form-select" aria-label="Course selection" [(ngModel)]="selectedCourse"
+            (change)="selectCourse()">
+            <option *ngIf="!reportData.courses?.length" disabled>No courses found</option>
+            <option value="" disabled>Select Course</option>
+            <option *ngFor="let course of reportData.courses" [value]="course.id">{{ course.courseName }}</option>
+          </select></td>
+      </tr>
+      <tr>
+        <td><strong>Course Fee:</strong></td>
+       
+        <td><input type="text" id="fee" class="form-control" [value]="reportData.fee | currency: 'LKR ': 'symbol' "
+            disabled></td>
+      </tr>
+      <tr>
+        <td><strong>Payment Plan:</strong></td>
+        <td><input type="text" id="paymentPlan" class="form-control" [(ngModel)]="reportData.paymentPlan" disabled>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Paid Amount:</strong></td>
+        <td><input type="text" id="paidAmount" class="form-control text-success"
+            [value]="reportData.paidAmount | currency: 'LKR ': 'symbol' " disabled></td>
+      </tr>
+      <tr>
+        <td><strong>Due Amount:</strong></td>
+        <td><input type="text" id="dueAmount" class="form-control text-danger"
+            [value]="reportData.dueAmount | currency: 'LKR ': 'symbol' " disabled></td>
+      </tr>
+    </table>
+    <hr>
+
+    <h2><i class="bi bi-credit-card-fill"></i> Payment History</h2>
+   
+    <table class="table mt-4 table-responsive">
+      <thead class="table-dark">
+        <tr>
+          <th>Payment Date</th>
+          <th>Course Fee (LKR)</th>
+          <th>Total Paid Amount (LKR)</th>
+          <th>Amount (LKR)</th>
+          <th>Due Amount (LKR)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of paymentDetails">
+         
+          <td>{{ payment.paymentDate | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ reportData.fee | currency: 'LKR ': 'symbol' }}</td>
+          <td>{{ payment.totalPaidAmount | currency: 'LKR ': 'symbol' }}</td>
+          <td>{{ payment.amount | currency: 'LKR ': 'symbol' }}</td>
+          <td>{{ payment.dueAmount | currency: 'LKR ': 'symbol' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
   </div>
 </main>

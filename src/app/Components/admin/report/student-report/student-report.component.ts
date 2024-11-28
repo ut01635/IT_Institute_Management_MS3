@@ -15,7 +15,7 @@ export class StudentReportComponent  implements OnInit {
   selectedCourse: string = '';
   reportData: any = null;
   enrollments: any[] = [];
-  paymentDetails: any = null; // Store selected course payment details
+  paymentDetails: any[] = [];  
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +26,7 @@ export class StudentReportComponent  implements OnInit {
 
   ngOnInit(): void {
     this.reportForm = this.fb.group({
-      nic: ['', Validators.required] // NIC field is required
+      nic: ['', Validators.required]  
     });
   }
 
@@ -34,7 +34,7 @@ export class StudentReportComponent  implements OnInit {
     const nicNumber: string = this.reportForm.value.nic;
 
     if (nicNumber) {
-      // Fetch student details based on NIC
+      
       this.studentService.getStudentByNIC(nicNumber).subscribe(
         (student: any) => {
           this.reportData = {
@@ -44,15 +44,15 @@ export class StudentReportComponent  implements OnInit {
             phone: student.phone,
             address: student.address,
             imagePath: student.imagePath,
-            courses: [], // Initialize the courses array
+            courses: [], 
             fee: 0,
             paymentPlan: 'Payment Plan',
             paidAmount: 0,
             dueAmount: 0,
-            payments: [] // Initialize the payments array
+            payments: [] 
           };
 
-          // Fetch enrollments (courses) for the student using NIC
+         
           this.enrollmentService.getEnrollments(nicNumber).subscribe(
             (enrollments: any[]) => {
               this.enrollments = enrollments;
@@ -75,40 +75,49 @@ export class StudentReportComponent  implements OnInit {
     if (!this.selectedCourse) {
       this.reportData.fee = '';
       this.reportData.paymentPlan = '';
-      this.reportData.paidAmount = '';
-      this.reportData.dueAmount = '';
-      return; // Return early if no course is selected
+      this.reportData.paidAmount = 0;
+      this.reportData.dueAmount = 0;
+      this.paymentDetails = []; 
+      return; 
     }
 
     const selectedEnrollment = this.enrollments.find(enrollment => enrollment.course.id === this.selectedCourse);
-    
-    if (selectedEnrollment) {
-      const enrollmentId = selectedEnrollment.id; // Get enrollment ID
 
-      // Fetch detailed enrollment data by enrollment ID
+    if (selectedEnrollment) {
+      const enrollmentId = selectedEnrollment.id;
+
+     
       this.enrollmentService.getEnrollmentById(enrollmentId).subscribe(
         (enrollmentDetails: Enrollment) => {
-          // Update the reportData with fee details from the enrollment
+          
           this.reportData.fee = enrollmentDetails.course.fees;
-          this.reportData.paymentPlan=enrollmentDetails.paymentPlan;
-           // Assume the fee is part of the enrollment details
+          this.reportData.paymentPlan = enrollmentDetails.paymentPlan;
 
-          // Now, we fetch payment details using the NIC and enrollment ID
+         
           this.paymentService.getPaymentsByNic(this.reportData.nic).subscribe(
             (payments: any[]) => {
-              const payment = payments.find(p => p.enrollmentId === enrollmentId);
+              
+              const coursePayments = payments.filter(p => p.enrollmentId === enrollmentId);
 
-              if (payment) {
-                // Set the payment details
-                this.paymentDetails = {
-                  fee: payment.amount,  // Course fee
-                  paidAmount: payment.totalPaidAmount,  // Total paid amount
-                  dueAmount: payment.dueAmount,  // Due amount
-                };
+             
+              if (coursePayments.length > 0) {
+                this.paymentDetails = coursePayments.map(payment => ({
+                  paymentDate: payment.paymentDate,
+                  fee: payment.amount, 
+                  totalPaidAmount: payment.totalPaidAmount, 
+                  amount: payment.amount, 
+                  dueAmount: payment.dueAmount 
+                }));
 
-                // Update the reportData with payment details
-                this.reportData.paidAmount = this.paymentDetails.paidAmount;
-                this.reportData.dueAmount = this.paymentDetails.dueAmount;
+               
+                const latestPayment = this.paymentDetails[this.paymentDetails.length - 1];
+                this.reportData.paidAmount = latestPayment.totalPaidAmount;
+                this.reportData.dueAmount = latestPayment.dueAmount;
+              } else {
+               
+                this.paymentDetails = [];
+                this.reportData.paidAmount = 0;
+                this.reportData.dueAmount = 0;
               }
             },
             (error) => {
