@@ -1,5 +1,5 @@
 <div class="container">
-  <!-- Heading Section -->
+
   <div class="row mb-4 align-items-center">
     <div class="col-12 col-md-6">
       <h2 class="text-darkblue">Payment Report</h2>
@@ -14,9 +14,9 @@
     </div>
   </div>
 
-  <!-- Filters Section -->
+
   <div class="row mb-4">
-    <!-- Date Range Filter -->
+   
     <div class="col-12 col-md-4 mb-3">
       <input type="text" id="dateRange" placeholder="Select Date" class="form-control theme-dark-blue" 
         bsDatepicker
@@ -24,22 +24,22 @@
         autocomplete="off" [(ngModel)]="paymentDateFilter" (ngModelChange)="applyFilters()" />
     </div>
 
-    <!-- Student Name or NIC Filter -->
+   
     <div class="col-12 col-md-4 mb-3">
       <input type="text" id="studentFilter" placeholder="Filter by Student Name or NIC..." class="form-control"
         [(ngModel)]="studentNameOrNicFilter" (ngModelChange)="applyFilters()" />
     </div>
 
-    <!-- Course Filter -->
+    
     <div class="col-12 col-md-4 mb-3">
       <select class="form-control" id="courseFilter" [(ngModel)]="selectedCourse" (ngModelChange)="applyFilters()">
         <option value="" disabled>Select Course</option>
-        <option *ngFor="let course of courses" [value]="course.courseId">{{ course.courseName }}</option>
+        <option *ngFor="let course of courses" [value]="course.id">{{ course.courseName }}</option>
       </select>
     </div>
   </div>
 
-  <!-- Payment Data Table -->
+ 
   <div class="table-responsive">
     <table class="table table-bordered table-striped">
       <thead>
@@ -55,10 +55,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let payment of filteredPayments">
-          <td>{{ payment.enrollment?.student?.nic }}</td>
-          <td>{{ payment.enrollment?.student?.firstName }} {{ payment.enrollment?.student?.lastName }}</td>
-          <td>{{ payment.enrollment?.course?.courseName }}</td>
-          <td>{{ payment.enrollment?.course?.fees | currency:'LKR ' }}</td>
+          <td>{{ payment.enrollment.student.nic }}</td>
+          <td>{{ payment.enrollment.student.firstName }} {{ payment.enrollment.student.lastName }}</td>
+          <td>{{ payment.enrollment.course.courseName }}</td>
+          <td>{{ payment.enrollment.course.fees | currency:'LKR ' }}</td>
           <td>{{ payment.totalPaidAmount | currency:'LKR ' }}</td>
           <td>{{ payment.dueAmount | currency:'LKR ' }}</td>
           <td>{{ payment.paymentDate | date : "dd-MM-yyyy" }}</td>

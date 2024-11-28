@@ -1,42 +1,42 @@
 <div class="container">
-  <!-- Payment Report Heading and Cards -->
+  
   <div class="row mb-4 align-items-center">
-    <!-- Left Side: Payment Report Heading -->
+    
     <div class="col-12 col-md-6">
       <h2 class="text-darkblue">Enrollment Report</h2>
     </div>
 
-    <!-- Right Side: Cards (Total Enrollment and Current Month Income) -->
+    
     <div class="col-12 col-md-6 d-flex justify-content-end gap-3">
-      <!-- Total Enrollment Card -->
+      
       <div class="card shadow-lg" style="width: 18rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
         <div class="card-body d-flex">
           <h5 class="card-title">Total Enrollments</h5>
-          <p class="card-text mx-3 fs-3">{{ totalEnrollments }}</p> <!-- Replace with dynamic value -->
+          <p class="card-text mx-3 fs-3">{{ totalEnrollments }}</p> 
         </div>
       </div>
 
-      <!-- Current Month Enrollment Card -->
+      
       <div class="card shadow-lg" style="width: 18rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
         <div class="card-body d-flex">
           <h5 class="card-title">{{currentMonth}} Enrollments</h5>
-          <p class="card-text mx-3 fs-3">{{ currentMonthEnrollments }}</p> <!-- Replace with dynamic value -->
+          <p class="card-text mx-3 fs-3">{{ currentMonthEnrollments }}</p> 
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Filters Section -->
+
   <button class="btn btn-primary mb-3" (click)="toggleFilters()">
     <i class="bi bi-funnel-fill"></i> Filter
   </button>
 
-  <!-- Filter Options (Initially hidden) -->
+
   <div *ngIf="filtersVisible">
     <div class="row mb-4">
-      <!-- Date Range Picker and Month Filter in the Same Row -->
+      
       <div class="col-12 col-md-6 mb-3">
-        <!-- Date Range Picker -->
+        
         <input type="text" id="dateRange" placeholder="Select Date Range" class="form-control theme-dark-blue"
           bsDaterangepicker [bsConfig]="{
               isAnimated: true,
@@ -47,31 +47,31 @@
       </div>
 
       <div class="col-12 col-md-6 mb-3">
-        <!-- Month Filter -->
+        
         <select id="month" class="form-control custom-month-select" [(ngModel)]="selectedMonth" (change)="applyFilters()">
           <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
         </select>
       </div>
     </div>
 
-    <!-- Filters for Course, Student Name / NIC, and Status in a New Row -->
+   
     <div class="row mb-4">
       <div class="col-12 col-md-4 mb-3">
-        <!-- Course Name Filter -->
+        
         <select class="form-control" id="courseFilter" [(ngModel)]="selectedCourse" (change)="applyFilters()">
           <option value="" disabled>Select Course</option>
-          <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+          <option *ngFor="let course of courses" [value]="course.id">{{ course.courseName }}</option>
         </select>
       </div>
 
       <div class="col-12 col-md-4 mb-3">
-        <!-- Student Name or NIC Filter -->
+       
         <input type="text" id="studentSearch" class="form-control" placeholder="Search by Name or NIC"
           [(ngModel)]="studentSearch" (ngModelChange)="applyFilters()" />
       </div>
 
       <div class="col-12 col-md-4 mb-3">
-        <!-- Status Filter -->
+       
         <select id="status" class="form-control" [(ngModel)]="selectedStatus" (change)="applyFilters()">
           <option value="" disabled>Select status</option>
           <option value="reading">Reading</option>
@@ -81,7 +81,7 @@
     </div>
   </div>
 
-  <!-- Report Table -->
+ 
   <div class="table-responsive mt-4">
     <table class="table table-bordered table-striped text-center">
       <thead class="table-dark">
