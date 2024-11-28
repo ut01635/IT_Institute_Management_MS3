@@ -32,6 +32,7 @@
               <tr>
                 <th>Date</th>
                 <th>Course Name</th>
+                <th>Course Fee</th>
                 <th>Paid Amount</th>
                 <th>Due Amount</th>
                 <th>Total Amount</th>
@@ -39,12 +40,13 @@
             </thead>
             <tbody>
               <!-- Apply dateFilter pipe and search pipe directly in the ngFor loop -->
-              <tr *ngFor="let payment of filteredPayments | dateFilter: paymentDateFilter! | search: courseNameFilter">
-                <td>{{ payment.date }}</td>
-                <td>{{ payment.courseName }}</td>
-                <td class="text-success">{{ payment.amount | currency }}</td>
-                <td class="text-danger">{{ payment.dueAmount | currency }}</td>
-                <td class="text-warning">{{ payment.totalAmount | currency }}</td>
+              <tr *ngFor="let payment of payments | dateFilter: paymentDateFilter! | search: courseNameFilter">
+                <td>{{ payment.paymentDate | date}}</td>
+                <td>{{ payment.enrollment.course.courseName }}</td>
+                <td>{{ payment.enrollment.course.fees | currency:'LKR ' }}</td>
+                <td class="text-success">{{ payment.amount |  currency:'LKR '}}</td>
+                <td class="text-danger">{{ payment.dueAmount |  currency:'LKR ' }}</td>
+                <td class="text-warning">{{ payment.totalPaidAmount |  currency:'LKR ' }}</td>
               </tr>
             </tbody>
           </table>
