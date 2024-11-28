@@ -8,7 +8,7 @@ import { Payment } from './Modal';
 })
 export class PaymentService {
 
-  
+
   private paymentUrl = 'https://localhost:7055/api/Payment';
   private totalIncomeUrl = 'https://localhost:7055/api/Payment/total-income';
 
@@ -23,4 +23,9 @@ export class PaymentService {
   getTotalIncome(): Observable<any> {
     return this.http.get<any>(this.totalIncomeUrl);
   }
+
+  getPaymentsByNic(nic: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.paymentUrl}/student/${nic}`);
+  }
+  
 }
