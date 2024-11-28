@@ -49,6 +49,7 @@
           <th>Course Name</th>
           <th>Course Fees (LKR)</th>
           <th>Total Paid Amount (LKR)</th>
+          <th>Amount (LKR)</th>
           <th>Due Amount (LKR)</th>
           <th>Payment Date</th>
         </tr>
@@ -60,6 +61,7 @@
           <td>{{ payment.enrollment.course.courseName }}</td>
           <td>{{ payment.enrollment.course.fees | currency:'LKR ' }}</td>
           <td>{{ payment.totalPaidAmount | currency:'LKR ' }}</td>
+          <td>{{ payment.amount | currency:'LKR ' }}</td>
           <td>{{ payment.dueAmount | currency:'LKR ' }}</td>
           <td>{{ payment.paymentDate | date : "dd-MM-yyyy" }}</td>
         </tr>

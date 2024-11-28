@@ -45,10 +45,10 @@ export class StudentReportComponent  implements OnInit {
             address: student.address,
             imagePath: student.imagePath,
             courses: [], // Initialize the courses array
-            fee: '',
-            paymentPlan: '',
-            paidAmount: '',
-            dueAmount: '',
+            fee: 0,
+            paymentPlan: 'Payment Plan',
+            paidAmount: 0,
+            dueAmount: 0,
             payments: [] // Initialize the payments array
           };
 
@@ -89,7 +89,9 @@ export class StudentReportComponent  implements OnInit {
       this.enrollmentService.getEnrollmentById(enrollmentId).subscribe(
         (enrollmentDetails: Enrollment) => {
           // Update the reportData with fee details from the enrollment
-          this.reportData.fee = enrollmentDetails.course.fees; // Assume the fee is part of the enrollment details
+          this.reportData.fee = enrollmentDetails.course.fees;
+          this.reportData.paymentPlan=enrollmentDetails.paymentPlan;
+           // Assume the fee is part of the enrollment details
 
           // Now, we fetch payment details using the NIC and enrollment ID
           this.paymentService.getPaymentsByNic(this.reportData.nic).subscribe(
@@ -100,13 +102,11 @@ export class StudentReportComponent  implements OnInit {
                 // Set the payment details
                 this.paymentDetails = {
                   fee: payment.amount,  // Course fee
-                  paymentPlan: payment.dueAmount === 0 ? 'Full' : 'Installment',  // Payment plan (Full or Installment)
                   paidAmount: payment.totalPaidAmount,  // Total paid amount
                   dueAmount: payment.dueAmount,  // Due amount
                 };
 
                 // Update the reportData with payment details
-                this.reportData.paymentPlan = this.paymentDetails.paymentPlan;
                 this.reportData.paidAmount = this.paymentDetails.paidAmount;
                 this.reportData.dueAmount = this.paymentDetails.dueAmount;
               }
