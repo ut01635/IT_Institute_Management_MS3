@@ -305,6 +305,7 @@ p{
   color: black;
   position: relative;
   overflow: hidden;
+  border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
   transition: box-shadow 0.1s ease-in;
   user-select: none;

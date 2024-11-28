@@ -13,6 +13,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class LoginComponent {
   login: LoginRequest;
+  message : string = ''
 
   constructor(private router: Router, private loginService: AuthService) {
     this.login = { nic: '', password: '' };
@@ -50,7 +51,12 @@ export class LoginComponent {
         },
         (error) => {
           console.error('Login failed:', error);
-          alert(error.error);
+          // alert(error.error);
+          this.message = error.error
+
+          setTimeout(() => {
+            this.message = '';
+          }, 4000);
         }
       );
     } else {
