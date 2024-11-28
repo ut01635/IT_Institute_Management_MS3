@@ -15,7 +15,7 @@ export class StudentReportComponent  implements OnInit {
   selectedCourse: string = '';
   reportData: any = null;
   enrollments: any[] = [];
-  paymentDetails: any[] = []; 
+  paymentDetails: any[] = [];  
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +26,7 @@ export class StudentReportComponent  implements OnInit {
 
   ngOnInit(): void {
     this.reportForm = this.fb.group({
-      nic: ['', Validators.required] 
+      nic: ['', Validators.required]  
     });
   }
 
@@ -52,7 +52,7 @@ export class StudentReportComponent  implements OnInit {
             payments: [] 
           };
 
-          
+         
           this.enrollmentService.getEnrollments(nicNumber).subscribe(
             (enrollments: any[]) => {
               this.enrollments = enrollments;
@@ -75,14 +75,14 @@ export class StudentReportComponent  implements OnInit {
     if (!this.selectedCourse) {
       this.reportData.fee = '';
       this.reportData.paymentPlan = '';
-      this.reportData.paidAmount = '';
-      this.reportData.dueAmount = '';
+      this.reportData.paidAmount = 0;
+      this.reportData.dueAmount = 0;
       this.paymentDetails = []; 
       return; 
     }
 
     const selectedEnrollment = this.enrollments.find(enrollment => enrollment.course.id === this.selectedCourse);
-    
+
     if (selectedEnrollment) {
       const enrollmentId = selectedEnrollment.id;
 
@@ -93,26 +93,31 @@ export class StudentReportComponent  implements OnInit {
           this.reportData.fee = enrollmentDetails.course.fees;
           this.reportData.paymentPlan = enrollmentDetails.paymentPlan;
 
-          
+         
           this.paymentService.getPaymentsByNic(this.reportData.nic).subscribe(
             (payments: any[]) => {
-             
+              
               const coursePayments = payments.filter(p => p.enrollmentId === enrollmentId);
 
              
-              this.paymentDetails = coursePayments.map(payment => ({
-                paymentDate: payment.paymentDate,
-                fee: payment.amount, 
-                totalPaidAmount: payment.totalPaidAmount,  
-                amount: payment.amount,  
-                dueAmount: payment.dueAmount  
-              }));
+              if (coursePayments.length > 0) {
+                this.paymentDetails = coursePayments.map(payment => ({
+                  paymentDate: payment.paymentDate,
+                  fee: payment.amount, 
+                  totalPaidAmount: payment.totalPaidAmount, 
+                  amount: payment.amount, 
+                  dueAmount: payment.dueAmount 
+                }));
 
-              
-              if (this.paymentDetails.length > 0) {
+               
                 const latestPayment = this.paymentDetails[this.paymentDetails.length - 1];
                 this.reportData.paidAmount = latestPayment.totalPaidAmount;
                 this.reportData.dueAmount = latestPayment.dueAmount;
+              } else {
+               
+                this.paymentDetails = [];
+                this.reportData.paidAmount = 0;
+                this.reportData.dueAmount = 0;
               }
             },
             (error) => {
