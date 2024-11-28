@@ -4,7 +4,7 @@
 }
 
 footer {
-  height: 80px;
+  height: 70px;
 }
 
 /* Footer Icon Size */
@@ -12,16 +12,20 @@ footer .bi {
   font-size: 1.5rem;
 }
 
+.tab-bar__tab-link{
+  text-decoration: none;
+  color: #ffff;
+}
 /* Tab Hover Effects */
 .tab-bar__tab-link:hover,
 .tab-bar__tab-link:focus-visible {
-  color: #868685; /* Original hover color */
+  color: #95d3fd; /* Original hover color */
   transform: scale(1.1);
 }
 
 /* Active Tab Style */
 .tab-bar__tab-link.active {
-  color: #ffffff; /* Original active color */
+  color: #0079ca; /* Original active color */
 }
 
 /* Footer Tab Names */
