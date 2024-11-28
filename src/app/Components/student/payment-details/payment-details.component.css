@@ -13,7 +13,7 @@ input[bsDaterangepicker] {
   
   /* Header of the calendar with dark blue background */
   .theme-dark-blue .bs-datepicker-head {
-    background-color: #003366; /* Dark blue background */
+    background-color: #0d1e4c; /* Dark blue background */
     color: white; /* White text color */
   }
   
@@ -33,5 +33,9 @@ input[bsDaterangepicker] {
   .theme-dark-blue .bs-datepicker-body .today {
     background-color: #006bb3; /* Different shade of blue for today's date */
     color: white; /* White text color */
+  }
+
+  .bg-darkblue{
+    background-color:#0d1e4c;
   }
   

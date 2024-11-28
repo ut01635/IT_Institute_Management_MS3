@@ -13,6 +13,12 @@ export class PaymentDetailsComponent implements OnInit {
   filteredPayments: Payment[] = [];
   courseNameFilter: string = '';
   paymentDateFilter: null = null;
+  showFilterSection: boolean = false;
+
+   // This method will toggle the visibility of the filter section
+   toggleFilterSection() {
+    this.showFilterSection = !this.showFilterSection;
+  }
 
   constructor(
     private paymentService:PaymentService,
