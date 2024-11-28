@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Student } from './Modal';
+import { Student, StudentProfileDto } from './Modal';
 
 @Injectable({
   providedIn: 'root'
@@ -86,7 +86,8 @@ export class StudentService {
     return this.http.put(`${this.BaseStudentURL}/${nic}/Directunlock`,nic)
   }
 
-  getStudentProfile(nic:string){
-    return this.http.get
+  getStudentProfile(nic: string): Observable<StudentProfileDto> {
+    // https://localhost:7055/api/Students/profile/123456789V
+    return this.http.get<StudentProfileDto>(`${this.BaseStudentURL}/profile/${nic}`);
   }
 }
