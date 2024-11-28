@@ -3,19 +3,19 @@
   
     <div class="row">
       <!-- Course Card (repeat for each course) -->
-      <div class="col-12" *ngFor="let course of courses">
+      <div class="col-12" *ngFor="let enrollment of enrollments">
         <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-          <img [src]="course.imagePaths" class="card-img" alt="Course image" />
+          <img src="https://localhost:7055{{enrollment.course.imagePaths}}" class="card-img" alt="Course image" />
           <div>
-            <h2 class="card-title text-white">{{ course.courseName }}</h2>
-            <h3 class="card-subtitle text-white">{{ course }}</h3>
-            <p class="card-text text-white">Level: {{ course.level }}</p>
-            <p class="card-text text-white">Duration: {{ course.duration }} months</p>
-            <p class="card-text text-white">{{ course.description }}</p>
-            <p class="card-text text-danger">LKR {{ course.fees }}</p>
+            <h2 class="card-title text-white">{{enrollment.course.courseName }}</h2>
+            <h3 class="card-subtitle text-white">{{ enrollment.paymentPlan }}</h3>
+            <p class="card-text text-white">Level: {{ enrollment.course.level }}</p>
+            <p class="card-text text-white">Duration: {{ enrollment.course.duration }} months</p>
+            <p class="card-text text-white">{{ enrollment.enrollmentDate }}</p>
+            <p class="card-text text-danger">LKR {{ enrollment.course.fees }}</p>
             <div class="buttons d-flex gap-3">
-              <button (click)="handleViewCourse(course)" class="btn btn-outline-light">View</button>
-              <button (click)="handleFollowCourse(course)" class="btn btn-danger text-danger">Unfollow</button>
+              <button (click)="handleViewCourse(enrollment)" class="btn btn-outline-light">View</button>
+              <button (click)="handleFollowCourse(enrollment)" class="btn btn-danger text-danger">Unfollow</button>
             </div>
           </div>
         </div>

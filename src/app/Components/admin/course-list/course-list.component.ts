@@ -34,8 +34,8 @@ export class CourseListComponent implements OnInit {
 
 
   
-  onEdit(courseId: number): void {
-    const courseToEdit = this.courses.find(course => course.courseId === courseId);
+  onEdit(courseId: string): void {
+    const courseToEdit = this.courses.find(course => course.id === courseId);
     if (courseToEdit) {
       const modalRef = this.modalService.open(CourseFormComponent, {
         size: 'lg'

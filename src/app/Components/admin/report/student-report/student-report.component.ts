@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StudentService } from '../../../../Services/student.service';
+import { EnrollmentService } from '../../../../Services/enrollment.service';
+import { PaymentService } from '../../../../Services/payment.service';
+import { Enrollment } from '../../../../Services/Modal';
 
 @Component({
   selector: 'app-student-report',
@@ -7,62 +11,125 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './student-report.component.css'
 })
 export class StudentReportComponent  implements OnInit {
-
-  reportForm!: FormGroup; // Reactive form group
+  reportForm!: FormGroup;
   selectedCourse: string = '';
   reportData: any = null;
+  enrollments: any[] = [];
+  paymentDetails: any[] = [];  
 
-  // Example data for demonstration
-  months = [
-    { value: '01', name: 'January' },
-    { value: '02', name: 'February' },
-    { value: '03', name: 'March' }
-  ];
-  
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private studentService: StudentService,
+    private enrollmentService: EnrollmentService,
+    private paymentService: PaymentService
+  ) { }
 
   ngOnInit(): void {
-     // Initialize the form with a required NIC field
-     this.reportForm = this.fb.group({
-      nic: ['', Validators.required]  // NIC field is required
+    this.reportForm = this.fb.group({
+      nic: ['', Validators.required]  
     });
   }
 
-  onsubmit()
-  {
-    console.log(this.reportForm.value);
-    let nicNumber:string = this.reportForm.value
+  onsubmit() {
+    const nicNumber: string = this.reportForm.value.nic;
+
     if (nicNumber) {
-      // Fetch data based on NIC (Simulating data for now)
-      this.reportData = {
-        nic: nicNumber,
-        name: 'John Doe',
-        email: 'johndoe@example.com',
-        phone: '123-456-7890',
-        courses: [
-          { id: 'course1', name: 'Math 101' },
-          { id: 'course2', name: 'Science 101' }
-        ],
-        fee: 500,
-        paymentPlan: 'Monthly',
-        paidAmount: 200,
-        dueAmount: 300,
-        payments: [
-          { date: '2023-11-01', courseName: 'Math 101', amount: 100 },
-          { date: '2023-11-15', courseName: 'Science 101', amount: 100 }
-        ]
-      };
+      
+      this.studentService.getStudentByNIC(nicNumber).subscribe(
+        (student: any) => {
+          this.reportData = {
+            nic: student.nic,
+            name: `${student.firstName} ${student.lastName}`,
+            email: student.email,
+            phone: student.phone,
+            address: student.address,
+            imagePath: student.imagePath,
+            courses: [], 
+            fee: 0,
+            paymentPlan: 'Payment Plan',
+            paidAmount: 0,
+            dueAmount: 0,
+            payments: [] 
+          };
+
+         
+          this.enrollmentService.getEnrollments(nicNumber).subscribe(
+            (enrollments: any[]) => {
+              this.enrollments = enrollments;
+              this.reportData.courses = enrollments.map(enrollment => enrollment.course);
+            },
+            (error) => {
+              console.error('Error fetching enrollments:', error);
+            }
+          );
+        },
+        (error) => {
+          console.error('Error fetching student details:', error);
+          alert('Failed to fetch student details');
+        }
+      );
     }
   }
 
-  // Method to simulate report generation
-  generateReport() {
-    
-  }
-
-  // Method to handle course selection
   selectCourse() {
-    console.log('Selected course:', this.selectedCourse);
+    if (!this.selectedCourse) {
+      this.reportData.fee = '';
+      this.reportData.paymentPlan = '';
+      this.reportData.paidAmount = 0;
+      this.reportData.dueAmount = 0;
+      this.paymentDetails = []; 
+      return; 
+    }
+
+    const selectedEnrollment = this.enrollments.find(enrollment => enrollment.course.id === this.selectedCourse);
+
+    if (selectedEnrollment) {
+      const enrollmentId = selectedEnrollment.id;
+
+     
+      this.enrollmentService.getEnrollmentById(enrollmentId).subscribe(
+        (enrollmentDetails: Enrollment) => {
+          
+          this.reportData.fee = enrollmentDetails.course.fees;
+          this.reportData.paymentPlan = enrollmentDetails.paymentPlan;
+
+         
+          this.paymentService.getPaymentsByNic(this.reportData.nic).subscribe(
+            (payments: any[]) => {
+              
+              const coursePayments = payments.filter(p => p.enrollmentId === enrollmentId);
+
+             
+              if (coursePayments.length > 0) {
+                this.paymentDetails = coursePayments.map(payment => ({
+                  paymentDate: payment.paymentDate,
+                  fee: payment.amount, 
+                  totalPaidAmount: payment.totalPaidAmount, 
+                  amount: payment.amount, 
+                  dueAmount: payment.dueAmount 
+                }));
+
+               
+                const latestPayment = this.paymentDetails[this.paymentDetails.length - 1];
+                this.reportData.paidAmount = latestPayment.totalPaidAmount;
+                this.reportData.dueAmount = latestPayment.dueAmount;
+              } else {
+               
+                this.paymentDetails = [];
+                this.reportData.paidAmount = 0;
+                this.reportData.dueAmount = 0;
+              }
+            },
+            (error) => {
+              console.error('Error fetching payment details:', error);
+            }
+          );
+        },
+        (error) => {
+          console.error('Error fetching detailed enrollment data:', error);
+        }
+      );
+    }
   }
 
 }

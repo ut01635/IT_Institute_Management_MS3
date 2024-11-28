@@ -46,8 +46,10 @@ export class CourseService {
   }
 
 
-  updateCourse(courseId: string, formData: FormData): Observable<Course> {
-    return this.http.put<Course>(`${this.courseApi}/${courseId}`, formData).pipe(
+  updateCourse(courseId: string, formData: FormData) {
+    return this.http.put(`${this.courseApi}/${courseId}`, formData,{
+      responseType: 'text'
+    }).pipe(
       catchError((error) => {
         console.error('Error updating course', error);
         throw error;

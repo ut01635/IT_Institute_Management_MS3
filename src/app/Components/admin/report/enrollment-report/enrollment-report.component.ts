@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrollmentService } from '../../../../Services/enrollment.service';
-import { Enrollment } from '../../../../Services/Modal';
+import { Course, Enrollment } from '../../../../Services/Modal';
 import { CourseService } from '../../../../Services/course.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { CourseService } from '../../../../Services/course.service';
 export class EnrollmentReportComponent implements OnInit {
   enrollments: Enrollment[] = [];
   filteredEnrollments: Enrollment[] = [];
+  courses: Course[] = []; 
   selectedMonth: string = '';
   selectedDateRange: [Date, Date] | null = null;
   selectedCourse: string = '';
@@ -38,39 +39,29 @@ export class EnrollmentReportComponent implements OnInit {
     { value: '12', name: 'December' }
   ];
 
-  courses: { id: string, name: string }[] = [];  // Now dynamically populated
-  selectedCourseName: string = ''; // Store selected course name for display in the UI
+ 
 
   constructor(
     private enrollmentService: EnrollmentService,
-    private courseService: CourseService // Inject the CourseService
+    private courseService: CourseService 
   ) { }
 
   ngOnInit(): void {
-    // Fetch enrollments and courses data
+    
     this.enrollmentService.getallEnrollement().subscribe(
       (data: Enrollment[]) => {
         this.enrollments = data;
         this.calculateTotalEnrollments();
         this.calculateCurrentMonthEnrollments();
-        this.filteredEnrollments = [...this.enrollments]; // Initialize with all enrollments
+        this.filteredEnrollments = [...this.enrollments]; 
       },
       (error) => {
         console.error('Error fetching enrollments:', error);
       }
     );
 
-    this.courseService.getAllCourses().subscribe(
-      (courses: any[]) => {
-        this.courses = courses.map(course => ({
-          id: course.id, // Assuming the course object has an 'id' and 'name'
-          name: course.courseName
-        }));
-      },
-      (error: any) => {
-        console.error('Error fetching courses:', error);
-      }
-    );
+    this.courseService.getAllCourses(); 
+    this.courseService.courses$.subscribe(courses => this.courses = courses); 
 
     this.getCurrentMonth();
   }

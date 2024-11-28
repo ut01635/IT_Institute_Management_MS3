@@ -22,7 +22,6 @@ export interface Student {
 }
 
 export interface Course {
-  courseId: number;
   id: string;
   courseName: string;
   level: string;
@@ -68,12 +67,14 @@ export interface enquiry {
 }
 
 export interface Payment {
-  date: string;
+  paymentDate: string;
   courseName: string;
   amount: number;
   dueAmount: number;
-  totalAmount: number;
-  student?:Student;
+  totalPaidAmount: number;
+  student:Student;
+  enrollmentId:string;
+  enrollment:Enrollment;
 }
 
 export interface Announcement {

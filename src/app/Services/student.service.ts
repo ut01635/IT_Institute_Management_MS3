@@ -61,6 +61,15 @@ export class StudentService {
       })
     );
   }
+
+  getStudentByNIC(nic: string): Observable<Student> {
+    return this.http.get<Student>(`${this.BaseStudentURL}/${nic}`).pipe(
+      catchError((error) => {
+        console.error('Error fetching student data', error);
+        throw error;
+      })
+    );
+  }
   
 
   refreshStudentList(): void {
