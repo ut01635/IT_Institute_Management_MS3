@@ -1,100 +1,102 @@
 <div class="">
-    <!-- Header -->
-    <header class="d-flex justify-content-between align-items-center p-3 bg-gray text-white" style="width: 100%;">
-      <h1 class="m-0">
-        <img src="/Header_Image.png" alt="logo" class="img-fluid" style="max-width: 300px; height:50px;">
-      </h1>
-      <div class="d-flex align-items-center">
-        <!-- Notifications Icon (without text) -->
-        <button class="btn me-3 btn-lg fw-bold" aria-label="Notifications" [routerLink]="['/admin/Notification-list']">
-          <i class="bi bi-bell text-darkBlue fs-3 fw-bold"></i>
-        </button>
-  
-        <!-- Announcements Icon (without text) -->
-        <button class="btn me-3 btn-lg fw-bold" aria-label="Announcements" [routerLink]="['/admin/Annoucement-list']">
-          <i class="bi bi-megaphone text-white fs-3 fw-bold"></i>
-        </button>
-  
-        <!-- Mobile Sidebar Toggle Button -->
-        <button class="btn btn-lg d-md-none fw-bold" (click)="toggleSidebar()"><i class="bi bi-list text-white fs-3 fw-bold"></i></button>
-      </div>
-    </header>
-  
+  <!-- Header -->
+  <header class="d-flex justify-content-between align-items-center p-3 bg-gray text-white" style="width: 100%;">
+    <h1 class="m-0 text-center">
+      <img src="/Header_Image.png" alt="logo" class="img-fluid mx-auto d-block"
+        style="max-width: 100%; height: auto; max-height: 50px;" />
+    </h1>
 
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <div class="row">
-      <nav class="col-12 col-md-2 sidebar bg-blurred text-white" [ngClass]="{'show': isSidebarVisible, 'dark-mode': isDarkMode, 'light-mode': !isDarkMode}">
+    <div class="d-flex align-items-center">
+      <!-- Notifications Icon (without text) -->
+      <button class="btn me-3 btn-lg fw-bold" aria-label="Notifications" [routerLink]="['/admin/Notification-list']">
+        <i class="bi bi-bell text-white fs-3 fw-bold"></i>
+      </button>
+
+      <!-- Announcements Icon (without text) -->
+      <button class="btn me-3 btn-lg fw-bold" aria-label="Announcements" [routerLink]="['/admin/Annoucement-list']">
+        <i class="bi bi-megaphone text-white fs-3 fw-bold"></i>
+      </button>
+
+      <div class="d-flex justify-content-center">
+        <img [src]="baseUrl + admin?.imagePath" alt="User Profile Picture" class="rounded-circle img-fluid p-2"
+          style="max-width: 50px; object-fit: cover;">
+      </div>
+
+      <!-- Button to toggle the sidebar on small screens -->
+      <button class="navbar-toggler btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar"
+          aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list text-white fs-3"></i>
+        </button>
+    </div>
+  </header>
+
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <div class="d-flex">
+    <div>
+      <nav id="sidebar" class="col-12 col-md-2 sidebar bg-blurred text-white collapse d-md-block"
+        [ngClass]="{'show': isSidebarVisible, 'dark-mode': isDarkMode, 'light-mode': !isDarkMode}">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/admin/admin-dashboard']"
-               (click)="setActiveTab('dashboard')"
-               [class.active]="activeTab === 'dashboard'">
+            <a class="nav-link" href="#" [routerLink]="['/admin/admin-dashboard']" (click)="setActiveTab('dashboard')"
+              [class.active]="activeTab === 'dashboard'">
               <i class="bi bi-house-door"></i>
               <span class="nav-text side-text">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/admin/student-list']"
-               (click)="setActiveTab('students')"
-               [class.active]="activeTab === 'students'">
+            <a class="nav-link" href="#" [routerLink]="['/admin/student-list']" (click)="setActiveTab('students')"
+              [class.active]="activeTab === 'students'">
               <i class="bi bi-person"></i>
               <span class="nav-text">Students</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/admin/course-list']"
-               (click)="setActiveTab('courses')"
-               [class.active]="activeTab === 'courses'">
+            <a class="nav-link" href="#" [routerLink]="['/admin/course-list']" (click)="setActiveTab('courses')"
+              [class.active]="activeTab === 'courses'">
               <i class="bi bi-book"></i>
               <span class="nav-text">Courses</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/admin/enquiry-list']"
-               (click)="setActiveTab('enquiries')"
-               [class.active]="activeTab === 'enquiries'">
+            <a class="nav-link" href="#" [routerLink]="['/admin/enquiry-list']" (click)="setActiveTab('enquiries')"
+              [class.active]="activeTab === 'enquiries'">
               <i class="bi bi-envelope"></i>
               <span class="nav-text">Enquiries</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/admin/payment']"
-               (click)="setActiveTab('payment')"
-               [class.active]="activeTab === 'payment'">
+            <a class="nav-link" href="#" [routerLink]="['/admin/payment']" (click)="setActiveTab('payment')"
+              [class.active]="activeTab === 'payment'">
               <i class="bi bi-credit-card"></i>
               <span class="nav-text">Payment</span>
             </a>
           </li>
-        
+
           <!-- Reports Item (with hover sub-links) -->
-          <li class="nav-item report-item">
-            <a class="nav-link" (click)="setActiveTab('reports')"
-               [class.active]="activeTab === 'reports'">
+          <li class="nav-item report-item position-relative">
+            <a class="nav-link" (click)="setActiveTab('reports')" [class.active]="activeTab === 'reports'">
               <i class="bi bi-file-earmark-bar-graph"></i>
               <span class="nav-text">Reports</span>
             </a>
-            <ul class="flex-column ms-0 w-100 report-sub-links">
-              <li><a href="#" [routerLink]="['/admin/student-report']"
-                     (click)="setActiveTab('student-report')"
-                     [class.active]="activeTab === 'student-report'">Student Report</a></li>
-              <li><a href="#" [routerLink]="['/admin/enrollment-report']"
-                     (click)="setActiveTab('enrollment-report')"
-                     [class.active]="activeTab === 'enrollment-report'">Enrollment Report</a></li>
-              <li><a href="#" [routerLink]="['/admin/payment-report']"
-                     (click)="setActiveTab('payment-report')"
-                     [class.active]="activeTab === 'payment-report'">Payment Report</a></li>
+            <ul class="flex-column ms-0 w-100 report-sub-links position-absolute start-100 top-0 p-2 rounded shadow">
+              <li><a href="#" [routerLink]="['/admin/student-report']" (click)="setActiveTab('student-report')"
+                  [class.active]="activeTab === 'student-report'">Student Report</a></li>
+              <li><a href="#" [routerLink]="['/admin/enrollment-report']" (click)="setActiveTab('enrollment-report')"
+                  [class.active]="activeTab === 'enrollment-report'">Enrollment Report</a></li>
+              <li><a href="#" [routerLink]="['/admin/payment-report']" (click)="setActiveTab('payment-report')"
+                  [class.active]="activeTab === 'payment-report'">Payment Report</a></li>
             </ul>
           </li>
-        
-          <li class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/admin/admin-list']"
-               (click)="setActiveTab('admins')"
-               [class.active]="activeTab === 'admins'">
+
+          <li class="nav-item" *ngIf="userRole === 'MasterAdmin'">
+            <a class="nav-link" href="#" [routerLink]="['/admin/admin-list']" (click)="setActiveTab('admins')"
+              [class.active]="activeTab === 'admins'">
               <i class="bi bi-person"></i>
               <span class="nav-text">Admins</span>
             </a>
           </li>
-        
+
           <li class="nav-item mt-auto">
             <a class="nav-link text-danger" href="#" (click)="logout()">
               <i class="bi bi-box-arrow-right"></i>
@@ -102,10 +104,10 @@
             </a>
           </li>
         </ul>
-        
-    
+
+
         <!-- Dark/Light Mode Toggle Button -->
-        <div class="d-flex justify-content-end align-items-end w-100">
+        <div class="position-fixed bottom-0 end-0 p-3 me-3">
           <button class="btn btn-toggle-mode  toggle-button" (click)="toggleTheme()">
             <label class="switch">
               <!-- Checkbox input to trigger theme toggle -->
@@ -120,17 +122,15 @@
             </label>
           </button>
         </div>
-       
-        
       </nav>
-    
-      <!-- Main Content Area -->
-      <main class="col-12 col-md ms-0 mt-3 container-fluid">
-        <section style="width: 100%; overflow-y: scroll;" class="shadow p-4 m-2 bg-white rounded">
-          <router-outlet></router-outlet>
-        </section>
-      </main>
     </div>
-    
-    
+    <!-- Main Content -->
+    <main class="container-fluid p-3" style="overflow-y: auto; height: calc(100vh - 100px);">
+      <section class="shadow p-4 bg-white rounded">
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
+      </section>
+    </main>
   </div>
+</div>

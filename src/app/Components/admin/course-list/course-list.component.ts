@@ -14,6 +14,7 @@ export class CourseListComponent implements OnInit {
 
   searchText: string = '';
   courses: Course[] = [];
+  selectedCourse: Course | null = null;
 
   constructor(
     private courseService: CourseService,
@@ -21,19 +22,28 @@ export class CourseListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+    this.loadCourses();
+  }
+
+  loadCourses(): void {
     this.courseService.courses$.subscribe((courses) => {
       this.courses = courses;
     });
-
-    
     this.courseService.getAllCourses();
   }
 
-  onEdit(courseId: string) {
-    console.log("Edit course with ID: ", courseId);
-  }
 
+  
+  onEdit(courseId: string): void {
+    const courseToEdit = this.courses.find(course => course.id === courseId);
+    if (courseToEdit) {
+      const modalRef = this.modalService.open(CourseFormComponent, {
+        size: 'lg'
+      });
+      modalRef.componentInstance.courseToEdit = courseToEdit; 
+    }
+  }
+  
 
   onDelete(courseId: string) {
     

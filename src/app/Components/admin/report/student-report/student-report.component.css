@@ -1,0 +1,31 @@
+/* student-report.component.css */
+#student-report {
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.table {
+  margin-top: 15px;
+}
+
+/* Optional: Improve responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .ms-3 {
+    margin-left: 0;
+  }
+
+  .table td {
+    word-wrap: break-word;
+  }
+
+  #search-by-nic {
+    height: 45px;
+  }
+
+  #report-generate-btn {
+    height: 45px;
+  }
+}

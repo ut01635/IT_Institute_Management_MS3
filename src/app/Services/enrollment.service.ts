@@ -4,34 +4,44 @@ import { Injectable } from '@angular/core';
 import { Enrollment, Student } from './Modal';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EnrollmentService {
-
   private enrollmentUrl = 'https://localhost:7055/api/Enrollment';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  
-  getEnrollments(studentNic: number): Observable<Student[]> {
+  getEnrollments(studentNic: string): Observable<Student[]> {
     return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
   }
 
-  
-  getCompletedEnrollments(studentNic: number): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`)
+  getCompletedEnrollments(studentNic: string): Observable<Student[]> {
+    return this.http
+      .get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`)
       .pipe(
         catchError((error) => {
           console.error('Error fetching completed enrollments', error);
-          return of([]);  
+          return of([]);
         })
       );
   }
-
-  createEnrollment(enrollment:Enrollment){
-    return this.http.post(this.enrollmentUrl, enrollment, {
-      responseType: 'text'
-    })
+  getallEnrollement(): Observable<Enrollment[]> {
+    return this.http.get<Enrollment[]>(`${this.enrollmentUrl}`);
   }
-  
+
+  getReadingEnrollments(studentNic: string) {
+    return this.http.get<any[]>(
+      `${this.enrollmentUrl}/nic/${studentNic}/notcompleted`
+    );
+  }
+
+  createEnrollment(enrollment: Enrollment) {
+    return this.http.post(this.enrollmentUrl, enrollment, {
+      responseType: 'text',
+    });
+  }
+
+  getEnrollmentById(enrollmentId: string): Observable<Enrollment> {
+    return this.http.get<Enrollment>(`${this.enrollmentUrl}/${enrollmentId}`);
+  }
 }

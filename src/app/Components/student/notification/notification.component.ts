@@ -14,10 +14,13 @@ export class NotificationComponent implements OnInit {
   messages:Message[] = [];
   messageDateFilter: null = null;
 
-  constructor(private notificationService: NotificationService){}
+  constructor(
+    private notificationService: NotificationService
+  ){}
 
   ngOnInit(): void {
-    this.loadMessages('200206601718')
+    const nic = localStorage.getItem('NIC')||'';
+    this.loadMessages(nic)
   }
 
   loadMessages(nic:string){

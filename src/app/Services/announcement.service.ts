@@ -21,7 +21,9 @@ export class AnnouncementService {
   }
 
   deleteAnnouncement(id:string){
-    return this.http.delete(this.baseURL+'/'+ id);
+    return this.http.delete(this.baseURL+'/'+ id,{
+       responseType: 'text'
+    });
   }
 
 }

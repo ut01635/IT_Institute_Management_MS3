@@ -27,6 +27,7 @@ import { StudentFormComponent } from './Modals/admin/student-form/student-form.c
 import { CourseFormComponent } from './Modals/admin/course-form/course-form.component';
 import { AuthGuard } from './authGuard/auth.guard';
 import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.component';
+import { AnnouncementFormComponent } from './Modals/admin/announcement-form/announcement-form.component';
 
 const routes: Routes = [
   {
@@ -74,7 +75,7 @@ const routes: Routes = [
   },
 
   { path: 'login', component: LoginComponent },
-  { path: 'form', component: CourseFormComponent },
+  { path: 'form', component: AnnouncementFormComponent },
   {path:'adminForm',component:AdminFormComponent},
 
   { path: '', redirectTo: '/', pathMatch: 'full' }

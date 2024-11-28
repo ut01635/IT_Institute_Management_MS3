@@ -2,7 +2,7 @@ export interface Address {
   addressLine1: string;
   addressLine2?: string;
   city: string;
-  state:string
+  state: string;
   postalCode?: string;
   country?: string;
 }
@@ -14,76 +14,103 @@ export interface Student {
   email: string;
   phone: string;
   address?: Address;
-  enrollments?: Enrollment[];  
-  imagePath?: string;  
-  isLocked?: boolean;  
-  enrollingCount?: number; 
+  enrollments?: Enrollment[];
+  imagePath?: string;
+  isLocked?: boolean;
+  enrollingCount?: number;
   completedCount?: number;
 }
-
 
 export interface Course {
   id: string;
   courseName: string;
   level: string;
-  duration: number;  
-  fees: number;  
+  duration: number;
+  fees: number;
   imagePaths: string[];
-  description:string; 
+  description: string;
 }
 
-  export interface Enrollment {
-    id: string;
-    course: Course;
-    enrollmentDate: string;
-    isComplete: boolean;
-    paymentPlan: string;
-  }
+export interface Enrollment {
+  id: string;
+  student: Student;
+  course: Course;
+  enrollmentDate: string;
+  isComplete: boolean;
+  paymentPlan: string;
+}
 
-  export interface LoginRequest {
-    nic: string;
-    password: string;
-  }
+export interface LoginRequest {
+  nic: string;
+  password: string;
+}
 
-  export interface userDetails{
-    nic:string;
-    Role:string;
-  }
+export interface userDetails {
+  nic: string;
+  Role: string;
+}
 
-  export interface admin {
-    nic: string;
-    name: string;
-    email: string;
-    phone: string;
-    imagePath: string; 
-  }
+export interface admin {
+  nic: string;
+  name: string;
+  email: string;
+  phone: string;
+  imagePath: string;
+}
 
-  export interface enquiry{
-    id:string;
-    name:string;
-    email:string;
-    message:string;
-    date:string;
-  }
+export interface enquiry {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  date: string;
+}
 
-  export interface Payment {
-    date: string;
-    courseName: string;
-    amount: number;
-    dueAmount: number;
-    totalAmount: number;
-  }
+export interface Payment {
+  paymentDate: string;
+  courseName: string;
+  amount: number;
+  dueAmount: number;
+  totalPaidAmount: number;
+  student:Student;
+  enrollmentId:string;
+  enrollment:Enrollment;
+}
 
-  export interface Announcement{
-    id:string
-    title:string;
-    body:string;
-    date:Date
-  }
+export interface Announcement {
+  id: string;
+  title: string;
+  body: string;
+  date: Date;
+}
 
-  export interface Message{
-    id:string
-    message:string;
-    studentNIC:string;
-    date:Date
-  }
+export interface Message {
+  id: string;
+  message: string;
+  studentNIC: string;
+  date: Date;
+}
+
+export interface StudentProfileDto {
+  nic: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  isLocked: boolean;
+  failedLoginAttempts: number;
+  imagePath: string;
+  address: Address;
+  socialMediaLinks: SocialMediaLinks;
+  enrollments: Enrollment[];
+}
+
+export interface SocialMediaLinks {
+  id: string;
+  linkedIn?: string;
+  instagram?: string;
+  facebook?: string;
+  gitHub?: string;
+  whatsApp?: string;
+  studentNic?: string;
+}

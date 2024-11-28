@@ -5,7 +5,8 @@
     </div>
 
     <div>
-      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registerModal" (click)="openModal()">
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registerModal"
+        (click)="openModal()">
         New Student
       </button>
     </div>
@@ -13,7 +14,7 @@
 
   <table class="table table-responsive table-bordered">
     <thead>
-      <tr>  
+      <tr>
         <th>Image</th>
         <th>NIC</th>
         <th>Name</th>
@@ -28,7 +29,8 @@
     <tbody>
       <tr *ngFor="let student of students | search:searchText">
         <td>
-          <img [src]="baseUrl+student.imagePath" alt="Student Image" class="img-thumbnail" style="width: 50px; height: 50px;">
+          <img [src]="baseUrl + student.imagePath" alt="Student Image" class="img-thumbnail"
+            style="width: 50px; height: 50px;">
         </td>
         <td>{{ student.nic }}</td>
         <td>{{ student.firstName }} {{ student.lastName }}</td>
@@ -42,10 +44,10 @@
         <td>{{ student.enrollingCount || 0 }}</td>
         <td>{{ student.completedCount || 0 }}</td>
         <td>
-          <button type="button" class="btn btn-primary me-3 btn-sm">
+          <button type="button" class="btn btn-primary me-3 btn-sm" (click)="editStudent(student.nic)">
             <i class="bi bi-pencil"></i> Edit
           </button>
-          <button type="button" class="btn btn-danger btn-sm">
+          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(student.nic)">
             <i class="bi bi-trash"></i> Delete
           </button>
         </td>

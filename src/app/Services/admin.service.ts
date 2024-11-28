@@ -8,7 +8,7 @@ import { admin } from './Modal';
 })
 export class AdminService {
 
-  private getAdminurl = 'https://localhost:7055/api/Admin';
+  private adminBaseURL = 'https://localhost:7055/api/Admin';
 
 
   private adminsSubject = new BehaviorSubject<admin[]>([]);
@@ -19,7 +19,7 @@ export class AdminService {
   
 
   getAdmins(): Observable<admin[]> {
-    return this.http.get<admin[]>(this.getAdminurl).pipe(
+    return this.http.get<admin[]>(this.adminBaseURL).pipe(
       catchError((error) => {
         console.error('Error fetching admins', error);
         return [];
@@ -29,7 +29,7 @@ export class AdminService {
 
   
   addAdmin(formData: FormData): Observable<admin> {
-    return this.http.post<admin>(this.getAdminurl, formData).pipe(
+    return this.http.post<admin>(this.adminBaseURL, formData).pipe(
       catchError((error) => {
         console.error('Error adding admin', error);
         throw error;
@@ -38,7 +38,7 @@ export class AdminService {
   }
 
   deleteAdmin(nic: string) {
-    const deleteUrl = `${this.getAdminurl}/${nic}`;
+    const deleteUrl = `${this.adminBaseURL}/${nic}`;
     return this.http.delete(deleteUrl).pipe(
       catchError((error) => {
         console.error('Error deleting admin', error);
@@ -47,11 +47,25 @@ export class AdminService {
     );
   }
 
+
+  updateAdmin(nic: string, formData: FormData): Observable<admin> {
+    const updateUrl = `${this.adminBaseURL}/${nic}`;
+    return this.http.put<admin>(updateUrl, formData).pipe(
+      catchError((error) => {
+        console.error('Error updating admin', error);
+        throw error;
+      })
+    );
+  }
   
   refreshAdminList(): void {
     this.getAdmins().subscribe((admins) => {
       this.adminsSubject.next(admins); 
     });
+  }
+
+  getAdminByNic(nic:string){
+    return this.http.get<admin>(`${this.adminBaseURL}/${nic}`)
   }
 
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Course } from './Modal';
-import { BehaviorSubject, Observable, catchError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +23,17 @@ export class CourseService {
     this.http.get<Course[]>(this.courseApi).pipe(
       catchError((error) => {
         console.error('Error fetching courses', error);
-        return [];
+        return throwError(() => error); 
       })
-    ).subscribe((courses) => {
-      this.coursesSubject.next(courses); 
-    });
+    ).subscribe(
+      (courses: Course[]) => {
+        this.coursesSubject.next(courses); 
+      },
+      (error) => {
+        console.error('Failed to load courses', error);
+      }
+    );
   }
-
 
 
   addCourse(formData: FormData): Observable<Course> {
@@ -41,6 +45,19 @@ export class CourseService {
     );
   }
 
+
+  updateCourse(courseId: string, formData: FormData) {
+    return this.http.put(`${this.courseApi}/${courseId}`, formData,{
+      responseType: 'text'
+    }).pipe(
+      catchError((error) => {
+        console.error('Error updating course', error);
+        throw error;
+      })
+    );
+  }
+
+
   deleteCourse(courseId: string) {
     return this.http.delete(`${this.courseApi}/${courseId}`).pipe(
       catchError((error) => {
@@ -49,6 +66,7 @@ export class CourseService {
       })
     );
   }
+
 
   refreshCourseList(): void {
     this.getAllCourses(); 

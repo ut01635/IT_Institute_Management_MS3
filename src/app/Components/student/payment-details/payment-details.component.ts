@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Payment } from '../../../Services/Modal';
+import { Enrollment, Payment } from '../../../Services/Modal';
+import { PaymentService } from '../../../Services/payment.service';
+import { EnrollmentService } from '../../../Services/enrollment.service';
 
 @Component({
   selector: 'app-payment-details',
@@ -11,23 +13,51 @@ export class PaymentDetailsComponent implements OnInit {
   filteredPayments: Payment[] = [];
   courseNameFilter: string = '';
   paymentDateFilter: null = null;
+  showFilterSection: boolean = false;
+
+   // This method will toggle the visibility of the filter section
+   toggleFilterSection() {
+    this.showFilterSection = !this.showFilterSection;
+  }
+
+  constructor(
+    private paymentService:PaymentService,
+    private enrollmentService:EnrollmentService
+  ){}
+  
   ngOnInit(): void {
-    // Sample Payment Data
-    this.payments = [
-      { date: '2024-11-20', courseName: 'Web Development', amount: 200, dueAmount: 50, totalAmount: 250 },
-      { date: '2024-11-15', courseName: 'Data Science', amount: 300, dueAmount: 30, totalAmount: 330 },
-      { date: '2024-11-10', courseName: 'UI/UX Design', amount: 150, dueAmount: 20, totalAmount: 170 },
-      { date: '2024-11-05', courseName: 'Machine Learning', amount: 400, dueAmount: 70, totalAmount: 470 },
-      { date: '2024-11-01', courseName: 'Web Development', amount: 250, dueAmount: 30, totalAmount: 280 },
-      { date: '2024-10-30', courseName: 'Python Programming', amount: 350, dueAmount: 40, totalAmount: 390 },
-      { date: '2024-10-25', courseName: 'JavaScript Basics', amount: 100, dueAmount: 10, totalAmount: 110 },
-      { date: '2024-10-15', courseName: 'Full Stack Development', amount: 500, dueAmount: 60, totalAmount: 560 },
-      { date: '2024-10-10', courseName: 'Data Science', amount: 300, dueAmount: 25, totalAmount: 325 },
-      { date: '2024-10-05', courseName: 'Artificial Intelligence', amount: 600, dueAmount: 80, totalAmount: 680 },
-      // Add more rows here as needed
-    ];
+    const nic = localStorage.getItem('NIC')|| ''
+    this.paymentService.getPaymentsByNic(nic).subscribe(data=>{
+      this.payments = data
+      this.getEnrollmentsForPayments(); 
+      console.log(this.payments);
+      
+    }, error=>{
+      console.log(error.erorr);
+      
+    })
+
+
+    
 
     // Initially, show all payments (no filters applied)
     this.filteredPayments = [...this.payments];
+  }
+
+
+  getEnrollmentsForPayments(): void {
+    this.payments.forEach((payment) => {
+      this.enrollmentService.getEnrollmentById(payment.enrollmentId).subscribe(
+        (enrollment: Enrollment) => {
+          const paymentData = this.payments.find(p => p.enrollmentId === payment.enrollmentId);
+          if (paymentData) {
+            paymentData.enrollment = enrollment;
+          }
+        },
+        (error) => {
+          console.error('Error fetching enrollment for payment:', error);
+        }
+      );
+    });
   }
 }

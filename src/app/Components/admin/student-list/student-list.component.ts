@@ -17,64 +17,56 @@ export class StudentListComponent implements OnInit {
   searchText: string = '';
   baseUrl = 'https://localhost:7055'; 
 
-
   constructor(
     private studentService: StudentService,
     private enrollmentService: EnrollmentService,
     private modalService: NgbModal
-    
   ) { }
 
   ngOnInit(): void {
-    
     this.studentService.students$.subscribe((students) => {
       this.students = students;
       this.fetchEnrollments();
+      console.log(this.students);
     });
 
-    
     this.studentService.getStudents();
+
+    
+    
   }
 
   fetchEnrollments() {
     this.students.forEach(student => {
-      const nicNumber = Number(student.nic); 
-
-     
+      const nicNumber: string = student.nic; 
       forkJoin([
         this.enrollmentService.getEnrollments(nicNumber),
         this.enrollmentService.getCompletedEnrollments(nicNumber)
       ]).subscribe(([enrollments, completedEnrollments]) => {
-       
         student.enrollingCount = enrollments.length;
         student.completedCount = completedEnrollments.length;
       });
     });
   }
 
-
-
- 
   openModal() {
-    
+    const modalRef = this.modalService.open(StudentFormComponent, { size: 'lg' });
+    modalRef.componentInstance.isEditMode = false; 
+    modalRef.result.then((result: any) => {
+      console.log('Modal closed', result);
+    }, (reason: any) => {
+      console.log('Modal dismissed', reason);
+    });
+  }
+
+
+  editStudent(nic: string): void {
+    const studentToEdit = this.students.find(student => student.nic === nic);
     const modalRef = this.modalService.open(StudentFormComponent, {
       size: 'lg'
     });
-
-    
-    modalRef.result.then(
-      (result: any) => {
-        console.log('Modal closed', result);
-      },
-      (reason: any) => {
-        console.log('Modal dismissed', reason);
-      }
-    );
+    modalRef.componentInstance.studentToEdit = studentToEdit;
   }
-
-  // onEdit(studentNic: number) {
-  //   console.log("Edit student with NIC: ", studentNic);
-  // }
 
   onDelete(studentNic: string): void {
     const confirmDelete = window.confirm('Are you sure you want to delete this student?');
@@ -92,5 +84,42 @@ export class StudentListComponent implements OnInit {
       );
     }
   }
+
+  toggleLockOrUnlock(student: any): void {
+    if (student.IsLocked) {
+      this.toggleUnlock(student);  // Pass the entire student object
+    } else {
+      this.toggleLock(student);  // Pass the entire student object
+    }
+  }
+  
+  toggleLock(student: any) {
+    this.studentService.lockAccount(student.nic).subscribe(
+      (data) => {
+        alert("Account locked with NIC: " + student.nic);
+        // Update the student.IsLocked value directly here
+        student.IsLocked = true;
+        // this.studentService.getStudents();
+      },
+      (error) => {
+        alert("Account locking failed for NIC: " + student.nic);
+      }
+    );
+  }
+  
+  toggleUnlock(student: any) {
+    this.studentService.dirrectUnlockAccount(student.nic).subscribe(
+      (data) => {
+        alert("Account unlocked with NIC: " + student.nic);
+        // Update the student.IsLocked value directly here
+        student.IsLocked = false;
+        // this.studentService.getStudents();
+      },
+      (error) => {
+        alert("Account unlocking failed for NIC: " + student.nic);
+      }
+    );
+  }
+  
 
 }

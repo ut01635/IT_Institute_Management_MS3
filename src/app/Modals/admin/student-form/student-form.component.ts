@@ -1,24 +1,30 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StudentService } from '../../../Services/student.service';
 import { HttpClient } from '@angular/common/http';
 import { StudentListComponent } from '../../../Components/admin/student-list/student-list.component';
 import { Router } from '@angular/router';
+import { Student } from '../../../Services/Modal';
 
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
   styleUrl: './student-form.component.css'
 })
-export class StudentFormComponent {
+export class StudentFormComponent implements OnInit {
+  @Input() isEditMode: boolean = false;
+  @Input() studentToEdit: Student | null = null;
   studentForm: FormGroup;
   imageFile: File | null = null;
 
-  constructor(public activeModal: NgbActiveModal, private studentService: StudentService, private http: HttpClient, private router: Router) {
-
+  constructor(
+    public activeModal: NgbActiveModal,
+    private studentService: StudentService
+  ) {
+    // Initialize form with validation rules
     this.studentForm = new FormGroup({
-      NIC: new FormControl('', [
+      nic: new FormControl('', [
         Validators.required,
         Validators.pattern(/^\d{9}[vxzVXZ]$|^\d{12}$/),
       ]),
@@ -41,8 +47,6 @@ export class StudentFormComponent {
         ),
       ]),
       image: new FormControl(null),
-
-
       address: new FormGroup({
         addressLine1: new FormControl('', [Validators.required]),
         addressLine2: new FormControl(''),
@@ -58,6 +62,16 @@ export class StudentFormComponent {
   }
 
 
+    ngOnInit(): void {
+    
+      if (this.studentToEdit) {
+        this.studentForm.patchValue(this.studentToEdit);
+       
+      }
+    }
+  
+
+
   onImageChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -69,6 +83,8 @@ export class StudentFormComponent {
   onSubmit(): void {
     if (this.studentForm.valid) {
       const formData = new FormData();
+
+      
       Object.keys(this.studentForm.value).forEach(key => {
         if (key !== 'image' && this.studentForm.value[key]) {
           if (key === 'address') {
@@ -82,30 +98,55 @@ export class StudentFormComponent {
         }
       });
 
+     
       if (this.imageFile) {
         formData.append('image', this.imageFile, this.imageFile.name);
       }
 
-      this.studentService.addStudent(formData).subscribe(
-        (response) => {
-          alert('Student added successfully');
-
-
-
-          this.studentService.refreshStudentList();
-          this.activeModal.close();
-
-
-
-        },
-        (error: any) => {
-          console.error('Error adding student', error);
-        }
-      );
+      if (this.studentToEdit) {
+       
+        this.studentService.updateStudent(this.studentToEdit.nic, formData).subscribe(
+          response => {
+            alert('Student updated successfully!');
+            this.studentService.refreshStudentList();
+            this.activeModal.close();
+          },
+          error => {
+            console.error('Error updating student:', error);
+          }
+        );
+      } else {
+       
+        this.studentService.addStudent(formData).subscribe(
+          response => {
+            alert('Student added successfully!');
+            this.studentService.refreshStudentList();
+            this.activeModal.close();
+          },
+          error => {
+            console.error('Error adding student:', error);
+          }
+        );
+      }
     } else {
-      console.log('Form is invalid');
+      alert('Please fill in all the required fields correctly.');
     }
+  }
+
+  
+  get f() {
+    return this.studentForm.controls;
+  }
+
+  
+  isFieldInvalid(fieldName: string): boolean {
+    const field = this.f[fieldName];
+    return field?.invalid && (field?.touched || field?.dirty);
   }
 
 
 }
+function ngOnInit() {
+  throw new Error('Function not implemented.');
+}
+

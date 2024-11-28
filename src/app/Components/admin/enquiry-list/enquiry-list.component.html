@@ -6,34 +6,37 @@
     </div>
   </div>
 
-  <table class="table table-responsive table-bordered">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Message</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let enquiry of enquirys | enquirySearch:searchText">
-        <td>{{ enquiry.date | date: 'dd/MM/yyyy' }}</td>
-        <td>{{ enquiry.name }}</td>
-        <td>{{ enquiry.email }}</td>
-        <td>{{ enquiry.message }}</td>
-        <td class="d-flex">
-          <button type="button" class="btn btn-warning me-3 btn-lg" (click)="onReplay(enquiry.email)">
-            <i class="bi bi-pencil"></i>
-          </button>
-          <!-- <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onView(enquiry.id)">
-            <i class="bi bi-eye"></i> View
-          </button> -->
-          <button type="button" class="btn btn-danger btn-lg" (click)="onDelete(enquiry.id)">
-            <i class="bi bi-trash"></i> 
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table class="table table-responsive table-bordered">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody style="height: 80vh; overflow-y: auto;">
+        <tr *ngFor="let enquiry of enquirys | enquirySearch:searchText">
+          <td>{{ enquiry.date | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ enquiry.name }}</td>
+          <td>{{ enquiry.email }}</td>
+          <td>{{ enquiry.message }}</td>
+          <td class="d-flex">
+            <button type="button" class="btn btn-warning me-3 btn-lg" (click)="onReplay(enquiry.email)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <!-- <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onView(enquiry.id)">
+              <i class="bi bi-eye"></i> View
+            </button> -->
+            <button type="button" class="btn btn-danger btn-lg" (click)="onDelete(enquiry.id)">
+              <i class="bi bi-trash"></i> 
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table> 
+  </div>
+  
 </div>

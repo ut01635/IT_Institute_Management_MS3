@@ -46,9 +46,13 @@ export class AdminListComponent {
     }
   }
 
+  
   onEdit(nic: string): void {
-    
-    console.log('Edit admin with NIC:', nic);
+    const adminToEdit = this.admins.find(admin => admin.nic === nic);
+    const modalRef = this.modalService.open(AdminFormComponent, {
+      size: 'lg'
+    });
+    modalRef.componentInstance.adminToEdit = adminToEdit;
   }
 
   openModal() {

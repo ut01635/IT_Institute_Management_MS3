@@ -15,6 +15,7 @@ export class LandingPageComponent implements OnInit {
   courses: Course[] = [];
   enquiryResults:string = ''
   contactForm: FormGroup;
+  errorMessage!: string;
 
   constructor(
     private courseService: CourseService,
@@ -30,24 +31,41 @@ export class LandingPageComponent implements OnInit {
   onSubmit() {
     const enquiry = this.contactForm.value;
     if (this.contactForm.valid) {
-      this.enquiryService.postEnquiry(enquiry)?.subscribe(data => {
-        this.enquiryResults = 'Your message was sent successfully';
-        console.log('Form Submitted', data);
-      }, error => {
-        this.enquiryResults = 'Your message failed to send';
-      });
+      this.enquiryService.postEnquiry(enquiry)?.subscribe(
+        data => {
+          this.enquiryResults = 'Your message was sent successfully';
+          console.log('Form Submitted', data);
+          
+          // Clear the message after 10 seconds
+          setTimeout(() => {
+            this.enquiryResults = '';
+          }, 5000);
+        },
+        error => {
+          this.enquiryResults = 'Your message failed to send';
+          
+          // Clear the message after 10 seconds
+          setTimeout(() => {
+            this.enquiryResults = '';
+          }, 5000);
+        }
+      );
     } else {
       console.log('Form is invalid');
     }
   }
   
-  ngOnInit() {
-    this.courseService.getAllCourses().subscribe(
+  ngOnInit(): void {
+    this.courseService.getAllCourses();
+
+   
+    this.courseService.courses$.subscribe(
       (data: Course[]) => {
-        this.courses = data;
+        this.courses = data;  
       },
       (error: any) => {
-        alert('Course fetch failed');
+        this.errorMessage = 'Failed to load courses';  
+        console.error('Error loading courses:', error);  
       }
     );
   }
