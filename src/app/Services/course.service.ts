@@ -68,6 +68,10 @@ export class CourseService {
   }
 
 
+  getCourseById(courseId: string): Observable<Course> {
+    return this.http.get<Course>(`${this.courseApi}/${courseId}`);
+  }
+
   refreshCourseList(): void {
     this.getAllCourses(); 
   }

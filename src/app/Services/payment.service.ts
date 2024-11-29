@@ -27,5 +27,7 @@ export class PaymentService {
   getPaymentsByNic(nic: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.paymentUrl}/student/${nic}`);
   }
+
+  
   
 }
