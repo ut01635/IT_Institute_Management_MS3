@@ -95,15 +95,9 @@
                   ">
                   <div class="card card-01">
                     <div class="card-body">
-                      <h4 class="card-title">Best Education</h4>
+                      <h4 class="card-title">Our Team</h4>
                       <p class="card-text">
-                        "Get access to top-tier education from wherever you are.
-                        Our courses are designed to offer the best learning
-                        experience, combining expert knowledge, interactive
-                        content, and hands-on practice. We believe in providing
-                        education that empowers you to achieve your goals and
-                        equips you with the skills you need for a successful
-                        future."
+                        Our team consists of dedicated professionals. <strong>Hameem Mohamed Imthath</strong>, Fullstack Developer and Team Lead, oversees technical direction. <strong>Pathmarasan Piragash</strong>, Backend Developer, builds server-side infrastructure. <strong>Thajudeen Mohamed Safeek</strong>, Frontend Developer, creates intuitive interfaces. Together, we provide high-quality solutions, ensuring success and an exceptional user experience.
                       </p>
                     </div>
                   </div>
@@ -248,7 +242,7 @@
             <div class="carousel-item p-5" *ngFor="let chunk of chunkCourses(); let i = index" [class.active]="i === 0">
               <div class="row">
                 <div class="col-12 col-md-6 col-lg-4" *ngFor="let course of chunk">
-                  <div class="course-card shadow-lg">
+                  <div class="course-card shadow-lg m-3">
                     <div 
                       class="course-card__img" 
                       [ngStyle]="{ 'background-image': 'url(https://localhost:7055' + course.imagePaths[0] + ')' }">
@@ -256,7 +250,7 @@
                     </div>
                     <div class="course-card-int bg-darkblue p-3 rounded-bottom ">
                       <p class="course-card-int__title text-white">{{ course.courseName }}</p>
-                      <p class="excerpt text-white">{{ course.description }}</p>
+                      <p class="excerpt text-white">{{ course.duration }} Months</p>
                       <p class="course-card-int__fees">
                         <span style="text-decoration-line: line-through; color: red;">LKR{{ course.fees + 5000 }}</span>
                         <br />
@@ -752,7 +746,7 @@
         <ul class="list-unstyled">
           <li>
             <i class="bi bi-telephone-fill"></i>
-            <a class="text-white" href="https://wa.me/+94766931772">+94768210306</a>
+            <a class="text-white" href="https://wa.me/+94768210306">+94768210306</a>
           </li>
           <li><i class="bi bi-envelope-fill"></i> {{ email }}</li>
           <li>
