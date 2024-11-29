@@ -1,35 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
+import { StudentService } from '../../Services/student.service';
+import { Student } from '../../Services/Modal';
 
 @Component({
   selector: 'app-student-page',
   templateUrl: './student-page.component.html',
   styleUrl: './student-page.component.css'
 })
-export class StudentPageComponent {
- 
+export class StudentPageComponent implements OnInit {
+  baseUrl: string = 'https://localhost:7055';
+  activeTab: string = 'home';
+  nic:string=''
+  student: Student | undefined;
+
   constructor(
-    private router:Router,
-    private authservice: AuthService
-  ){}
+    private router: Router,
+    private authservice: AuthService,
+    private studentService: StudentService
+  ) { }
 
-  isSidebarVisible = false;  // Initially set the sidebar visibility to false
-studentName :string ='user' ;
+  ngOnInit(): void {
+    this.nic = localStorage.getItem('NIC') || '';
+    this.studentService.getStudentByNIC(this.nic).subscribe(data => {
+      this.student = data;
+      // const StudentName: string = this.student.firstName + " " + this.student.lastName;
+    }, error => {
+      console.log(error);  // Fix error logging
+    });
+  }
 
-activeTab: string = 'home';
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
   }
 
-  // Function to toggle the sidebar visibility on mobile
-  toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
-
   logout() {
     this.authservice.logout()
-    }
+  }
 
 }
