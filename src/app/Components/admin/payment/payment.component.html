@@ -17,8 +17,7 @@
           <div class="col-12 input-field">
             <select id="course" name="course" class="input" [(ngModel)]="formData.course" [disabled]="!courses.length"
               required (change)="onCourseSelect()">
-              <!-- <option value="" disabled>Select Course</option> -->
-              <option *ngFor="let course of courses" [value]="course.id">{{ course.courseName }}</option>
+              <option *ngFor="let course of courses" [value]="course.id">{{ enrollment.course.courseName }}</option>
             </select>
             <label for="course" class="label">Select Course</label>
           </div>
@@ -77,20 +76,26 @@
                   <p class="mx-3 fw-semibold">{{ formData.lastPaymentDate }}</p>
                 </div>
               </div>
-
             </div>
           </div>
 
           <!-- Installment Amount -->
           <div class="col-12 input-field">
-            <input type="number" class="input" id="installment-amount" placeholder=" "
-              [(ngModel)]="formData.installmentAmount" required />
+            <input type="number" class="input" id="amount" placeholder=" "
+              [(ngModel)]="formData.amount" required />
             <label for="installment-amount" class="label">Amount</label>
+          </div>
+
+          <!-- Error and Success Message -->
+          <div class="col-12 text-center">
+            <div *ngIf="message" [ngClass]="{'text-success': isSuccess, 'text-danger': !isSuccess}">
+              {{ message }}
+            </div>
           </div>
 
           <!-- Submit Button -->
           <div class="col-12 text-center">
-            <button type="submit" class="btn submit-btn text-white btn-lg w-100">
+            <button type="submit" class="btn submit-btn text-white btn-lg w-100" [disabled]="isProcessing">
               Pay <i class="bi bi-currency-dollar ms-2"></i>
             </button>
           </div>

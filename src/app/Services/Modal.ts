@@ -38,6 +38,7 @@ export interface Enrollment {
   id: string;
   student: Student;
   course: Course;
+  courseId:string;
   enrollmentDate: string;
   isComplete: boolean;
   paymentPlan: string;

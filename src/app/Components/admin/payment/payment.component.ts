@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../../../Services/Modal';
+import { Course, Enrollment } from '../../../Services/Modal';
 import { EnrollmentService } from '../../../Services/enrollment.service';
 import { PaymentService } from '../../../Services/payment.service';
 import { CourseService } from '../../../Services/course.service';
@@ -18,95 +18,106 @@ export class PaymentComponent implements OnInit {
     dueAmount: 0,
     totalPaidAmount: 0,
     duration: '',
-    installmentAmount: 0,
-    lastPaymentDate: 'N/A' // Added lastPaymentDate property
+    amount: 0,
+    lastPaymentDate: 'N/A',
+    enrollmentId: null // Ensure enrollmentId is part of the form data
   };
 
-  courses: Course[] = [];
-  paymentDetails: any = {}; // Holds the payment details for the selected course
+  courses: Enrollment[] = [];
+  paymentDetails: any = {};
+  message: string = '';
+  isSuccess: boolean = false;
+  isProcessing: boolean = false;
 
   constructor(
     private enrollmentService: EnrollmentService,
     private paymentService: PaymentService,
-    private courseService: CourseService // Inject course service
+    private courseService: CourseService
   ) { }
 
   ngOnInit(): void {
     this.resetFormData();
   }
 
-  // Reset form data to default values
   resetFormData(): void {
     this.formData.dueAmount = 0;
     this.formData.paymentPlan = 'Payment Plan';
     this.formData.totalFee = 0;
-    this.formData.installmentAmount = 0;
+    this.formData.amount = 0;
     this.formData.totalPaidAmount = 0;
     this.formData.duration = '';
-    this.formData.lastPaymentDate = 'N/A'; // Initialize the lastPaymentDate
-    this.formData.course = ''; // Reset course to empty string
-    this.paymentDetails = {}; // Reset the payment details as well
-    this.courses = []; // Reset courses when the form is reset
+    this.formData.lastPaymentDate = 'N/A';
+    this.formData.course = '';
+    this.formData.enrollmentId = null; // Reset enrollmentId when resetting the form
+    this.paymentDetails = {};
+    this.courses = [];
+    this.message = '';
+    this.isSuccess = false;
   }
 
-  // Method to handle NIC change and fetch courses for that NIC
+  // Triggered when NIC is changed
   onNicChange(): void {
-    // Reset course and payment details when NIC changes
-    this.resetFormData(); 
+    this.resetFormData();
 
     if (this.formData.nic) {
-      this.enrollmentService.getEnrollments(this.formData.nic).subscribe(
+      this.enrollmentService.getReadingEnrollments(this.formData.nic).subscribe(
         (enrollments) => {
-          this.courses = enrollments.map(enrollment => enrollment.course);
+          this.courses = enrollments
           if (this.courses.length === 0) {
-            this.formData.course = ''; // Reset course field if no courses found
+            this.formData.course = '';
+            this.message = 'No courses found for this NIC.';
           }
         },
         (error) => {
           console.error('Error fetching enrollments for NIC:', error);
-          this.courses = []; // Reset courses on error
+          this.courses = [];
         }
       );
     }
   }
 
+  // Triggered when a course is selected
   onCourseSelect(): void {
     if (this.formData.nic && this.formData.course) {
+      console.log("Selected courseId from form:", this.formData.course); // Log the selected courseId
+  
       this.paymentService.getPaymentsByNic(this.formData.nic).subscribe(
         (payments) => {
-          console.log('Payments:', payments);
-
-          // Find the payment for the selected course
-          const selectedPayment = payments.find(payment =>
-            payment.enrollment.courseId === this.formData.course);
-
-          // If no payment is found, show only course details
+          console.log("Payments:", payments); // Log the payment data
+  
+          // Iterate through payments and log the courseId comparison
+          const selectedPayment = payments.find(payment => {
+            console.log("Comparing payment courseId:", payment.enrollment.courseId); // Log each payment's courseId
+            return payment.enrollment.courseId === this.formData.course; // Compare the courseId
+          });
+  
+          console.log("Selected payment:", selectedPayment); // Log the selected payment
+  
           if (!selectedPayment) {
-            this.showCourseDetails();
+            this.showCourseDetails(); // If no payment exists, show course details
           } else {
-            this.paymentDetails = selectedPayment;
-            console.log('Selected Payment:', JSON.stringify(this.paymentDetails));
-
-            // Retrieve course details and update formData
-            this.updateCourseDetails(selectedPayment);
+            this.paymentDetails = selectedPayment; // Set the payment details
+            this.updateCourseDetails(selectedPayment); // Update course details with payment details
           }
         },
         (error) => {
           console.error('Error fetching payment details:', error);
+          this.message = 'Error fetching payment details.';
         }
       );
     } else {
-      this.resetFormData();
+      this.resetFormData(); // Reset form if NIC or course is not selected
     }
   }
-
-  // Function to show course details when no payment exists
+  
+  
+  
+  
+  // Fetch and display course details if no payment found
   showCourseDetails(): void {
     if (this.formData.course) {
       this.courseService.getCourseById(this.formData.course).subscribe(
         (course: Course) => {
-          console.log('Course Details:', JSON.stringify(course));
-
           if (course.fees) {
             this.formData.totalFee = course.fees;
           } else {
@@ -119,27 +130,30 @@ export class PaymentComponent implements OnInit {
             this.formData.duration = '';
           }
 
-          // Set default values for payment-related fields
           this.formData.paymentPlan = 'Payment Plan';
           this.formData.dueAmount = this.formData.totalFee;
-          this.formData.installmentAmount = 0;
+          this.formData.amount = 0;
           this.formData.totalPaidAmount = 0;
           this.formData.lastPaymentDate = 'N/A';
         },
         (error) => {
           console.error('Error fetching course details:', error);
+          this.message = 'Error fetching course details.';
         }
       );
     }
   }
 
-  // Function to update formData with payment details when a payment is made
+  // Update course details when payment is found for the selected course
   updateCourseDetails(payment: any): void {
     const courseId = payment.enrollment.courseId;
+    this.formData.enrollmentId = payment.enrollmentId; // Ensure enrollmentId is set
+
+    console.log("aaa"+courseId)
+    console.log("bbb"+this.formData.enrollmentId)
+
     this.courseService.getCourseById(courseId).subscribe(
       (course: Course) => {
-        console.log('Course Details:', JSON.stringify(course));
-
         if (course.fees) {
           this.formData.totalFee = course.fees;
         } else {
@@ -154,15 +168,15 @@ export class PaymentComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching course details:', error);
+        this.message = 'Error fetching course details.';
       }
     );
 
     this.formData.paymentPlan = payment.enrollment.paymentPlan;
     this.formData.dueAmount = payment.dueAmount;
-    this.formData.installmentAmount = payment.amount;
+    this.formData.amount = payment.amount;
     this.formData.totalPaidAmount = payment.totalPaidAmount || 0;
 
-    // Extract last payment date
     if (payment.paymentDate) {
       this.formData.lastPaymentDate = new Date(payment.paymentDate).toLocaleDateString();
     } else {
@@ -170,13 +184,38 @@ export class PaymentComponent implements OnInit {
     }
   }
 
+  // Triggered when the form is submitted
   onSubmit(): void {
-    if (this.formData.installmentAmount > 0) {
-      alert('Payment successful!');
-    } else {
-      alert('Please enter a valid installment amount.');
+    this.isProcessing = true;
+    this.message = '';
+    this.isSuccess = false;
+    console.log(this.formData.enrollmentId);
+    // Ensure that the enrollmentId is set before proceeding with the payment
+    if (!this.formData.enrollmentId) {
+      this.isProcessing = false;
+      this.message = 'Enrollment ID is missing. Please select a course and ensure all details are filled correctly.';
+      return;
     }
-  }
 
+    const paymentData = {
+      amount: this.formData.amount,
+      paymentDate: new Date().toISOString(),
+      enrollmentId: this.formData.enrollmentId // Pass the enrollmentId to the backend
+    };
+
+    this.paymentService.makePayment(paymentData).subscribe(
+      (response) => {
+        this.isProcessing = false;
+        this.isSuccess = true;
+        this.message = 'Payment Successful!';
+        this.resetFormData(); // Reset form data after successful payment
+      },
+      (error) => {
+        this.isProcessing = false;
+        this.isSuccess = false;
+        this.message = error.error.message || 'An error occurred during the payment process.';
+      }
+    );
+  }
 
 }
