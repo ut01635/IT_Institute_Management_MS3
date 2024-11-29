@@ -22,5 +22,11 @@ export class EnquiryService {
       responseType: 'text'
     })
   }
+  // https://localhost:7055/api/ContactUs/a9cb4ee4-1b3c-49ef-a96c-6e8b2dee545a
+  deleteEnquiry(id:string){
+    return this.http.delete(`${this.enquiryBaseURL}/${id}`,
+      {responseType:'text'}
+    )
+  }
 
 }
