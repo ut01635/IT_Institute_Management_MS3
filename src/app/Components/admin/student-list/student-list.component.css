@@ -7,4 +7,11 @@ img {
   td,th{
     text-align: center;
   }
+
+  /* td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+   */
   
