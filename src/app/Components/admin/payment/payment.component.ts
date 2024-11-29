@@ -32,6 +32,11 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.resetFormData();
+  }
+
+  // Reset form data to default values
+  resetFormData(): void {
     this.formData.dueAmount = 0;
     this.formData.paymentPlan = 'Payment Plan';
     this.formData.totalFee = 0;
@@ -39,16 +44,22 @@ export class PaymentComponent implements OnInit {
     this.formData.totalPaidAmount = 0;
     this.formData.duration = '';
     this.formData.lastPaymentDate = 'N/A'; // Initialize the lastPaymentDate
+    this.formData.course = ''; // Reset course to empty string
+    this.paymentDetails = {}; // Reset the payment details as well
+    this.courses = []; // Reset courses when the form is reset
   }
 
   // Method to handle NIC change and fetch courses for that NIC
   onNicChange(): void {
+    // Reset course and payment details when NIC changes
+    this.resetFormData(); 
+
     if (this.formData.nic) {
       this.enrollmentService.getEnrollments(this.formData.nic).subscribe(
         (enrollments) => {
           this.courses = enrollments.map(enrollment => enrollment.course);
           if (this.courses.length === 0) {
-            this.formData.course = ''; // Reset course field if no courses
+            this.formData.course = ''; // Reset course field if no courses found
           }
         },
         (error) => {
@@ -56,8 +67,6 @@ export class PaymentComponent implements OnInit {
           this.courses = []; // Reset courses on error
         }
       );
-    } else {
-      this.courses = []; // Clear courses if NIC is empty
     }
   }
 
@@ -71,49 +80,15 @@ export class PaymentComponent implements OnInit {
           const selectedPayment = payments.find(payment =>
             payment.enrollment.courseId === this.formData.course);
 
-          if (selectedPayment) {
+          // If no payment is found, show only course details
+          if (!selectedPayment) {
+            this.showCourseDetails();
+          } else {
             this.paymentDetails = selectedPayment;
             console.log('Selected Payment:', JSON.stringify(this.paymentDetails));
 
-            // Retrieve course details
-            const courseId = selectedPayment.enrollment.courseId;
-            this.courseService.getCourseById(courseId).subscribe(
-              (course: Course) => {
-                console.log('Course Details:', JSON.stringify(course));
-
-                if (course.fees) {
-                  this.formData.totalFee = course.fees;
-                } else {
-                  this.formData.totalFee = 0;
-                }
-
-                if (course.duration) {
-                  this.formData.duration = String(course.duration);
-                } else {
-                  this.formData.duration = '';
-                }
-              },
-              (error) => {
-                console.error('Error fetching course details:', error);
-              }
-            );
-
-            this.formData.paymentPlan = selectedPayment.enrollment.paymentPlan;
-            this.formData.dueAmount = selectedPayment.dueAmount;
-            this.formData.installmentAmount = selectedPayment.amount;
-            this.formData.totalPaidAmount = selectedPayment.totalPaidAmount || 0;
-
-            // Extract last payment date
-            if (selectedPayment.paymentDate) {
-              this.formData.lastPaymentDate = new Date(selectedPayment.paymentDate).toLocaleDateString();
-            } else {
-              this.formData.lastPaymentDate = 'N/A';
-            }
-          } else {
-            this.formData.totalFee = 0;
-            this.formData.duration = '';
-            this.formData.totalPaidAmount = 0;
-            this.formData.lastPaymentDate = 'N/A';
+            // Retrieve course details and update formData
+            this.updateCourseDetails(selectedPayment);
           }
         },
         (error) => {
@@ -121,9 +96,76 @@ export class PaymentComponent implements OnInit {
         }
       );
     } else {
-      this.formData.totalFee = 0;
-      this.formData.duration = '';
-      this.formData.totalPaidAmount = 0;
+      this.resetFormData();
+    }
+  }
+
+  // Function to show course details when no payment exists
+  showCourseDetails(): void {
+    if (this.formData.course) {
+      this.courseService.getCourseById(this.formData.course).subscribe(
+        (course: Course) => {
+          console.log('Course Details:', JSON.stringify(course));
+
+          if (course.fees) {
+            this.formData.totalFee = course.fees;
+          } else {
+            this.formData.totalFee = 0;
+          }
+
+          if (course.duration) {
+            this.formData.duration = String(course.duration);
+          } else {
+            this.formData.duration = '';
+          }
+
+          // Set default values for payment-related fields
+          this.formData.paymentPlan = 'Payment Plan';
+          this.formData.dueAmount = this.formData.totalFee;
+          this.formData.installmentAmount = 0;
+          this.formData.totalPaidAmount = 0;
+          this.formData.lastPaymentDate = 'N/A';
+        },
+        (error) => {
+          console.error('Error fetching course details:', error);
+        }
+      );
+    }
+  }
+
+  // Function to update formData with payment details when a payment is made
+  updateCourseDetails(payment: any): void {
+    const courseId = payment.enrollment.courseId;
+    this.courseService.getCourseById(courseId).subscribe(
+      (course: Course) => {
+        console.log('Course Details:', JSON.stringify(course));
+
+        if (course.fees) {
+          this.formData.totalFee = course.fees;
+        } else {
+          this.formData.totalFee = 0;
+        }
+
+        if (course.duration) {
+          this.formData.duration = String(course.duration);
+        } else {
+          this.formData.duration = '';
+        }
+      },
+      (error) => {
+        console.error('Error fetching course details:', error);
+      }
+    );
+
+    this.formData.paymentPlan = payment.enrollment.paymentPlan;
+    this.formData.dueAmount = payment.dueAmount;
+    this.formData.installmentAmount = payment.amount;
+    this.formData.totalPaidAmount = payment.totalPaidAmount || 0;
+
+    // Extract last payment date
+    if (payment.paymentDate) {
+      this.formData.lastPaymentDate = new Date(payment.paymentDate).toLocaleDateString();
+    } else {
       this.formData.lastPaymentDate = 'N/A';
     }
   }
