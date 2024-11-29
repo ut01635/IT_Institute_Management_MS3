@@ -50,8 +50,8 @@
               <!-- <label for="paymentPlan" class="label">Choose Payment Plan</label> -->
               <select id="paymentPlan" formControlName="paymentPlan" class="select" required>
                 <option value="" disabled>Select a plan</option>
-                <option value="full">Full Payment</option>
-                <option value="installment">Installment Payment</option>
+                <option value="Full">Full Payment</option>
+                <option value="Installment">Installment Payment</option>
               </select>
               <div *ngIf="paymentForm.get('paymentPlan')?.touched && paymentForm.get('paymentPlan')?.invalid" class="error-message">
                 Payment plan is required.
@@ -62,7 +62,7 @@
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-        <button type="button" class="btn submit-btn" (click)="submitPaymentPlan(selectedCourse.Id)">Submit</button>
+        <button type="button" class="btn submit-btn" (click)="submitPaymentPlan(selectedCourse.id)">Submit</button>
       </div>
     </div>
   </div>

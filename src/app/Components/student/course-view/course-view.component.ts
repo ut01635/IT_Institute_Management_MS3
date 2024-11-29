@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GreetingService } from '../../../Services/greeting.service';
 import { CourseService } from '../../../Services/course.service';
-import { Course } from '../../../Services/Modal';
+import { Course, Enrollment } from '../../../Services/Modal';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EnrollmentService } from '../../../Services/enrollment.service';
 
@@ -17,7 +17,7 @@ export class CourseViewComponent implements OnInit {
   nic:string = ""
   // Reactive form for payment plan
   paymentForm!: FormGroup ;
-  selectedCourse: any;
+  selectedCourse!: Course;
   
   constructor(
     private greetinService : GreetingService, 
@@ -54,15 +54,18 @@ export class CourseViewComponent implements OnInit {
   
   //  Submit Payment Plan
    submitPaymentPlan(Id : string): void {
-         const enrolmentDate={
-            paymentPlan : this.paymentForm.value,
-            studentNIC : this.nic,
+         const enrolmentData={
+            paymentPlan : this.paymentForm.get('paymentPlan')?.value,
+            studentNic : this.nic,
             courseId : Id
           }
      if (this.paymentForm.valid) {
-       const selectedPlan = this.paymentForm.get('paymentPlan')?.value;
-       alert(`You have selected the ${selectedPlan} payment plan for the course ${Id}`);
-       this.paymentForm.reset();
+      this.enrollmentService.createEnrollment(enrolmentData).subscribe(data=>{
+        this.paymentForm.reset();
+      },error=>{
+        alert(error.error)
+      })
+       
      }
    }
 }

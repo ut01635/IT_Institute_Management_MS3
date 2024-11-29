@@ -41,6 +41,8 @@ export interface Enrollment {
   enrollmentDate: Date;
   isComplete: boolean;
   paymentPlan: string;
+  studentNIC:string;
+  courseId:string;
 }
 
 export interface LoginRequest {
@@ -117,4 +119,10 @@ export interface SocialMediaLinks {
   gitHub?: string;
   whatsApp?: string;
   studentNic?: string;
+}
+
+export interface EnrollmentRequest{
+  studentNic:string,
+  courseId:string,
+  paymentPlan:string
 }
