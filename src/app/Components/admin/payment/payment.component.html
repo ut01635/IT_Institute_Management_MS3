@@ -17,7 +17,7 @@
           <div class="col-12 input-field">
             <select id="course" name="course" class="input" [(ngModel)]="formData.course" [disabled]="!courses.length"
               required (change)="onCourseSelect()">
-              <option value="" disabled>Select Course</option>
+              <!-- <option value="" disabled>Select Course</option> -->
               <option *ngFor="let course of courses" [value]="course.id">{{ course.courseName }}</option>
             </select>
             <label for="course" class="label">Select Course</label>
