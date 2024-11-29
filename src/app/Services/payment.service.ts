@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Payment } from './Modal';
@@ -28,6 +28,14 @@ export class PaymentService {
     return this.http.get<any[]>(`${this.paymentUrl}/student/${nic}`);
   }
 
+
+  makePayment(paymentData: any): Observable<any> {
+    const url = this.paymentUrl;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post<any>(url, paymentData, { headers })
+    
+  }
   
   
 }
