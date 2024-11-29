@@ -17,7 +17,7 @@
           <div class="col-12 input-field">
             <select id="course" name="course" class="input" [(ngModel)]="formData.course" [disabled]="!courses.length"
               required (change)="onCourseSelect()">
-              <option *ngFor="let course of courses" [value]="course.id">{{ enrollment.course.courseName }}</option>
+              <option *ngFor="let enrollment of courses" [value]="enrollment.id">{{ enrollment.course.courseName }}</option>
             </select>
             <label for="course" class="label">Select Course</label>
           </div>
@@ -81,10 +81,10 @@
 
           <!-- Installment Amount -->
           <div class="col-12 input-field">
-            <input type="number" class="input" id="amount" placeholder=" "
-              [(ngModel)]="formData.amount" required />
+            <input type="text" class="input" id="amount" placeholder=" " [(ngModel)]="formData.amount" required />
             <label for="installment-amount" class="label">Amount</label>
           </div>
+          
 
           <!-- Error and Success Message -->
           <div class="col-12 text-center">

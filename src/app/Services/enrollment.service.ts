@@ -11,8 +11,8 @@ export class EnrollmentService {
 
   constructor(private http: HttpClient) {}
 
-  getEnrollments(studentNic: string): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
+  getEnrollments(studentNic: string): Observable<Enrollment[]> {
+    return this.http.get<Enrollment[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
   }
 
   getCompletedEnrollments(studentNic: string): Observable<Enrollment[]> {
@@ -30,7 +30,7 @@ export class EnrollmentService {
   }
 
   getReadingEnrollments(studentNic: string) {
-    return this.http.get<any[]>(
+    return this.http.get<Enrollment[]>(
       `${this.enrollmentUrl}/nic/${studentNic}/notcompleted`
     );
   }
