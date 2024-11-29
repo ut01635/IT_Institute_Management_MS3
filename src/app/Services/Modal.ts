@@ -38,7 +38,6 @@ export interface Enrollment {
   id: string;
   student: Student;
   course: Course;
-  courseId:string;
   enrollmentDate: string;
   isComplete: boolean;
   paymentPlan: string;
@@ -93,6 +92,7 @@ export interface Message {
   message: string;
   studentNIC: string;
   date: Date;
+  student:Student
 }
 
 export interface StudentProfileDto {

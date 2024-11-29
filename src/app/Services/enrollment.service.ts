@@ -15,9 +15,9 @@ export class EnrollmentService {
     return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
   }
 
-  getCompletedEnrollments(studentNic: string): Observable<Student[]> {
+  getCompletedEnrollments(studentNic: string): Observable<Enrollment[]> {
     return this.http
-      .get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`)
+      .get<Enrollment[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`)
       .pipe(
         catchError((error) => {
           console.error('Error fetching completed enrollments', error);
