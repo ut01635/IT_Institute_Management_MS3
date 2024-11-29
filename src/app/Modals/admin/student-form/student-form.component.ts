@@ -72,12 +72,21 @@ export class StudentFormComponent implements OnInit {
   
 
 
-  onImageChange(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.imageFile = file;
+    onImageChange(event: any): void {
+      const file = event.target.files[0];
+      if (file) {
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
+    
+        // Check if the file is an image by verifying the MIME type
+        if (allowedTypes.includes(file.type)) {
+          this.imageFile = file;
+        } else {
+          alert('Please select a valid image file (JPG, JPEG, PNG, GIF, SVG).');
+          event.target.value = '';  // Clear the input if invalid file
+        }
+      }
     }
-  }
+    
 
 
   onSubmit(): void {

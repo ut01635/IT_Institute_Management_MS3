@@ -12,7 +12,7 @@
     </p>
 
     <div class="row">
-     
+
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
           <input class="input" formControlName="nic" type="text" required />
@@ -24,12 +24,13 @@
         </div>
       </div>
 
-      
+
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
           <input class="input" formControlName="firstName" type="text" required />
           <label class="label">First Name</label>
-          <div *ngIf="studentForm.get('firstName')?.touched && studentForm.get('firstName')?.invalid" class="error-message">
+          <div *ngIf="studentForm.get('firstName')?.touched && studentForm.get('firstName')?.invalid"
+            class="error-message">
             <small *ngIf="studentForm.get('firstName')?.hasError('required')">First Name is required.</small>
           </div>
         </div>
@@ -38,53 +39,59 @@
         <div class="input-field">
           <input class="input" formControlName="lastName" type="text" required />
           <label class="label">Last Name</label>
-          <div *ngIf="studentForm.get('lastName')?.touched && studentForm.get('lastName')?.invalid" class="error-message">
+          <div *ngIf="studentForm.get('lastName')?.touched && studentForm.get('lastName')?.invalid"
+            class="error-message">
             <small *ngIf="studentForm.get('lastName')?.hasError('required')">Last Name is required.</small>
           </div>
         </div>
       </div>
 
-         
-         <div class="col-md-6 col-12 mb-3">
-          <div class="input-field">
-            <input class="input" formControlName="email" type="email" required />
-            <label class="label">Email</label>
-            <div *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.invalid" class="error-message">
-              <small *ngIf="studentForm.get('email')?.hasError('required')">Email is required.</small>
-              <small *ngIf="studentForm.get('email')?.hasError('email')">Invalid email format.</small>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-12 mb-3">
-          <div class="input-field">
-            <input class="input" formControlName="phone" type="text" required />
-            <label class="label">Phone</label>
-            <div *ngIf="studentForm.get('phone')?.touched && studentForm.get('phone')?.invalid" class="error-message">
-              <small *ngIf="studentForm.get('phone')?.hasError('required')">Phone is required.</small>
-              <small *ngIf="studentForm.get('phone')?.hasError('pattern')">Invalid phone number format.</small>
-            </div>
-          </div>
-        </div>
-  
-       
-        <div class="col-md-6 col-12 mb-3">
-          <div class="input-field">
-            <input class="input" formControlName="password" type="password" required />
-            <label class="label">Password</label>
-            <div *ngIf="studentForm.get('password')?.touched && studentForm.get('password')?.invalid" class="error-message">
-              <small *ngIf="studentForm.get('password')?.hasError('required')">Password is required.</small>
-              <small *ngIf="studentForm.get('password')?.hasError('pattern')">Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.</small>
-            </div>
-          </div>
-        </div>
 
-     
+      <div class="col-md-6 col-12 mb-3">
+        <div class="input-field">
+          <input class="input" formControlName="email" type="email" required />
+          <label class="label">Email</label>
+          <div *ngIf="studentForm.get('email')?.touched && studentForm.get('email')?.invalid" class="error-message">
+            <small *ngIf="studentForm.get('email')?.hasError('required')">Email is required.</small>
+            <small *ngIf="studentForm.get('email')?.hasError('email')">Invalid email format.</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12 mb-3">
+        <div class="input-field">
+          <input class="input" formControlName="phone" type="text" required />
+          <label class="label">Phone</label>
+          <div *ngIf="studentForm.get('phone')?.touched && studentForm.get('phone')?.invalid" class="error-message">
+            <small *ngIf="studentForm.get('phone')?.hasError('required')">Phone is required.</small>
+            <small *ngIf="studentForm.get('phone')?.hasError('pattern')">Invalid phone number format.</small>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-12 mb-3">
+        <div class="input-field">
+          <input class="input" formControlName="password" type="password" required />
+          <label class="label">Password</label>
+          <div *ngIf="studentForm.get('password')?.touched && studentForm.get('password')?.invalid"
+            class="error-message">
+            <small *ngIf="studentForm.get('password')?.hasError('required')">Password is required.</small>
+            <small *ngIf="studentForm.get('password')?.hasError('pattern')">Password must contain at least 8 characters,
+              1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.</small>
+          </div>
+        </div>
+      </div>
+
+
       <div formGroupName="address" class="col-12 mb-3">
         <div class="input-field">
           <input class="input" formControlName="addressLine1" type="text" required />
           <label class="label">Address Line 1</label>
-          <div *ngIf="studentForm.get('address.addressLine1')?.touched && studentForm.get('address.addressLine1')?.invalid" class="error-message">
-            <small *ngIf="studentForm.get('address.addressLine1')?.hasError('required')">Address Line 1 is required.</small>
+          <div
+            *ngIf="studentForm.get('address.addressLine1')?.touched && studentForm.get('address.addressLine1')?.invalid"
+            class="error-message">
+            <small *ngIf="studentForm.get('address.addressLine1')?.hasError('required')">Address Line 1 is
+              required.</small>
           </div>
         </div>
       </div>
@@ -98,7 +105,8 @@
         <div class="input-field">
           <input class="input" formControlName="city" type="text" required />
           <label class="label">City</label>
-          <div *ngIf="studentForm.get('address.city')?.touched && studentForm.get('address.city')?.invalid" class="error-message">
+          <div *ngIf="studentForm.get('address.city')?.touched && studentForm.get('address.city')?.invalid"
+            class="error-message">
             <small *ngIf="studentForm.get('address.city')?.hasError('required')">City is required.</small>
           </div>
         </div>
@@ -107,7 +115,8 @@
         <div class="input-field">
           <input class="input" formControlName="state" type="text" required />
           <label class="label">State</label>
-          <div *ngIf="studentForm.get('address.state')?.touched && studentForm.get('address.state')?.invalid" class="error-message">
+          <div *ngIf="studentForm.get('address.state')?.touched && studentForm.get('address.state')?.invalid"
+            class="error-message">
             <small *ngIf="studentForm.get('address.state')?.hasError('required')">State is required.</small>
           </div>
         </div>
@@ -116,7 +125,8 @@
         <div class="input-field">
           <input class="input" formControlName="postalCode" type="text" required />
           <label class="label">Postal Code</label>
-          <div *ngIf="studentForm.get('address.postalCode')?.touched && studentForm.get('address.postalCode')?.invalid" class="error-message">
+          <div *ngIf="studentForm.get('address.postalCode')?.touched && studentForm.get('address.postalCode')?.invalid"
+            class="error-message">
             <small *ngIf="studentForm.get('address.postalCode')?.hasError('required')">Postal Code is required.</small>
           </div>
         </div>
@@ -125,26 +135,37 @@
         <div class="input-field">
           <input class="input" formControlName="country" type="text" required />
           <label class="label">Country</label>
-          <div *ngIf="studentForm.get('address.country')?.touched && studentForm.get('address.country')?.invalid" class="error-message">
+          <div *ngIf="studentForm.get('address.country')?.touched && studentForm.get('address.country')?.invalid"
+            class="error-message">
             <small *ngIf="studentForm.get('address.country')?.hasError('required')">Country is required.</small>
           </div>
         </div>
       </div>
     </div>
 
-      
-       <div class="col-12 mb-3">
-        <div class="input-field">
-          <input class="input" type="file" (change)="onImageChange($event)" />
-          <label class="label">Profile Image</label>
-        </div>
-      </div>
-    
 
-   
+    <div class="col-12 mb-3">
+      <!-- file-upload.component.html -->
+
+      <!-- file-upload.component.html -->
+
+      <label class="custom-file-upload" for="file">
+        <div class="icon">
+          <!-- Bootstrap Icon for Cloud Upload -->
+          <i class="bi bi-cloud-upload fs-6" style="color: rgba(75, 85, 99, 1);"></i>
+        </div>
+        <div class="text">
+          <span>Click to upload image</span>
+        </div>
+        <input type="file" id="file" (change)="onImageChange($event)" accept="image/*">
+      </label>
+
+    </div>
+
+
+
     <button type="submit" class="submit-btn" [disabled]="studentForm.invalid">
       {{ studentToEdit ? 'Update' : 'Submit' }}
     </button>
   </form>
 </div>
-
