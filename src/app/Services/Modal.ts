@@ -8,6 +8,7 @@ export interface Address {
 }
 
 export interface Student {
+  course: any;
   nic: string;
   firstName: string;
   lastName: string;
@@ -22,6 +23,8 @@ export interface Student {
 }
 
 export interface Course {
+  dueAmount: number;
+  paymentPlan: string;
   id: string;
   courseName: string;
   level: string;

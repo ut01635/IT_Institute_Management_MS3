@@ -1,125 +1,101 @@
-<div id="main-container" class="container ">
-    <div id="sub-container" class="shadow w-100">
-        <div id="fee-management" class="card shadow-lg" style="height: 80vh;">
-            <div class="card-header bg-light text-darkblue d-flex justify-content-between align-items-center">
-              <h2 class="mb-0 text-darkbule">Fee Management</h2>
-            </div>
-            <div class="card-body">
-              <form (ngSubmit)="onSubmit()" id="fee-management-form" class="row g-3">
-                <!-- NIC Number -->
-                <div class="col-12 input-field">
-                  <input
-                    type="text"
-                    class="input"
-                    id="nic"
-                    name="nic"
-                    placeholder=" "
-                    [(ngModel)]="formData.nic"
-                    required
-                  />
-                  <label for="nic" class="label">NIC Number</label>
+<div id="main-container" class="container">
+  <div id="sub-container" class="shadow w-100">
+    <div id="fee-management" class="card shadow-lg" style="height: 80vh;">
+      <div class="card-header bg-light text-darkblue d-flex justify-content-between align-items-center">
+        <h2 class="mb-0 text-darkblue">Fee Management</h2>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" id="fee-management-form" class="row g-3">
+          <!-- NIC Number -->
+          <div class="col-12 input-field">
+            <input type="text" class="input" id="nic" name="nic" placeholder=" " [(ngModel)]="formData.nic"
+              (ngModelChange)="onNicChange()" required />
+            <label for="nic" class="label">NIC Number</label>
+          </div>
+
+          <!-- Course Selection -->
+          <div class="col-12 input-field">
+            <select id="course" name="course" class="input" [(ngModel)]="formData.course" [disabled]="!courses.length"
+              required (change)="onCourseSelect()">
+              <!-- <option value="" disabled>Select Course</option> -->
+              <option *ngFor="let course of courses" [value]="course.id">{{ course.courseName }}</option>
+            </select>
+            <label for="course" class="label">Select Course</label>
+          </div>
+
+          <!-- Payment Information -->
+          <div class="col-12">
+            <label class="form-label">Payment Information</label>
+            <div class="row g-2">
+              <!-- Total Course Fee -->
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Course Fee:</strong>
+                  <p class="mx-3 fw-semibold">{{ formData.totalFee | currency: 'LKR ' }}</p>
                 </div>
-          
-                <!-- Course Selection -->
-                <div class="col-12 input-field">
-                  <select
-                    id="course"
-                    name="course"
-                    class="input"
-                    [(ngModel)]="formData.course"
-                    [disabled]="!courses.length"
-                    required
-                  >
-                    <!-- <option value="" disabled selected></option> -->
-                    <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
-                  </select>
-                  <label for="course" class="label">Select Course</label>
+              </div>
+
+              <!-- Payment Plan -->
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Payment Plan:</strong>
+                  <p class="mx-3 fw-semibold"
+                    [ngClass]="{ 'text-success': formData.paymentPlan === 'Full', 'text-warning': formData.paymentPlan !== 'Full' }">
+                    {{ formData.paymentPlan }}
+                  </p>
                 </div>
-          
-                <!-- Payment Information -->
-                <div class="col-12">
-                  <label class="form-label">Payment Information</label>
-                  <div class="row g-2">
-                    <!-- Total Course Fee -->
-                    <div class="col-md-4">
-                      <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
-                        <strong>Total Fee:</strong>
-                        <p class="mx-3 fw-semibold">{{ formData.totalFee }} Rs</p>
-                      </div>
-                    </div>
-          
-                    <!-- Payment Plan -->
-                    <div class="col-md-4">
-                      <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
-                        <strong>Payment Plan:</strong>
-                        <p
-                          class="mx-3 fw-semibold"
-                          [ngClass]="{'text-success': formData.paymentPlan === 'Full', 'text-warning': formData.paymentPlan !== 'Full'}"
-                        >
-                          {{ formData.paymentPlan }}
-                        </p>
-                      </div>
-                    </div>
-          
-                    <!-- Due Amount -->
-                    <div class="col-md-4">
-                      <div class="form-control-plaintext bg-light border rounded p-2 d-flex text-center">
-                        <strong>Due Amount:</strong>
-                        <p class="mx-3 fw-semibold">{{ formData.dueAmount }} Rs</p>
-                      </div>
-                    </div>
-                  </div>
+              </div>
+
+              <!-- Duration -->
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Duration:</strong>
+                  <p class="mx-3 fw-semibold">{{ formData.duration }} Months </p>
                 </div>
-          
-                <!-- Installment Amount -->
-                <div class="col-12 input-field">
-                  <input
-                    type="number"
-                    class="input"
-                    id="installment-amount"
-                    placeholder=" "
-                    [(ngModel)]="formData.installmentAmount"
-                    required
-                  />
-                  <label for="installment-amount" class="label">Installment Amount</label>
+              </div>
+
+              <!-- Total Paid Amount -->
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Total Paid Amount:</strong>
+                  <p class="mx-3 fw-semibold">{{ formData.totalPaidAmount | currency: 'LKR ' }}</p>
                 </div>
-          
-                <!-- Submit Button -->
-                <div class="col-12 text-center">
-                  <button type="submit" class="btn submit-btn text-white btn-lg w-100">
-                    Pay <i class="bi bi-currency-dollar ms-2"></i>
-                  </button>
+              </div>
+
+              <!-- Due Amount -->
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex text-center">
+                  <strong>Due Amount:</strong>
+                  <p class="mx-3 fw-semibold">{{ formData.dueAmount | currency: 'LKR ' }}</p>
                 </div>
-              </form>
+              </div>
+
+              <!-- Last Payment Date -->
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Last Payment Date:</strong>
+                  <p class="mx-3 fw-semibold">{{ formData.lastPaymentDate }}</p>
+                </div>
+              </div>
+
             </div>
           </div>
-          
 
-        <!-- Payment Details Table -->
-        <!-- <div class="mt-5">
-            <h3 class="text-center text-primary">Payment Details</h3>
-            <table id="payment-details-table" class="table table-bordered table-striped table-hover">
-                <thead class="table-primary text-center">
-                    <tr>
-                        <th>#</th>
-                        <th>NIC</th>
-                        <th>Course</th>
-                        <th>Total Fee</th>
-                        <th>Due Amount</th>
-                        <th>Paid Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let detail of paymentDetails; let i = index">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{ detail.nic }}</td>
-                        <td>{{ detail.course }}</td>
-                        <td>{{ detail.totalFee }} Rs</td>
-                        <td>{{ detail.dueAmount }} Rs</td>
-                        <td>{{ detail.paidAmount }} Rs</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
+          <!-- Installment Amount -->
+          <div class="col-12 input-field">
+            <input type="number" class="input" id="installment-amount" placeholder=" "
+              [(ngModel)]="formData.installmentAmount" required />
+            <label for="installment-amount" class="label">Amount</label>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="col-12 text-center">
+            <button type="submit" class="btn submit-btn text-white btn-lg w-100">
+              Pay <i class="bi bi-currency-dollar ms-2"></i>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
