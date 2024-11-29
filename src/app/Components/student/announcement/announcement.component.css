@@ -21,6 +21,11 @@
     border-top-right-radius: 8px;
     padding: 10px;
   }
+
+  .bg-darkblue{
+    background-color: #283a4e;
+    color: white;
+  }
   
   .card-body {
     padding: 15px;
