@@ -1,0 +1,42 @@
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+  
+    .progress-container {
+      position: relative;
+      width: 90px;
+      height: 90px;
+  
+      .outside-image {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 3px solid #fff; 
+        z-index: 2; 
+      }
+  
+      .progress-circle {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #343a40;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        &::after {
+          content: '';
+          position: absolute;
+          width: 70%;
+          height: 70%;
+          border-radius: 50%;
+          background: transparent; 
+        }
+      }
+    }
+  }
+  
