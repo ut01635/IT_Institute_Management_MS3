@@ -62,11 +62,6 @@ export class ProfileComponent implements OnInit {
     console.log('Updating password');
   }
 
-  handleEditAddress() {
-    // Handle edit address functionality here
-    console.log('Editing address');
-  }
-
 
   /**
    * Get the progress bar width based on enrollment date and course duration.
