@@ -110,7 +110,7 @@ import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
     ReactiveFormsModule,
     NgbModalModule,
     BrowserAnimationsModule,
-    BsDatepickerModule
+    BsDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

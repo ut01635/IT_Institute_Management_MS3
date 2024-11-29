@@ -4,6 +4,7 @@ import { CourseService } from '../../../Services/course.service';
 import { Course, Enrollment } from '../../../Services/Modal';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EnrollmentService } from '../../../Services/enrollment.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-course-view',
@@ -23,7 +24,8 @@ export class CourseViewComponent implements OnInit {
     private greetinService : GreetingService, 
     private courseService:CourseService, 
     private enrollmentService:EnrollmentService,
-    private fb: FormBuilder){}
+    private fb: FormBuilder,
+    private modalService: NgbModal){}
 
 
   ngOnInit(): void {
@@ -62,7 +64,10 @@ export class CourseViewComponent implements OnInit {
      if (this.paymentForm.valid) {
       this.enrollmentService.createEnrollment(enrolmentData).subscribe(data=>{
         this.paymentForm.reset();
+        alert("You have sucessfully enroll")
+        this.modalService.dismissAll();
       },error=>{
+        this.modalService.dismissAll();
         alert(error.error)
       })
        
