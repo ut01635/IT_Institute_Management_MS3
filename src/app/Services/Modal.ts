@@ -89,6 +89,7 @@ export interface Message {
   message: string;
   studentNIC: string;
   date: Date;
+  student:Student
 }
 
 export interface StudentProfileDto {

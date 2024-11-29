@@ -14,11 +14,11 @@ export class NotificationListComponent implements OnInit {
     constructor(private notificationService: NotificationService){}
   
     ngOnInit(): void {
-      this.loadMessages('123456789V')
+      this.loadMessages()
     }
   
-    loadMessages(nic:string){
-      this.notificationService.getMessageByNIC(nic).subscribe(data=>{
+    loadMessages(){
+      this.notificationService.getStudentMessage().subscribe(data=>{
         this.messages = data;
         console.log(this.messages);
         
@@ -30,7 +30,7 @@ export class NotificationListComponent implements OnInit {
     deleteMessage(id:string){
       this.notificationService.deleteMessage(id).subscribe(data=>{
         alert('successfully deleted')
-        this.loadMessages('200206601718')
+        this.loadMessages()
       },error=>{
         alert(error.error)
       })
