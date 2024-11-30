@@ -6,6 +6,8 @@ import { EnrollmentService } from '../../../Services/enrollment.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StudentMessageFormComponent } from '../../../Modals/student/student-message-form/student-message-form.component';
 import { PasswordRestFormComponent } from '../../../Modals/student/password-rest-form/password-rest-form.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { SocialMediaFormComponent } from '../../../Modals/student/social-media-form/social-media-form.component';
 
 @Component({
   selector: 'app-profile',
@@ -13,9 +15,7 @@ import { PasswordRestFormComponent } from '../../../Modals/student/password-rest
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
-openSocialMediaUpdateModal() {
-throw new Error('Method not implemented.');
-}
+
   studentProfile!: StudentProfileDto;
   completeEnrollment:Enrollment[]=[];
   ReadingEnrollolment:Enrollment[]=[];
@@ -24,7 +24,7 @@ throw new Error('Method not implemented.');
     private studentService: StudentService,
     private authservice:AuthService,
     private enrollmentService:EnrollmentService,
-    private modalService: NgbModal 
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +74,14 @@ throw new Error('Method not implemented.');
 
   openResetPasswordModal():void{
     const modalRef = this.modalService.open(PasswordRestFormComponent); 
+  }
+
+  openSocialMediaUpdateModal(id:string,studentNIC: string):void {
+    const modalRef = this.modalService.open(SocialMediaFormComponent, {
+      
+    });
+    modalRef.componentInstance.studentNIC = studentNIC;
+    modalRef.componentInstance.id = id
   }
 
 
