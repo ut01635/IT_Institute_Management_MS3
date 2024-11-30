@@ -13,3 +13,70 @@
 canvas {
   max-width: 100%;
 }
+
+
+.container {
+  margin-top: 20px;
+}
+
+.progress-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background-color: #eaeaea;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  clip-path: circle(50%);
+}
+
+.mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip-path: circle(50%);
+  background-color: transparent;
+}
+
+.mask.full {
+  clip-path: inset(0);
+}
+
+.mask.half {
+  clip-path: polygon(50% 0, 50% 50%, 0 50%, 50% 100%);
+}
+
+.fill {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #36a2eb;
+  clip-path: circle(50%);
+}
+
+.inside-circle {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}

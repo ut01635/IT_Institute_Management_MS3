@@ -20,28 +20,26 @@ currentYearRevenue = 5000;
 currentMonthRevenue = 1000;
 
  // Pie Chart Configuration
- public pieChartType: ChartType = 'pie';
- public pieChartData: ChartConfiguration<'pie'>['data'] = {
-   labels: ['Completed', 'Reading'],
-   datasets: [
-     {
-       data: [30, 20],
-       backgroundColor: ['#36A2EB', '#FF6384']
-     }
-   ]
- };
+  // Data for circular progress bars
+  totalToComplete: number = 60; // Percentage
+  totalToReading: number = 40; // Percentage
 
- // Bar Chart Configuration
- public barChartType: ChartType = 'bar';
- public barChartData: ChartConfiguration<'bar'>['data'] = {
-   labels: ['January', 'February', 'March', 'April'],
-   datasets: [
-     {
-       label: 'Revenue',
-       data: [3000, 4000, 5000, 6000],
-       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
-     }
-   ]
- };
+// Line Graph Configuration
+public lineChartType: ChartType = 'line';
+public lineChartData: ChartConfiguration<'line'>['data'] = {
+  labels: ['January', 'February', 'March', 'April'],
+  datasets: [
+    {
+      label: 'Revenue',
+      data: [4000, 2500, 5000, 3000],
+      borderColor: '#36A2EB',
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      pointBackgroundColor: '#36A2EB',
+      pointBorderColor: '#fff',
+      fill: true,
+      tension: 0.4 // For smoother curves
+    }
+  ]
+};
   ngOnInit(): void {}
 }

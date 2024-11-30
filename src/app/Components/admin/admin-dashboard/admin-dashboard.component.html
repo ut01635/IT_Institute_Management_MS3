@@ -24,6 +24,15 @@
     </div>
   </div>
 
+
+  <div class="row my-4">
+    <!-- Line Chart -->
+    <div class="col-12">
+      <canvas baseChart [type]="lineChartType" [data]="lineChartData">
+      </canvas>
+    </div>
+  </div>
+
   <div class="row my-4">
     <div class="col-4">
       <div class="card">
@@ -79,22 +88,37 @@
   </div>
 
   <div class="container">
-    <!-- Pie Chart -->
     <div class="row my-4">
-      <div class="col-md-6">
-        <canvas baseChart
-                [type]="pieChartType"
-                [data]="pieChartData">
-        </canvas>
+      <!-- Circular Progress Bars -->
+      <div class="col-md-6 text-center">
+        <div class="progress-circle">
+          <div class="circle">
+            <div class="mask full" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
+            <div class="mask half">
+              <div class="fill" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
+            </div>
+            <div class="inside-circle">
+              <span>{{ totalToComplete }}%</span>
+            </div>
+          </div>
+        </div>
+        <h5>Total to Complete</h5>
       </div>
-      
-      <!-- Bar Chart -->
-      <div class="col-md-6">
-        <canvas baseChart
-                [type]="barChartType"
-                [data]="barChartData">
-        </canvas>
+  
+      <div class="col-md-6 text-center">
+        <div class="progress-circle">
+          <div class="circle">
+            <div class="mask full" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
+            <div class="mask half">
+              <div class="fill" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
+            </div>
+            <div class="inside-circle">
+              <span>{{ totalToReading }}%</span>
+            </div>
+          </div>
+        </div>
+        <h5>Total to Reading</h5>
       </div>
     </div>
-  </div>  
+  </div>
 </div>
