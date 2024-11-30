@@ -41,7 +41,7 @@
           </td>
           <td>{{ student.enrollingCount || 0 }}</td>
           <td>{{ student.completedCount || 0 }}</td>
-          <td class="d-flex justify-content-start">
+          <td class="d-flex justify-content-around">
             <!-- Lock/Unlock Button -->
             <button type="button" class="btn btn-outline-secondary me-2 btn-sm" (click)="toggleLockOrUnlock(student)">
               <i class="bi" [ngClass]="student.IsLocked ? 'bi-unlock' : 'bi-lock'"></i>

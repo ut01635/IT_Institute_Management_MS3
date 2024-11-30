@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <table class="table table-responsive table-bordered">
+  <table class="table table-responsive table-bordered  table-striped">
     <thead>
       <tr>
         <th>Image</th>
@@ -19,14 +19,14 @@
         <th>Duration (Months)</th>
         <th>Level</th>
         <th>Fees (LKR)</th>
-        <!-- <th>Description</th> -->
+        <th>Description</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let course of courses | courseSearch:searchText">
         <td>
-          <img src="https://localhost:7055{{course.imagePaths[0]}}" alt="Course Image" class="img-thumbnail" style="width: 50px; height: 50px;">
+          <img src="https://localhost:7055{{course.imagePaths[0]}}" alt="Course Image" class="img-thumbnail" style="width: 30px; height: 30px;">
         </td>
         <td>{{ course.courseName }}</td>
         <td>{{ course.duration }} Months</td>
@@ -37,13 +37,13 @@
         <td>
           {{ course.fees | currency:'LKR ' }}
         </td>
-        <!-- <td>{{course.description}}</td> -->
-        <td>
-          <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(course.id)">
-            <i class="bi bi-pencil"></i> Edit
+        <td>{{course.description}}</td>
+        <td class="d-flex justify-content-center">
+          <button  type="button" class="btn btn-outline-warning me-2 btn-sm" (click)="onEdit(course.id)">
+            <i class="bi bi-pencil"></i>
           </button>
-          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(course.id)">
-            <i class="bi bi-trash"></i> Delete
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="onDelete(course.id)">
+            <i class="bi bi-trash"></i>
           </button>
         </td>
       </tr>
