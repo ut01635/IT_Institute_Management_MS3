@@ -8,7 +8,43 @@
     <p class="message text-center">{{ courseToEdit ? 'Edit the course details' : 'Add a new course to the catalog.' }}</p>
 
     <div class="row">
-     
+
+
+      <div class="col-12 d-flex justify-content-center">
+        <!-- file-upload.component.html -->
+  
+        <label class="custom-file-upload" for="file">
+          <div class="icon">
+            <!-- Bootstrap Icon for Cloud Upload -->
+            <i
+              class="bi bi-cloud-upload fs-6"
+              style="color: rgba(75, 85, 99, 1)"
+            ></i>
+          </div>
+          <div class="text">
+            <span>Click to upload image</span>
+          </div>
+          <input
+            type="file"
+            id="file"
+            (change)="onImageChange($event)"
+            accept="image/*"
+          />
+        </label>
+        <div *ngIf="courseForm.get('images')?.touched && courseForm.get('images')?.invalid" class="error-message">
+          <small *ngIf="courseForm.get('images')?.hasError('required')">Images are required.</small>
+        </div>
+      </div>
+
+<!--      
+      <div class="col-12 mb-3">
+        <div class="input-field">
+          <input class="input" type="file" formControlName="images" (change)="onImageChange($event)" multiple />
+          <label class="label">Course Images</label>
+         
+        </div>
+      </div> -->
+
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
           <input class="input" formControlName="courseName" type="text" required />
@@ -72,15 +108,6 @@
       </div>
 
     
-      <div class="col-12 mb-3">
-        <div class="input-field">
-          <input class="input" type="file" formControlName="images" (change)="onImageChange($event)" multiple />
-          <label class="label">Course Images</label>
-          <div *ngIf="courseForm.get('images')?.touched && courseForm.get('images')?.invalid" class="error-message">
-            <small *ngIf="courseForm.get('images')?.hasError('required')">Images are required.</small>
-          </div>
-        </div>
-      </div>
     </div>
 
    

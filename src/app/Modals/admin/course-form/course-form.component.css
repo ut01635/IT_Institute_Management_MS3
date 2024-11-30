@@ -1,138 +1,204 @@
 /* Styling for select dropdowns */
 .select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: 1.5px solid #ecedec;
-    background-color: transparent;
-    color: #333;
-    width: 100%;
-    outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1.5px solid #ecedec;
+  background-color: transparent;
+  color: #333;
+  width: 100%;
+  outline: none;
+}
+
+.select:focus {
+  border-color: #2d79f3;
+}
+
+.input-field select:focus {
+  border-color: #2d79f3;
+}
+
+.input-field select {
+  padding-left: 10px;
+  height: 45px;
+}
+
+/* Label styling */
+.input-field .label {
+  position: absolute;
+  top: 25px;
+  left: 15px;
+  color: #ccc;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.input-field select:focus ~ .label,
+.input-field select:valid ~ .label {
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  color: #2d79f3;
+  background-color: #ffffff;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.input-field select:invalid {
+  border-color: #000000; /* Optional: red border for invalid select */
+}
+
+/* General input styling */
+.input-field {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  margin-top: 15px;
+  width: 100%;
+  outline: none;
+  border-radius: 8px;
+  height: 45px;
+  border: 1.5px solid #000000;
+  background: transparent;
+  padding-left: 10px;
+}
+
+.input:focus {
+  border: 1.5px solid #2d79f3;
+}
+
+.input-field .label {
+  position: absolute;
+  top: 25px;
+  left: 15px;
+  color: #ccc;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.input-field .input:focus ~ .label,
+.input-field .input:valid ~ .label {
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  color: #2d79f3;
+  background-color: #ffffff;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Styling for error messages */
+.error-message {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.submit-btn {
+  width: 100%; /* Full width */
+  height: 55px;
+  background: #f2f2f2;
+  border-radius: 11px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #223146 0%, #0d1b2c 50%, #0b1b32 100%);
+  box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
+}
+
+@media (max-width: 768px) {
+  .form-control {
+    padding: 15px;
   }
-  
-  .select:focus {
-    border-color: #2d79f3;
-  }
-  
-  .input-field select:focus {
-    border-color: #2d79f3;
-  }
-  
-  .input-field select {
-    padding-left: 10px;
-    height: 45px;
-  }
-  
-  /* Label styling */
-  .input-field .label {
-    position: absolute;
-    top: 25px;
-    left: 15px;
-    color: #ccc;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 2;
-  }
-  
-  .input-field select:focus ~ .label,
-  .input-field select:valid ~ .label {
-    top: 5px;
-    left: 5px;
-    font-size: 12px;
-    color: #2d79f3;
-    background-color: #ffffff;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-  
-  .input-field select:invalid {
-    border-color: #000000; /* Optional: red border for invalid select */
-  }
-  
-  /* General input styling */
-  .input-field {
-    position: relative;
-    width: 100%;
-  }
-  
+
   .input {
-    margin-top: 15px;
-    width: 100%;
-    outline: none;
-    border-radius: 8px;
-    height: 45px;
-    border: 1.5px solid #000000;
-    background: transparent;
-    padding-left: 10px;
+    height: 40px;
   }
-  
-  .input:focus {
-    border: 1.5px solid #2d79f3;
-  }
-  
-  .input-field .label {
-    position: absolute;
-    top: 25px;
-    left: 15px;
-    color: #ccc;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 2;
-  }
-  
-  .input-field .input:focus ~ .label,
-  .input-field .input:valid ~ .label {
-    top: 5px;
-    left: 5px;
-    font-size: 12px;
-    color: #2d79f3;
-    background-color: #ffffff;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-  
-  /* Styling for error messages */
-  .error-message {
-    color: #ff4d4d;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
+
   .submit-btn {
-    width: 100%; /* Full width */
-    height: 55px;
-    background: #f2f2f2;
-    border-radius: 11px;
-    border: 0;
-    outline: none;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 700;
-    background: linear-gradient(180deg, #223146 0%, #0d1b2c 50%, #0B1B32 100%);
-    box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
-    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
-    cursor: pointer;
+    height: 50px;
   }
-  
-  .submit-btn:hover {
-    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
+}
+
+.custom-file-upload {
+  height: 50px; /* Smaller height */
+  width: 220px; /* Adjusted width */
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  justify-content: flex-start; /* Align the items to the left */
+  border: 2px dashed #cacaca;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 0.75rem; /* Reduced padding for a more compact look */
+  border-radius: 8px;
+  box-shadow: 0px 24px 18px -24px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Flexbox layout for horizontal arrangement (Icon + Text) */
+.custom-file-upload .icon {
+  display: flex;
+  align-items: center; /* Center the icon vertically */
+  justify-content: center;
+  margin-right: 10px; /* Space between icon and text */
+}
+
+/* Smaller Icon Size */
+.custom-file-upload .icon i {
+  font-size: 2rem; /* Adjust icon size */
+  color: rgba(75, 85, 99, 1); /* Icon color */
+}
+
+/* Adjust the text for a more compact design */
+.custom-file-upload .text span {
+  font-weight: 400;
+  color: rgba(75, 85, 99, 1);
+  font-size: 0.875rem; /* Smaller text size */
+  text-align: left; /* Align text to the left */
+}
+
+/* Make the component responsive */
+@media (max-width: 576px) {
+  .custom-file-upload {
+    height: 80px; /* Smaller height on small screens */
+    width: 160px; /* Smaller width on small screens */
   }
-  
-  
-  @media (max-width: 768px) {
-    .form-control {
-      padding: 15px;
-    }
-  
-    .input {
-      height: 40px;
-    }
-  
-    .submit-btn {
-      height: 50px;
-    }
+
+  .custom-file-upload .icon i {
+    font-size: 1.5rem; /* Smaller icon size */
   }
-  
+
+  .custom-file-upload .text span {
+    font-size: 0.75rem; /* Smaller text size */
+  }
+}
+
+@media (min-width: 1200px) {
+  .custom-file-upload {
+    height: 120px; /* Larger height on larger screens */
+    width: 250px; /* Larger width */
+  }
+
+  .custom-file-upload .icon i {
+    font-size: 2.5rem; /* Larger icon size */
+  }
+}
+
+.custom-file-upload input {
+  display: none;
+}
