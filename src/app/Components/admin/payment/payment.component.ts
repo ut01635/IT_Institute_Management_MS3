@@ -108,20 +108,18 @@ onNicChange(): void {
   
   onCourseSelect(): void {
     if (this.formData.nic && this.formData.course) {
-      console.log("Selected courseId from form:", this.formData.course); 
 
       this.paymentService.getPaymentsByNic(this.formData.nic).subscribe(
         (payments) => {
-          console.log("Payments:", payments); 
+          
 
          
           const selectedPayment = payments.find(payment => {
-            console.log('Checking payment.enrollment.id:', payment.enrollment.id); 
-            console.log('Matching with selected course:', this.formData.course);
+            
             return payment.enrollment.id === this.formData.course;
           });
 
-          console.log("Selected payment:", selectedPayment);
+          
 
           if (!selectedPayment) {
             this.showCourseDetails(); 
@@ -131,7 +129,7 @@ onNicChange(): void {
           }
         },
         (error) => {
-          console.error('Error fetching payment details:', error);
+          
           this.message = 'Error fetching payment details.';
         }
       );
@@ -211,7 +209,7 @@ onNicChange(): void {
 
         this.formData.paymentPlan = enrollment.paymentPlan;
         this.formData.dueAmount = payment.dueAmount;
-        console.log("amount" + payment.amount);
+        
         this.formData.amount = 0;
         this.formData.totalPaidAmount = payment.totalPaidAmount || 0;
 
