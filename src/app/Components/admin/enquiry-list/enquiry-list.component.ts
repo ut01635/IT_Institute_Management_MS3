@@ -18,7 +18,9 @@ export class EnquiryListComponent implements OnInit {
   enquirys: enquiry[] = [];
   searchText: string = '';
 
-  constructor(private enquiryService: EnquiryService,private modalService: NgbModal) {}
+  constructor(
+    private enquiryService: EnquiryService,
+    private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.loadEnquiries();

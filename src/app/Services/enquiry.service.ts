@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { enquiry } from './Modal';
+import { EmailRequest, enquiry } from './Modal';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,12 @@ export class EnquiryService {
   deleteEnquiry(id:string){
     return this.http.delete(`${this.enquiryBaseURL}/${id}`,
       {responseType:'text'}
+    )
+  }
+
+  replyEnquiry(emailRequest:EmailRequest){
+    return this.http.post(`${this.enquiryBaseURL}/send-email`,emailRequest,
+    {responseType:'text'}
     )
   }
 

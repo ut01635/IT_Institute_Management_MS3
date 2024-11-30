@@ -126,3 +126,9 @@ export interface EnrollmentRequest{
   courseId:string,
   paymentPlan:string
 }
+
+export interface EmailRequest{
+  email:string,
+  subject:string,
+  body:string
+}
