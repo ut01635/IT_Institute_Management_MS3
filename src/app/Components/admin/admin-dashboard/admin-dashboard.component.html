@@ -1,159 +1,100 @@
-<!-- Dashboard Content -->
-<div class="dashboard-container container-fluid">
-  <div class="row mb-3">
-    <!-- Welcome Message -->
-    <div class="col-12 col-md-6 mb-3">
-      <div class="card shadow-sm border-0 rounded">
-        <div
-          class="card-body d-flex align-items-center"
-          style="background-color: #f0f8ff"
-        >
-          <div class="flex-grow-1">
-            <h4 class="fw-bold mb-2">
-              Welcome back, <span class="text-primary">John!</span>
-            </h4>
-            <p class="mb-1">
-              Your students completed
-              <span class="fw-bold text-primary">80%</span> of the tasks.
-            </p>
-            <p class="text-success fw-bold">
-              Progress is <span>very good!</span>
-            </p>
-          </div>
-          <div class="ms-4">
-            <img
-              src="https://via.placeholder.com/150"
-              alt="Dashboard Illustration"
-              class="img-fluid"
-              style="max-width: 150px"
-            />
-          </div>
+<div class="container">
+  <div class="row my-4">
+    <div class="col-6">
+      <div class="alert alert-primary" role="alert">
+        <h4 class="alert-heading">Hello, Admin!</h4>
+        <p>Welcome back to your dashboard.</p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Students</h5>
+          <p class="card-text">{{ totalStudents }}</p>
         </div>
       </div>
     </div>
-
-    <!-- Overview Cards -->
-    <div class="col-12 col-md-6 d-flex flex-wrap justify-content-between">
-      <!-- Total Students Card -->
-
-      <div
-        class="col-12 col-sm-6 col-md-4 mb-3 p-1"
-        [routerLink]="['/admin/student-list']"
-      >
-        <div class="card bg-primary text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">Total Students</h5>
-            <p class="card-text">1,250</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Total Faculty Card -->
-      <div
-        class="col-12 col-sm-6 col-md-4 mb-3 p-1"
-        [routerLink]="['/admin/course-list']"
-      >
-        <div class="card bg-success text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">Total Courses</h5>
-            <p class="card-text">50</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pending Fees Card -->
-      <div
-        class="col-12 col-sm-6 col-md-4 mb-3 p-1"
-        [routerLink]="['/admin/payment']"
-      >
-        <div class="card bg-danger text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">Total Payment Recived</h5>
-            <p class="card-text">999,999,999.00</p>
-          </div>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Courses</h5>
+          <p class="card-text">{{ totalCourses }}</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Student Management Section -->
-  <div class="row">
-    <div class="col-12 d-flex flex-wrap justify-content-between">
-      <!-- Total Entrolments -->
-      <div
-        class="col-12 col-sm-6 col-md-4 mb-3 p-1"
-        [routerLink]="['/admin/course-list']"
-      >
-        <div class="card bg-primary text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">Total Entrolments</h5>
-            <p class="card-text display-4">172</p>
-          </div>
+  <div class="row my-4">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Enrollments</h5>
+          <p class="card-text">{{ totalEnrollments }}</p>
         </div>
       </div>
-
-      <!-- Reading Entrolment -->
-      <div
-        class="col-12 col-sm-6 col-md-4 mb-3 p-1"
-        [routerLink]="['/admin/course-list']"
-      >
-        <div class="card bg-success text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">Reading Entrolment</h5>
-            <p class="card-text display-4">112</p>
-          </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Completed Enrollments</h5>
+          <p class="card-text">{{ completedEnrollments }}</p>
         </div>
       </div>
-
-      <!-- completed Enrolments -->
-      <div
-        class="col-12 col-sm-6 col-md-4 mb-3 p-1"
-        [routerLink]="['/admin/course-list']"
-      >
-        <div class="card bg-danger text-white h-100">
-          <div class="card-body">
-            <h5 class="card-title">completed Enrolments</h5>
-            <p class="card-text display-4">60</p>
-          </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Reading Enrollments</h5>
+          <p class="card-text">{{ readingEnrollments }}</p>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="row my-4">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Revenue</h5>
+          <p class="card-text">{{ totalRevenue | currency }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Current Year Revenue</h5>
+          <p class="card-text">{{ currentYearRevenue | currency }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Current Month Revenue</h5>
+          <p class="card-text">{{ currentMonthRevenue | currency }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Pie Chart -->
+    <div class="row my-4">
+      <div class="col-md-6">
+        <canvas baseChart
+                [type]="pieChartType"
+                [data]="pieChartData">
+        </canvas>
+      </div>
+      
+      <!-- Bar Chart -->
+      <div class="col-md-6">
+        <canvas baseChart
+                [type]="barChartType"
+                [data]="barChartData">
+        </canvas>
+      </div>
+    </div>
+  </div>  
 </div>
-
-<!-- <h2>Student Management</h2>
-      <div class="table-responsive">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Enrollment Date</th>
-              <th>Fee Status</th>
-              <th>Alert</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>John Doe</td>
-              <td>01/02/2022</td>
-              <td>Paid</td>
-              <td>
-                <button class="btn btn-warning">
-                  <i class="bi bi-exclamation-octagon"></i>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Jane Smith</td>
-              <td>15/03/2022</td>
-              <td>Pending</td>
-              <td>
-                <button class="btn btn-warning">
-                  <i class="bi bi-exclamation-octagon"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div> -->

@@ -43,7 +43,7 @@ import { SearchPipe } from './Pipes/search.pipe';
 import { CourseSearchPipe } from './Pipes/course-search.pipe';
 import { AdminSearchPipe } from './Pipes/admin-search.pipe';
 import { EnquirySearchPipe } from './Pipes/enquiry-search.pipe';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DateFilterPipe, MessageDateFilterPipe } from './Pipes/date-filter.pipe';
 import { MonthFilterPipe } from './Pipes/month-filter.pipe';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -51,6 +51,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 import { StudentMessageFormComponent } from './Modals/student/student-message-form/student-message-form.component';
 import { SocialMediaFormComponent } from './Modals/student/social-media-form/social-media-form.component';
+import {  NgChartsModule } from 'ng2-charts'; // Correct import
+
 
 
 
@@ -113,6 +115,8 @@ import { SocialMediaFormComponent } from './Modals/student/social-media-form/soc
     NgbModalModule,
     BrowserAnimationsModule,
     BsDatepickerModule,
+    NgChartsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
