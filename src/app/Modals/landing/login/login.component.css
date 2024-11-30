@@ -1,8 +1,8 @@
-.bg-darkBlue{
+.bg-darkBlue {
   background-color: #0B1B32;
 }
 
-.text-darkBlue{
+.text-darkBlue {
   color: #0B1B32;
 }
 
@@ -10,7 +10,8 @@
   margin: 20px;
   background-color: #ffffff;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   display: flex;
   justify-content: center;
   flex-direction: column;
