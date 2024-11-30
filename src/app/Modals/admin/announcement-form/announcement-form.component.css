@@ -1,4 +1,4 @@
-/* Label styling */
+
 .input-field .label {
   position: absolute;
   top: 25px;
@@ -24,10 +24,10 @@
 
 .input-field input:invalid,
 .input-field textarea:invalid {
-  border-color: #000000; /* Optional: red border for invalid input */
+  border-color: #000000; 
 }
 
-/* General input styling */
+
 .input-field {
   position: relative;
   width: 100%;
@@ -48,7 +48,7 @@
   border: 1.5px solid #2d79f3;
 }
 
-/* Styling for error messages */
+
 .error-message {
   color: #ff4d4d;
   font-size: 12px;
@@ -56,7 +56,7 @@
 }
 
 .submit-btn {
-  width: 100%; /* Full width */
+  width: 100%;
   height: 55px;
   background: #f2f2f2;
   border-radius: 11px;

@@ -9,6 +9,7 @@ import { EmailRequest, enquiry } from './Modal';
 export class EnquiryService {
 
   private enquiryBaseURL = 'https://localhost:7055/api/ContactUs'; 
+  
 
   constructor(private http: HttpClient) { }
 
