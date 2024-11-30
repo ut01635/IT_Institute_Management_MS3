@@ -121,7 +121,7 @@ export class StudentFormComponent implements OnInit {
             this.activeModal.close();
           },
           error => {
-            console.error('Error updating student:', error);
+            alert('Error updating student: '+ error);
           }
         );
       } else {
