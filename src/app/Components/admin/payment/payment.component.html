@@ -1,8 +1,8 @@
 <div id="main-container" class="container">
   <div id="sub-container" class="shadow w-100">
-    <div id="fee-management" class="card shadow-lg" style="height: 80vh;">
+    <div id="fee-management" class="card shadow-lg" style="height: 64vh;">
       <div class="card-header bg-light text-darkblue d-flex justify-content-between align-items-center">
-        <h2 class="mb-0 text-darkblue">Fee Management</h2>
+        <h2 class="mb-0 text-darkblue"><i class="bi bi-credit-card"></i> Fee Management</h2>
       </div>
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" id="fee-management-form" class="row g-3">
@@ -10,22 +10,33 @@
           <div class="col-12 input-field">
             <input type="text" class="input" id="nic" name="nic" placeholder=" " [(ngModel)]="formData.nic"
               (ngModelChange)="onNicChange()" required />
-            <label for="nic" class="label">NIC Number</label>
+            <label for="nic" class="label"><i class="bi bi-person-fill-down"></i> NIC Number</label>
           </div>
 
           <!-- Course Selection -->
           <div class="col-12 input-field">
             <select id="course" name="course" class="input" [(ngModel)]="formData.course" [disabled]="!courses.length"
               required (change)="onCourseSelect()">
-              <option *ngFor="let enrollment of courses" [value]="enrollment.id">{{ enrollment.course.courseName }}</option>
+              <option *ngFor="let enrollment of courses" [value]="enrollment.id">{{ enrollment.course.courseName }}
+              </option>
             </select>
-            <label for="course" class="label">Select Course</label>
+            <label for="course" class="label"><i class="bi bi-book"></i> Select Course</label>
           </div>
 
           <!-- Payment Information -->
           <div class="col-12">
-            <label class="form-label">Payment Information</label>
+            <label class="form-label"><i class="bi bi-credit-card-fill"></i> Payment Information</label>
             <div class="row g-2">
+
+              <!-- Course Name -->
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Course Name:</strong>
+                  <p class="mx-3 fw-semibold">{{ formData.courseName }}</p>
+                </div>
+              </div>
+
+
               <!-- Total Course Fee -->
               <div class="col-md-3">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
@@ -50,6 +61,14 @@
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
                   <strong>Duration:</strong>
                   <p class="mx-3 fw-semibold">{{ formData.duration }} Months </p>
+                </div>
+              </div>
+
+              <!-- Enrollment Date -->
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Enrollment Date:</strong>
+                  <p class="mx-3 fw-semibold">{{ formData.enrollmentDate}}</p>
                 </div>
               </div>
 
@@ -81,25 +100,28 @@
 
           <!-- Installment Amount -->
           <div class="col-12 input-field">
-            <input type="text" class="input" id="amount" placeholder=" " [(ngModel)]="formData.amount" required />
+            <input type="text" class="input" id="amount" placeholder=" " [(ngModel)]="formData.amount"
+              name="formData.amount" required />
             <label for="installment-amount" class="label">Amount</label>
           </div>
-          
 
-          <!-- Error and Success Message -->
-          <div class="col-12 text-center">
-            <div *ngIf="message" [ngClass]="{'text-success': isSuccess, 'text-danger': !isSuccess}">
-              {{ message }}
-            </div>
-          </div>
+
+
 
           <!-- Submit Button -->
           <div class="col-12 text-center">
             <button type="submit" class="btn submit-btn text-white btn-lg w-100" [disabled]="isProcessing">
-              Pay <i class="bi bi-currency-dollar ms-2"></i>
+              Pay
             </button>
           </div>
         </form>
+
+        <!-- Error and Success Message -->
+        <div class="col-12 text-center mt-4">
+          <div *ngIf="message" [ngClass]="{'text-success': isSuccess, 'text-danger': !isSuccess}">
+            {{ message }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
