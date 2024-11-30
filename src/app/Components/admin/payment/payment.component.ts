@@ -38,7 +38,7 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.resetFormData(); // Initialize the form when the component loads
+    this.resetFormData(); // Initialize the form when the component loads
   }
 
   resetFormData(): void {
@@ -132,7 +132,7 @@ export class PaymentComponent implements OnInit {
 
           this.formData.paymentPlan = enrollment.paymentPlan;
           this.formData.dueAmount = this.formData.totalFee;
-          // this.formData.amount = 0;
+          this.formData.amount = 0;
           this.formData.totalPaidAmount = 0;
           this.formData.lastPaymentDate = 'N/A';
         },
@@ -194,7 +194,6 @@ export class PaymentComponent implements OnInit {
       return;
     }
 
-    console.log(this.formData.amount);
     const paymentData = {
       amount: this.formData.amount,
       paymentDate: new Date().toISOString(),
@@ -203,15 +202,29 @@ export class PaymentComponent implements OnInit {
 
     this.paymentService.makePayment(paymentData).subscribe(
       (response) => {
+        this.message = 'Payment Successful!';
         this.isProcessing = false;
         this.isSuccess = true;
-        this.message = 'Payment Successful!';
-        this.resetFormData(); // Reset form data after successful payment
+        setTimeout(() => {
+          this.message = '';
+          this.isSuccess = false;
+          this.resetFormData();
+          this.formData.nic='';
+        }, 5000);
+        
+       
       },
       (error) => {
         this.isProcessing = false;
         this.isSuccess = false;
         this.message = error.error.message || 'An error occurred during the payment process.';
+        setTimeout(() => {
+          this.message = '';
+          this.isSuccess = false;
+          this.resetFormData();
+          this.formData.nic='';
+        }, 5000);
+        
       }
     );
   } 

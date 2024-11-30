@@ -2,7 +2,7 @@
   <div id="sub-container" class="shadow w-100">
     <div id="fee-management" class="card shadow-lg" style="height: 80vh;">
       <div class="card-header bg-light text-darkblue d-flex justify-content-between align-items-center">
-        <h2 class="mb-0 text-darkblue">Fee Management</h2>
+        <h2 class="mb-0 text-darkblue"><i class="bi bi-credit-card"></i>  Fee Management</h2>
       </div>
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" id="fee-management-form" class="row g-3">
@@ -81,17 +81,12 @@
 
           <!-- Installment Amount -->
           <div class="col-12 input-field">
-            <input type="text" class="input" id="amount" placeholder=" " [(ngModel)]="formData.amount" required />
+            <input type="text" class="input" id="amount" placeholder=" " [(ngModel)]="formData.amount" name="formData.amount" required />
             <label for="installment-amount" class="label">Amount</label>
           </div>
           
 
-          <!-- Error and Success Message -->
-          <div class="col-12 text-center">
-            <div *ngIf="message" [ngClass]="{'text-success': isSuccess, 'text-danger': !isSuccess}">
-              {{ message }}
-            </div>
-          </div>
+        
 
           <!-- Submit Button -->
           <div class="col-12 text-center">
@@ -100,6 +95,13 @@
             </button>
           </div>
         </form>
+
+          <!-- Error and Success Message -->
+          <div class="col-12 text-center mt-4">
+            <div *ngIf="message" [ngClass]="{'text-success': isSuccess, 'text-danger': !isSuccess}">
+              {{ message }}
+            </div>
+          </div>
       </div>
     </div>
   </div>
