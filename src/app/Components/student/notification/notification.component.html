@@ -15,7 +15,7 @@
                    }" autocomplete="off" [(ngModel)]="messageDateFilter" />
         </div>
     
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalForm">
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" (click)="openModal()">
             Chat to Admin
           </button>
           
@@ -53,6 +53,3 @@
         </div>
     </div>
 </div>
-
-
-<app-student-message-form></app-student-message-form>

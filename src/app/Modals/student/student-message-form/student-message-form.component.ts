@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { NotificationService } from '../../../Services/notification.service';
 import { MessageRequest } from '../../../Services/Modal';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-student-message-form',
@@ -14,8 +15,7 @@ export class StudentMessageFormComponent {
   currentDate: Date = new Date();
 
 
-  @ViewChild('modalForm', { static: false }) modal: any;
-  constructor(private messageService:NotificationService) {}
+  constructor(private messageService:NotificationService,public activeModal: NgbActiveModal) {}
 
   onSubmit() {
     // Backend request payload
@@ -30,7 +30,7 @@ export class StudentMessageFormComponent {
         (response) => {
           alert('Message submitted successfully!');
           console.log('Backend Response:', response);
-          this.modal.hide();
+         this.activeModal.close();
         },
         (error) => {
           alert('Error submitting message.');

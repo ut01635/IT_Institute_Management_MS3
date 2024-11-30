@@ -1,10 +1,10 @@
 <!-- Modal -->
-<div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="modalFormLabel" aria-hidden="true">
+
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalFormLabel">Submit Message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('cross click')"></button>
         </div>
         <div class="modal-body">
           <form (ngSubmit)="onSubmit()">
@@ -17,5 +17,4 @@
         </div>
       </div>
     </div>
-  </div>
   
