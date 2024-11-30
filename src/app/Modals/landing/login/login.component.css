@@ -85,3 +85,8 @@
 .submit-btn:hover {
   box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
 }
+.image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
