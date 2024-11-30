@@ -29,9 +29,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let student of students | search:searchText">
-          <td>
-            <img [src]="baseUrl + student.imagePath" alt="Student Image" class="img-thumbnail" style="width: 50px; height: 50px;">
-          </td>
+          <td> <img [src]="baseUrl + student.imagePath" alt="Student Image" class="img-thumbnail" style="width: 30px; height: 30px;"> </td>
           <td>{{ student.nic }}</td>
           <td>{{ student.firstName }} {{ student.lastName }}</td>
           <td>{{ student.email }}</td>
@@ -41,10 +39,9 @@
             {{ student.address?.addressLine2 }},
             {{ student.address?.city }}.
           </td>
-          
           <td>{{ student.enrollingCount || 0 }}</td>
           <td>{{ student.completedCount || 0 }}</td>
-          <td class="d-flex justify-content-start">
+          <td class="d-flex justify-content-around">
             <!-- Lock/Unlock Button -->
             <button type="button" class="btn btn-outline-secondary me-2 btn-sm" (click)="toggleLockOrUnlock(student)">
               <i class="bi" [ngClass]="student.IsLocked ? 'bi-unlock' : 'bi-lock'"></i>
