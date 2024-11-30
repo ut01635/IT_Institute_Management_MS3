@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EmailRequest } from '../../../Services/Modal';
+import { EnquiryService } from '../../../Services/enquiry.service';
 
 @Component({
   selector: 'app-enquiry-replay-form',
@@ -12,25 +14,50 @@ export class EnquiryReplayFormComponent implements OnInit {
 
   emailForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {}
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal,private enquirySrvice:EnquiryService) {}
 
   ngOnInit(): void {
     // Initialize the form and access the email passed from the parent
     this.emailForm = this.fb.group({
       subject: ['', Validators.required],
-      message: ['', Validators.required]
+      body: ['', Validators.required]
     });
 
     // Log email to verify that it was passed correctly
     console.log('Received email:', this.email);
   }
 
-  onSubmit(): void {
+  onSubmit(email: string): void {
     if (this.emailForm.valid) {
-      const formData = this.emailForm.value;
-      console.log('Form Data:', formData);
-      // Handle form submission (e.g., send the email)
-      this.activeModal.close('Email Sent');
+      // Get the form data
+      let formData = this.emailForm.value;
+  
+      // Create the emailRequest object using the form data
+      const emailRequest: EmailRequest = {
+        email: email,
+        subject: formData.subject,
+        body: formData.body,
+      };
+  
+      // Call the replyEnquiry method
+      this.enquirySrvice.replyEnquiry(emailRequest).subscribe(
+        (response) => {
+          // Handle success (email sent)
+          alert(response)
+          console.log(response); // You can log the response or show a success message
+          this.activeModal.close('Email Sent'); // Close modal with success message
+        },
+        (error) => {
+          // Handle error
+          alert(error.error)
+          console.error(error); // Log the error or show an error message
+          this.activeModal.close('Email Failed'); // Close modal with failure message
+        }
+      );
+    } else {
+      // Handle invalid form submission
+      console.log("Form is invalid");
     }
   }
+  
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AnnouncementService } from '../../../Services/announcement.service';
 import { Announcement } from '../../../Services/Modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AnnouncementFormComponent } from '../../../Modals/admin/announcement-form/announcement-form.component';
 
 @Component({
   selector: 'app-announcement-list',
@@ -29,7 +31,7 @@ export class AnnouncementListComponent {
     { value: '12', name: 'December' }
   ];
 
-  constructor(private announcementService: AnnouncementService) {}
+  constructor(private announcementService: AnnouncementService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.loadAnnouncement()
@@ -41,6 +43,10 @@ export class AnnouncementListComponent {
       (data) => (this.announcements = data),
       (error) => alert(error.error)
     );
+  }
+   // Open modal and pass enquiry.email to the modal component
+   openModal(): void {
+    const modalRef = this.modalService.open(AnnouncementFormComponent); 
   }
 
   viewAnnouncement(announcement: Announcement) {
