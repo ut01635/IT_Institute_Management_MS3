@@ -13,6 +13,9 @@ import { PasswordRestFormComponent } from '../../../Modals/student/password-rest
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
+openSocialMediaUpdateModal() {
+throw new Error('Method not implemented.');
+}
   studentProfile!: StudentProfileDto;
   completeEnrollment:Enrollment[]=[];
   ReadingEnrollolment:Enrollment[]=[];

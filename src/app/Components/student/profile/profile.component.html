@@ -44,28 +44,39 @@
         <!-- Social Media Links -->
         <div class="card shadow-sm mt-4" id="socialMediaLinks">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="studentProfile.socialMediaLinks.gitHub">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngIf="studentProfile.socialMediaLinks.gitHub">
               <h6><i class="bi bi-github me-2"></i>Github</h6>
-              <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.gitHub" target="_blank">View</a>
+              <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.gitHub"
+                target="_blank">View</a>
             </li>
-          
-            <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="studentProfile.socialMediaLinks.linkedIn">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngIf="studentProfile.socialMediaLinks.linkedIn">
               <h6><i class="bi bi-linkedin me-2 text-info"></i>LinkedIn</h6>
-              <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.linkedIn" target="_blank">View</a>
+              <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.linkedIn"
+                target="_blank">View</a>
             </li>
-          
-            <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="studentProfile.socialMediaLinks.instagram">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngIf="studentProfile.socialMediaLinks.instagram">
               <h6><i class="bi bi-instagram me-2 text-danger"></i>Instagram</h6>
-              <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.instagram" target="_blank">View</a>
+              <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.instagram"
+                target="_blank">View</a>
             </li>
-          
-            <li class="list-group-item d-flex justify-content-between align-items-center" *ngIf="studentProfile.socialMediaLinks.facebook">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngIf="studentProfile.socialMediaLinks.facebook">
               <h6><i class="bi bi-facebook me-2 text-primary"></i>Facebook</h6>
-              <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.facebook" target="_blank">View</a>
+              <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.facebook"
+                target="_blank">View</a>
             </li>
           </ul>
-          
+          <!-- Update Button -->
+          <div class="card-body text-center">
+            <button class="btn btn-info w-100" (click)="openSocialMediaUpdateModal()">
+              <i class="bi bi-pencil-square me-2"></i> Update Links
+            </button>
+          </div>
         </div>
+
       </div>
 
       <!-- Right Column: Profile Details -->
