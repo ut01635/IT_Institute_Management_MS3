@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidator } from './PasswordValidator';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { StudentService } from '../../../Services/student.service';
 
 @Component({
   selector: 'app-password-rest-form',
@@ -9,12 +10,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './password-rest-form.component.css'
 })
 export class PasswordRestFormComponent implements OnInit {
-
+  nic: string = ''
   passwordResetForm!: FormGroup;
+  message = ''
 
-  constructor(private fb: FormBuilder,public activeModal: NgbActiveModal) {}
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal, private studentService: StudentService) { }
 
   ngOnInit(): void {
+    this.nic = localStorage.getItem('NIC') || ''
     this.passwordResetForm = this.fb.group({
       currentPassword: ['', [Validators.required]],
       newPassword: [
@@ -32,9 +35,19 @@ export class PasswordRestFormComponent implements OnInit {
 
   onSubmit() {
     if (this.passwordResetForm.valid) {
-      const { currentPassword, newPassword } = this.passwordResetForm.value;
-      console.log('Password reset data:', { currentPassword, newPassword });
-      // Call your service to reset the password here
+      const formdata = this.passwordResetForm.value
+
+      this.studentService.resetPassword(this.nic,formdata).subscribe(data=>{
+        alert(data)
+        this.activeModal.close();
+      },error=>{
+        alert(error.error)
+        this.message=error.error
+
+        setTimeout(() => {
+          this.message = '';
+        }, 4000);
+      })
     }
   }
 }
