@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Message } from './Modal';
+import { Message, MessageRequest } from './Modal';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,10 @@ export class NotificationService {
 
  getStudentMessage(){
   return this.http.get<Message[]>(this.studenMessageURL)
+ }
+
+ postStudentmessage(message:MessageRequest){
+  return this.http.post(this.studenMessageURL,message)
  }
 
 }

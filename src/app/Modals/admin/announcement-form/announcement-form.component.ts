@@ -49,7 +49,7 @@ export class AnnouncementFormComponent {
     }
   }
 
-  
+  // Getter for easier access to form controls
   get f() {
     return this.announcementForm.controls;
   }
