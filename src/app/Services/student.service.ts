@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Student, StudentProfileDto, resetPassword } from './Modal';
+import { SocialMediaLinks, Student, StudentProfileDto, resetPassword } from './Modal';
 
 @Injectable({
   providedIn: 'root'
@@ -94,5 +94,9 @@ export class StudentService {
   resetPassword(nic: string, passwordRequest: resetPassword) {
     https://localhost:7055/api/Students/123456789v/update-password
     return this.http.put(`${this.BaseStudentURL}/${nic}/update-password`, passwordRequest)
+  }
+
+  getSocialMediaLinks(nic:string){
+    return this.http.get<SocialMediaLinks>(`https://localhost:7055/api/SocialMediaLinks/${nic}`)
   }
 }

@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { StudentService } from '../../../Services/student.service';
 
 @Component({
   selector: 'app-social-media-form',
   templateUrl: './social-media-form.component.html',
   styleUrl: './social-media-form.component.css'
 })
-export class SocialMediaFormComponent {
+export class SocialMediaFormComponent implements OnInit {
   @Input() studentNIC!: string; // Pass the NIC dynamically when opening the modal
   @Input() id!:string
 
@@ -17,14 +18,14 @@ export class SocialMediaFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    public activeModal: NgbActiveModal // To close the modal
+    public activeModal: NgbActiveModal, // To close the modal
+    private studentService:StudentService
   ) {
     this.createForm();
   }
 
   private createForm() {
     this.socialMediaForm = this.fb.group({
-      id:[this.id],
       linkedIn: ['', [Validators.pattern(/^(http(s)?:\/\/)?([\w]+\.)?linkedin\.com\/.*$/)]],
       instagram: ['', [Validators.pattern(/^(http(s)?:\/\/)?([\w]+\.)?instagram\.com\/.*$/)]],
       facebook: ['', [Validators.pattern(/^(http(s)?:\/\/)?([\w]+\.)?facebook\.com\/.*$/)]],
@@ -34,6 +35,12 @@ export class SocialMediaFormComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.studentService.getSocialMediaLinks(this.studentNIC).subscribe(data=>{
+      this.socialMediaForm.patchValue(data);
+    })
+  }
+
   onSubmit() {
     this.isSubmitted = true;
 
@@ -41,7 +48,10 @@ export class SocialMediaFormComponent {
       return;
     }
 
-    const formData = this.socialMediaForm.value;
+    const formData ={
+      request:this.socialMediaForm.value,
+      id:this.id
+    }
 
     // Mock API call or integrate with your service
     console.log('Form Submitted:', formData);
