@@ -105,18 +105,17 @@ export class StudentFormComponent implements OnInit {
       }
 
       if (this.studentToEdit) {
-        this.studentService
-          .updateStudent(this.studentToEdit.nic, formData)
-          .subscribe(
-            (response) => {
-              alert('Student updated successfully!');
-              this.studentService.refreshStudentList();
-              this.activeModal.close();
-            },
-            (error) => {
-              console.error('Error updating student:', error);
-            }
-          );
+       
+        this.studentService.updateStudent(this.studentToEdit.nic, formData).subscribe(
+          response => {
+            alert('Student updated successfully!');
+            this.studentService.refreshStudentList();
+            this.activeModal.close();
+          },
+          error => {
+            console.error('Error updating student:', error);
+          }
+        );
       } else {
         this.studentService.addStudent(formData).subscribe(
           (response) => {

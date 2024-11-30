@@ -33,11 +33,11 @@ export class AnnouncementComponent implements OnInit {
 
   ngOnInit(): void {
     this.announcementService.getAllAnnouncements().subscribe(
-      (data) => (
+      (data: Announcement[]) => (
         this.announcements = data,
       console.log(data)
       ),
-      (error) => alert(error.error)
+      (error: { error: any; }) => alert(error.error)
     );
   }
 

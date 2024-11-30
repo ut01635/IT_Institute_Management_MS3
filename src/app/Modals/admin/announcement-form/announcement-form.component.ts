@@ -17,19 +17,19 @@ export class AnnouncementFormComponent {
     private announcementService: AnnouncementService,
     public activeModal: NgbActiveModal
   ) {
-    // Initialize the form group with reactive form controls and validators
+    
     this.announcementForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       body: ['', Validators.required],
     });
   }
 
-  // Submit form and handle form data
+  
   onSubmit() {
     if (this.announcementForm.valid) {
       const formData = {
         ...this.announcementForm.value,
-        date: new Date().toISOString(), // Add the current date in ISO format
+        date: new Date().toISOString(), 
       };
       this.announcementService
         .CreateAnnouncement(formData)
@@ -37,8 +37,9 @@ export class AnnouncementFormComponent {
           (response) => {
             alert(response);
             console.log('Announcement saved successfully:', response);
-            this.activeModal.close(); // Close the modal after successful submission
             this.announcementService.refreshAnnouncementList()
+            this.activeModal.close();
+            
           },
           (error) => {
             console.error('Error saving announcement:', error);
@@ -48,4 +49,8 @@ export class AnnouncementFormComponent {
     }
   }
 
+  // Getter for easier access to form controls
+  get f() {
+    return this.announcementForm.controls;
+  }
 }

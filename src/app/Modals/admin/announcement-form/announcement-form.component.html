@@ -1,20 +1,20 @@
-<!-- Modal -->
+
 <div class="modal-dialog modal-dialog-centered modal-lg">
   <div class="modal-content">
-    <!-- Modal Header -->
+    
     <div class="modal-header bg-white text-black">
       <h5 class="modal-title" id="announcementModalLabel">Add Announcement</h5>
       <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
     </div>
 
-    <!-- Modal Body -->
+    
     <div class="modal-body">
-      <!-- Announcement Form -->
+    
       <form [formGroup]="announcementForm" (ngSubmit)="onSubmit()" class="form-control">
         <p class="message text-center">Add a new announcement.</p>
 
         <div class="row">
-          <!-- Title Field -->
+         
           <div class="col-12 mb-3">
             <div class="input-field">
               <input class="input" formControlName="title" type="text" required />
@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <!-- Body Field -->
+          
           <div class="col-12 mb-3">
             <div class="input-field">
               <textarea class="input" formControlName="body" required></textarea>
@@ -37,7 +37,7 @@
             </div>
           </div>
 
-          <!-- Submit Button -->
+          
           <div class="col-12 mb-3">
             <button type="submit" class="submit-btn" [disabled]="announcementForm.invalid">
               <i class="bi bi-save"></i> Post Announcement
