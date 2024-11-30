@@ -132,3 +132,9 @@ export interface EmailRequest{
   subject:string,
   body:string
 }
+
+export interface AnnouncementRequest{
+  title: string;
+  body: string;
+  date: Date;
+}
