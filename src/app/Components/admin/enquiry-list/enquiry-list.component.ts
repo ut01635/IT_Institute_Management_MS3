@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { enquiry } from '../../../Services/Modal';
 import { EnquiryService } from '../../../Services/enquiry.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EnquiryReplayFormComponent } from '../../../Modals/admin/enquiry-replay-form/enquiry-replay-form.component';
 
 
 @Component({
@@ -11,31 +13,39 @@ import { EnquiryService } from '../../../Services/enquiry.service';
 export class EnquiryListComponent implements OnInit {
 
 
+ 
+
   enquirys: enquiry[] = [];
   searchText: string = '';
 
-  constructor(private enquiryService: EnquiryService) {}
+  constructor(
+    private enquiryService: EnquiryService,
+    private modalService: NgbModal) {}
 
   ngOnInit(): void {
-    
+    this.loadEnquiries();
+  }
+
+  loadEnquiries(){
     this.enquiryService.getEnquiries().subscribe((data) => {
       this.enquirys = data;
     });
   }
 
-  onView(id: string): void {
-   
-    console.log('View enquiry with ID:', id);
+   // Open modal and pass enquiry.email to the modal component
+   openModal(email: string): void {
+    const modalRef = this.modalService.open(EnquiryReplayFormComponent); // Open the modal
+    modalRef.componentInstance.email = email; // Pass the email to the modal component
   }
 
   onDelete(id: string): void {
-   
-    console.log('Delete enquiry with ID:', id);
+    this.enquiryService.deleteEnquiry(id).subscribe(data=>{
+      alert(data)
+      this.loadEnquiries()
+    },error=>{
+      alert(error.error)
+    })
   }
 
-  onReplay(email: string): void {
-  
-    console.log('Reply to enquiry with email:', email);
-  }
 
 }

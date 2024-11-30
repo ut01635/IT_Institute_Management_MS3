@@ -1,0 +1,20 @@
+<!-- Modal -->
+
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalFormLabel">Submit Message</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" class="form-control" [(ngModel)]="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  

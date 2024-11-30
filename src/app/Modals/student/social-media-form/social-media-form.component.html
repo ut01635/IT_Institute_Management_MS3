@@ -1,0 +1,95 @@
+<div class="modal-header">
+    <h5 class="modal-title"><i class="bi bi-pencil-square me-2"></i> Update Social Media Links</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="socialMediaForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="linkedIn" class="form-label">
+          <i class="bi bi-linkedin text-info me-2"></i> LinkedIn
+        </label>
+        <input
+          type="url"
+          id="linkedIn"
+          formControlName="linkedIn"
+          class="form-control"
+          placeholder="Enter LinkedIn profile URL"
+        />
+        <div class="text-danger small" *ngIf="isSubmitted && socialMediaForm.controls['linkedIn'].invalid">
+          Invalid LinkedIn URL.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="instagram" class="form-label">
+          <i class="bi bi-instagram text-danger me-2"></i> Instagram
+        </label>
+        <input
+          type="url"
+          id="instagram"
+          formControlName="instagram"
+          class="form-control"
+          placeholder="Enter Instagram profile URL"
+        />
+        <div class="text-danger small" *ngIf="isSubmitted && socialMediaForm.controls['instagram'].invalid">
+          Invalid Instagram URL.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="facebook" class="form-label">
+          <i class="bi bi-facebook text-primary me-2"></i> Facebook
+        </label>
+        <input
+          type="url"
+          id="facebook"
+          formControlName="facebook"
+          class="form-control"
+          placeholder="Enter Facebook profile URL"
+        />
+        <div class="text-danger small" *ngIf="isSubmitted && socialMediaForm.controls['facebook'].invalid">
+          Invalid Facebook URL.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="gitHub" class="form-label">
+          <i class="bi bi-github me-2"></i> GitHub
+        </label>
+        <input
+          type="url"
+          id="gitHub"
+          formControlName="gitHub"
+          class="form-control"
+          placeholder="Enter GitHub profile URL"
+        />
+        <div class="text-danger small" *ngIf="isSubmitted && socialMediaForm.controls['gitHub'].invalid">
+          Invalid GitHub URL.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="whatsApp" class="form-label">
+          <i class="bi bi-whatsapp text-success me-2"></i> WhatsApp
+        </label>
+        <input
+          type="text"
+          id="whatsApp"
+          formControlName="whatsApp"
+          class="form-control"
+          placeholder="Enter WhatsApp number"
+        />
+        <div class="text-danger small" *ngIf="isSubmitted && socialMediaForm.controls['whatsApp'].invalid">
+          Invalid WhatsApp number.
+        </div>
+      </div>
+  
+      <!-- Hidden NIC Field -->
+      <input type="hidden" formControlName="studentNIC" />
+  
+      <button type="submit" class="btn submit-btn text-white w-100">
+        <i class="bi bi-save me-2"></i> Save Changes
+      </button>
+    </form>
+  </div>
+  

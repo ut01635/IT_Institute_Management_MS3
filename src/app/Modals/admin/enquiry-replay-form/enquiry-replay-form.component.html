@@ -1,1 +1,37 @@
-<p>enquiry-replay-form works!</p>
+<div class="modal-header bg-white text-black">
+    <h5 class="">Send Reply to {{ email }}</h5>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
+  </div>
+  
+  <div class="modal-body">
+    <form [formGroup]="emailForm" (ngSubmit)="onSubmit(email)" class="form-control">
+      <!-- <div class="message text-center">{{ 'Send a message to the student' }}</div> -->
+  
+      <div class="row">
+        <div class="col-12 mb-3">
+          <div class="input-field">
+            <input class="input" formControlName="subject" type="text" required />
+            <label class="label">Subject</label>
+            <div *ngIf="emailForm.get('subject')?.touched && emailForm.get('subject')?.invalid" class="error-message">
+              <small *ngIf="emailForm.get('subject')?.hasError('required')">Subject is required.</small>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-12 mb-3">
+          <div class="input-field">
+            <textarea class="input" formControlName="body" required></textarea>
+            <label class="label">Message</label>
+            <div *ngIf="emailForm.get('body')?.touched && emailForm.get('body')?.invalid" class="error-message">
+              <small *ngIf="emailForm.get('body')?.hasError('required')">Message is required.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <button type="submit" class="submit-btn" [disabled]="emailForm.invalid">
+        <i class="bi bi-send"></i> Send Reply
+      </button>
+    </form>
+  </div>
+  

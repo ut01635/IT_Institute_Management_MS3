@@ -28,6 +28,8 @@ import { CourseFormComponent } from './Modals/admin/course-form/course-form.comp
 import { AuthGuard } from './authGuard/auth.guard';
 import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.component';
 import { AnnouncementFormComponent } from './Modals/admin/announcement-form/announcement-form.component';
+import { PasswordRestFormComponent } from './Modals/student/password-rest-form/password-rest-form.component';
+import { EnquiryReplayFormComponent } from './Modals/admin/enquiry-replay-form/enquiry-replay-form.component';
 
 const routes: Routes = [
   {
@@ -75,10 +77,7 @@ const routes: Routes = [
   },
 
   { path: 'login', component: LoginComponent },
-  { path: 'form', component: AnnouncementFormComponent },
-  {path:'adminForm',component:AdminFormComponent},
 
-  { path: '', redirectTo: '/', pathMatch: 'full' }
 
 ];
 

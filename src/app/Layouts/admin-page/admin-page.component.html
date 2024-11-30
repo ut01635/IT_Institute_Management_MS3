@@ -23,10 +23,11 @@
       </div>
 
       <!-- Button to toggle the sidebar on small screens -->
-      <button class="navbar-toggler btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar"
-          aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="bi bi-list text-white fs-3"></i>
-        </button>
+      <button class="navbar-toggler btn btn-outline-light d-block d-md-none" type="button" data-bs-toggle="collapse"
+        data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list text-white fs-3"></i>
+      </button>
+
     </div>
   </header>
 
@@ -125,8 +126,9 @@
       </nav>
     </div>
     <!-- Main Content -->
-    <main class="container-fluid p-3" style="overflow-y: auto; height: calc(100vh - 100px);">
-      <section class="shadow p-4 bg-white rounded">
+    <!-- Main Content -->
+    <main class="container-fluid" style="overflow-y: auto; height: 88vh; width: 95vw;">
+      <section class="shadow m-5 p-4 mt-3 bg-white rounded ">
         <div class="container-fluid">
           <router-outlet></router-outlet>
         </div>

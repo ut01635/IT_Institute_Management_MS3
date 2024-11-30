@@ -8,6 +8,7 @@ export interface Address {
 }
 
 export interface Student {
+  course: any;
   nic: string;
   firstName: string;
   lastName: string;
@@ -22,6 +23,8 @@ export interface Student {
 }
 
 export interface Course {
+  dueAmount: number;
+  paymentPlan: string;
   id: string;
   courseName: string;
   level: string;
@@ -35,9 +38,11 @@ export interface Enrollment {
   id: string;
   student: Student;
   course: Course;
-  enrollmentDate: string;
+  enrollmentDate: Date;
   isComplete: boolean;
   paymentPlan: string;
+  studentNIC:string;
+  courseId:string;
 }
 
 export interface LoginRequest {
@@ -89,6 +94,7 @@ export interface Message {
   message: string;
   studentNIC: string;
   date: Date;
+  student:Student
 }
 
 export interface StudentProfileDto {
@@ -113,4 +119,34 @@ export interface SocialMediaLinks {
   gitHub?: string;
   whatsApp?: string;
   studentNic?: string;
+}
+
+export interface EnrollmentRequest{
+  studentNic:string,
+  courseId:string,
+  paymentPlan:string
+}
+
+export interface EmailRequest{
+  email:string,
+  subject:string,
+  body:string
+}
+
+export interface AnnouncementRequest{
+  title: string;
+  body: string;
+  date: Date;
+}
+
+export interface MessageRequest{
+  message: string;
+  studentNIC: string;
+  date: Date;
+}
+
+export interface resetPassword{
+  currentPassword:string,
+  newPassword:string,
+  confirmNewPassword:string
 }

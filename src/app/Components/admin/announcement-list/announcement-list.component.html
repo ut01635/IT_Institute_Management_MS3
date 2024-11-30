@@ -1,24 +1,24 @@
 <div class="container mt-4">
    
     <div class="col-12 d-flex flex-wrap">
-        <!-- header Section -->
+        
         <div class="d-flex align-items-center mb-3 mb-md-0">
             <h2 class="text-center mb-4 text-darkbule fw-bolder">Announcements</h2>
         </div>
     
-        <!-- Send Announcement Button -->
+        
         <div class="ms-auto">
-            <button class="btn bg-darkblue text-white">
+            <button type="button" class="btn bg-darkblue text-white" (click)="openModal()">
                 Post Announcement
             </button>
         </div>
     </div>
 
-    <!-- Filters Section -->
+    
     <div class="row mb-4">
-        <!-- Date Range Picker -->
+       
         <div class="col-12 col-md-6 mb-3">
-            <!-- <label for="dateRange" class="form-label">Select Date Range</label> -->
+           
             <input type="text" id="dateRange" placeholder="Select Date Range" class="form-control theme-dark-blue"
                 bsDaterangepicker [bsConfig]="{
                     isAnimated: true,
@@ -28,19 +28,19 @@
                 }" autocomplete="off" [(ngModel)]="selectedDateRange" />
         </div>
 
-        <!-- Month Filter -->
+       
         <div class="col-12 col-md-6 mb-3">
-            <!-- <label for="month" class="form-label">Month</label> -->
+           
             <select id="month" class="form-control custom-month-select" [(ngModel)]="selectedMonth">
                 <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
             </select>
         </div>
     </div>
 
-    <!-- Announcements List -->
+    
     <div class="row">
         <div class="col-12">
-            <!-- Check if announcements exist after filtering -->
+          
             <ng-container
                 *ngIf="announcements | dateRangeFilter:selectedDateRange | monthFilter:selectedMonth as filteredAnnouncements; else noResults">
                 <div *ngFor="let announcement of filteredAnnouncements">
@@ -70,7 +70,7 @@
                 </div>
             </ng-container>
 
-            <!-- No Results Fallback -->
+            
             <ng-template #noResults>
                 <div class="text-center text-muted my-4">
                     <i class="bi bi-info-circle" style="font-size: 2rem;"></i>
@@ -81,7 +81,7 @@
     </div>
 </div>
 
-<!-- Announcement View Modal -->
+
 <div class="modal fade" id="announcementModal" tabindex="-1" aria-labelledby="announcementModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -93,7 +93,7 @@
             <div class="modal-body">
                 <p><strong>Date:</strong> {{ selectedAnnouncement?.date | date: 'medium' }}</p>
                 <p><strong>Details:</strong></p>
-                <!-- Display body with newlines preserved -->
+                
                 <p class="announcement-body">{{ selectedAnnouncement?.body }}</p>
             </div>
             <div class="modal-footer">

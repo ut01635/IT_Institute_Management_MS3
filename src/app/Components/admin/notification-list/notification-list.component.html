@@ -38,7 +38,12 @@
             <div *ngFor="let message of messages | messageDateFilter:messageDateFilter!">
                 <div class="card mb-4">
                     <div class="card-header bg-darkBlue d-flex justify-content-between align-items-center">
-                        <span class="font-weight-bold text-white">{{message.studentNIC}}</span>
+                        <div class="d-flex align-items-center">
+                            <img src="https://localhost:7055{{message.student.imagePath}}"  class="img-thumbnail rounded-circle"  alt="student profile" style="width: 50px; height: 50px;">
+                            <span class="font-weight-bold text-white mx-4">{{message.studentNIC}} </span>
+                            <span class="text-secondary fw-semibold mx-4 text-center">{{message.student.firstName}} {{message.student.lastName}}</span>
+                        </div>
+                       
                         <span class="text-white">{{ message.date | date: 'short' }}</span>
                     </div>
                     <div class="card-body d-flex justify-content-between">

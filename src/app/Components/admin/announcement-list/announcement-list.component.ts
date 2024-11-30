@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AnnouncementService } from '../../../Services/announcement.service';
 import { Announcement } from '../../../Services/Modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AnnouncementFormComponent } from '../../../Modals/admin/announcement-form/announcement-form.component';
 
 @Component({
   selector: 'app-announcement-list',
@@ -29,19 +31,30 @@ export class AnnouncementListComponent {
     { value: '12', name: 'December' }
   ];
 
-  constructor(private announcementService: AnnouncementService) {}
+  constructor(private announcementService: AnnouncementService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.loadAnnouncement()
   }
 
 
-  loadAnnouncement(){
-    this.announcementService.getAllAnnouncements().subscribe(
-      (data) => (this.announcements = data),
-      (error) => alert(error.error)
-    );
+  loadAnnouncement(): void {
+    this.announcementService.announcement$.subscribe((announcements) => {
+     
+      this.announcements = announcements.sort((a, b) => {
+       
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        
+        
+        return dateB.getTime() - dateA.getTime();
+      });
+    });
+    
+    this.announcementService.getAllAnnouncements();
   }
+  
+  
 
   viewAnnouncement(announcement: Announcement) {
     this.selectedAnnouncement = announcement;
@@ -58,5 +71,22 @@ export class AnnouncementListComponent {
         alert('faild to delete')
       })
     }   
+  }
+
+  openModal() {
+    
+    const modalRef = this.modalService.open(AnnouncementFormComponent, {
+      size: 'lg'
+    });
+
+    
+    modalRef.result.then(
+      (result: any) => {
+        console.log('Modal closed', result);
+      },
+      (reason: any) => {
+        console.log('Modal dismissed', reason);
+      }
+    );
   }
 }

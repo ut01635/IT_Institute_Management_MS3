@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Enrollment, Student } from './Modal';
+import { Enrollment, EnrollmentRequest, Student } from './Modal';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +11,13 @@ export class EnrollmentService {
 
   constructor(private http: HttpClient) {}
 
-  getEnrollments(studentNic: string): Observable<Student[]> {
-    return this.http.get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
+  getEnrollments(studentNic: string): Observable<Enrollment[]> {
+    return this.http.get<Enrollment[]>(`${this.enrollmentUrl}/nic/${studentNic}`);
   }
 
-  getCompletedEnrollments(studentNic: string): Observable<Student[]> {
+  getCompletedEnrollments(studentNic: string): Observable<Enrollment[]> {
     return this.http
-      .get<Student[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`)
+      .get<Enrollment[]>(`${this.enrollmentUrl}/nic/${studentNic}/completed`)
       .pipe(
         catchError((error) => {
           console.error('Error fetching completed enrollments', error);
@@ -30,12 +30,12 @@ export class EnrollmentService {
   }
 
   getReadingEnrollments(studentNic: string) {
-    return this.http.get<any[]>(
+    return this.http.get<Enrollment[]>(
       `${this.enrollmentUrl}/nic/${studentNic}/notcompleted`
     );
   }
 
-  createEnrollment(enrollment: Enrollment) {
+  createEnrollment(enrollment: EnrollmentRequest) {
     return this.http.post(this.enrollmentUrl, enrollment, {
       responseType: 'text',
     });

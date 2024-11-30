@@ -92,17 +92,31 @@ export class EnrollmentReportComponent implements OnInit {
 
   applyFilters(): void {
     this.filteredEnrollments = this.enrollments.filter(enrollment => {
-      const matchSearch = this.studentSearch ? (enrollment.student.firstName.toLowerCase().includes(this.studentSearch.toLowerCase()) || 
-                                                 enrollment.student.nic.toLowerCase().includes(this.studentSearch.toLowerCase())) : true;
-      const matchDateRange = this.selectedDateRange ? new Date(enrollment.enrollmentDate) >= new Date(this.selectedDateRange[0]) &&
-                                                      new Date(enrollment.enrollmentDate) <= new Date(this.selectedDateRange[1]) : true;
+      const matchSearch = this.studentSearch ? 
+        (enrollment.student.firstName.toLowerCase().includes(this.studentSearch.toLowerCase()) || 
+        enrollment.student.nic.toLowerCase().includes(this.studentSearch.toLowerCase())) : true;
+  
+      // Date range comparison fix
+      const matchDateRange = this.selectedDateRange && this.selectedDateRange.length === 2 ? 
+        (this.isValidDate(this.selectedDateRange[0]) && this.isValidDate(this.selectedDateRange[1])) ?
+          new Date(enrollment.enrollmentDate) >= new Date(this.selectedDateRange[0]) && 
+          new Date(enrollment.enrollmentDate) <= new Date(this.selectedDateRange[1]) : true 
+        : true;
+  
       const matchMonth = this.selectedMonth ? new Date(enrollment.enrollmentDate).getMonth() + 1 === +this.selectedMonth : true;
       const matchCourse = this.selectedCourse ? enrollment.course.id === this.selectedCourse : true;
-      const matchStatus = this.selectedStatus ? (this.selectedStatus === 'complete' ? enrollment.isComplete : !enrollment.isComplete) : true;
-
+      const matchStatus = this.selectedStatus ? 
+        (this.selectedStatus === 'complete' ? enrollment.isComplete : !enrollment.isComplete) : true;
+  
       return matchSearch && matchDateRange && matchMonth && matchCourse && matchStatus;
     });
   }
-
+  
+  // Helper function to validate date objects
+  isValidDate(date: any): boolean {
+    return date instanceof Date && !isNaN(date.getTime());
+  }
+  
+  
 
 }

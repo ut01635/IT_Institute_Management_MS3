@@ -33,7 +33,7 @@
                 <div *ngFor="let announcement of filteredAnnouncements">
                     <div class="card mb-4">
                         <div
-                            class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+                            class="card-header d-flex justify-content-between align-items-center text-white">
                             <span>Admin</span>
                             <span>{{ announcement.date | date: 'medium' }}</span>
                         </div>
@@ -42,7 +42,7 @@
                                 <h5 class="card-title">{{ announcement.title }}</h5>
                             </div>
                             <div>
-                                <button class="btn btn-primary me-2" [attr.data-bs-toggle]="'modal'"
+                                <button class="btn bg-darkblue me-2" [attr.data-bs-toggle]="'modal'"
                                     [attr.data-bs-target]="'#announcementModal'"
                                     (click)="viewAnnouncement(announcement)">
                                     <i class="bi bi-eye"></i> View

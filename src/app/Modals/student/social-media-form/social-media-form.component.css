@@ -1,0 +1,17 @@
+/* social-media-links-form.component.css */
+.modal-header {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .modal-body {
+    padding: 1rem 1.5rem;
+  }
+  
+  .form-control {
+    font-size: 0.95rem;
+  }
+  
+  button[type="submit"] {
+    margin-top: 1rem;
+  }
+  

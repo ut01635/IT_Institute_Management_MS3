@@ -4,7 +4,9 @@ img {
     border-radius: 5px;
   }
   
-  td,th{
+  td,th,tr{
     text-align: center;
   }
+
+
   
