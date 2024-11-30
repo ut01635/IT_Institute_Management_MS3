@@ -4,7 +4,7 @@
   </div>
   
   <div class="modal-body">
-    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()" class="form-control">
+    <form [formGroup]="emailForm" (ngSubmit)="onSubmit(email)" class="form-control">
       <!-- <div class="message text-center">{{ 'Send a message to the student' }}</div> -->
   
       <div class="row">
@@ -20,10 +20,10 @@
   
         <div class="col-12 mb-3">
           <div class="input-field">
-            <textarea class="input" formControlName="message" required></textarea>
+            <textarea class="input" formControlName="body" required></textarea>
             <label class="label">Message</label>
-            <div *ngIf="emailForm.get('message')?.touched && emailForm.get('message')?.invalid" class="error-message">
-              <small *ngIf="emailForm.get('message')?.hasError('required')">Message is required.</small>
+            <div *ngIf="emailForm.get('body')?.touched && emailForm.get('body')?.invalid" class="error-message">
+              <small *ngIf="emailForm.get('body')?.hasError('required')">Message is required.</small>
             </div>
           </div>
         </div>

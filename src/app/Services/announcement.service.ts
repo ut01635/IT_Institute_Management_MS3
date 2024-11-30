@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Announcement } from './Modal';
+import { Announcement, AnnouncementRequest } from './Modal';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,14 +16,21 @@ export class AnnouncementService {
     return this.http.get<Announcement[]>(this.baseURL);
   }
 
-  CreateAnnouncement(announcement:Announcement){
-    return this.http.post(this.baseURL,announcement);
+  CreateAnnouncement(announcement:AnnouncementRequest){
+    return this.http.post(this.baseURL,announcement,{
+      responseType: 'text'
+    });
   }
 
   deleteAnnouncement(id:string){
     return this.http.delete(this.baseURL+'/'+ id,{
        responseType: 'text'
     });
+  }
+
+
+  refreshAnnouncementList():void{
+    this.getAllAnnouncements()
   }
 
 }

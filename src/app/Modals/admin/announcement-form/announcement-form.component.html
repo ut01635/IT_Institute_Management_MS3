@@ -1,69 +1,50 @@
-<!-- Button to Open the Modal -->
-<button 
-  type="button" 
-  class="btn btn-primary" 
-  data-bs-toggle="modal" 
-  data-bs-target="#announcementModal">
-  Add Announcement
-</button>
-
-
 <!-- Modal -->
-<div 
-  class="modal fade" 
-  id="announcementModal" 
-  tabindex="-1" 
-  aria-labelledby="announcementModalLabel" 
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h5 class="modal-title text-darkblue" id="announcementModalLabel">Add Announcement</h5>
-        <button 
-          type="button" 
-          class="btn-close" 
-          data-bs-dismiss="modal" 
-          aria-label="Close"></button>
-      </div>
+<div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header bg-white text-black">
+      <h5 class="modal-title" id="announcementModalLabel">Add Announcement</h5>
+      <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
+    </div>
 
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <!-- Announcement Form -->
-        <form>
+    <!-- Modal Body -->
+    <div class="modal-body">
+      <!-- Announcement Form -->
+      <form [formGroup]="announcementForm" (ngSubmit)="onSubmit()" class="form-control">
+        <p class="message text-center">Add a new announcement.</p>
+
+        <div class="row">
           <!-- Title Field -->
-          <div class="input-field mb-4">
-            <input 
-              type="text" 
-              class="input" 
-              id="title" 
-              placeholder=" " 
-              required>
-            <label for="title" class="label">Title</label>
+          <div class="col-12 mb-3">
+            <div class="input-field">
+              <input class="input" formControlName="title" type="text" required />
+              <label class="label">Title</label>
+              <div *ngIf="announcementForm.get('title')?.touched && announcementForm.get('title')?.invalid" class="error-message">
+                <small *ngIf="announcementForm.get('title')?.hasError('required')">Title is required.</small>
+                <small *ngIf="announcementForm.get('title')?.hasError('minlength')">Title must be at least 3 characters long.</small>
+              </div>
+            </div>
           </div>
 
           <!-- Body Field -->
-          <div class="input-field">
-            <textarea 
-              class="input" 
-              id="body" 
-              rows="4" 
-              placeholder=" " 
-              required></textarea>
-            <label for="body" class="label">Body</label>
+          <div class="col-12 mb-3">
+            <div class="input-field">
+              <textarea class="input" formControlName="body" required></textarea>
+              <label class="label">Body</label>
+              <div *ngIf="announcementForm.get('body')?.touched && announcementForm.get('body')?.invalid" class="error-message">
+                <small *ngIf="announcementForm.get('body')?.hasError('required')">Body is required.</small>
+              </div>
+            </div>
           </div>
-        </form>
-      </div>
 
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <button 
-          type="submit" 
-          class="submit-btn btn btn-primary">
-          Save Announcement
-        </button>
-      </div>
+          <!-- Submit Button -->
+          <div class="col-12 mb-3">
+            <button type="submit" class="submit-btn" [disabled]="announcementForm.invalid">
+              <i class="bi bi-save"></i> Post Announcement
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-

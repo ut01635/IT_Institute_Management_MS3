@@ -34,6 +34,7 @@ export class LandingPageComponent implements OnInit {
       this.enquiryService.postEnquiry(enquiry)?.subscribe(
         data => {
           this.enquiryResults = 'Your message was sent successfully';
+          this.contactForm.reset();
           console.log('Form Submitted', data);
           
           // Clear the message after 10 seconds

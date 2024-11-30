@@ -126,3 +126,15 @@ export interface EnrollmentRequest{
   courseId:string,
   paymentPlan:string
 }
+
+export interface EmailRequest{
+  email:string,
+  subject:string,
+  body:string
+}
+
+export interface AnnouncementRequest{
+  title: string;
+  body: string;
+  date: Date;
+}

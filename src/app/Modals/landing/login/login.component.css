@@ -1,23 +1,9 @@
 .bg-darkBlue {
-  background-color: #0B1B32;
+  background-color: #0b1b32;
 }
 
 .text-darkBlue {
-  color: #0B1B32;
-}
-
-.form-control {
-  margin: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-  padding: 25px;
-  border-radius: 8px;
+  color: #0b1b32;
 }
 
 .title {
@@ -31,12 +17,12 @@
 }
 
 .input {
-  margin-top: 15px;
+  margin-top: 10px;
   width: 100%;
   outline: none;
   border-radius: 8px;
   height: 45px;
-  border: 1.5px solid #ecedec;
+  border: 1.5px solid #5e5e5e;
   background: transparent;
   padding-left: 10px;
 }
@@ -47,17 +33,19 @@
 
 .input-field .label {
   position: absolute;
-  top: 25px;
+  top:20px;
   left: 15px;
-  color: #ccc;
+  color: #646161;
   transition: all 0.3s ease;
   pointer-events: none;
   z-index: 2;
 }
-
+h2{
+  cursor: default;
+}
 .input-field .input:focus ~ .label,
 .input-field .input:valid ~ .label {
-  top: 5px;
+  top: 1px;
   left: 5px;
   font-size: 12px;
   color: #2d79f3;
@@ -76,7 +64,7 @@
   color: #ffffff;
   font-size: 18px;
   font-weight: 700;
-  background: linear-gradient(180deg, #223146 0%, #0d1b2c 50%, #0B1B32 100%);
+  background: linear-gradient(180deg, #223146 0%, #0d1b2c 50%, #0b1b32 100%);
   box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
   cursor: pointer;
@@ -85,8 +73,7 @@
 .submit-btn:hover {
   box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
 }
-.image img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
+.img{
+
+  width: 300px;
 }
