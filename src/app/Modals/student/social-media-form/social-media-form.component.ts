@@ -11,7 +11,7 @@ import { StudentService } from '../../../Services/student.service';
 })
 export class SocialMediaFormComponent implements OnInit {
   @Input() studentNIC!: string; // Pass the NIC dynamically when opening the modal
-  @Input() id!:string
+  @Input() id!: string
 
   socialMediaForm!: FormGroup;
   isSubmitted = false;
@@ -19,7 +19,7 @@ export class SocialMediaFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public activeModal: NgbActiveModal, // To close the modal
-    private studentService:StudentService
+    private studentService: StudentService
   ) {
     this.createForm();
   }
@@ -36,7 +36,7 @@ export class SocialMediaFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.studentService.getSocialMediaLinks(this.studentNIC).subscribe(data=>{
+    this.studentService.getSocialMediaLinks(this.studentNIC).subscribe(data => {
       this.socialMediaForm.patchValue(data);
     })
   }
@@ -48,17 +48,17 @@ export class SocialMediaFormComponent implements OnInit {
       return;
     }
 
-    const formData ={
-      request:this.socialMediaForm.value,
-      id:this.id
+    const formData = {
+      request: this.socialMediaForm.value,
+      id: this.id
     }
-
-    // Mock API call or integrate with your service
-    console.log('Form Submitted:', formData);
-
-    // Close the modal after successful submission
-    this.activeModal.close();
+    this.studentService.updateSocialMediaLinks(formData.id, formData.request).subscribe(data => {
+      alert('Update successfuly');
+      this.activeModal.close();
+    }, error => {
+      alert('Update faild');
+    })
   }
 
-  
+
 }
