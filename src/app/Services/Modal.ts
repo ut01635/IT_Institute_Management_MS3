@@ -138,3 +138,9 @@ export interface AnnouncementRequest{
   body: string;
   date: Date;
 }
+
+export interface MessageRequest{
+  message: string;
+  studentNIC: string;
+  date: Date;
+}

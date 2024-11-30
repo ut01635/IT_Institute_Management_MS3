@@ -50,6 +50,7 @@ import { MonthFilterPipe } from './Pipes/month-filter.pipe';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
+import { StudentMessageFormComponent } from './Modals/student/student-message-form/student-message-form.component';
 
 
 
@@ -97,7 +98,8 @@ import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
     DateFilterPipe,
     MonthFilterPipe,
     DateRangeFilterPipe,
-    MessageDateFilterPipe
+    MessageDateFilterPipe,
+    StudentMessageFormComponent
 
    
   ],
