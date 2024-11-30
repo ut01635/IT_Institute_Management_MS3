@@ -65,7 +65,7 @@ export class StudentReportComponent  implements OnInit {
         },
         (error) => {
           console.error('Error fetching student details:', error);
-          alert('Failed to fetch student details');
+          alert('Student not found for the given NIC.');
         }
       );
     }
