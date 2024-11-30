@@ -10,6 +10,7 @@ export class StudentService {
 
 
   private BaseStudentURL = 'https://localhost:7055/api/Students';
+  private SocialMediaLinkURL='https://localhost:7055/api/SocialMediaLinks'
 
   private studentsSubject = new BehaviorSubject<Student[]>([]);
   public students$ = this.studentsSubject.asObservable();
@@ -97,6 +98,10 @@ export class StudentService {
   }
 
   getSocialMediaLinks(nic:string){
-    return this.http.get<SocialMediaLinks>(`https://localhost:7055/api/SocialMediaLinks/${nic}`)
+    return this.http.get<SocialMediaLinks>(`${this.SocialMediaLinkURL}/${nic}`)
+  }
+
+  updateSocialMediaLinks(id:string,formData:any){
+    return this.http.put(`${this.SocialMediaLinkURL}/${id}`,formData)
   }
 }
