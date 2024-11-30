@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidator } from './PasswordValidator';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-password-rest-form',
@@ -11,7 +12,7 @@ export class PasswordRestFormComponent implements OnInit {
 
   passwordResetForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
     this.passwordResetForm = this.fb.group({

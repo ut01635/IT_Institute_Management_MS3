@@ -144,3 +144,9 @@ export interface MessageRequest{
   studentNIC: string;
   date: Date;
 }
+
+export interface resetPassword{
+  currentPassword:string,
+  newPassword:string,
+  confirmNewPassword:string
+}

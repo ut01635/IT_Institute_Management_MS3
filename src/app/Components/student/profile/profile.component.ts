@@ -3,6 +3,9 @@ import { Enrollment, Student, StudentProfileDto } from '../../../Services/Modal'
 import { StudentService } from '../../../Services/student.service';
 import { AuthService } from '../../../Services/auth.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StudentMessageFormComponent } from '../../../Modals/student/student-message-form/student-message-form.component';
+import { PasswordRestFormComponent } from '../../../Modals/student/password-rest-form/password-rest-form.component';
 
 @Component({
   selector: 'app-profile',
@@ -17,8 +20,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private authservice:AuthService,
-    private enrollmentService:EnrollmentService
-  
+    private enrollmentService:EnrollmentService,
+    private modalService: NgbModal 
   ) {}
 
   ngOnInit(): void {
@@ -60,6 +63,14 @@ export class ProfileComponent implements OnInit {
   handleUpdatePassword() {
     // Handle update password functionality here
     console.log('Updating password');
+  }
+
+  openHelpModal(): void {
+    const modalRef = this.modalService.open(StudentMessageFormComponent); 
+  }
+
+  openResetPasswordModal():void{
+    const modalRef = this.modalService.open(PasswordRestFormComponent); 
   }
 
 

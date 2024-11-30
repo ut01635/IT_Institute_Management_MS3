@@ -1,20 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Student, StudentProfileDto } from './Modal';
+import { Student, StudentProfileDto, resetPassword } from './Modal';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  
+
   private BaseStudentURL = 'https://localhost:7055/api/Students';
 
   private studentsSubject = new BehaviorSubject<Student[]>([]);
   public students$ = this.studentsSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
 
   getStudents(): void {
@@ -23,7 +23,7 @@ export class StudentService {
       .pipe(
         catchError((error) => {
           console.error('Error fetching students', error);
-          return []; 
+          return [];
         })
       )
       .subscribe((students) => {
@@ -31,7 +31,7 @@ export class StudentService {
       });
   }
 
-  
+
 
   addStudent(formData: FormData): Observable<Student> {
     return this.http.post<Student>(this.BaseStudentURL, formData).pipe(
@@ -70,24 +70,29 @@ export class StudentService {
       })
     );
   }
-  
+
 
   refreshStudentList(): void {
-    this.getStudents(); 
+    this.getStudents();
   }
 
 
-  lockAccount(nic:string){
-   // https://localhost:7055/api/Students/123456789V/lock
-   return this.http.put(`${this.BaseStudentURL}/${nic}/lock`,nic)
+  lockAccount(nic: string) {
+
+    return this.http.put(`${this.BaseStudentURL}/${nic}/lock`, nic)
   }
 
-  dirrectUnlockAccount(nic:string){
-    return this.http.put(`${this.BaseStudentURL}/${nic}/Directunlock`,nic)
+  dirrectUnlockAccount(nic: string) {
+    return this.http.put(`${this.BaseStudentURL}/${nic}/Directunlock`, nic)
   }
 
   getStudentProfile(nic: string): Observable<StudentProfileDto> {
-    // https://localhost:7055/api/Students/profile/123456789V
+
     return this.http.get<StudentProfileDto>(`${this.BaseStudentURL}/profile/${nic}`);
+  }
+
+  resetPassword(nic: string, passwordRequest: resetPassword) {
+    https://localhost:7055/api/Students/123456789v/update-password
+    return this.http.put(`${this.BaseStudentURL}/${nic}/update-password`, passwordRequest)
   }
 }
