@@ -1,30 +1,11 @@
-<!-- Button to Open the Modal -->
-<button 
-  type="button" 
-  class="btn btn-primary" 
-  data-bs-toggle="modal" 
-  data-bs-target="#announcementModal">
-  Add Announcement
-</button>
-
-
 <!-- Modal -->
-<div 
-  class="modal fade" 
-  id="announcementModal" 
-  tabindex="-1" 
-  aria-labelledby="announcementModalLabel" 
-  aria-hidden="true">
+
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
         <h5 class="modal-title text-darkblue" id="announcementModalLabel">Add Announcement</h5>
-        <button 
-          type="button" 
-          class="btn-close" 
-          data-bs-dismiss="modal" 
-          aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('cross click')"></button>
       </div>
 
       <!-- Modal Body -->
@@ -33,23 +14,13 @@
         <form>
           <!-- Title Field -->
           <div class="input-field mb-4">
-            <input 
-              type="text" 
-              class="input" 
-              id="title" 
-              placeholder=" " 
-              required>
+            <input type="text" class="input" id="title" placeholder=" " required>
             <label for="title" class="label">Title</label>
           </div>
 
           <!-- Body Field -->
           <div class="input-field">
-            <textarea 
-              class="input" 
-              id="body" 
-              rows="4" 
-              placeholder=" " 
-              required></textarea>
+            <textarea class="input" id="body" rows="4" placeholder=" " required></textarea>
             <label for="body" class="label">Body</label>
           </div>
         </form>
@@ -57,13 +28,9 @@
 
       <!-- Modal Footer -->
       <div class="modal-footer">
-        <button 
-          type="submit" 
-          class="submit-btn btn btn-primary">
+        <button type="submit" class="submit-btn btn btn-primary">
           Save Announcement
         </button>
       </div>
     </div>
   </div>
-</div>
-

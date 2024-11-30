@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AnnouncementService } from '../../../Services/announcement.service';
 import { Announcement } from '../../../Services/Modal';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-announcement-form',
@@ -13,7 +14,8 @@ export class AnnouncementFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private announcementService: AnnouncementService
+    private announcementService: AnnouncementService,
+    public activeModal: NgbActiveModal
   ) {
     this.announcementForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
