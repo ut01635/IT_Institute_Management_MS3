@@ -10,7 +10,7 @@ import { Student } from '../../../Services/Modal';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
-  styleUrl: './student-form.component.css'
+  styleUrl: './student-form.component.css',
 })
 export class StudentFormComponent implements OnInit {
   @Input() isEditMode: boolean = false;
@@ -30,10 +30,7 @@ export class StudentFormComponent implements OnInit {
       ]),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.email,
-      ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [
         Validators.required,
         Validators.pattern(
@@ -42,9 +39,7 @@ export class StudentFormComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/
-        ),
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/),
       ]),
       image: new FormControl(null),
       address: new FormGroup({
@@ -61,44 +56,42 @@ export class StudentFormComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    if (this.studentToEdit) {
+      this.studentForm.patchValue(this.studentToEdit);
+    }
+  }
 
-    ngOnInit(): void {
-    
-      if (this.studentToEdit) {
-        this.studentForm.patchValue(this.studentToEdit);
-       
+  onImageChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const allowedTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/jpg',
+        'image/gif',
+        'image/svg+xml',
+      ];
+
+      // Check if the file is an image by verifying the MIME type
+      if (allowedTypes.includes(file.type)) {
+        this.imageFile = file;
+      } else {
+        alert('Please select a valid image file (JPG, JPEG, PNG, GIF, SVG).');
+        event.target.value = ''; // Clear the input if invalid file
       }
     }
-  
-
-
-    onImageChange(event: any): void {
-      const file = event.target.files[0];
-      if (file) {
-        const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
-    
-        // Check if the file is an image by verifying the MIME type
-        if (allowedTypes.includes(file.type)) {
-          this.imageFile = file;
-        } else {
-          alert('Please select a valid image file (JPG, JPEG, PNG, GIF, SVG).');
-          event.target.value = '';  // Clear the input if invalid file
-        }
-      }
-    }
-    
-
+  }
 
   onSubmit(): void {
     if (this.studentForm.valid) {
       const formData = new FormData();
 
-      
-      Object.keys(this.studentForm.value).forEach(key => {
+      Object.keys(this.studentForm.value).forEach((key) => {
         if (key !== 'image' && this.studentForm.value[key]) {
           if (key === 'address') {
             const address = this.studentForm.get('address')?.value;
-            Object.keys(address).forEach(addressKey => {
+            Object.keys(address).forEach((addressKey) => {
               formData.append(`address.${addressKey}`, address[addressKey]);
             });
           } else {
@@ -107,32 +100,31 @@ export class StudentFormComponent implements OnInit {
         }
       });
 
-     
       if (this.imageFile) {
         formData.append('image', this.imageFile, this.imageFile.name);
       }
 
       if (this.studentToEdit) {
-       
-        this.studentService.updateStudent(this.studentToEdit.nic, formData).subscribe(
-          response => {
-            alert('Student updated successfully!');
-            this.studentService.refreshStudentList();
-            this.activeModal.close();
-          },
-          error => {
-            console.error('Error updating student:', error);
-          }
-        );
+        this.studentService
+          .updateStudent(this.studentToEdit.nic, formData)
+          .subscribe(
+            (response) => {
+              alert('Student updated successfully!');
+              this.studentService.refreshStudentList();
+              this.activeModal.close();
+            },
+            (error) => {
+              console.error('Error updating student:', error);
+            }
+          );
       } else {
-       
         this.studentService.addStudent(formData).subscribe(
-          response => {
+          (response) => {
             alert('Student added successfully!');
             this.studentService.refreshStudentList();
             this.activeModal.close();
           },
-          error => {
+          (error) => {
             console.error('Error adding student:', error);
           }
         );
@@ -142,20 +134,15 @@ export class StudentFormComponent implements OnInit {
     }
   }
 
-  
   get f() {
     return this.studentForm.controls;
   }
 
-  
   isFieldInvalid(fieldName: string): boolean {
     const field = this.f[fieldName];
     return field?.invalid && (field?.touched || field?.dirty);
   }
-
-
 }
 function ngOnInit() {
   throw new Error('Function not implemented.');
 }
-
