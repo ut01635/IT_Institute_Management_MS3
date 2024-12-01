@@ -51,7 +51,8 @@ import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 import { StudentMessageFormComponent } from './Modals/student/student-message-form/student-message-form.component';
 import { SocialMediaFormComponent } from './Modals/student/social-media-form/social-media-form.component';
 import {  NgChartsModule } from 'ng2-charts';
-import { StudentUpdateFormComponent } from './Modals/student/student-update-form/student-update-form.component'; // Correct import
+import { StudentUpdateFormComponent } from './Modals/student/student-update-form/student-update-form.component';
+import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/payment-plan-form.component'; // Correct import
 
 
 
@@ -101,7 +102,8 @@ import { StudentUpdateFormComponent } from './Modals/student/student-update-form
     MessageDateFilterPipe,
     StudentMessageFormComponent,
     SocialMediaFormComponent,
-    StudentUpdateFormComponent
+    StudentUpdateFormComponent,
+    PaymentPlanFormComponent
 
    
   ],

@@ -1,0 +1,34 @@
+
+<!-- Modal for Payment Plan Selection -->
+<div>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel">Select Payment Plan</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('cross click')" ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="paymentForm">
+            <div class="mb-3">
+              <div class="input-field">
+                <!-- <label for="paymentPlan" class="label">Choose Payment Plan</label> -->
+                <select id="paymentPlan" formControlName="paymentPlan" class="select" required>
+                  <!-- <option value="" disabled>Select a plan</option> -->
+                  <option value="Full">Full Payment</option>
+                  <option value="Installment">Installment Payment</option>
+                </select>
+                <label class="label">Choose Payment Plan</label>
+                <div *ngIf="paymentForm.get('paymentPlan')?.touched && paymentForm.get('paymentPlan')?.invalid" class="error-message">
+                  Payment plan is required.
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="button" class="btn submit-btn" (click)="submitPaymentPlan()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

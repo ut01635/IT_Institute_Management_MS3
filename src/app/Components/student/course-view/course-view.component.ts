@@ -6,6 +6,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EnrollmentService } from '../../../Services/enrollment.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StudentService } from '../../../Services/student.service';
+import { PaymentPlanFormComponent } from '../../../Modals/student/payment-plan-form/payment-plan-form.component';
 
 @Component({
   selector: 'app-course-view',
@@ -18,7 +19,6 @@ export class CourseViewComponent implements OnInit {
   student: Student | undefined;
   nic: string = ""
   // Reactive form for payment plan
-  paymentForm!: FormGroup;
   selectedCourse!: Course;
    // Array of course objects to be rendered dynamically
    courses: Course[] = [];
@@ -26,10 +26,9 @@ export class CourseViewComponent implements OnInit {
   constructor(
     private greetinService: GreetingService,
     private courseService: CourseService,
-    private enrollmentService: EnrollmentService,
-    private fb: FormBuilder,
-    private modalService: NgbModal,
-    private studentService: StudentService) { }
+    private studentService: StudentService,
+    private enrollmentService:EnrollmentService,
+    private modalService: NgbModal) { }
 
 
     ngOnInit(): void {
@@ -40,9 +39,7 @@ export class CourseViewComponent implements OnInit {
       
       this.loadCourses();
       
-      this.paymentForm = this.fb.group({
-        paymentPlan: ['', Validators.required]
-      });
+     
     }
     
     loadStudent(nic: string) {
@@ -64,28 +61,9 @@ export class CourseViewComponent implements OnInit {
       this.courseService.getAllCourses();
     }
     
-
-
-
-
-
-  //  Submit Payment Plan
-  submitPaymentPlan(Id: string): void {
-    const enrolmentData = {
-      paymentPlan: this.paymentForm.get('paymentPlan')?.value,
-      studentNic: this.nic,
-      courseId: Id
+    openSocialMediaUpdateModal(id:string):void {
+      const modalRef = this.modalService.open(PaymentPlanFormComponent);
+      modalRef.componentInstance.studentNIC = this.student?.nic;
+      modalRef.componentInstance.CourseId = id
     }
-    if (this.paymentForm.valid) {
-      this.enrollmentService.createEnrollment(enrolmentData).subscribe(data => {
-        this.paymentForm.reset();
-        alert("You have sucessfully enroll")
-        this.modalService.dismissAll();
-      }, error => {
-        this.modalService.dismissAll();
-        alert(error.error)
-      })
-
-    }
-  }
 }

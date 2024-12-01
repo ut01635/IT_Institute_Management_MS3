@@ -74,6 +74,7 @@ export class ProfileComponent implements OnInit {
     modalRef.componentInstance.studentNIC = studentNIC;
     modalRef.componentInstance.id = id
   }
+  
   openStudentUpdateModal(nic: string): void {
     const modalRef = this.modalService.open(StudentUpdateFormComponent);
     modalRef.componentInstance.nic = nic; // Passing NIC to the modal
