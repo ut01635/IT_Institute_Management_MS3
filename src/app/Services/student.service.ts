@@ -104,4 +104,9 @@ export class StudentService {
   updateSocialMediaLinks(id:string,formData:any){
     return this.http.put(`${this.SocialMediaLinkURL}/${id}`,formData)
   }
+
+  updatestudentDetails(nic: string,request:StudentUpdateRequestDto){
+    https://localhost:7055/api/Students/update/
+    return this.http.put(`${this.BaseStudentURL}/update/${nic}`,request)
+  }
 }
