@@ -60,6 +60,8 @@
     padding-right: 5px;
   }
 
+  
+
   @media (max-width: 768px) {
     .form-control {
       padding: 15px;
