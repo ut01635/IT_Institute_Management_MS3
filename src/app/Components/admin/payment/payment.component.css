@@ -1,3 +1,6 @@
+.text-orange{
+  color: rgb(255, 81, 0);
+}
 .form-control {
     margin: 0 auto;
     max-width: 800px;
