@@ -24,13 +24,11 @@ import { PaymentDetailsComponent } from './Components/student/payment-details/pa
 import { EnrollCoursesComponent } from './Components/student/enroll-courses/enroll-courses.component';
 import { ProfileComponent } from './Components/student/profile/profile.component';
 import { LoginComponent } from './Modals/landing/login/login.component';
-import { EnquiryFormComponent } from './Modals/landing/enquiry-form/enquiry-form.component';
 import { StudentFormComponent } from './Modals/admin/student-form/student-form.component';
 import { CourseFormComponent } from './Modals/admin/course-form/course-form.component';
 import { EnquiryReplayFormComponent } from './Modals/admin/enquiry-replay-form/enquiry-replay-form.component';
 import { NotificationFormComponent } from './Modals/admin/notification-form/notification-form.component';
 import { AnnouncementFormComponent } from './Modals/admin/announcement-form/announcement-form.component';
-import { PaymentFormComponent } from './Modals/admin/payment-form/payment-form.component';
 import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.component';
 import { ProfileUpdateFormComponent } from './Modals/student/profile-update-form/profile-update-form.component';
 import { PasswordRestFormComponent } from './Modals/student/password-rest-form/password-rest-form.component';
@@ -81,13 +79,11 @@ import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/pay
     EnrollCoursesComponent,
     ProfileComponent,
     LoginComponent,
-    EnquiryFormComponent,
     StudentFormComponent,
     CourseFormComponent,
     EnquiryReplayFormComponent,
     NotificationFormComponent,
     AnnouncementFormComponent,
-    PaymentFormComponent,
     AdminFormComponent,
     ProfileUpdateFormComponent,
     PasswordRestFormComponent,
