@@ -1,20 +1,34 @@
 <div class="container">
-  <h2 class="fs-1 fs-sm-2 fs-md-3 fs-lg-4 fs-xl-5 mb-3">{{greeting}}</h2>
-  <div class="row g-4 pb-5">
-    <div *ngFor="let course of courses" class="col">
-      <div class="card-2 d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3">
-        <img src="https://localhost:7055{{course.imagePaths[0]}}" class="card-img" alt="Card image" />
-        <div>
-          <h2 class="card-title text-white fs-1">{{ course.courseName }}</h2>
-          <h3 class="card-subtitle text-white" *ngIf="course.level">
-            {{ course.courseName }} {{ course.level === 'Beginner' ? 'Basics' : 'Advanced' }}
+  <h2 class="fs-1 fs-sm-2 fs-md-3 fs-lg-4 fs-xl-5 mb-3 text-md-start text-darkbule font-weight-bold">{{greeting}}</h2>
+
+  <!-- ng-template for No Courses -->
+  <ng-template #noCourses>
+    <div class="card p-4 shadow-lg rounded-4 bg-light text-center">
+      <div class="alert alert-warning d-flex align-items-center justify-content-center" role="alert" aria-live="assertive">
+        <i class="bi bi-exclamation-circle-fill fs-3 me-2"></i>
+        <span><strong>No courses available at the moment</strong></span>
+      </div>
+      <p class="text-muted">Currently, there are no courses available for you to enroll in. Please check back later.</p>
+      <button class="btn btn-info btn-lg mt-4" [routerLink]="['/student/profile']">Back to Profile</button>
+    </div>
+  </ng-template>
+
+  <!-- Courses Display -->
+  <div class="row g-4 pb-5" *ngIf="courses.length > 0; else noCourses">
+    <div *ngFor="let course of courses" class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card d-flex align-items-center w-100 mx-auto p-4 shadow-lg rounded-3 bg-gradient" style="background: linear-gradient(135deg, #f4976c, #303c6c)">
+        <img src="https://localhost:7055{{course.imagePaths[0]}}" class="card-img-top rounded-3" alt="Course image" />
+        <div class="card-body">
+          <h2 class="card-title text-white fs-3">{{ course.courseName }}</h2>
+          <h3 class="card-subtitle text-white mb-2" *ngIf="course.level">
+            {{ course.level === 'Beginner' ? 'Basics' : 'Advanced' }}
           </h3>          
           <p class="card-text fs-4" [ngClass]="course.level === 'Beginner' ? 'text-success' : 'text-info'">
             {{ course.level }}
           </p>          
-          <p class="card-text text-white fs-4">{{ course.duration }} Months</p>
-          <p class="card-text text-white">{{ course.description }}</p>
-          <div class="d-flex">
+          <p class="card-text text-white fs-5">{{ course.duration }} Months</p>
+          <p class="card-text text-white mb-3">{{ course.description }}</p>
+          <div class="d-flex justify-content-between align-items-center">
             <p class="card-text text-danger fs-4 mx-2" style="text-decoration-line: line-through;">
               LKR{{ course.fees + 5000 }}.00
             </p>
@@ -22,45 +36,11 @@
               LKR{{ course.fees }}.00
             </p>
           </div>         
-          <div class="buttons d-flex gap-3">
-            <button (click)="selectedCourse = course" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#paymentModal">Follow</button>
-          </div>
+          <button (click)="openSocialMediaUpdateModal(course.id)" class="btn btn-outline-light mt-3" data-bs-toggle="modal" data-bs-target="#paymentModal">
+            <i class="bi bi-heart-fill"></i> Follow
+          </button>
         </div>
       </div>
     </div>
-  </div>
-  
-</div>
-
-<!-- Modal for Payment Plan Selection -->
-<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="paymentModalLabel">Select Payment Plan</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="paymentForm">
-          <div class="mb-3">
-            <div class="input-field">
-              <!-- <label for="paymentPlan" class="label">Choose Payment Plan</label> -->
-              <select id="paymentPlan" formControlName="paymentPlan" class="select" required>
-                <option value="" disabled>Select a plan</option>
-                <option value="Full">Full Payment</option>
-                <option value="Installment">Installment Payment</option>
-              </select>
-              <div *ngIf="paymentForm.get('paymentPlan')?.touched && paymentForm.get('paymentPlan')?.invalid" class="error-message">
-                Payment plan is required.
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-        <button type="button" class="btn submit-btn" (click)="submitPaymentPlan(selectedCourse.id)">Submit</button>
-      </div>
-    </div>
-  </div>
+  </div>  
 </div>

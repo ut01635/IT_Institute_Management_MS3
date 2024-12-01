@@ -24,17 +24,14 @@ import { PaymentDetailsComponent } from './Components/student/payment-details/pa
 import { EnrollCoursesComponent } from './Components/student/enroll-courses/enroll-courses.component';
 import { ProfileComponent } from './Components/student/profile/profile.component';
 import { LoginComponent } from './Modals/landing/login/login.component';
-import { EnquiryFormComponent } from './Modals/landing/enquiry-form/enquiry-form.component';
 import { StudentFormComponent } from './Modals/admin/student-form/student-form.component';
 import { CourseFormComponent } from './Modals/admin/course-form/course-form.component';
 import { EnquiryReplayFormComponent } from './Modals/admin/enquiry-replay-form/enquiry-replay-form.component';
 import { NotificationFormComponent } from './Modals/admin/notification-form/notification-form.component';
 import { AnnouncementFormComponent } from './Modals/admin/announcement-form/announcement-form.component';
-import { PaymentFormComponent } from './Modals/admin/payment-form/payment-form.component';
 import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.component';
 import { ProfileUpdateFormComponent } from './Modals/student/profile-update-form/profile-update-form.component';
 import { PasswordRestFormComponent } from './Modals/student/password-rest-form/password-rest-form.component';
-import { AnnouncementViewComponent } from './Modals/student/announcement-view/announcement-view.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
@@ -43,7 +40,7 @@ import { SearchPipe } from './Pipes/search.pipe';
 import { CourseSearchPipe } from './Pipes/course-search.pipe';
 import { AdminSearchPipe } from './Pipes/admin-search.pipe';
 import { EnquirySearchPipe } from './Pipes/enquiry-search.pipe';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DateFilterPipe, MessageDateFilterPipe } from './Pipes/date-filter.pipe';
 import { MonthFilterPipe } from './Pipes/month-filter.pipe';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -51,6 +48,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 import { StudentMessageFormComponent } from './Modals/student/student-message-form/student-message-form.component';
 import { SocialMediaFormComponent } from './Modals/student/social-media-form/social-media-form.component';
+import {  NgChartsModule } from 'ng2-charts';
+import { StudentUpdateFormComponent } from './Modals/student/student-update-form/student-update-form.component';
+import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/payment-plan-form.component'; // Correct import
+
 
 
 
@@ -78,17 +79,14 @@ import { SocialMediaFormComponent } from './Modals/student/social-media-form/soc
     EnrollCoursesComponent,
     ProfileComponent,
     LoginComponent,
-    EnquiryFormComponent,
     StudentFormComponent,
     CourseFormComponent,
     EnquiryReplayFormComponent,
     NotificationFormComponent,
     AnnouncementFormComponent,
-    PaymentFormComponent,
     AdminFormComponent,
     ProfileUpdateFormComponent,
     PasswordRestFormComponent,
-    AnnouncementViewComponent,
     AdminPageComponent,
     SearchPipe,
     CourseSearchPipe,
@@ -99,7 +97,9 @@ import { SocialMediaFormComponent } from './Modals/student/social-media-form/soc
     DateRangeFilterPipe,
     MessageDateFilterPipe,
     StudentMessageFormComponent,
-    SocialMediaFormComponent
+    SocialMediaFormComponent,
+    StudentUpdateFormComponent,
+    PaymentPlanFormComponent
 
    
   ],
@@ -113,6 +113,8 @@ import { SocialMediaFormComponent } from './Modals/student/social-media-form/soc
     NgbModalModule,
     BrowserAnimationsModule,
     BsDatepickerModule,
+    NgChartsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

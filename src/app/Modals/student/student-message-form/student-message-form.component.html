@@ -1,20 +1,32 @@
 <!-- Modal -->
-
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalFormLabel">Submit Message</h5>
-          <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('cross click')"></button>
-        </div>
-        <div class="modal-body">
-          <form (ngSubmit)="onSubmit()">
-            <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
-              <textarea id="message" class="form-control" [(ngModel)]="message" name="message" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-      </div>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="modalFormLabel">Send Message to Admin</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('cross click')"></button>
     </div>
-  
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="input-field">
+          <textarea 
+            id="message" 
+            class="input" 
+            [(ngModel)]="message" 
+            name="message" 
+            #messageControl="ngModel" 
+            required
+          ></textarea>
+          <label class="label" for="message">Message</label>
+          <!-- Error Handling -->
+          <div *ngIf="messageControl?.touched && messageControl?.invalid" class="error-message">
+            <small *ngIf="messageControl?.hasError('required')">Message is required.</small>
+          </div>
+        </div>
+
+        <div class="w-100 d-flex justify-content-center">
+          <button type="submit" class="btn submit-btn text-white btn-lg w-100 m-3"><i class="bi bi-send"></i>Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

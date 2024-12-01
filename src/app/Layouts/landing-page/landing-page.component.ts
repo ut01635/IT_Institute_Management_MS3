@@ -81,5 +81,23 @@ export class LandingPageComponent implements OnInit {
     return chunks;
   }
   
+  playVideo(event: Event): void {
+    const container = event.currentTarget as HTMLElement;
+
+    // Ensure the container exists and is of the correct type
+    const img = container.querySelector<HTMLImageElement>('img');
+    const button = container.querySelector<HTMLDivElement>('.play-button');
+    const iframe = container.querySelector<HTMLIFrameElement>('iframe');
+
+    if (!img || !button || !iframe) {
+      console.error('Required elements not found in the container.');
+      return;
+    }
+
+    // Hide the thumbnail and play button, show the iframe
+    img.style.display = 'none';
+    button.style.display = 'none';
+    iframe.style.display = 'block';
+  }
 }
 

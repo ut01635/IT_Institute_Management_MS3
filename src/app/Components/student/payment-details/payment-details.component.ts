@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Enrollment, Payment } from '../../../Services/Modal';
 import { PaymentService } from '../../../Services/payment.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StudentMessageFormComponent } from '../../../Modals/student/student-message-form/student-message-form.component';
 
 @Component({
   selector: 'app-payment-details',
@@ -22,7 +24,8 @@ export class PaymentDetailsComponent implements OnInit {
 
   constructor(
     private paymentService:PaymentService,
-    private enrollmentService:EnrollmentService
+    private enrollmentService:EnrollmentService,
+    private modalService: NgbModal
   ){}
   
   ngOnInit(): void {
@@ -36,12 +39,13 @@ export class PaymentDetailsComponent implements OnInit {
       console.log(error.erorr);
       
     })
-
-
     
-
     // Initially, show all payments (no filters applied)
     this.filteredPayments = [...this.payments];
+  }
+
+  openMessageModal(): void {
+    const modalRef = this.modalService.open(StudentMessageFormComponent); 
   }
 
 

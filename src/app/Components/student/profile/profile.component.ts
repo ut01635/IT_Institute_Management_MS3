@@ -8,6 +8,7 @@ import { StudentMessageFormComponent } from '../../../Modals/student/student-mes
 import { PasswordRestFormComponent } from '../../../Modals/student/password-rest-form/password-rest-form.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SocialMediaFormComponent } from '../../../Modals/student/social-media-form/social-media-form.component';
+import { StudentUpdateFormComponent } from '../../../Modals/student/student-update-form/student-update-form.component';
 
 @Component({
   selector: 'app-profile',
@@ -58,16 +59,6 @@ export class ProfileComponent implements OnInit {
     console.log('User logged out');
   }
 
-  handleEditInfo() {
-    // Handle edit info functionality here
-    console.log('Editing personal information');
-  }
-
-  handleUpdatePassword() {
-    // Handle update password functionality here
-    console.log('Updating password');
-  }
-
   openHelpModal(): void {
     const modalRef = this.modalService.open(StudentMessageFormComponent); 
   }
@@ -82,6 +73,11 @@ export class ProfileComponent implements OnInit {
     });
     modalRef.componentInstance.studentNIC = studentNIC;
     modalRef.componentInstance.id = id
+  }
+  
+  openStudentUpdateModal(nic: string): void {
+    const modalRef = this.modalService.open(StudentUpdateFormComponent);
+    modalRef.componentInstance.nic = nic; // Passing NIC to the modal
   }
 
 
