@@ -16,6 +16,7 @@ export class StudentReportComponent  implements OnInit {
   reportData: any = null;
   enrollments: any[] = [];
   paymentDetails: any[] = [];  
+  
 
   constructor(
     private fb: FormBuilder,
