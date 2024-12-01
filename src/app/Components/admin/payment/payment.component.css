@@ -41,6 +41,14 @@
     z-index: 2;
   }
   
+  .box{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
   .input-field .input:focus ~ .label,
   .input-field .input:valid ~ .label {
     top: 5px;
