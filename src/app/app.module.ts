@@ -34,7 +34,6 @@ import { PaymentFormComponent } from './Modals/admin/payment-form/payment-form.c
 import { AdminFormComponent } from './Modals/admin/admin-form/admin-form.component';
 import { ProfileUpdateFormComponent } from './Modals/student/profile-update-form/profile-update-form.component';
 import { PasswordRestFormComponent } from './Modals/student/password-rest-form/password-rest-form.component';
-import { AnnouncementViewComponent } from './Modals/student/announcement-view/announcement-view.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
@@ -91,7 +90,6 @@ import { StudentUpdateFormComponent } from './Modals/student/student-update-form
     AdminFormComponent,
     ProfileUpdateFormComponent,
     PasswordRestFormComponent,
-    AnnouncementViewComponent,
     AdminPageComponent,
     SearchPipe,
     CourseSearchPipe,

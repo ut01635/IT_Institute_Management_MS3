@@ -53,7 +53,7 @@ export class CourseViewComponent implements OnInit {
           this.greeting = data;
         });
       }, error => {
-        console.log(error);  // Fix error logging
+        console.log(error); 
       });
     }
     

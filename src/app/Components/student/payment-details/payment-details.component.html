@@ -66,7 +66,7 @@
                 <span><strong>No Payments Found</strong></span>
               </div>
               <p class="text-muted">You haven't made any payments yet. Please check back after completing a payment.</p>
-              <button class="btn btn-info" [routerLink]="['/student/home']">Contact Admin</button>
+              <button class="btn btn-info" (click)=" openMessageModal()" >Contact Admin</button>
             </div>
           </ng-template>
         </div>

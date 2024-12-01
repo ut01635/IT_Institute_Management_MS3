@@ -59,16 +59,6 @@ export class ProfileComponent implements OnInit {
     console.log('User logged out');
   }
 
-  handleEditInfo() {
-    // Handle edit info functionality here
-    console.log('Editing personal information');
-  }
-
-  handleUpdatePassword() {
-    // Handle update password functionality here
-    console.log('Updating password');
-  }
-
   openHelpModal(): void {
     const modalRef = this.modalService.open(StudentMessageFormComponent); 
   }
