@@ -1,6 +1,6 @@
 <div id="main-container" class="container">
   <div id="sub-container" class="shadow w-100">
-    <div id="fee-management" class="card shadow-lg" style="height: 64vh;">
+    <div id="fee-management" class="card shadow-lg" style="height: 72vh;">
       <div class="card-header bg-light text-darkblue d-flex justify-content-between align-items-center">
         <h2 class="mb-0 text-darkblue"><i class="bi bi-credit-card"></i> Fee Management</h2>
       </div>
@@ -37,15 +37,14 @@
               </div>
 
 
-              
               <div class="col-md-3">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
-                  <strong>Course Fee:</strong>
-                  <p class="mx-3 fw-semibold text-info">{{ formData.totalFee | currency: 'LKR ' }}</p>
+                  <strong>Duration:</strong>
+                  <p class="mx-3 fw-semibold text-secondary">{{ formData.duration }} Months </p>
                 </div>
               </div>
 
-              
+
               <div class="col-md-3">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
                   <strong>Payment Plan:</strong>
@@ -56,15 +55,17 @@
                 </div>
               </div>
 
-              
+
               <div class="col-md-3">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
-                  <strong>Duration:</strong>
-                  <p class="mx-3 fw-semibold text-secondary">{{ formData.duration }} Months </p>
+                  <strong>Payment Status:</strong>
+                  <p class="mx-3 fw-semibold" [ngClass]="{ 'text-success': formData.paymentStatus === 'Completed', 'text-danger': formData.paymentStatus === 'Pending' }">
+                    {{ formData.paymentStatus }}
+                  </p>
                 </div>
               </div>
 
-              
+               
               <div class="col-md-3">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
                   <strong>Enrollment Date:</strong>
@@ -72,6 +73,40 @@
                 </div>
               </div>
 
+
+
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Course Finished Date:</strong>
+                  <p class="mx-3 fw-semibold text-secondary">{{ formData.courseFinishedDate }}</p>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Last Payment Date:</strong>
+                  <p class="mx-3 fw-semibold text-dark">{{ formData.lastPaymentDate }}</p>
+                </div>
+              </div>
+
+
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Next Payment Date:</strong>
+                  <p class="mx-3 fw-semibold text-warning-emphasis">{{ formData.nextPaymentDate }}</p>
+                </div>
+              </div>
+
+
+              
+              <div class="col-md-3">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Course Fee:</strong>
+                  <p class="mx-3 fw-semibold text-info">{{ formData.totalFee | currency: 'LKR ' }}</p>
+                </div>
+              </div>
+
+              
               
               <div class="col-md-3">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
@@ -89,12 +124,24 @@
               </div>
 
               
+             
+              
               <div class="col-md-3">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
-                  <strong>Last Payment Date:</strong>
-                  <p class="mx-3 fw-semibold text-dark">{{ formData.lastPaymentDate }}</p>
+                  <strong>Pay Amount: </strong>
+                  <p class="mx-3 fw-semibold text-dark">{{ formData.payAmount | currency: 'LKR ' }}</p>
                 </div>
               </div>
+
+             
+              
+             
+              
+             
+              
+             
+              
+              
             </div>
           </div>
 
