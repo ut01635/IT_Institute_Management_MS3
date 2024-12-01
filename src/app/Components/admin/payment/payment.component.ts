@@ -21,6 +21,10 @@ export class PaymentComponent implements OnInit {
     totalPaidAmount: 0,
     duration: '',
     lastPaymentDate: 'N/A',
+    nextPaymentDate: 'N/A',
+    courseFinishedDate: 'N/A',
+    paymentStatus: 'Pending',
+    payAmount: 0,
     amount: 0,
     enrollmentDate: 'N/A',
     enrollmentId: null 
@@ -57,6 +61,10 @@ export class PaymentComponent implements OnInit {
     this.formData.course = '';
     this.formData.courseName = 'N/A';
     this.formData.enrollmentDate = 'N/A';
+    this.formData.nextPaymentDate = 'N/A';
+    this.formData.courseFinishedDate = 'N/A';
+    this.formData.paymentStatus = 'Pending';
+    this.formData.payAmount = 0;
     this.formData.enrollmentId = null; 
     this.paymentDetails = {};
     this.courses = [];
@@ -107,6 +115,7 @@ onNicChange(): void {
 
   
   onCourseSelect(): void {
+    
     if (this.formData.nic && this.formData.course) {
 
       this.paymentService.getPaymentsByNic(this.formData.nic).subscribe(
@@ -174,11 +183,14 @@ onNicChange(): void {
             const year = date.getFullYear();
 
             this.formData.enrollmentDate = `${day}-${month}-${year}`;
+            this.calculateAdditionalDetails(enrollment, date);
 
 
           } else {
             this.formData.enrollmentDate = 'N/A';
           }
+
+          this.calculatePayAmount();
         },
         (error) => {
           console.error('Error fetching enrollment details:', error);
@@ -195,23 +207,13 @@ onNicChange(): void {
 
     this.enrollmentService.getEnrollmentById(enrollmentId).subscribe(
       (enrollment: Enrollment) => {
-        if (enrollment.course && enrollment.course.fees) {
-          this.formData.totalFee = enrollment.course.fees;
-        } else {
-          this.formData.totalFee = 0;
-        }
-
-        if (enrollment.course && enrollment.course.duration) {
-          this.formData.duration = String(enrollment.course.duration);
-        } else {
-          this.formData.duration = '';
-        }
-
+        this.formData.totalFee = enrollment.course.fees || 0;
+        this.formData.duration = String(enrollment.course.duration) || '';
         this.formData.paymentPlan = enrollment.paymentPlan;
-        this.formData.dueAmount = payment.dueAmount;
-        
+        this.formData.dueAmount = payment.dueAmount || 0;
         this.formData.amount = 0;
         this.formData.totalPaidAmount = payment.totalPaidAmount || 0;
+       
 
         if (enrollment.course && enrollment.course.courseName) {
           this.formData.courseName = enrollment.course.courseName;
@@ -226,6 +228,7 @@ onNicChange(): void {
           const year = date.getFullYear();
 
           this.formData.enrollmentDate = `${day}-${month}-${year}`;
+          this.calculateAdditionalDetails(enrollment, date);
         } else {
           this.formData.enrollmentDate = 'N/A';
         }
@@ -241,6 +244,8 @@ onNicChange(): void {
         } else {
           this.formData.lastPaymentDate = 'N/A';
         }
+
+        this.calculatePayAmount();
       },
       (error) => {
         console.error('Error fetching enrollment details:', error);
@@ -249,8 +254,60 @@ onNicChange(): void {
     );
   }
 
+  calculatePayAmount(): void {
+    if (this.formData.paymentPlan === 'Full') {
+      this.formData.payAmount = this.formData.totalFee; 
+    } else if (this.formData.paymentPlan !== 'Full' && this.formData.duration) {
+      const monthlyAmount = this.formData.totalFee / parseInt(this.formData.duration, 10);
+      this.formData.payAmount = monthlyAmount; 
+    }
+
+    
+    if (this.formData.dueAmount === 0) {
+      this.formData.payAmount = 0;
+    }
+  }
+
+  calculateAdditionalDetails(enrollment: Enrollment, enrollmentDate: Date): void {
+    
+    if (this.formData.dueAmount > 0 && this.formData.lastPaymentDate !== 'N/A') {
+    
+      const enrollmentDate = new Date(this.formData.enrollmentDate); 
+      const nextPaymentDate = new Date(enrollmentDate);
+      nextPaymentDate.setDate(nextPaymentDate.getDate() + 38); 
+      this.formData.nextPaymentDate = this.formatDate(nextPaymentDate);
+    } else {
+     
+      this.formData.nextPaymentDate = 'N/A';
+    }
+    
+    
+    const courseDurationMonths = parseInt(this.formData.duration, 10);
+    if (courseDurationMonths) {
+      const finishDate = new Date(enrollmentDate);
+      finishDate.setMonth(finishDate.getMonth() + courseDurationMonths);
+      this.formData.courseFinishedDate = this.formatDate(finishDate);
+    }
+
+    
+    this.formData.paymentStatus = this.formData.dueAmount === 0 ? 'Completed' : 'Pending';
+
+   
+  }
+
+  formatDate(date: Date): string {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
   
   onSubmit(): void {
+    if (!this.formData.nic || !this.formData.course || this.formData.amount <= 0) {
+      this.message = 'Please fill in all required fields!';
+      this.isSuccess = false;
+      return;
+    }
     this.isProcessing = true;
     this.message = '';
     this.isSuccess = false;

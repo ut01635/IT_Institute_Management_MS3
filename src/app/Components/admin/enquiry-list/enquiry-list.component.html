@@ -8,7 +8,7 @@
   </div>
 
   <div>
-    <table class="table table-responsive table-bordered">
+    <table class="table table-responsive table-bordered table-striped">
       <thead>
         <tr>
           <th>Date</th>
@@ -24,14 +24,11 @@
           <td>{{ enquiry.name }}</td>
           <td>{{ enquiry.email }}</td>
           <td>{{ enquiry.message }}</td>
-          <td class="d-flex">
-            <button type="button" class="btn btn-warning me-3" (click)="openModal(enquiry.email)">
+          <td class="d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-warning me-2 btn-sm" (click)="openModal(enquiry.email)">
               <i class="bi bi-reply"></i>
             </button>
-            <!-- <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onView(enquiry.id)">
-              <i class="bi bi-eye"></i> View
-            </button> -->
-            <button type="button" class="btn btn-danger" (click)="onDelete(enquiry.id)">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="onDelete(enquiry.id)">
               <i class="bi bi-trash"></i> 
             </button>
           </td>

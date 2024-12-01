@@ -1,6 +1,6 @@
 <div id="main-container" class="container">
   <div id="sub-container" class="shadow w-100">
-    <div id="fee-management" class="card shadow-lg" style="height: 64vh;">
+    <div id="fee-management" class="card shadow-lg" style="height: 72vh;">
       <div class="card-header bg-light text-darkblue d-flex justify-content-between align-items-center">
         <h2 class="mb-0 text-darkblue"><i class="bi bi-credit-card"></i> Fee Management</h2>
       </div>
@@ -29,7 +29,7 @@
             <div class="row g-2">
 
               
-              <div class="col-md-3">
+              <div class="col-md-3 box">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
                   <strong>Course Name:</strong>
                   <p class="mx-3 fw-semibold text-success-emphasis">{{ formData.courseName }}</p>
@@ -37,16 +37,15 @@
               </div>
 
 
-              
-              <div class="col-md-3">
+              <div class="col-md-3 box">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
-                  <strong>Course Fee:</strong>
-                  <p class="mx-3 fw-semibold text-info">{{ formData.totalFee | currency: 'LKR ' }}</p>
+                  <strong>Duration:</strong>
+                  <p class="mx-3 fw-semibold text-secondary">{{ formData.duration }} Months </p>
                 </div>
               </div>
 
-              
-              <div class="col-md-3">
+
+              <div class="col-md-3 box">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
                   <strong>Payment Plan:</strong>
                   <p class="mx-3 fw-semibold"
@@ -56,24 +55,60 @@
                 </div>
               </div>
 
-              
-              <div class="col-md-3">
+
+              <div class="col-md-3 box">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
-                  <strong>Duration:</strong>
-                  <p class="mx-3 fw-semibold text-secondary">{{ formData.duration }} Months </p>
+                  <strong>Payment Status:</strong>
+                  <p class="mx-3 fw-semibold" [ngClass]="{ 'text-success': formData.paymentStatus === 'Completed', 'text-danger': formData.paymentStatus === 'Pending' }">
+                    {{ formData.paymentStatus }}
+                  </p>
                 </div>
               </div>
 
-              
-              <div class="col-md-3">
+               
+              <div class="col-md-3 box">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
                   <strong>Enrollment Date:</strong>
                   <p class="mx-3 fw-semibold text-warning-emphasis">{{ formData.enrollmentDate}}</p>
                 </div>
               </div>
 
+
+
+              <div class="col-md-3 box">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Course Finished Date:</strong>
+                  <p class="mx-3 fw-semibold text-secondary">{{ formData.courseFinishedDate }}</p>
+                </div>
+              </div>
+
+              <div class="col-md-3 box">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Last Payment Date:</strong>
+                  <p class="mx-3 fw-semibold text-dark">{{ formData.lastPaymentDate }}</p>
+                </div>
+              </div>
+
+
+              <div class="col-md-3 box">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Next Payment Date:</strong>
+                  <p class="mx-3 fw-semibold text-warning-emphasis">{{ formData.nextPaymentDate }}</p>
+                </div>
+              </div>
+
+
               
-              <div class="col-md-3">
+              <div class="col-md-3 box">
+                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                  <strong>Course Fee:</strong>
+                  <p class="mx-3 fw-semibold text-info">{{ formData.totalFee | currency: 'LKR ' }}</p>
+                </div>
+              </div>
+
+              
+              
+              <div class="col-md-3 box">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
                   <strong>Total Paid Amount:</strong>
                   <p class="mx-3 fw-semibold text-info-emphasis">{{ formData.totalPaidAmount | currency: 'LKR ' }}</p>
@@ -81,7 +116,7 @@
               </div>
 
               
-              <div class="col-md-3">
+              <div class="col-md-3 box">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex text-center">
                   <strong>Due Amount:</strong>
                   <p class="mx-3 fw-semibold" [ngClass]="{'text-success':formData.dueAmount === 0.00,'text-danger':formData.dueAmount !=0}">{{ formData.dueAmount | currency: 'LKR ' }}</p>
@@ -89,12 +124,24 @@
               </div>
 
               
-              <div class="col-md-3">
+             
+              
+              <div class="col-md-3 box">
                 <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
-                  <strong>Last Payment Date:</strong>
-                  <p class="mx-3 fw-semibold text-dark">{{ formData.lastPaymentDate }}</p>
+                  <strong>Pay Amount: </strong>
+                  <p class="mx-3 fw-semibold text-orange" id="payAmountStyle">{{ formData.payAmount | currency: 'LKR ' }}</p>
                 </div>
               </div>
+
+             
+              
+             
+              
+             
+              
+             
+              
+              
             </div>
           </div>
 

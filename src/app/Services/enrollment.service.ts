@@ -44,4 +44,13 @@ export class EnrollmentService {
   getEnrollmentById(enrollmentId: string): Observable<Enrollment> {
     return this.http.get<Enrollment>(`${this.enrollmentUrl}/${enrollmentId}`);
   }
+
+  getAllCompleted(): Observable<Enrollment[]> {
+    return this.http.get<Enrollment[]>(`${this.enrollmentUrl}/all/completed`);
+  }
+
+  
+  getAllReading(): Observable<Enrollment[]> {
+    return this.http.get<Enrollment[]>(`${this.enrollmentUrl}/all/notcompleted`);
+  }
 }
