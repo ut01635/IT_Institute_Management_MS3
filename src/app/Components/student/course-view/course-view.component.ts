@@ -14,56 +14,67 @@ import { PaymentPlanFormComponent } from '../../../Modals/student/payment-plan-f
   styleUrl: './course-view.component.css'
 })
 export class CourseViewComponent implements OnInit {
-
-  greeting: string = ''
+  greeting: string = '';
   student: Student | undefined;
-  nic: string = ""
-  // Reactive form for payment plan
-  selectedCourse!: Course;
-   // Array of course objects to be rendered dynamically
-   courses: Course[] = [];
+  nic: string = '';
+  courses: Course[] = [];
 
   constructor(
-    private greetinService: GreetingService,
+    private greetingService: GreetingService,
     private courseService: CourseService,
     private studentService: StudentService,
-    private enrollmentService:EnrollmentService,
-    private modalService: NgbModal) { }
+    private enrollmentService: EnrollmentService,
+    private modalService: NgbModal
+  ) {}
 
+  ngOnInit(): void {
+    this.nic = localStorage.getItem('NIC') || '';
 
-    ngOnInit(): void {
-      this.nic = localStorage.getItem('NIC') || '';
-      
-      // Load student first to ensure we can use their information
-      this.loadStudent(this.nic);
-      
-      this.loadCourses();
-      
-     
-    }
-    
-    loadStudent(nic: string) {
-      this.studentService.getStudentByNIC(this.nic).subscribe(data => {
+    // Load student data and filter courses
+    this.loadStudentAndCourses(this.nic);
+  }
+
+  private loadStudentAndCourses(nic: string): void {
+    // Load student details
+    this.studentService.getStudentByNIC(nic).subscribe(
+      (data) => {
         this.student = data;
-        const StudentName: string = this.student.firstName + " " + this.student.lastName;
-        this.greetinService.setGreeting(StudentName).subscribe((data) => {
-          this.greeting = data;
+        const studentName = `${this.student.firstName} ${this.student.lastName}`;
+        this.greetingService.setGreeting(studentName).subscribe((greetingData) => {
+          this.greeting = greetingData;
         });
-      }, error => {
-        console.log(error); 
-      });
-    }
-    
-    loadCourses(): void {
-      this.courseService.courses$.subscribe((courses) => {
-        this.courses = courses;
-      });
-      this.courseService.getAllCourses();
-    }
-    
-    openSocialMediaUpdateModal(id:string):void {
-      const modalRef = this.modalService.open(PaymentPlanFormComponent);
-      modalRef.componentInstance.studentNIC = this.student?.nic;
-      modalRef.componentInstance.CourseId = id
-    }
+
+        // Once student data is loaded, fetch enrollments and filter courses
+        this.filterCoursesByEnrollment(nic);
+      },
+      (error) => {
+        console.error('Error fetching student data:', error);
+      }
+    );
+  }
+
+  private filterCoursesByEnrollment(nic: string): void {
+    // Fetch enrollments for the student
+    this.enrollmentService.getReadingEnrollments(nic).subscribe(
+      (enrollments: Enrollment[]) => {
+        const enrolledCourseIds = enrollments.map((enrollment) => enrollment.courseId);
+
+        // Fetch all courses and filter out already enrolled ones
+        this.courseService.courses$.subscribe((courses) => {
+          this.courses = courses.filter((course) => !enrolledCourseIds.includes(course.id));
+        });
+
+        this.courseService.getAllCourses();
+      },
+      (error) => {
+        console.error('Error fetching enrollments:', error);
+      }
+    );
+  }
+
+  openSocialMediaUpdateModal(id: string): void {
+    const modalRef = this.modalService.open(PaymentPlanFormComponent);
+    modalRef.componentInstance.studentNIC = this.student?.nic;
+    modalRef.componentInstance.CourseId = id;
+  }
 }
