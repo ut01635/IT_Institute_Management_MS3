@@ -150,3 +150,21 @@ export interface resetPassword{
   newPassword:string,
   confirmNewPassword:string
 }
+
+export interface AddressRequestDto {
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+}
+
+export interface StudentUpdateRequestDto {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: AddressRequestDto;
+}
+
