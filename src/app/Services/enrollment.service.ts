@@ -53,4 +53,9 @@ export class EnrollmentService {
   getAllReading(): Observable<Enrollment[]> {
     return this.http.get<Enrollment[]>(`${this.enrollmentUrl}/all/notcompleted`);
   }
+
+
+  deleteEnrollment(id:string){
+    return this .http.delete(this.enrollmentUrl)
+  }
 }
