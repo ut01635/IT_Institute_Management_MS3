@@ -82,11 +82,11 @@
             </a>
             <ul class="flex-column ms-0 w-100 report-sub-links position-absolute start-100 top-0 p-2 rounded shadow">
               <li><a href="#" [routerLink]="['/admin/student-report']" (click)="setActiveTab('student-report')"
-                  [class.active]="activeTab === 'student-report'">Student Report</a></li>
+                  [class.active]="activeTab === 'student-report'"><i class="bi bi-person"></i>   Student Report</a></li>
               <li><a href="#" [routerLink]="['/admin/enrollment-report']" (click)="setActiveTab('enrollment-report')"
-                  [class.active]="activeTab === 'enrollment-report'">Enrollment Report</a></li>
+                  [class.active]="activeTab === 'enrollment-report'"><i class="bi bi-file-earmark-text"></i>  Enrollment Report</a></li>
               <li><a href="#" [routerLink]="['/admin/payment-report']" (click)="setActiveTab('payment-report')"
-                  [class.active]="activeTab === 'payment-report'">Payment Report</a></li>
+                  [class.active]="activeTab === 'payment-report'"><i class="bi bi-cash"> </i>  Payment Report</a></li>
             </ul>
           </li>
 

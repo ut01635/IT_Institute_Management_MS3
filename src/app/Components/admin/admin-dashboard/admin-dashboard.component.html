@@ -10,7 +10,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Total Students</h5>
-          <p class="card-text">{{ totalStudents }}</p>
+          <p class="card-text">0{{ totalStudents }}</p>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Total Courses</h5>
-          <p class="card-text">{{ totalCourses }}</p>
+          <p class="card-text">0{{ totalCourses }}</p>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
 
 
   <div class="row my-4">
-    <!-- Line Chart -->
+    
     <div class="col-12">
       <canvas baseChart [type]="lineChartType" [data]="lineChartData">
       </canvas>
@@ -38,7 +38,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Total Enrollments</h5>
-          <p class="card-text">{{ totalEnrollments }}</p>
+          <p class="card-text">0{{ totalEnrollments }}</p>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Completed Enrollments</h5>
-          <p class="card-text">{{ completedEnrollments }}</p>
+          <p class="card-text">0{{ completedEnrollments }}</p>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Reading Enrollments</h5>
-          <p class="card-text">{{ readingEnrollments }}</p>
+          <p class="card-text">0{{ readingEnrollments }}</p>
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@
 
   <div class="container">
     <div class="row my-4">
-      <!-- Circular Progress Bars -->
+      
       <div class="col-md-6 text-center">
         <div class="progress-circle">
           <div class="circle">
