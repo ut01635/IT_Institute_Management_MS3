@@ -9,35 +9,40 @@ import { Course, Enrollment } from '../../../Services/Modal';
 })
 export class EnrollCoursesComponent implements OnInit {
   enrollments: Enrollment[] = [];
+  nic: string = '';
 
-  constructor(private enrollmentService: EnrollmentService) { }
+  constructor(private enrollmentService: EnrollmentService) {}
 
   ngOnInit(): void {
-    this.enrollmentService.getallEnrollement().subscribe(data => {
-      this.enrollments = data
-    }, erorr => {
-      console.log(erorr.erorr);
+    this.nic = localStorage.getItem('NIC') || '';
 
-    });
-  }
-  handleViewCourse(course: any) {
-    console.log('Viewing course:', course.title);
-  }
-
-  handleFollowCourse(course: any) {
-    console.log('Following course:', course.title);
+    this.enrollmentService.getReadingEnrollments(this.nic).subscribe(
+      data => {
+        this.enrollments = data;
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
-  // Calculate progress based on enrollment date and course duration
+  // Calculate progress percentage based on enrollment date and course duration
   calculateProgress(enrollmentDate: Date, duration: number): number {
     const enrollmentStart = new Date(enrollmentDate);
     const now = new Date();
-    const totalDays = duration * 30; // Approximate total days for course duration
+    const totalDays = duration * 30; // Approximate total days
     const elapsedDays = Math.min(
       Math.max(0, (now.getTime() - enrollmentStart.getTime()) / (1000 * 60 * 60 * 24)),
       totalDays
     );
     return Math.round((elapsedDays / totalDays) * 100);
+  }
+
+  // Calculate course end date
+  calculateEndDate(enrollmentDate: Date, duration: number): Date {
+    const endDate = new Date(enrollmentDate);
+    endDate.setMonth(endDate.getMonth() + duration);
+    return endDate;
   }
 
   // Determine if the "Unfollow" button should be hidden based on enrollment date
@@ -47,3 +52,4 @@ export class EnrollCoursesComponent implements OnInit {
     return new Date() <= threeDaysAfter;
   }
 }
+
