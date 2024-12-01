@@ -43,7 +43,7 @@ export class StudentReportComponent  implements OnInit {
             name: `${student.firstName} ${student.lastName}`,
             email: student.email,
             phone: student.phone,
-            address: student.address,
+            address: student.address.addressLine1+', '+student.address.addressLine2+', '+student.address.city+', '+student.address.state+', '+student.address.country+', '+student.address.postalCode,
             imagePath: student.imagePath,
             courses: [], 
             fee: 0,
