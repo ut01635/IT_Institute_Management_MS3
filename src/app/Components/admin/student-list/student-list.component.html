@@ -1,22 +1,12 @@
 <div class="container-fluid">
   <div class="d-flex justify-content-between mb-3">
     <div>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Search Student..."
-        [(ngModel)]="searchText"
-      />
+      <input type="text" class="form-control" placeholder="Search Student..." [(ngModel)]="searchText" />
     </div>
 
     <div>
-      <button
-        type="button"
-        class="btn btn-dark"
-        data-bs-toggle="modal"
-        data-bs-target="#registerModal"
-        (click)="openModal()"
-      >
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#registerModal"
+        (click)="openModal()">
         New Student
       </button>
     </div>
@@ -41,12 +31,8 @@
       <tbody>
         <tr *ngFor="let student of students | search : searchText">
           <td>
-            <img
-              [src]="baseUrl + student.imagePath"
-              alt="Student Image"
-              class="img-thumbnail"
-              style="width: 30px; height: 30px"
-            />
+            <img [src]="baseUrl + student.imagePath" alt="Student Image" class="img-thumbnail"
+              style="width: 30px; height: 30px" />
           </td>
           <td>{{ student.nic }}</td>
           <td>{{ student.firstName }} {{ student.lastName }}</td>
@@ -60,39 +46,27 @@
           <td>{{ student.completedCount || 0 }}</td>
           <td class="d-flex justify-content-around">
             <!-- Lock/Unlock Button -->
-            <button
-              type="button"
-              class="btn btn-outline-secondary me-2 btn-sm"
-              (click)="toggleLockOrUnlock(student)"
-            >
-              <i
-                class="bi"
-                [ngClass]="student.IsLocked ? 'bi-unlock' : 'bi-lock'"
-              ></i>
+            <button type="button" class="btn btn-outline-secondary me-2 btn-sm" (click)="toggleLockOrUnlock(student)">
+              <i class="bi" [ngClass]="student.IsLocked ? 'bi-unlock' : 'bi-lock'"></i>
               <!-- {{ student.IsLocked ? 'Unlock' : 'Lock' }} -->
             </button>
             <button type="button" class="btn btn-outline-warning me-2 btn-sm">
-              <i class="bi bi-ticket-perforated"></i>
+              <i class="bi bi-key"></i>
             </button>
           </td>
-          <td>
-            <!-- Edit Button -->
-            <button
-              type="button"
-              class="btn btn-outline-warning me-2 btn-sm"
-              (click)="editStudent(student.nic)"
-            >
-              <i class="bi bi-pencil"></i>
-              <!--Edit -->
-            </button>
-            <!-- Delete Button -->
-            <button
-              type="button"
-              class="btn btn-outline-danger btn-sm"
-              (click)="onDelete(student.nic)"
-            >
-              <i class="bi bi-trash"></i>
-            </button>
+          <td class="">
+            <div class="d-flex">
+              <!-- Edit Button -->
+              <button type="button" class="btn btn-outline-warning me-2 btn-sm" (click)="editStudent(student.nic)">
+                <i class="bi bi-pencil"></i>
+                <!--Edit -->
+              </button>
+              <!-- Delete Button -->
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="onDelete(student.nic)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+
           </td>
         </tr>
       </tbody>
