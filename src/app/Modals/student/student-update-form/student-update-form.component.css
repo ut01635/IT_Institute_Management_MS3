@@ -16,7 +16,7 @@
     top: 5px;
     left: 5px;
     font-size: 12px;
-    color: #2d79f3;
+    color: #023383;
     background-color: #ffffff;
     padding-left: 5px;
     padding-right: 5px;
@@ -56,24 +56,24 @@
   }
   
   .submit-btn {
-    width: 100%; /* Full width */
-    height: 55px;
-    background: #f2f2f2;
-    border-radius: 11px;
-    border: 0;
-    outline: none;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 700;
-    background: linear-gradient(180deg, #223146 0%, #0d1b2c 50%, #0b1b32 100%);
-    box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
-    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
-    cursor: pointer;
-  }
-  
-  .submit-btn:hover {
-    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
-  }
+  width: 100%; /* Full width */
+  height: 55px;
+  background: #f2f2f2;
+  border-radius: 11px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(180deg, #223146 0%, #0d1b2c 50%, #0b1b32 100%);
+  box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
+}
   
   /* Flexbox for button */
   .d-flex {

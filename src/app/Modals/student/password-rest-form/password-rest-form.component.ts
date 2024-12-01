@@ -38,7 +38,7 @@ export class PasswordRestFormComponent implements OnInit {
       const formdata = this.passwordResetForm.value
 
       this.studentService.resetPassword(this.nic,formdata).subscribe(data=>{
-        alert(data)
+        alert('Your password updated')
         this.activeModal.close();
       },error=>{
         alert(error.error)

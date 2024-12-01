@@ -41,6 +41,11 @@ export class StudentUpdateFormComponent implements OnInit {
         country: ['', [Validators.required]]
       })
     });
+
+
+    this.studentService.getStudentByNIC(this.nic).subscribe(data=>{
+      this.studentForm.patchValue(data)
+    })
   }
 
   // On form submission
@@ -48,7 +53,13 @@ export class StudentUpdateFormComponent implements OnInit {
     if (this.studentForm.valid) {
       const updatedStudentData = this.studentForm.value;
       // Process the updated data, send it to your backend, etc.
-      console.log('Updated Student Details:', updatedStudentData);
+      // alert(updatedStudentData)
+      this.studentService.updatestudentDetails(this.nic,updatedStudentData).subscribe(data=>{
+        alert('Personal details update successfully')
+        this.activeModal.close();
+      },error=>{
+        alert('update failed')
+      })
     }
   }
 }
