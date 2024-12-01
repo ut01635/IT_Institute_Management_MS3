@@ -50,6 +50,6 @@ export class EnrollCoursesComponent implements OnInit {
     const threeDaysAfter = new Date(enrollmentDate);
     threeDaysAfter.setDate(threeDaysAfter.getDate() + 3); // Add 3 days to the enrollment date
     return new Date() <= threeDaysAfter;
-  }
+  }  
 }
 
