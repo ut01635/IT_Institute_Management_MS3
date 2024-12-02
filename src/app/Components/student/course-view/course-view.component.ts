@@ -18,6 +18,7 @@ export class CourseViewComponent implements OnInit {
   student: Student | undefined;
   nic: string = '';
   courses: Course[] = [];
+  enrollments: Enrollment[] = []; // Added to hold student enrollments
 
   constructor(
     private greetingService: GreetingService,
@@ -44,8 +45,9 @@ export class CourseViewComponent implements OnInit {
           this.greeting = greetingData;
         });
 
-        // Once student data is loaded, fetch all courses
+        // Once student data is loaded, fetch all courses and enrollments
         this.loadAllCourses();
+        this.loadEnrollments();
       },
       (error) => {
         console.error('Error fetching student data:', error);
@@ -66,9 +68,30 @@ export class CourseViewComponent implements OnInit {
     this.courseService.getAllCourses();
   }
 
-  openSocialMediaUpdateModal(id: string): void {
-    const modalRef = this.modalService.open(PaymentPlanFormComponent);
-    modalRef.componentInstance.studentNIC = this.student?.nic;
-    modalRef.componentInstance.CourseId = id;
+  private loadEnrollments(): void {
+    // Fetch student enrollments
+    this.enrollmentService.getEnrollments(this.nic).subscribe(
+      (enrollments) => {
+        this.enrollments = enrollments;   
+      },
+      (error) => {
+        console.error('Error fetching enrollments:', error);
+      }
+    );
+  }
+
+  openPaymentPlanModal(courseId: string): void {
+    // Check if the student is already enrolled in the selected course
+    const isEnrolled = this.enrollments.some(enrollment => enrollment.courseId === courseId);
+
+    if (isEnrolled) {
+      // If the student is already enrolled, show an alert
+      alert('You have already followed this course.');
+    } else {
+      // If not enrolled, open the modal for course enrollment
+      const modalRef = this.modalService.open(PaymentPlanFormComponent);
+      modalRef.componentInstance.studentNIC = this.student?.nic;
+      modalRef.componentInstance.CourseId = courseId;
+    }
   }
 }
