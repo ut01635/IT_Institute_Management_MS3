@@ -11,7 +11,8 @@ import { EnrollmentService } from '../../../Services/enrollment.service';
 export class PaymentPlanFormComponent implements OnInit {
   @Input() studentNIC!: string;
   @Input() CourseId!:string;
-  
+  @Input() id!:string;
+  @Input() isNewPlan: boolean = true;
 
   paymentForm!: FormGroup;
 
@@ -30,7 +31,7 @@ ngOnInit(): void {
   submitPaymentPlan(): void {
     const enrolmentData = {
       paymentPlan: this.paymentForm.get('paymentPlan')?.value,
-      studentNic: this.studentNIC,
+      studentNIC: this.studentNIC,
       courseId: this.CourseId
     }
     if (this.paymentForm.valid) {
@@ -43,6 +44,24 @@ ngOnInit(): void {
         alert(error.error)
       })
 
+    }
+  }
+
+  updatePaymentPlan(): void {
+    const enrollmentData = {
+      paymentPlan: this.paymentForm.get('paymentPlan')?.value,
+      studentNIC: this.studentNIC,
+      courseId: this.CourseId
+    };
+    
+    if (this.paymentForm.valid) {
+      this.enrollmentService.updateEnrollment(this.id,enrollmentData).subscribe(data => {
+        this.paymentForm.reset();
+        alert("Payment plan updated successfully!");
+        this.activeModal.close();
+      }, error => {
+        alert("Error updating payment plan: " + error.error);
+      });
     }
   }
 }
