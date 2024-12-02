@@ -290,6 +290,9 @@
     </div>
 
     <button type="submit" class="submit-btn" [disabled]="studentForm.invalid">
+      <ng-container *ngIf="studentToEdit">
+        <i class="bi bi-pencil-square"></i>
+      </ng-container>
       <ng-container *ngIf="!studentToEdit">
         <i class="bi bi-person-plus"></i>
       </ng-container>
