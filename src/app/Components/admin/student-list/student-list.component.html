@@ -21,7 +21,6 @@
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
-          <!-- <th class="d-none d-md-table-cell">Address</th> -->
           <th>Enrolling Courses</th>
           <th>Finished Courses</th>
           <th>Settings</th>
@@ -38,13 +37,10 @@
           <td>{{ student.firstName }} {{ student.lastName }}</td>
           <td>{{ student.email }}</td>
           <td>{{ student.phone }}</td>
-          <!-- <td class="d-none d-md-table-cell">
-            {{ student.address?.addressLine1 }},
-            {{ student.address?.addressLine2 }}, {{ student.address?.city }}.
-          </td> -->
           <td>{{ student.enrollingCount || 0 }}</td>
           <td>{{ student.completedCount || 0 }}</td>
-          <td class="d-flex justify-content-around">
+          <td >
+            <div class="d-flex justify-content-around">
             <!-- Lock/Unlock Button -->
             <button type="button" class="btn btn-outline-secondary me-2 btn-sm" (click)="toggleLockOrUnlock(student)">
               <i class="bi" [ngClass]="student.IsLocked ? 'bi-unlock' : 'bi-lock'"></i>
@@ -53,9 +49,10 @@
             <button type="button" class="btn btn-outline-warning me-2 btn-sm"  (click)="openPasswordResetModal(student.nic)">
               <i class="bi bi-key"></i>
             </button>
+          </div>
           </td>
-          <td class="">
-            <div class="d-flex">
+          <td >
+            <div class="d-flex justify-content-around">
               <!-- Edit Button -->
               <button type="button" class="btn btn-outline-warning me-2 btn-sm" (click)="editStudent(student.nic)">
                 <i class="bi bi-pencil"></i>
@@ -66,7 +63,6 @@
                 <i class="bi bi-trash"></i>
               </button>
             </div>
-
           </td>
         </tr>
       </tbody>

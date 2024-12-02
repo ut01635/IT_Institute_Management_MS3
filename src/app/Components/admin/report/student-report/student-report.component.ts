@@ -4,6 +4,9 @@ import { StudentService } from '../../../../Services/student.service';
 import { EnrollmentService } from '../../../../Services/enrollment.service';
 import { PaymentService } from '../../../../Services/payment.service';
 import { Enrollment } from '../../../../Services/Modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentPlanFormComponent } from '../../../../Modals/student/payment-plan-form/payment-plan-form.component';
+
 
 @Component({
   selector: 'app-student-report',
@@ -22,7 +25,8 @@ export class StudentReportComponent  implements OnInit {
     private fb: FormBuilder,
     private studentService: StudentService,
     private enrollmentService: EnrollmentService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private modalService :NgbModal 
   ) { }
 
   ngOnInit(): void {
@@ -134,6 +138,22 @@ export class StudentReportComponent  implements OnInit {
         }
       );
     }
+  }
+
+  openCreatePaymentPlanModal(enrollment: any) {
+    const modalRef = this.modalService.open(PaymentPlanFormComponent);
+    modalRef.componentInstance.isNewPlan = true;  // Set isNewPlan to true for create
+    modalRef.componentInstance.studentNIC = enrollment.studentNIC;
+    modalRef.componentInstance.CourseId = enrollment.courseId;
+  }
+
+  // Open the modal to update an existing payment plan
+  openUpdatePaymentPlanModal(enrollment: any) {
+    const modalRef = this.modalService.open(PaymentPlanFormComponent);
+    modalRef.componentInstance.isNewPlan = false;  // Set isNewPlan to false for update
+    modalRef.componentInstance.studentNIC = enrollment.studentNIC;
+    modalRef.componentInstance.CourseId = enrollment.courseId;
+    modalRef.componentInstance.id = enrollment.id;  // Pass the enrollment ID for updating
   }
 
 }

@@ -58,4 +58,10 @@ export class EnrollmentService {
   deleteEnrollment(id:string){
     return this .http.delete(this.enrollmentUrl)
   }
+
+  updateEnrollment(id:string,enrollmentData: EnrollmentRequest) {
+    const updateUrl = (`${this.enrollmentUrl}/update/${id}`);
+    return this.http.put<Enrollment>(updateUrl, enrollmentData);
+  }
+  
 }

@@ -122,7 +122,7 @@ export interface SocialMediaLinks {
 }
 
 export interface EnrollmentRequest{
-  studentNic:string,
+  studentNIC:string,
   courseId:string,
   paymentPlan:string
 }

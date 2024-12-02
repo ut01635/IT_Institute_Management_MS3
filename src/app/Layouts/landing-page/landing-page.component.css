@@ -1,6 +1,12 @@
 .header-area{
   background-color: #0d1e4c;
 }
+.bg-darkblue{
+  background:#0d1e4c;
+}
+.text-darkbule{
+  color: #0d1e4c;
+}
 .social-icon {
   font-size: 1.5rem;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -193,13 +199,8 @@ p{
 .grtInTouch{
   background-color: #fbfdff67;
 }
-/* ------------------------------------------------------------------------------------------- */
-.bg-darkblue{
-  background:#0d1e4c;
-}
-.text-darkbule{
-  color: #0d1e4c;
-}
+
+
 
 /* --------------------------------------course card----------------------------------------- */
 .course-card {
