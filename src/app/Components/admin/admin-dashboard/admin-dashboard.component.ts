@@ -58,9 +58,9 @@ export class AdminDashboardComponent implements OnInit {
   loadDashboardData() {
     
     this.studentService.students$.subscribe((allStudents) => {
-      console.log(allStudents);
+      // console.log(allStudents);
       this.totalStudents = allStudents.length; 
-      console.log(this.totalStudents);
+      // console.log(this.totalStudents);
       this.studentService.getStudents();
     });
     

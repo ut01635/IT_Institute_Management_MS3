@@ -93,6 +93,7 @@ export class StudentReportComponent  implements OnInit {
           
           this.reportData.fee = enrollmentDetails.course.fees;
           this.reportData.paymentPlan = enrollmentDetails.paymentPlan;
+          this.reportData.dueAmount = enrollmentDetails.course.fees;
 
          
           this.paymentService.getPaymentsByNic(this.reportData.nic).subscribe(
@@ -118,13 +119,15 @@ export class StudentReportComponent  implements OnInit {
                
                 this.paymentDetails = [];
                 this.reportData.paidAmount = 0;
-                this.reportData.dueAmount = 0;
+                this.reportData.dueAmount =enrollmentDetails.course.fees;
               }
             },
             (error) => {
               console.error('Error fetching payment details:', error);
             }
           );
+
+          
         },
         (error) => {
           console.error('Error fetching detailed enrollment data:', error);
