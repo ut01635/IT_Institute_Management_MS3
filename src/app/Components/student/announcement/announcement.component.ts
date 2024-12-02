@@ -32,17 +32,29 @@ export class AnnouncementComponent implements OnInit {
   constructor(private announcementService: AnnouncementService) {}
 
   ngOnInit(): void {
-    this.announcementService.getAllAnnouncements().subscribe(
-      (data: Announcement[]) => (
-        this.announcements = data,
-      console.log(data)
-      ),
-      (error: { error: any; }) => alert(error.error)
-    );
+    this.loadAnnouncement()
   }
 
   viewAnnouncement(announcement: Announcement) {
     this.selectedAnnouncement = announcement;
+  }
+
+
+
+  loadAnnouncement(): void {
+    this.announcementService.announcement$.subscribe((announcements) => {
+     
+      this.announcements = announcements.sort((a, b) => {
+       
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        
+        
+        return dateB.getTime() - dateA.getTime();
+      });
+    });
+    
+    this.announcementService.getAllAnnouncements();
   }
 }
 
