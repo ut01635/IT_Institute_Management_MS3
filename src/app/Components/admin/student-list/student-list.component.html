@@ -50,7 +50,7 @@
               <i class="bi" [ngClass]="student.IsLocked ? 'bi-unlock' : 'bi-lock'"></i>
               <!-- {{ student.IsLocked ? 'Unlock' : 'Lock' }} -->
             </button>
-            <button type="button" class="btn btn-outline-warning me-2 btn-sm">
+            <button type="button" class="btn btn-outline-warning me-2 btn-sm"  (click)="openPasswordResetModal(student.nic)">
               <i class="bi bi-key"></i>
             </button>
           </td>

@@ -109,4 +109,9 @@ export class StudentService {
     https://localhost:7055/api/Students/update/
     return this.http.put(`${this.BaseStudentURL}/update/${nic}`,request)
   }
+
+  updatePassword(nic: string, newPassword: string): Observable<any> {
+    const payload = { nic,newPassword };
+    return this.http.put(`${this.BaseStudentURL}/${nic}/unlock`, payload);
+  }
 }

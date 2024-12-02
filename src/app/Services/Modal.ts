@@ -168,3 +168,10 @@ export interface StudentUpdateRequestDto {
   address: AddressRequestDto;
 }
 
+
+
+export interface StudentPassword {
+  nic: string;
+  newPassword: string;
+}
+

@@ -5,6 +5,8 @@ import { forkJoin } from 'rxjs';
 import { Student } from '../../../Services/Modal';
 import { StudentFormComponent } from '../../../Modals/admin/student-form/student-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StudentPasswordComponent } from '../../../Modals/admin/student-password/student-password.component';
+
 
 @Component({
   selector: 'app-student-list',
@@ -87,9 +89,9 @@ export class StudentListComponent implements OnInit {
 
   toggleLockOrUnlock(student: any): void {
     if (student.IsLocked) {
-      this.toggleUnlock(student);  // Pass the entire student object
+      this.toggleUnlock(student); 
     } else {
-      this.toggleLock(student);  // Pass the entire student object
+      this.toggleLock(student); 
     }
   }
   
@@ -97,9 +99,9 @@ export class StudentListComponent implements OnInit {
     this.studentService.lockAccount(student.nic).subscribe(
       (data) => {
         alert("Account locked with NIC: " + student.nic);
-        // Update the student.IsLocked value directly here
+       
         student.IsLocked = true;
-        // this.studentService.getStudents();
+       
       },
       (error) => {
         alert("Account locking failed for NIC: " + student.nic);
@@ -111,13 +113,19 @@ export class StudentListComponent implements OnInit {
     this.studentService.dirrectUnlockAccount(student.nic).subscribe(
       (data) => {
         alert("Account unlocked with NIC: " + student.nic);
-        // Update the student.IsLocked value directly here
+       
         student.IsLocked = false;
-        // this.studentService.getStudents();
+       
       },
       (error) => {
         alert("Account unlocking failed for NIC: " + student.nic);
       }
     );
+  }
+
+
+  openPasswordResetModal(nic: string): void {
+    const modalRef = this.modalService.open(StudentPasswordComponent);
+    modalRef.componentInstance.studentNic = nic; 
   }
 }
