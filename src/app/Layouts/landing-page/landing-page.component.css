@@ -395,14 +395,17 @@ p{
   transform: translate(-50%, -50%);
   width: 100px; /* Size of the play button */
   height: 100px;
-  background: url('https://upload.wikimedia.org/wikipedia/commons/e/e7/Video-play-icon.png') no-repeat center center;
-  background-size: contain;
+  background: rgba(0, 0, 0, 0.5); /* Optional background to make the play button visible */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .video-container2 iframe {
   width: 100%;
   height: 315px; /* Default 16:9 aspect ratio height */
-  display: block;
+  display: none; /* Hidden initially */
   border: none;
 }
 

@@ -6,7 +6,8 @@
           href="/"
           class="navbar-brand col-3 d-flex align-items-center text-white"
         >
-          <h2>DEVHub</h2>
+          <h2><img src="/Header_Image.png" alt="logo" class="img-fluid mx-auto d-block"
+        style="max-width: 100%; height: auto; max-height: 50px;" /></h2>
         </a>
 
         <!-- Responsive Toggler -->
@@ -64,8 +65,12 @@
 <section class="section main-banner" id="top" data-section="section1">
   <div class="video-overlay header-text">
     <div class="container video-container">
+      <!-- <video autoplay muted loop id="bg-video">
+        <source src="/LandingAssets/course-video.mp4" type="video/mp4" />
+      </video> -->
       <video autoplay muted loop id="bg-video">
         <source src="/LandingAssets/course-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
 
       <div class="row">
@@ -447,7 +452,7 @@
       <!-- Right Column: Video Thumbnail -->
       <div class="col-lg-6 align-self-center text-center">
       
-          <div class="video-container2" (click)="playVideo($event)">
+          <!-- <div class="video-container2" (click)="playVideo($event)">
             <img src="/LandingAssets/vedio cover.png" alt="YouTube Thumbnail" class="rounded"/>
             <div class="play-button"><i class="bi bi-play-btn text-white rounded-1 fs-1"></i></div>
             <iframe
@@ -459,7 +464,21 @@
               style="display: none"
             >
             </iframe>
-          </div>
+          </div> -->
+          <div class="video-container2" (click)="playVideo($event)">
+            <img src="/LandingAssets/vedio cover.png" alt="YouTube Thumbnail" />
+            <div class="play-button">
+              <i class="bi  bi-play-circle text-white fs-1"></i>
+            </div>
+            <iframe
+              data-src="https://www.youtube.com/embed/MIufgoKX34M?autoplay=1"
+              title="YouTube video player"
+              style="display: none; border: none;"
+              allowfullscreen
+            ></iframe>
+          </div>          
+          
+          
         </div>
       </div>
     </div>
