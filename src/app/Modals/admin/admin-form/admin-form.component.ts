@@ -75,6 +75,14 @@ export class AdminFormComponent {
       }
 
       if (this.adminToEdit) {
+
+        const oldAdminNic = this.adminToEdit.nic; 
+        const newAdminNic = this.adminForm.get('nic')?.value; 
+  
+        if (oldAdminNic !== newAdminNic){
+          alert(`You cannot change the NIC. The original NIC was: ${oldAdminNic}`);
+          return;
+        }
        
         this.adminService.updateAdmin(this.adminToEdit.nic, formData).subscribe(
           response => {
@@ -83,7 +91,7 @@ export class AdminFormComponent {
             this.activeModal.close();
           },
           error => {
-            console.error('Error updating admin:', error);
+            alert((error.error?.message || error.message));
           }
         );
       } else {
@@ -94,8 +102,8 @@ export class AdminFormComponent {
             this.adminService.refreshAdminList();
             this.activeModal.close();
           },
-          error => {
-            console.error('Error adding admin:', error);
+          (error) => {
+            alert((error.error?.message || error.message));
           }
         );
       }
