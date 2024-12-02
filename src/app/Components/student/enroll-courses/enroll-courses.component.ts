@@ -15,13 +15,17 @@ export class EnrollCoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.nic = localStorage.getItem('NIC') || '';
+    this.loadEnrollments();
+   
+  }
 
+  loadEnrollments(): void {
     this.enrollmentService.getReadingEnrollments(this.nic).subscribe(
       data => {
         this.enrollments = data;
       },
       error => {
-        console.error(error);
+        console.error('Error loading enrollments:', error);
       }
     );
   }
@@ -52,8 +56,24 @@ export class EnrollCoursesComponent implements OnInit {
     return new Date() <= threeDaysAfter;
   } 
   
-  onDelete(id:string){
-    
+  confirmDelete(id: string) {
+    if (window.confirm('Are you sure you want to Unfollow this Course?')) {
+      this.onDelete(id);
+    }
+  }
+
+  onDelete(id: string) {
+    this.enrollmentService.deleteEnrollment(id).subscribe(
+      (response) => {
+        alert('Course Unfollow successfully');
+        this.loadEnrollments();
+       
+        
+      },
+      (error) => {
+        console.error('Error Unfollow Course:', error);
+      }
+    );
   }
 }
 

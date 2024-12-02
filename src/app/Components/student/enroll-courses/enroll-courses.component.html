@@ -48,7 +48,7 @@
                     </div>
                   </div>
                   <!-- Unfollow Button -->
-                  <button type="button" (click)="onDelete(enrollment.id)" *ngIf="shouldShowUnfollow(enrollment.enrollmentDate)" class="btn btn-danger btn-sm mt-3" >
+                  <button type="button" (click)="confirmDelete(enrollment.id)" *ngIf="shouldShowUnfollow(enrollment.enrollmentDate)" class="btn btn-danger btn-sm mt-3" >
                     <i class="bi bi-x-circle me-2"></i> Unfollow
                   </button>
                 </div>
