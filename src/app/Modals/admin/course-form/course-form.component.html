@@ -112,7 +112,14 @@
 
    
     <button type="submit" class="submit-btn" [disabled]="courseForm.invalid">
-      <i class="bi bi-save"></i>{{ courseToEdit ? 'Update' : 'Save' }} Course
+
+      <ng-container *ngIf="courseToEdit">
+        <i class="bi bi-pencil-square"></i>
+      </ng-container>
+      <ng-container *ngIf="!courseToEdit">
+        <i class="bi bi-book"></i>
+      </ng-container>
+      {{ courseToEdit ? 'Update' : 'Save' }} Course
     </button>
   </form>
 </div>

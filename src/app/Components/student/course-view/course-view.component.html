@@ -1,18 +1,6 @@
 <div class="container">
   <h2 class="fs-1 fs-sm-2 fs-md-3 fs-lg-4 fs-xl-5 mb-3 text-md-start text-darkbule font-weight-bold">{{greeting}}</h2>
 
-  <!-- ng-template for No Courses -->
-  <ng-template #noCourses>
-    <div class="card p-4 shadow-lg rounded-4 bg-light text-center">
-      <div class="alert alert-warning d-flex align-items-center justify-content-center" role="alert" aria-live="assertive">
-        <i class="bi bi-exclamation-circle-fill fs-3 me-2"></i>
-        <span><strong>No courses available at the moment</strong></span>
-      </div>
-      <p class="text-muted">Currently, there are no courses available for you to enroll in. Please check back later.</p>
-      <button class="btn btn-info btn-lg mt-4" [routerLink]="['/student/profile']">Back to Profile</button>
-    </div>
-  </ng-template>
-
   <!-- Courses Display -->
   <div class="row g-4 pb-5" *ngIf="courses.length > 0; else noCourses">
     <div *ngFor="let course of courses" class="col">
@@ -37,12 +25,24 @@
             </p>
           </div>         
           <div class="buttons d-flex gap-3">
-            <button (click)="openSocialMediaUpdateModal(course.id)" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#paymentModal">Follow</button>
+            <button (click)="openPaymentPlanModal(course.id)" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#paymentModal">Follow</button>
           </div>
         </div>
       </div>
     </div>
-  </div>  
+  </div> 
+  
+   <!-- ng-template for No Courses -->
+   <ng-template #noCourses>
+    <div class="card p-4 shadow-lg rounded-4 bg-light text-center">
+      <div class="alert alert-warning d-flex align-items-center justify-content-center" role="alert" aria-live="assertive">
+        <i class="bi bi-exclamation-circle-fill fs-3 me-2"></i>
+        <span><strong>No courses available at the moment</strong></span>
+      </div>
+      <p class="text-muted">Currently, there are no courses available for you to enroll in. Please check back later.</p>
+      <button class="btn btn-info btn-lg mt-4" [routerLink]="['/student/profile']">Back to Profile</button>
+    </div>
+  </ng-template>
 </div>
 
 <!-- <div class="row g-4 pb-5">
