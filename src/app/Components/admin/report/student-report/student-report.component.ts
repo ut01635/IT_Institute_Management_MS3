@@ -140,6 +140,20 @@ export class StudentReportComponent  implements OnInit {
     }
   }
 
+  refreshEnrollments(nic: string) {
+    this.enrollmentService.getEnrollments(nic).subscribe(
+      (enrollments: any[]) => {
+        this.enrollments = enrollments;
+        // Update the courses if needed (optional)
+        this.reportData.courses = enrollments.map(enrollment => enrollment.course);
+      },
+      (error) => {
+        console.error('Error fetching enrollments:', error);
+      }
+    );
+  }
+  
+
   openCreatePaymentPlanModal(enrollment: any) {
     const modalRef = this.modalService.open(PaymentPlanFormComponent);
     modalRef.componentInstance.isNewPlan = true;  // Set isNewPlan to true for create
@@ -154,6 +168,12 @@ export class StudentReportComponent  implements OnInit {
     modalRef.componentInstance.studentNIC = enrollment.studentNIC;
     modalRef.componentInstance.CourseId = enrollment.courseId;
     modalRef.componentInstance.id = enrollment.id;  // Pass the enrollment ID for updating
+
+    modalRef.result.then(() => {
+      this.refreshEnrollments(this.reportData.nic);  // Refresh enrollments after the update
+    }).catch(() => {
+      // Handle the case when modal is dismissed without saving
+    });
   }
 
 }
