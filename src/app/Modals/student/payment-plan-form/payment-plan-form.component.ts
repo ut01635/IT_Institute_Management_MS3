@@ -15,6 +15,7 @@ export class PaymentPlanFormComponent implements OnInit {
   @Input() isNewPlan: boolean = true;
 
   paymentForm!: FormGroup;
+  currentPaymentPlan: string | null = null;
 
 constructor(
   private enrollmentService: EnrollmentService,
@@ -26,8 +27,21 @@ ngOnInit(): void {
   this.paymentForm = this.fb.group({
     paymentPlan: ['', Validators.required]
   });
+
+  if (!this.isNewPlan) {
+   
+    this.enrollmentService.getEnrollmentById(this.id).subscribe(
+      (enrollment) => {
+        this.currentPaymentPlan = enrollment.paymentPlan; 
+        this.paymentForm.get('paymentPlan')?.setValue(this.currentPaymentPlan);  
+      },
+      (error) => {
+        console.error('Error fetching enrollment data:', error);
+      }
+    );
+  }
 }
-  //  Submit Payment Plan
+  
   submitPaymentPlan(): void {
     const enrolmentData = {
       paymentPlan: this.paymentForm.get('paymentPlan')?.value,
@@ -40,7 +54,7 @@ ngOnInit(): void {
         alert("You have sucessfully enroll")
         this.activeModal.close();
       }, error => {
-        // this.activeModal.close();
+       
         alert(error.error)
       })
 
@@ -48,6 +62,14 @@ ngOnInit(): void {
   }
 
   updatePaymentPlan(): void {
+    const newPaymentPlan = this.paymentForm.get('paymentPlan')?.value;
+
+    if (this.currentPaymentPlan && newPaymentPlan === this.currentPaymentPlan) {
+      
+      alert("The payment plan is already set to this value.");
+      return;
+    }
+
     const enrollmentData = {
       paymentPlan: this.paymentForm.get('paymentPlan')?.value,
       studentNIC: this.studentNIC,
