@@ -1,4 +1,4 @@
-/* student-report.component.css */
+
 #student-report {
   margin-top: 20px;
 }
@@ -13,7 +13,6 @@ h2 {
 
 
 
-/* Optional: Improve responsiveness for smaller screens */
 @media (max-width: 768px) {
   .ms-3 {
     margin-left: 0;

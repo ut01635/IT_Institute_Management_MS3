@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="paymentModalLabel">Select Payment Plan</h5>
+        <h5 class="modal-title" id="paymentModalLabel">{{ isNewPlan ? 'Select Payment Plan' : 'Update Payment Plan' }}</h5>
         <button type="button" class="btn-close" aria-label="Close"
           (click)="activeModal.dismiss('cross click')"></button>
       </div>

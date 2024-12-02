@@ -140,20 +140,59 @@ export class StudentReportComponent  implements OnInit {
     }
   }
 
+  refreshEnrollments(nic: string) {
+    this.enrollmentService.getEnrollments(nic).subscribe(
+      (enrollments: any[]) => {
+        this.enrollments = enrollments;
+       
+        this.reportData.courses = enrollments.map(enrollment => enrollment.course);
+      },
+      (error) => {
+        console.error('Error fetching enrollments:', error);
+      }
+    );
+  }
+
+  confirmDelete(enrollmentId: string) {
+    if (window.confirm('Are you sure you want to delete this enrollment?')) {
+      this.deleteEnrollment(enrollmentId);
+    }
+  }
+
+  deleteEnrollment(enrollmentId: string) {
+    this.enrollmentService.deleteEnrollment(enrollmentId).subscribe(
+      (response) => {
+        alert('Enrollment deleted successfully');
+       
+        this.refreshEnrollments(this.reportData.nic);
+      },
+      (error) => {
+        console.error('Error deleting enrollment:', error);
+      }
+    );
+  }
+  
+
   openCreatePaymentPlanModal(enrollment: any) {
     const modalRef = this.modalService.open(PaymentPlanFormComponent);
-    modalRef.componentInstance.isNewPlan = true;  // Set isNewPlan to true for create
+    modalRef.componentInstance.isNewPlan = true;  
     modalRef.componentInstance.studentNIC = enrollment.studentNIC;
     modalRef.componentInstance.CourseId = enrollment.courseId;
   }
 
-  // Open the modal to update an existing payment plan
+
   openUpdatePaymentPlanModal(enrollment: any) {
     const modalRef = this.modalService.open(PaymentPlanFormComponent);
-    modalRef.componentInstance.isNewPlan = false;  // Set isNewPlan to false for update
+    modalRef.componentInstance.isNewPlan = false;  
     modalRef.componentInstance.studentNIC = enrollment.studentNIC;
     modalRef.componentInstance.CourseId = enrollment.courseId;
-    modalRef.componentInstance.id = enrollment.id;  // Pass the enrollment ID for updating
+    modalRef.componentInstance.id = enrollment.id; 
+
+    modalRef.result.then(() => {
+      this.refreshEnrollments(this.reportData.nic);  
+    }).catch(() => {
+      
+    });
   }
 
 }
