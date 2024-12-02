@@ -290,7 +290,10 @@
     </div>
 
     <button type="submit" class="submit-btn" [disabled]="studentForm.invalid">
-      {{ studentToEdit ? "Update" : "Submit" }}
+      <ng-container *ngIf="!studentToEdit">
+        <i class="bi bi-person-plus"></i>
+      </ng-container>
+      {{ studentToEdit ? "Update Student" : "Add Student" }}
     </button>
   </form>
 </div>
