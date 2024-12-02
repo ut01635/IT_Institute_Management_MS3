@@ -15,6 +15,10 @@ export class NotificationService {
   return this.http.get<Message[]>(this.baseURL+`/nic/${nic}`)
  }
 
+ postAdminMessage(nic:string,message:string){
+  return this.http.post(`${this.baseURL}/send?studentNIC=${nic}`,message)
+ }
+
  deleteMessage(id:string){
   return this.http.delete(this.baseURL+`/${id}`)
  }
@@ -25,6 +29,10 @@ export class NotificationService {
 
  postStudentmessage(message:MessageRequest){
   return this.http.post(this.studenMessageURL,message)
+ }
+
+ deleteStudentMessage(id:string){
+  return this.http.delete(this.studenMessageURL+`/${id}`)
  }
 
 }
