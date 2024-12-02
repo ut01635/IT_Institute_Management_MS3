@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrollmentService } from '../../../Services/enrollment.service';
-import { Course, Enrollment } from '../../../Services/Modal';
+import { Course, Enrollment, Payment } from '../../../Services/Modal';
+import { PaymentService } from '../../../Services/payment.service';
 
 @Component({
   selector: 'app-enroll-courses',
@@ -10,13 +11,15 @@ import { Course, Enrollment } from '../../../Services/Modal';
 export class EnrollCoursesComponent implements OnInit {
   enrollments: Enrollment[] = [];
   nic: string = '';
+  payments: Payment[] = [];
 
-  constructor(private enrollmentService: EnrollmentService) {}
+  constructor(private enrollmentService: EnrollmentService, private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     this.nic = localStorage.getItem('NIC') || '';
     this.loadEnrollments();
-   
+    this.loadPayments();
+
   }
 
   loadEnrollments(): void {
@@ -30,11 +33,24 @@ export class EnrollCoursesComponent implements OnInit {
     );
   }
 
-  // Calculate progress percentage based on enrollment date and course duration
+
+
+  loadPayments(): void {
+    this.paymentService.getPaymentsByNic(this.nic).subscribe(
+      data => {
+        this.payments = data;
+      },
+      error => {
+        console.error('Error loading payments:', error);
+      }
+    );
+  }
+
+  
   calculateProgress(enrollmentDate: Date, duration: number): number {
     const enrollmentStart = new Date(enrollmentDate);
     const now = new Date();
-    const totalDays = duration * 30; // Approximate total days
+    const totalDays = duration * 30; 
     const elapsedDays = Math.min(
       Math.max(0, (now.getTime() - enrollmentStart.getTime()) / (1000 * 60 * 60 * 24)),
       totalDays
@@ -42,20 +58,42 @@ export class EnrollCoursesComponent implements OnInit {
     return Math.round((elapsedDays / totalDays) * 100);
   }
 
-  // Calculate course end date
+  
   calculateEndDate(enrollmentDate: Date, duration: number): Date {
     const endDate = new Date(enrollmentDate);
     endDate.setMonth(endDate.getMonth() + duration);
     return endDate;
   }
 
-  // Determine if the "Unfollow" button should be hidden based on enrollment date
+  
   shouldShowUnfollow(enrollmentDate: Date): boolean {
     const threeDaysAfter = new Date(enrollmentDate);
-    threeDaysAfter.setDate(threeDaysAfter.getDate() + 3); // Add 3 days to the enrollment date
+    threeDaysAfter.setDate(threeDaysAfter.getDate() + 3); 
     return new Date() <= threeDaysAfter;
-  } 
-  
+  }
+
+
+  getLastPaymentDate(enrollmentId: string): string {
+    const paymentForEnrollment = this.payments.filter(payment => payment.enrollmentId === enrollmentId);
+
+    if (paymentForEnrollment.length === 0) {
+      return 'N/A'; 
+    }
+
+   
+    const latestPayment = paymentForEnrollment.sort((a, b) => new Date(b.paymentDate).getTime() - new Date(a.paymentDate).getTime())[0];
+
+   
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'short', 
+      day: 'numeric'
+    };
+
+    return new Date(latestPayment.paymentDate).toLocaleDateString('en-US', options);
+  }
+
+
   confirmDelete(id: string) {
     if (window.confirm('Are you sure you want to Unfollow this Course?')) {
       this.onDelete(id);
@@ -67,8 +105,8 @@ export class EnrollCoursesComponent implements OnInit {
       (response) => {
         alert('Course Unfollow successfully');
         this.loadEnrollments();
-       
-        
+
+
       },
       (error) => {
         console.error('Error Unfollow Course:', error);

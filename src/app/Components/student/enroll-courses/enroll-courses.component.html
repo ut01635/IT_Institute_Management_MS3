@@ -34,7 +34,7 @@
                   <p><strong>Enrollment Date:</strong> {{ enrollment.enrollmentDate | date }}</p>
                   <p><strong>Course End Date:</strong> {{ calculateEndDate(enrollment.enrollmentDate, enrollment.course.duration) | date }}</p>
                   <p><strong>Payment Plan:</strong> {{ enrollment.paymentPlan }}</p>
-                  <p><strong>Last Payment Date:</strong> {{ enrollment.studentNIC  }}</p>
+                  <p><strong>Last Payment Date:</strong> {{ getLastPaymentDate(enrollment.id) }}</p>
                 </div>
 
                 <!-- Third Column -->
