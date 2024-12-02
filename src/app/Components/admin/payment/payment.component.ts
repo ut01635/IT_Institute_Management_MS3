@@ -270,15 +270,18 @@ onNicChange(): void {
 
   calculateAdditionalDetails(enrollment: Enrollment, enrollmentDate: Date): void {
     
-    if (this.formData.dueAmount > 0 && this.formData.lastPaymentDate !== 'N/A') {
-    
-      const enrollmentDate = new Date(this.formData.enrollmentDate); 
-      const nextPaymentDate = new Date(enrollmentDate);
-      nextPaymentDate.setDate(nextPaymentDate.getDate() + 38); 
-      this.formData.nextPaymentDate = this.formatDate(nextPaymentDate);
-    } else {
-     
+    if (this.formData.dueAmount <= 0 || this.formData.lastPaymentDate === 'N/A') {
       this.formData.nextPaymentDate = 'N/A';
+    } else {
+    
+      const lastPaymentDate = new Date(this.formData.lastPaymentDate);
+  
+      
+      const nextPaymentDate = new Date(lastPaymentDate);
+      nextPaymentDate.setDate(nextPaymentDate.getDate() + 38); 
+  
+      
+      this.formData.nextPaymentDate = this.formatDate(nextPaymentDate);
     }
     
     
