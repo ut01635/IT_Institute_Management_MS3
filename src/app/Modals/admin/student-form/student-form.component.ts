@@ -105,6 +105,13 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
       }
 
       if (this.studentToEdit) {
+        const oldNic = this.studentToEdit.nic; 
+        const newNic = this.studentForm.get('nic')?.value; 
+  
+        if (oldNic !== newNic){
+          alert(`You cannot change the NIC. The original NIC was: ${oldNic}`);
+          return;
+        }
        
         this.studentService.updateStudent(this.studentToEdit.nic, formData).subscribe(
           response => {
@@ -113,7 +120,7 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
             this.activeModal.close();
           },
           error => {
-            console.error('Error updating student:', error);
+            alert((error.error?.message || error.message));
           }
         );
       } else {
@@ -124,7 +131,7 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
             this.activeModal.close();
           },
           (error) => {
-            console.error('Error adding student:', error);
+            alert((error.error?.message || error.message));
           }
         );
       }
