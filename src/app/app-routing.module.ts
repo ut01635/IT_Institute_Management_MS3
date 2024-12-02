@@ -35,9 +35,6 @@ const routes: Routes = [
   {
     path: '',
     component: LandingPageComponent,
-    children: [
-
-    ]
   },
   {
     path: 'admin',
@@ -57,7 +54,7 @@ const routes: Routes = [
       { path: 'enrollment-report', component: EnrollmentReportComponent },
       { path: 'payment-report', component: PaymentReportComponent },
       { path: 'admin-list', component: AdminListComponent },
-    ]
+    ],
   },
   {
     path: 'student',
@@ -73,16 +70,16 @@ const routes: Routes = [
       { path: 'payment-details', component: PaymentDetailsComponent },
       { path: 'enroll-courses', component: EnrollCoursesComponent },
       { path: 'profile', component: ProfileComponent },
-    ]
+    ],
   },
 
   { path: 'login', component: LoginComponent },
 
-
+  { path: 'landing', component: LandingPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
