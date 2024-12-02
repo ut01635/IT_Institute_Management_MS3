@@ -17,7 +17,7 @@ export class StudentFormComponent implements OnInit {
   @Input() studentToEdit: Student | null = null;
   studentForm: FormGroup;
   imageFile: File | null = null;
-
+addIcon:string=`<i class="bi bi-person-plus"></i>`
   constructor(
     public activeModal: NgbActiveModal,
     private studentService: StudentService
