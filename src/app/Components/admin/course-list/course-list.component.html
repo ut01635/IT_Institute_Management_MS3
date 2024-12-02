@@ -19,7 +19,6 @@
         <th>Duration (Months)</th>
         <th>Level</th>
         <th>Fees (LKR)</th>
-        <th>Description</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -37,7 +36,6 @@
         <td>
           {{ course.fees | currency:'LKR ' }}
         </td>
-        <td>{{course.description}}</td>
         <td class="d-flex justify-content-center">
           <button  type="button" class="btn btn-outline-warning me-2 btn-sm" (click)="onEdit(course.id)">
             <i class="bi bi-pencil"></i>
