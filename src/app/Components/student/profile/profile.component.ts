@@ -87,18 +87,43 @@ export class ProfileComponent implements OnInit {
   getProgressBarWidth(enrollmentDate: Date, duration: number): string {
     const today = new Date();
     const startDate = new Date(enrollmentDate);
+    
+    // Check for invalid duration
+    if (duration <= 0) {
+      return '0%';  // Handle invalid duration, return 0% progress
+    }
+  
+    // Calculate the end date by adding the duration (in months) to the start date
     const endDate = new Date(startDate);
-    endDate.setMonth(startDate.getMonth() + duration); // Add course duration to the start date
-
+    endDate.setMonth(startDate.getMonth() + duration);
+  
+    // If the start date is in the future, return 0% progress
+    if (today < startDate) {
+      return '0%';
+    }
+  
     // Calculate the number of months elapsed from the enrollment date
     const elapsedMonths = this.calculateElapsedMonths(startDate, today);
     const totalDuration = this.calculateElapsedMonths(startDate, endDate);
-
+  
+    // If the course duration has already passed, set progress to 100%
+    if (elapsedMonths >= totalDuration) {
+      return '100%';
+    }
+  
     // Calculate the percentage of progress
     const percentage = Math.min((elapsedMonths / totalDuration) * 100, 100); // Ensure it does not exceed 100%
-
-    return `${percentage}%`;
+  
+    return `${percentage.toFixed(2)}%`;  // Return with two decimal precision
   }
+  
+  // Helper function to calculate elapsed months between two dates
+  calculateElapsedMonths(startDate: Date, endDate: Date): number {
+    const yearsDifference = endDate.getFullYear() - startDate.getFullYear();
+    const monthsDifference = endDate.getMonth() - startDate.getMonth();
+    return yearsDifference * 12 + monthsDifference;
+  }
+  
 
   /**
    * Get the percentage of progress from enrollment date to current date.
@@ -115,12 +140,12 @@ export class ProfileComponent implements OnInit {
     return Math.min((elapsedMonths / totalDuration) * 100, 100); // Ensure it does not exceed 100%
   }
 
-  /**
-   * Calculate the number of full months between two dates.
-   */
-  private calculateElapsedMonths(startDate: Date, endDate: Date): number {
-    const months = endDate.getMonth() - startDate.getMonth() + (12 * (endDate.getFullYear() - startDate.getFullYear()));
-    return months < 0 ? 0 : months; // Return 0 if the calculated months are negative
-  }
+  // /**
+  //  * Calculate the number of full months between two dates.
+  //  */
+  // private calculateElapsedMonths(startDate: Date, endDate: Date): number {
+  //   const months = endDate.getMonth() - startDate.getMonth() + (12 * (endDate.getFullYear() - startDate.getFullYear()));
+  //   return months < 0 ? 0 : months; // Return 0 if the calculated months are negative
+  // }
 
 }

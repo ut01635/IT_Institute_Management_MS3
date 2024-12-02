@@ -68,7 +68,7 @@ export class EnrollCoursesComponent implements OnInit {
   
   shouldShowUnfollow(enrollmentDate: Date): boolean {
     const threeDaysAfter = new Date(enrollmentDate);
-    threeDaysAfter.setDate(threeDaysAfter.getDate() + 3); 
+    threeDaysAfter.setDate(threeDaysAfter.getDate() + 4); 
     return new Date() <= threeDaysAfter;
   }
 
