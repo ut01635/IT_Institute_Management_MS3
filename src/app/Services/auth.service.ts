@@ -26,6 +26,10 @@ export class AuthService {
     }
   }
 
+  getUserRole(): string | null {
+    return localStorage.getItem('Role');
+  }
+
   logout(){
     localStorage.removeItem("Token");
     localStorage.removeItem("NIC");
