@@ -51,7 +51,8 @@ import { SocialMediaFormComponent } from './Modals/student/social-media-form/soc
 import {  NgChartsModule } from 'ng2-charts';
 import { StudentUpdateFormComponent } from './Modals/student/student-update-form/student-update-form.component';
 import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/payment-plan-form.component';
-import { StudentPasswordComponent } from './Modals/admin/student-password/student-password.component'; // Correct import
+import { StudentPasswordComponent } from './Modals/admin/student-password/student-password.component';
+import { EnrollDateRangeFilterPipe } from './Pipes/enroll-date-range-filter.pipe'; // Correct import
 
 
 
@@ -101,7 +102,8 @@ import { StudentPasswordComponent } from './Modals/admin/student-password/studen
     SocialMediaFormComponent,
     StudentUpdateFormComponent,
     PaymentPlanFormComponent,
-    StudentPasswordComponent
+    StudentPasswordComponent,
+    EnrollDateRangeFilterPipe
 
    
   ],
