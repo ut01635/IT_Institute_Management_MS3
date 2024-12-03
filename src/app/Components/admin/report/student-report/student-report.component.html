@@ -69,6 +69,7 @@
             <th>Payment Plan</th>
             <th>Enrollment Date</th>
             <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -90,6 +91,21 @@
               <span [ngClass]="{'text-success': enrollment.isComplete, 'text-warning': !enrollment.isComplete}">
                 {{ enrollment.isComplete ? 'Completed' : 'Reading' }}
               </span>
+            </td>
+
+            <td class="">
+              <div class="d-flex" style="justify-content: center;">
+                <!-- Edit Button -->
+                <button type="button" class="btn btn-warning me-4 btn-sm"  (click)="openUpdatePaymentPlanModal(enrollment)">
+                  <i class="bi bi-pencil"> Edit</i>
+                  <!--Edit -->
+                </button>
+                <!-- Delete Button -->
+                <button type="button" class="btn btn-danger  btn-sm" (click)="confirmDelete(enrollment.id)">
+                  <i class="bi bi-trash"> Delete</i>
+                </button>
+              </div>
+  
             </td>
           </tr>
         </tbody>

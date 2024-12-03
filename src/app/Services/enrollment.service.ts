@@ -55,7 +55,14 @@ export class EnrollmentService {
   }
 
 
-  deleteEnrollment(id:string){
-    return this .http.delete(this.enrollmentUrl)
+  deleteEnrollment(id: string): Observable<any> {
+    const url = `${this.enrollmentUrl}/delete/${id}?forceDelete=true`;  
+    return this.http.delete(url);  
   }
+
+  updateEnrollment(id:string,enrollmentData: EnrollmentRequest) {
+    const updateUrl = (`${this.enrollmentUrl}/update/${id}`);
+    return this.http.put<Enrollment>(updateUrl, enrollmentData);
+  }
+  
 }

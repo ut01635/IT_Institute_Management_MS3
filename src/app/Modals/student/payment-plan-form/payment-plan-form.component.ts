@@ -11,9 +11,11 @@ import { EnrollmentService } from '../../../Services/enrollment.service';
 export class PaymentPlanFormComponent implements OnInit {
   @Input() studentNIC!: string;
   @Input() CourseId!:string;
-  
+  @Input() id!:string;
+  @Input() isNewPlan: boolean = true;
 
   paymentForm!: FormGroup;
+  currentPaymentPlan: string | null = null;
 
 constructor(
   private enrollmentService: EnrollmentService,
@@ -25,12 +27,25 @@ ngOnInit(): void {
   this.paymentForm = this.fb.group({
     paymentPlan: ['', Validators.required]
   });
+
+  if (!this.isNewPlan) {
+   
+    this.enrollmentService.getEnrollmentById(this.id).subscribe(
+      (enrollment) => {
+        this.currentPaymentPlan = enrollment.paymentPlan; 
+        this.paymentForm.get('paymentPlan')?.setValue(this.currentPaymentPlan);  
+      },
+      (error) => {
+        console.error('Error fetching enrollment data:', error);
+      }
+    );
+  }
 }
-  //  Submit Payment Plan
+  
   submitPaymentPlan(): void {
     const enrolmentData = {
       paymentPlan: this.paymentForm.get('paymentPlan')?.value,
-      studentNic: this.studentNIC,
+      studentNIC: this.studentNIC,
       courseId: this.CourseId
     }
     if (this.paymentForm.valid) {
@@ -39,10 +54,36 @@ ngOnInit(): void {
         alert("You have sucessfully enroll")
         this.activeModal.close();
       }, error => {
-        // this.activeModal.close();
+       
         alert(error.error)
       })
 
+    }
+  }
+
+  updatePaymentPlan(): void {
+    const newPaymentPlan = this.paymentForm.get('paymentPlan')?.value;
+
+    if (this.currentPaymentPlan && newPaymentPlan === this.currentPaymentPlan) {
+      
+      alert("The payment plan is already set to this value.");
+      return;
+    }
+
+    const enrollmentData = {
+      paymentPlan: this.paymentForm.get('paymentPlan')?.value,
+      studentNIC: this.studentNIC,
+      courseId: this.CourseId
+    };
+    
+    if (this.paymentForm.valid) {
+      this.enrollmentService.updateEnrollment(this.id,enrollmentData).subscribe(data => {
+        this.paymentForm.reset();
+        alert("Payment plan updated successfully!");
+        this.activeModal.close();
+      }, error => {
+        alert("Error updating payment plan: " + error.error);
+      });
     }
   }
 }

@@ -50,7 +50,8 @@ import { StudentMessageFormComponent } from './Modals/student/student-message-fo
 import { SocialMediaFormComponent } from './Modals/student/social-media-form/social-media-form.component';
 import {  NgChartsModule } from 'ng2-charts';
 import { StudentUpdateFormComponent } from './Modals/student/student-update-form/student-update-form.component';
-import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/payment-plan-form.component'; // Correct import
+import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/payment-plan-form.component';
+import { StudentPasswordComponent } from './Modals/admin/student-password/student-password.component'; // Correct import
 
 
 
@@ -99,7 +100,8 @@ import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/pay
     StudentMessageFormComponent,
     SocialMediaFormComponent,
     StudentUpdateFormComponent,
-    PaymentPlanFormComponent
+    PaymentPlanFormComponent,
+    StudentPasswordComponent
 
    
   ],

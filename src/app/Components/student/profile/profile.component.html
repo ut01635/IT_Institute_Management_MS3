@@ -117,8 +117,11 @@
                 <h6 class="text-info mb-3"><i class="bi bi-bookmark-check me-2"></i> Reading Courses</h6>
                 <div *ngIf="ReadingEnrollolment && ReadingEnrollolment.length > 0; else noEnrollments">
                   <div *ngFor="let enrollment of ReadingEnrollolment">
-                    <small>{{ enrollment.course.courseName }}</small>
-                    <div class="progress mb-3" style="height: 5px">
+                    <div class="d-flex justify-content-between">
+                      <small class="fw-bold">{{ enrollment.course.courseName }}</small>
+                      <small>{{enrollment.course.level}}</small>
+                    </div>
+                    <div class="progress mb-3" style="height: 10px">
                       <div class="progress-bar bg-primary"
                         [style.width]="getProgressBarWidth(enrollment.enrollmentDate, enrollment.course.duration)"
                         role="progressbar"
@@ -146,8 +149,11 @@
                 <h6 class="text-success mb-3"><i class="bi bi-check-circle me-2"></i> Completed Courses</h6>
                 <div *ngIf="completeEnrollment && completeEnrollment.length > 0; else noCompleteEnrollments">
                   <div *ngFor="let enrollment of completeEnrollment">
-                    <small>{{ enrollment.course.courseName }}</small>
-                    <div class="progress mb-3" style="height: 5px">
+                    <div class="d-flex justify-content-between">
+                      <small>{{ enrollment.course.courseName }}</small>
+                      <small>{{enrollment.course.level}}</small>
+                    </div>                   
+                    <div class="progress mb-3" style="height: 7px">
                       <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
                         aria-valuemin="0" aria-valuemax="100"></div>
                     </div>

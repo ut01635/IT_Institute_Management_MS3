@@ -122,7 +122,7 @@ export interface SocialMediaLinks {
 }
 
 export interface EnrollmentRequest{
-  studentNic:string,
+  studentNIC:string,
   courseId:string,
   paymentPlan:string
 }
@@ -166,5 +166,12 @@ export interface StudentUpdateRequestDto {
   email: string;
   phone: string;
   address: AddressRequestDto;
+}
+
+
+
+export interface StudentPassword {
+  nic: string;
+  newPassword: string;
 }
 

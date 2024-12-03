@@ -1,124 +1,124 @@
 <div class="container">
+  <!-- Welcome Alert -->
   <div class="row my-4">
-    <div class="col-6">
+    <div class="col-lg-6 col-md-12">
       <div class="alert alert-primary" role="alert">
         <h4 class="alert-heading">Hello, Admin!</h4>
         <p>Welcome back to your dashboard.</p>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total Students</h5>
-          <p class="card-text">0{{ totalStudents }}</p>
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Students : 0{{ totalStudents }}</h5>
+          <p class="card-text text-start">Current Month : 7</p>
         </div>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total Courses</h5>
-          <p class="card-text">0{{ totalCourses }}</p>
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Courses : 0{{ totalCourses }}</h5>
+          <p class="card-text text-start"> Current Month : 7</p>
         </div>
       </div>
     </div>
   </div>
 
+ <!-- Line Chart -->
+<div class="row my-4">
+  <div class="col-12">
+    <div class="chart-container">
+      <canvas baseChart [type]="lineChartType" [data]="lineChartData"></canvas>
+    </div>
+  </div>
+</div>
 
+  <!-- Enrollment Stats -->
   <div class="row my-4">
-    
-    <div class="col-12">
-      <canvas baseChart [type]="lineChartType" [data]="lineChartData">
-      </canvas>
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Enrollments : 0{{ totalEnrollments }}</h5>
+          <p class="card-text text-start">Current Month : 7</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Completed Enrollments : 0{{ completedEnrollments }}</h5>
+          <p class="card-text text-start">Current Month : 7</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title">Reading Enrollments : 0{{ readingEnrollments }}</h5>
+          <p class="card-text text-start">Current Month : 7</p>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- Revenue Stats -->
   <div class="row my-4">
-    <div class="col-4">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total Enrollments</h5>
-          <p class="card-text">0{{ totalEnrollments }}</p>
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Revenue : {{ totalRevenue | currency :'LKR ' }}</h5>
+          <p class="card-text text-start">Current Month : 7 LKR</p>
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Completed Enrollments</h5>
-          <p class="card-text">0{{ completedEnrollments }}</p>
+        <div class="card-body text-center">
+          <h5 class="card-title">Current Year Revenue : {{ currentYearRevenue | currency :'LKR ' }}</h5>
+          <p class="card-text text-start">Current Month : 7 LKR</p>
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-lg-4 col-md-6 col-sm-12">
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Reading Enrollments</h5>
-          <p class="card-text">0{{ readingEnrollments }}</p>
+        <div class="card-body text-center">
+          <h5 class="card-title">Current Month Revenue : {{ currentMonthRevenue | currency :'LKR ' }}</h5>
+          <p class="card-text text-start">Current Month : 7 LKR</p>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Progress Circles -->
   <div class="row my-4">
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Total Revenue</h5>
-          <p class="card-text">{{ totalRevenue | currency :'LKR ' }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Current Year Revenue</h5>
-          <p class="card-text">{{ currentYearRevenue | currency :'LKR ' }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Current Month Revenue</h5>
-          <p class="card-text">{{ currentMonthRevenue | currency :'LKR ' }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row my-4">
-      
-      <div class="col-md-6 text-center">
-        <div class="progress-circle">
-          <div class="circle">
-            <div class="mask full" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
-            <div class="mask half">
-              <div class="fill" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
-            </div>
-            <div class="inside-circle">
-              <span>{{ totalToComplete }}%</span>
-            </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 text-center mb-4">
+      <div class="progress-circle mx-auto">
+        <div class="circle">
+          <div class="mask full" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
+          <div class="mask half">
+            <div class="fill" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
+          </div>
+          <div class="inside-circle">
+            <span>{{ totalToComplete }}%</span>
           </div>
         </div>
-        <h5>Total to Complete</h5>
       </div>
-  
-      <div class="col-md-6 text-center">
-        <div class="progress-circle">
-          <div class="circle">
-            <div class="mask full" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
-            <div class="mask half">
-              <div class="fill" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
-            </div>
-            <div class="inside-circle">
-              <span>{{ totalToReading }}%</span>
-            </div>
+      <h5>Total to Complete</h5>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+      <div class="progress-circle mx-auto">
+        <div class="circle">
+          <div class="mask full" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
+          <div class="mask half">
+            <div class="fill" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
+          </div>
+          <div class="inside-circle">
+            <span>{{ totalToReading }}%</span>
           </div>
         </div>
-        <h5>Total to Reading</h5>
       </div>
+      <h5>Total to Reading</h5>
     </div>
   </div>
 </div>

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Course } from '../../Services/Modal';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
+import { Course, Enrollment, Student } from '../../Services/Modal';
 import { CourseService } from '../../Services/course.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EnquiryService } from '../../Services/enquiry.service';
+import { EnrollmentService } from '../../Services/enrollment.service';
+import { StudentService } from '../../Services/student.service';
 
 
 @Component({
@@ -10,22 +12,47 @@ import { EnquiryService } from '../../Services/enquiry.service';
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.css'],
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements OnInit, AfterViewInit {
   email: string = 'devhubinstitute@gmail.com';
   courses: Course[] = [];
   enquiryResults:string = ''
   contactForm: FormGroup;
   errorMessage!: string;
+  enrollments:Enrollment[]=[];
+  completeEnrollments:Enrollment[]=[];
+  students:Student[]=[];
 
   constructor(
     private courseService: CourseService,
      private fb: FormBuilder,
-    private enquiryService : EnquiryService ) {
+    private enquiryService : EnquiryService,
+    private renderer: Renderer2,
+    private enrollmentService:EnrollmentService,
+    private studentService: StudentService
+  ) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       message: ['', [Validators.required, Validators.minLength(10)]],
     });
+  }
+
+  ngAfterViewInit(): void {
+    const videoElement = document.getElementById('bg-video') as HTMLVideoElement;
+
+    if (videoElement) {
+      // Use Renderer2 to ensure DOM manipulation works in Angular's zone
+      this.renderer.setProperty(videoElement, 'muted', true);
+      videoElement.load();
+
+      videoElement.play().then(() => {
+        console.log('Video is playing');
+      }).catch((error) => {
+        console.error('Autoplay failed:', error);
+      });
+    } else {
+      console.error('Video element not found');
+    }
   }
 
   onSubmit() {
@@ -69,6 +96,31 @@ export class LandingPageComponent implements OnInit {
         console.error('Error loading courses:', error);  
       }
     );
+
+
+    this.enrollmentService.getallEnrollement().subscribe(
+      (data: Enrollment[]) => {
+        this.enrollments = data;
+      },
+      (error) => {
+        console.error('Error fetching enrollments:', error);
+      }
+    );
+
+    this.studentService.students$.subscribe((students) => {
+      this.students = students;
+     // console.log(this.students);
+    },(error) => {
+      console.error('Error fetching students:', error);
+    });
+
+    this.studentService.getStudents();
+
+    this.enrollmentService.getAllCompleted().subscribe(data=>{
+      this.completeEnrollments=data
+    },(error) => {
+      console.error('Error fetching Completed enrollments:', error);
+    })
   }
 
   // Method to chunk the courses into groups of 3
@@ -81,23 +133,45 @@ export class LandingPageComponent implements OnInit {
     return chunks;
   }
   
+
   playVideo(event: Event): void {
     const container = event.currentTarget as HTMLElement;
 
-    // Ensure the container exists and is of the correct type
+    // Find the required elements within the container
     const img = container.querySelector<HTMLImageElement>('img');
-    const button = container.querySelector<HTMLDivElement>('.play-button');
+    const playButton = container.querySelector<HTMLDivElement>('.play-button');
     const iframe = container.querySelector<HTMLIFrameElement>('iframe');
 
-    if (!img || !button || !iframe) {
+    if (!img || !playButton || !iframe) {
       console.error('Required elements not found in the container.');
       return;
     }
 
-    // Hide the thumbnail and play button, show the iframe
+    // Hide the thumbnail and play button
     img.style.display = 'none';
-    button.style.display = 'none';
-    iframe.style.display = 'block';
+    playButton.style.display = 'none';
+
+    // Show the iframe and set its `src` to play the video
+    const videoSrc = iframe.getAttribute('data-src');
+    if (videoSrc) {
+      iframe.src = videoSrc;
+      iframe.style.display = 'block';  // Make iframe visible and play the video
+    } else {
+      console.error('Video source not found.');
+    }
+  }
+
+   // Method to calculate the percentage of completed enrollments
+   getCompletionPercentage(): number {
+    const totalEnrollments = this.enrollments.length;
+    const completed = this.completeEnrollments.length;
+    
+    // Prevent division by zero
+    if (totalEnrollments === 0) {
+      return 0;
+    }
+
+    return (completed / totalEnrollments) * 100;
   }
 }
 
