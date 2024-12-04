@@ -29,10 +29,10 @@ export class AuthInterceptor implements HttpInterceptor {
           this.router.navigate(['/login']);
         } else if (error.status === 0) {
        
-          alert('Network error. Please check your internet connection.');
+          // alert('Network error. Please check your internet connection.');
         } else {
          
-          alert(error.message || 'An unexpected error occurred.');
+          // alert(error.message || 'An unexpected error occurred.');
         }
 
        
