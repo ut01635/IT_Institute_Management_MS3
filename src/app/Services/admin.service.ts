@@ -9,6 +9,7 @@ import { admin } from './Modal';
 export class AdminService {
 
   private adminBaseURL = 'https://localhost:7055/api/Admin';
+  private adminTunelURL = 'https://svts85hv-7055.asse.devtunnels.ms/api/Admin';
 
 
   private adminsSubject = new BehaviorSubject<admin[]>([]);
@@ -19,7 +20,7 @@ export class AdminService {
   
 
   getAdmins(): Observable<admin[]> {
-    return this.http.get<admin[]>(this.adminBaseURL).pipe(
+    return this.http.get<admin[]>(this.adminTunelURL).pipe(
       catchError((error) => {
         console.error('Error fetching admins', error);
         return [];
