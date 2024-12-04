@@ -37,6 +37,12 @@ export class NotificationComponent implements OnInit {
   loadMessages(nic:string){
     this.notificationService.getMessageByNIC(nic).subscribe(data=>{
       this.messages = data;
+      this.messages.sort((a, b) => {
+        const dateA = new Date(a.date).getTime();
+        const dateB = new Date(b.date).getTime();
+        return dateB - dateA; // Sort in descending order
+      });
+
     },error=>{
       console.log(error.error);    
     })

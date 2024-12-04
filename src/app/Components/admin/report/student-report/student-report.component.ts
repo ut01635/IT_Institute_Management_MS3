@@ -37,6 +37,20 @@ export class StudentReportComponent  implements OnInit {
 
   onsubmit() {
     const nicNumber: string = this.reportForm.value.nic;
+    this.reportData = {
+      nic: '',
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      imagePath: '',
+      courses: [],
+      fee: 0,
+      paymentPlan: 'Payment Plan',
+      paidAmount: 0,
+      dueAmount: 0,
+      payments: []
+    };
 
     if (nicNumber) {
       
@@ -58,6 +72,8 @@ export class StudentReportComponent  implements OnInit {
           };
 
          
+
+         
           this.enrollmentService.getEnrollments(nicNumber).subscribe(
             (enrollments: any[]) => {
               this.enrollments = enrollments;
@@ -71,6 +87,9 @@ export class StudentReportComponent  implements OnInit {
         (error) => {
           console.error('Error fetching student details:', error);
           alert('Student not found for the given NIC.');
+          this.enrollments = [];
+          this.paymentDetails = [];
+          
         }
       );
     }

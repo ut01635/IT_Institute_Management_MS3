@@ -234,18 +234,22 @@ onNicChange(): void {
         }
 
         if (payment.paymentDate) {
+          console.log("cc"+payment.paymentDate)
           const date = new Date(payment.paymentDate);
           const day = String(date.getDate()).padStart(2, '0'); 
           const month = String(date.getMonth() + 1).padStart(2, '0'); 
           const year = date.getFullYear();
 
           this.formData.lastPaymentDate = `${day}-${month}-${year}`;
+          console.log("ddd"+this.formData.lastPaymentDate);
+          this.calculateAdditionalDetails(payment, date);
 
         } else {
           this.formData.lastPaymentDate = 'N/A';
         }
 
         this.calculatePayAmount();
+        
       },
       (error) => {
         console.error('Error fetching enrollment details:', error);
@@ -269,19 +273,22 @@ onNicChange(): void {
   }
 
   calculateAdditionalDetails(enrollment: Enrollment, enrollmentDate: Date): void {
+
+    console.log("eeeu"+this.formData.dueAmount);
+    console.log("eeeu"+this.formData.lastPaymentDate);
+
     
-    if (this.formData.dueAmount <= 0 || this.formData.lastPaymentDate === 'N/A') {
-      this.formData.nextPaymentDate = 'N/A';
-    } else {
-    
+    if (this.formData.dueAmount > 0 && this.formData.lastPaymentDate !== 'N/A') {
       const lastPaymentDate = new Date(this.formData.lastPaymentDate);
   
-      
-      const nextPaymentDate = new Date(lastPaymentDate);
-      nextPaymentDate.setDate(nextPaymentDate.getDate() + 38); 
-  
-      
-      this.formData.nextPaymentDate = this.formatDate(nextPaymentDate);
+        
+        const nextPaymentDate = new Date(lastPaymentDate);
+        nextPaymentDate.setDate(lastPaymentDate.getDay()+ 38); 
+
+        
+        this.formData.nextPaymentDate = this.formatDate(nextPaymentDate);
+    } else {
+      this.formData.nextPaymentDate = 'N/A';
     }
     
     

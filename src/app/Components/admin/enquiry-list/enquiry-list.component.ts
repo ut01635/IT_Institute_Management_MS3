@@ -28,14 +28,16 @@ export class EnquiryListComponent implements OnInit {
 
   loadEnquiries(){
     this.enquiryService.getEnquiries().subscribe((data) => {
-      this.enquirys = data;
+      this.enquirys = data.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
     });
   }
 
-   // Open modal and pass enquiry.email to the modal component
+
    openModal(email: string): void {
-    const modalRef = this.modalService.open(EnquiryReplayFormComponent); // Open the modal
-    modalRef.componentInstance.email = email; // Pass the email to the modal component
+    const modalRef = this.modalService.open(EnquiryReplayFormComponent); 
+    modalRef.componentInstance.email = email; 
   }
 
   onDelete(id: string): void {

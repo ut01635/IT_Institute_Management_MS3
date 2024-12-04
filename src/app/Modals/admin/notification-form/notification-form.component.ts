@@ -18,7 +18,7 @@ export class NotificationFormComponent {
     public activeModal: NgbActiveModal
   ) {
     this.messageForm = this.fb.group({
-      nic: [
+      studentNIC: [
         '',
         [
           Validators.required,
@@ -32,8 +32,9 @@ export class NotificationFormComponent {
   onSubmit() {
     if (this.messageForm.valid) {
       const formData = this.messageForm.value
+console.log(formData);
 
-      this.messageService.postAdminMessage(formData.nic,formData.message).subscribe(
+      this.messageService.postAdminMessage(formData).subscribe(
         (response) => {
           alert('Message sent successfully!');
           console.log('Message sent:', response);

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Message, MessageRequest } from './Modal';
+import { AdminMessageRequest, Message, MessageRequest } from './Modal';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class NotificationService {
   return this.http.get<Message[]>(this.baseURL+`/nic/${nic}`)
  }
 
- postAdminMessage(nic:string,message:string){
-  return this.http.post(`${this.baseURL}/send?studentNIC=${nic}`,message)
+ postAdminMessage(message:AdminMessageRequest){
+  return this.http.post(this.baseURL,message)
  }
 
  deleteMessage(id:string){

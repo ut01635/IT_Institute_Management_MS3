@@ -12,13 +12,23 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class StudentMessageFormComponent {
   message: string = '';
   studentNIC: string = localStorage.getItem('NIC') || '';
-  currentDate: Date = new Date();
+  currentDate: Date = this.convertToSriLankaTime(new Date());
 
 
   constructor(private messageService:NotificationService,public activeModal: NgbActiveModal) {}
 
+  convertToSriLankaTime(utcDate: Date): Date {
+    const sriLankaOffset = 5.5 * 60; 
+    const utcOffset = utcDate.getTimezoneOffset(); 
+    
+    
+    const adjustedTime = new Date(utcDate.getTime() + (sriLankaOffset + utcOffset) * 60000);
+    
+    return adjustedTime;
+  }
+
   onSubmit() {
-    // Backend request payload
+   
     const requestData:MessageRequest = {
       message: this.message,
       date: this.currentDate,

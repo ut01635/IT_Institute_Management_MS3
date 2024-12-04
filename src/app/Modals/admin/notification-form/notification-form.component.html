@@ -17,15 +17,15 @@
               <div class="input-field">
                 <input
                   class="input"
-                  formControlName="nic"
+                  formControlName="studentNIC"
                   type="text"
                   required
                   placeholder=""
                 />
                 <label class="label">Enter NIC</label>
-                <div *ngIf="messageForm.get('nic')?.touched && messageForm.get('nic')?.invalid" class="error-message">
-                  <small *ngIf="messageForm.get('nic')?.hasError('required')">NIC is required.</small>
-                  <small *ngIf="messageForm.get('nic')?.hasError('pattern')">Invalid NIC format.</small>
+                <div *ngIf="messageForm.get('studentNIC')?.touched && messageForm.get('nic')?.invalid" class="error-message">
+                  <small *ngIf="messageForm.get('studentNIC')?.hasError('required')">NIC is required.</small>
+                  <small *ngIf="messageForm.get('studentNIC')?.hasError('pattern')">Invalid NIC format.</small>
                 </div>
               </div>
             </div>

@@ -145,6 +145,13 @@ export interface MessageRequest{
   date: Date;
 }
 
+export interface AdminMessageRequest{
+  
+    message:string,
+    studentNIC:string
+  
+}
+
 export interface resetPassword{
   currentPassword:string,
   newPassword:string,

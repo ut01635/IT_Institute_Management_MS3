@@ -5,44 +5,47 @@
     </div>
 
     <div>
-      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#adminModal" (click)="openModal()">
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#adminModal"
+        (click)="openModal()">
         New Admin
       </button>
     </div>
   </div>
-
-  <table class="table table-responsive table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>NIC</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let admin of admins | adminSearch:searchText">
-        <tr *ngIf="admin.nic !== '200206601718'">
-          <td>
-            <img [src]="baseUrl + admin.imagePath" alt="Admin Image" class="img-thumbnail" style="width: 30px; height: 30px;">
-          </td>
-          <td>{{ admin.nic }}</td>
-          <td>{{ admin.name }}</td>
-          <td>{{ admin.email }}</td>
-          <td>{{ admin.phone }}</td>
-          <td class="d-flex justify-content-center">
-            <button type="button" class="btn btn-outline-warning me-2 btn-sm" (click)="onEdit(admin.nic)">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button type="button" class="btn btn-outline-danger btn-sm"(click)="onDelete(admin.nic)">
-              <i class="bi bi-trash"></i> 
-            </button>
-          </td>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered w-100">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>NIC</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Actions</th>
         </tr>
-      </ng-container>
-    </tbody>
-    
-  </table>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let admin of admins | adminSearch:searchText">
+          <tr *ngIf="admin.nic !== '200206601718'">
+            <td>
+              <img [src]="baseUrl + admin.imagePath" alt="Admin Image" class="img-thumbnail"
+                style="width: 30px; height: 30px;">
+            </td>
+            <td>{{ admin.nic }}</td>
+            <td>{{ admin.name }}</td>
+            <td>{{ admin.email }}</td>
+            <td>{{ admin.phone }}</td>
+            <td class="d-flex justify-content-center">
+              <button type="button" class="btn btn-outline-warning me-2 btn-sm" (click)="onEdit(admin.nic)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="onDelete(admin.nic)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+
+    </table>
+  </div>
 </div>

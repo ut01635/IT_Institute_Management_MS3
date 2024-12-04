@@ -35,7 +35,7 @@ import { PasswordRestFormComponent } from './Modals/student/password-rest-form/p
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminPageComponent } from './Layouts/admin-page/admin-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SearchPipe } from './Pipes/search.pipe';
 import { CourseSearchPipe } from './Pipes/course-search.pipe';
 import { AdminSearchPipe } from './Pipes/admin-search.pipe';
@@ -51,7 +51,9 @@ import { SocialMediaFormComponent } from './Modals/student/social-media-form/soc
 import {  NgChartsModule } from 'ng2-charts';
 import { StudentUpdateFormComponent } from './Modals/student/student-update-form/student-update-form.component';
 import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/payment-plan-form.component';
-import { StudentPasswordComponent } from './Modals/admin/student-password/student-password.component'; // Correct import
+import { StudentPasswordComponent } from './Modals/admin/student-password/student-password.component';
+import { EnrollDateRangeFilterPipe } from './Pipes/enroll-date-range-filter.pipe'; // Correct import
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 
 
@@ -101,7 +103,8 @@ import { StudentPasswordComponent } from './Modals/admin/student-password/studen
     SocialMediaFormComponent,
     StudentUpdateFormComponent,
     PaymentPlanFormComponent,
-    StudentPasswordComponent
+    StudentPasswordComponent,
+    EnrollDateRangeFilterPipe
 
    
   ],
@@ -118,7 +121,13 @@ import { StudentPasswordComponent } from './Modals/admin/student-password/studen
     NgChartsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

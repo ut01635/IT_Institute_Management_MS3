@@ -5,6 +5,7 @@ import { StudentService } from '../../../Services/student.service';
 import { CourseService } from '../../../Services/course.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
 import { PaymentService } from '../../../Services/payment.service';
+import { AdminService } from '../../../Services/admin.service';
 // import { Chart } from 'chart.js';
 
 @Component({
@@ -13,6 +14,7 @@ import { PaymentService } from '../../../Services/payment.service';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+  adminName: string = '';
   totalStudents: number = 0;
   totalCourses: number = 0;
   totalEnrollments: number = 0;
@@ -48,12 +50,27 @@ export class AdminDashboardComponent implements OnInit {
     private studentService: StudentService,
     private courseService: CourseService,
     private enrollmentService: EnrollmentService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private adminService : AdminService
   ) {}
 
   ngOnInit(): void {
     this.loadDashboardData();
+    this.loadAdminName(); 
   }
+
+
+  loadAdminName(): void {
+    const adminNic = localStorage.getItem('NIC'); 
+    if (adminNic) {
+      this.adminService.getAdminByNic(adminNic).subscribe(admin => {
+        this.adminName = admin.name;
+      }, error => {
+        console.error('Error fetching admin data:', error);
+      });
+    }
+  }
+
 
   loadDashboardData() {
     

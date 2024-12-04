@@ -96,7 +96,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let enrollment of filteredEnrollments">
+        <tr *ngFor="let enrollment of filteredEnrollments | enrollDateRangeFilter: selectedDateRange">
           <td>{{ enrollment.student.nic }}</td>
           <td>{{ enrollment.student.firstName }} {{ enrollment.student.lastName }}</td>
           <td>{{ enrollment.course.courseName }}</td>

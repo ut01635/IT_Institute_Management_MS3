@@ -1,171 +1,239 @@
 <div id="main-container" class="container">
   <div id="sub-container" class="shadow w-100">
-    <div id="fee-management" class="card shadow-lg" style="height: 72vh;">
-      <div class="card-header bg-light text-darkblue d-flex justify-content-between align-items-center">
-        <h2 class="mb-0 text-darkblue"><i class="bi bi-credit-card"></i> Fee Management</h2>
+    <div id="fee-management" class="card shadow-lg" style="height: 100%">
+      <div
+        class="card-header bg-light text-darkblue d-flex justify-content-between align-items-center"
+      >
+        <h2 class="mb-0 text-darkblue">
+          <i class="bi bi-credit-card"></i> Fee Management
+        </h2>
       </div>
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" id="fee-management-form" class="row g-3">
-          
           <div class="col-12 input-field">
-            <input type="text" class="input" id="nic" name="nic" placeholder=" " [(ngModel)]="formData.nic"
-              (ngModelChange)="onNicChange()" required />
-            <label for="nic" class="label"><i class="bi bi-person-fill-down"></i> NIC Number</label>
+            <input
+              type="text"
+              class="input"
+              id="nic"
+              name="nic"
+              placeholder=" "
+              [(ngModel)]="formData.nic"
+              (ngModelChange)="onNicChange()"
+              required
+            />
+            <label for="nic" class="label"
+              ><i class="bi bi-person-fill-down"></i> NIC Number</label
+            >
           </div>
 
-          
           <div class="col-12 input-field">
-            <select id="course" name="course" class="input" [(ngModel)]="formData.course" [disabled]="!courses.length"
-              required (change)="onCourseSelect()">
-              <option *ngFor="let enrollment of courses" [value]="enrollment.id">{{ enrollment.course.courseName }}
+            <select
+              id="course"
+              name="course"
+              class="input"
+              [(ngModel)]="formData.course"
+              [disabled]="!courses.length"
+              required
+              (change)="onCourseSelect()"
+            >
+              <option
+                *ngFor="let enrollment of courses"
+                [value]="enrollment.id"
+              >
+                {{ enrollment.course.courseName }}
               </option>
             </select>
-            <label for="course" class="label"><i class="bi bi-book"></i> Select Course</label>
+            <label for="course" class="label"
+              ><i class="bi bi-book"></i> Select Course</label
+            >
           </div>
 
-          
           <div class="col-12">
-            <label class="form-label"><i class="bi bi-credit-card-fill"></i> Payment Information</label>
+            <label class="form-label"
+              ><i class="bi bi-credit-card-fill"></i> Payment Information</label
+            >
             <div class="row g-2">
-
-              
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Course Name:</strong>
-                  <p class="mx-3 fw-semibold text-success-emphasis">{{ formData.courseName }}</p>
+                  <p class="mx-3 fw-semibold text-success-emphasis">
+                    {{ formData.courseName }}
+                  </p>
                 </div>
               </div>
 
-
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Duration:</strong>
-                  <p class="mx-3 fw-semibold text-secondary">{{ formData.duration }} Months </p>
+                  <p class="mx-3 fw-semibold text-secondary">
+                    {{ formData.duration }} Months
+                  </p>
                 </div>
               </div>
 
-
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Payment Plan:</strong>
-                  <p class="mx-3 fw-semibold"
-                    [ngClass]="{ 'text-primary': formData.paymentPlan === 'Full', 'text-warning': formData.paymentPlan !== 'Full' }">
+                  <p
+                    class="mx-3 fw-semibold"
+                    [ngClass]="{
+                      'text-primary': formData.paymentPlan === 'Full',
+                      'text-warning': formData.paymentPlan !== 'Full'
+                    }"
+                  >
                     {{ formData.paymentPlan }}
                   </p>
                 </div>
               </div>
 
-
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Payment Status:</strong>
-                  <p class="mx-3 fw-semibold" [ngClass]="{ 'text-success': formData.paymentStatus === 'Completed', 'text-danger': formData.paymentStatus === 'Pending' }">
+                  <p
+                    class="mx-3 fw-semibold"
+                    [ngClass]="{
+                      'text-success': formData.paymentStatus === 'Completed',
+                      'text-danger': formData.paymentStatus === 'Pending'
+                    }"
+                  >
                     {{ formData.paymentStatus }}
                   </p>
                 </div>
               </div>
 
-               
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Enrollment Date:</strong>
-                  <p class="mx-3 fw-semibold text-warning-emphasis">{{ formData.enrollmentDate}}</p>
+                  <p class="mx-3 fw-semibold text-warning-emphasis">
+                    {{ formData.enrollmentDate }}
+                  </p>
                 </div>
               </div>
 
-
-
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Course Finished Date:</strong>
-                  <p class="mx-3 fw-semibold text-secondary">{{ formData.courseFinishedDate }}</p>
+                  <p class="mx-3 fw-semibold text-secondary">
+                    {{ formData.courseFinishedDate }}
+                  </p>
                 </div>
               </div>
 
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Last Payment Date:</strong>
-                  <p class="mx-3 fw-semibold text-dark">{{ formData.lastPaymentDate }}</p>
+                  <p class="mx-3 fw-semibold text-dark">
+                    {{ formData.lastPaymentDate }}
+                  </p>
                 </div>
               </div>
 
-
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Next Payment Date:</strong>
-                  <p class="mx-3 fw-semibold text-warning-emphasis">{{ formData.nextPaymentDate }}</p>
+                  <p class="mx-3 fw-semibold text-warning-emphasis">
+                    {{ formData.nextPaymentDate }}
+                  </p>
                 </div>
               </div>
 
-
-              
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Course Fee:</strong>
-                  <p class="mx-3 fw-semibold text-info">{{ formData.totalFee | currency: 'LKR ' }}</p>
+                  <p class="mx-3 fw-semibold text-info">
+                    {{ formData.totalFee | currency : "LKR " }}
+                  </p>
                 </div>
               </div>
 
-              
-              
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Total Paid Amount:</strong>
-                  <p class="mx-3 fw-semibold text-info-emphasis">{{ formData.totalPaidAmount | currency: 'LKR ' }}</p>
+                  <p class="mx-3 fw-semibold text-info-emphasis">
+                    {{ formData.totalPaidAmount | currency : "LKR " }}
+                  </p>
                 </div>
               </div>
 
-              
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex text-center">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex text-center"
+                >
                   <strong>Due Amount:</strong>
-                  <p class="mx-3 fw-semibold" [ngClass]="{'text-success':formData.dueAmount === 0.00,'text-danger':formData.dueAmount !=0}">{{ formData.dueAmount | currency: 'LKR ' }}</p>
+                  <p
+                    class="mx-3 fw-semibold"
+                    [ngClass]="{
+                      'text-success': formData.dueAmount === 0.0,
+                      'text-danger': formData.dueAmount != 0
+                    }"
+                  >
+                    {{ formData.dueAmount | currency : "LKR " }}
+                  </p>
                 </div>
               </div>
 
-              
-             
-              
               <div class="col-md-3 box">
-                <div class="form-control-plaintext bg-light border rounded p-2 d-flex">
+                <div
+                  class="form-control-plaintext bg-light border rounded p-2 d-flex"
+                >
                   <strong>Pay Amount: </strong>
-                  <p class="mx-3 fw-semibold text-orange" id="payAmountStyle">{{ formData.payAmount | currency: 'LKR ' }}</p>
+                  <p class="mx-3 fw-semibold text-orange" id="payAmountStyle">
+                    {{ formData.payAmount | currency : "LKR " }}
+                  </p>
                 </div>
               </div>
-
-             
-              
-             
-              
-             
-              
-             
-              
-              
             </div>
           </div>
 
-          
           <div class="col-12 input-field">
-            <input type="text" class="input" id="amount" placeholder=" " [(ngModel)]="formData.amount"
-              name="formData.amount" required />
+            <input
+              type="text"
+              class="input"
+              id="amount"
+              placeholder=" "
+              [(ngModel)]="formData.amount"
+              name="formData.amount"
+              required
+            />
             <label for="installment-amount" class="label">Amount</label>
           </div>
 
-
-
-
-          
           <div class="col-12 text-center">
-            <button type="submit" class="btn submit-btn text-white btn-lg w-100" [disabled]="isProcessing">
+            <button
+              type="submit"
+              class="btn submit-btn text-white btn-lg w-100"
+              [disabled]="isProcessing"
+            >
               Pay
             </button>
           </div>
         </form>
 
-        
         <div class="col-12 text-center mt-4">
-          <div *ngIf="message" [ngClass]="{'text-success': isSuccess, 'text-danger': !isSuccess}">
+          <div
+            *ngIf="message"
+            [ngClass]="{ 'text-success': isSuccess, 'text-danger': !isSuccess }"
+          >
             {{ message }}
           </div>
         </div>
