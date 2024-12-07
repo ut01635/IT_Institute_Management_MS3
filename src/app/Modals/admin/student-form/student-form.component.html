@@ -21,11 +21,11 @@
 
 
     <div class="col-12 d-flex justify-content-center">
-      <!-- file-upload.component.html -->
+     
 
       <label class="custom-file-upload" for="file">
         <div class="icon">
-          <!-- Bootstrap Icon for Cloud Upload -->
+         
           <i
             class="bi bi-cloud-upload fs-6"
             style="color: rgba(75, 85, 99, 1)"
@@ -34,6 +34,13 @@
         <div class="text">
           <span>Click to upload image</span>
         </div>
+        <div *ngIf="imageFile" class="image-preview mt-2">
+        
+          <div class="image-preview-circle">
+            <img [src]="imagePreviewUrl" alt="Image Preview" />
+          </div>
+          <p>{{ imageFile.name }}</p>
+        </div>
         <input
           type="file"
           id="file"
@@ -41,6 +48,7 @@
           accept="image/*"
         />
       </label>
+     
     </div>
 
     

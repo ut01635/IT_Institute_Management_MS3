@@ -17,12 +17,13 @@ export class StudentFormComponent implements OnInit {
   @Input() studentToEdit: Student | null = null;
   studentForm: FormGroup;
   imageFile: File | null = null;
+  imagePreviewUrl: string | ArrayBuffer | null = null;
 addIcon:string=`<i class="bi bi-person-plus"></i>`
   constructor(
     public activeModal: NgbActiveModal,
     private studentService: StudentService
   ) {
-    // Initialize form with validation rules
+   
     this.studentForm = new FormGroup({
       nic: new FormControl('', [
         Validators.required,
@@ -73,12 +74,17 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
         'image/svg+xml',
       ];
 
-      // Check if the file is an image by verifying the MIME type
+     
       if (allowedTypes.includes(file.type)) {
         this.imageFile = file;
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imagePreviewUrl = e.target.result;
+        };
+        reader.readAsDataURL(file);
       } else {
         alert('Please select a valid image file (JPG, JPEG, PNG, GIF, SVG).');
-        event.target.value = ''; // Clear the input if invalid file
+        event.target.value = ''; 
       }
     }
   }
