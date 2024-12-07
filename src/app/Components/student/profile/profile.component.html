@@ -5,15 +5,13 @@
       <div class="col-md-4 mb-3">
         <div class="card shadow-sm" id="profilePic">
           <div class="card-body text-center">
-            <div class="position-relative d-inline-block">
+            <div class="position-relative d-inline-block profile-image">
               <!-- Profile Image -->
               <img 
                 src="https://localhost:7055{{studentProfile.imagePath}}" 
                 alt="Admin" 
                 class="rounded-circle mb-3 img-fluid" 
-                width="150"
                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150';">
-              
               <!-- Edit Button (Using btn-outline-warning) -->
               <button 
                 type="button" 
@@ -22,6 +20,7 @@
                 <i class="bi bi-pencil" id="editProfileIcon"></i> <!-- Bootstrap Icon for Edit -->
               </button>
             </div>
+            
         
             <h4>{{studentProfile.firstName}} {{studentProfile.lastName}}</h4>
             <p class="text-secondary mb-1">Full Stack Developer</p>

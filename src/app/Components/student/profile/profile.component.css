@@ -1,7 +1,12 @@
 
 .profile-image img {
-    border: 4px solid #fff;
-  }
+  width: 150px;  /* Fixed width for the profile image */
+  height: 150px; /* Fixed height for the profile image */
+  border-radius: 50%;  /* Circular border */
+  border: 4px solid #fff; /* White border around the image */
+  object-fit: cover;  /* Ensures the image fills the circle while maintaining aspect ratio */
+}
+
   
   .card {
     background-color: #f8f9fa;
@@ -12,6 +17,10 @@
     font-size: 14px;
     line-height: 1.5;
     color: #333;
+  }
+
+  .card-body {
+    position: relative;
   }
   
   button {
