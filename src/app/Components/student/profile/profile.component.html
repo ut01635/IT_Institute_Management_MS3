@@ -5,8 +5,24 @@
       <div class="col-md-4 mb-3">
         <div class="card shadow-sm" id="profilePic">
           <div class="card-body text-center">
-            <img src="https://localhost:7055{{studentProfile.imagePath}}" alt="Admin" class="rounded-circle mb-3"
-              width="150">
+            <div class="position-relative d-inline-block">
+              <!-- Profile Image -->
+              <img 
+                src="https://localhost:7055{{studentProfile.imagePath}}" 
+                alt="Admin" 
+                class="rounded-circle mb-3 img-fluid" 
+                width="150"
+                onerror="this.onerror=null; this.src='https://via.placeholder.com/150';">
+              
+              <!-- Edit Button (Using btn-outline-warning) -->
+              <button 
+                type="button" 
+                class="btn btn-info position-absolute bottom-0 end-0 mb-4 me-2 p-1" 
+                (click)="editProfileImage()">
+                <i class="bi bi-pencil"></i> <!-- Bootstrap Icon for Edit -->
+              </button>
+            </div>
+            
             <h4>{{studentProfile.firstName}} {{studentProfile.lastName}}</h4>
             <p class="text-secondary mb-1">Full Stack Developer</p>
             <p class="text-muted font-size-sm">{{studentProfile.address.addressLine1}}, {{studentProfile.address.city}}
@@ -71,7 +87,8 @@
           </ul>
           <!-- Update Button -->
           <div class="card-body text-center">
-            <button class="btn btn-info w-100" (click)="openSocialMediaUpdateModal(studentProfile.socialMediaLinks.id,studentProfile.nic)">
+            <button class="btn btn-info w-100"
+              (click)="openSocialMediaUpdateModal(studentProfile.socialMediaLinks.id,studentProfile.nic)">
               <i class="bi bi-pencil-square me-2"></i> Update Links
             </button>
           </div>
@@ -105,7 +122,8 @@
               <div class="col-sm-9 text-secondary">{{studentProfile.address.addressLine1}},
                 {{studentProfile.address.city}}</div>
             </div>
-            <a class="btn btn-info w-100" type="button" target="__blank" (click)="openStudentUpdateModal(studentProfile.nic)"><i class="bi bi-pencil-square me-2"></i>Edit</a>
+            <a class="btn btn-info w-100" type="button" target="__blank"
+              (click)="openStudentUpdateModal(studentProfile.nic)"><i class="bi bi-pencil-square me-2"></i>Edit</a>
           </div>
         </div>
 
@@ -152,7 +170,7 @@
                     <div class="d-flex justify-content-between">
                       <small>{{ enrollment.course.courseName }}</small>
                       <small>{{enrollment.course.level}}</small>
-                    </div>                   
+                    </div>
                     <div class="progress mb-3" style="height: 7px">
                       <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
                         aria-valuemin="0" aria-valuemax="100"></div>

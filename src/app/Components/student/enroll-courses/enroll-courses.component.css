@@ -25,16 +25,22 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #343a40;
+  background: conic-gradient(
+    red 0deg 108deg,    /* 0% to 30% */
+    orange 108deg 270deg, /* 30% to 75% */
+    green 270deg 360deg   /* 75% to 100% */
+  );
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.5s ease-in-out; /* Smooth transition */
 }
 
 .progress-circle .progress-center {
   font-size: 0.9rem;
   color: white;
 }
+
 
 .card-footer .btn-danger {
   background-color: #dc3545;

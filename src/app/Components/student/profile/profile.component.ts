@@ -148,4 +148,8 @@ export class ProfileComponent implements OnInit {
   //   return months < 0 ? 0 : months; // Return 0 if the calculated months are negative
   // }
 
+
+  editProfileImage(){
+    
+  }
 }

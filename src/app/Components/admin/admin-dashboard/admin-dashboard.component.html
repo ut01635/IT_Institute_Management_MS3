@@ -25,15 +25,6 @@
     </div>
   </div>
 
- <!-- Line Chart -->
-<div class="row my-4">
-  <div class="col-12">
-    <div class="chart-container">
-      <canvas baseChart [type]="lineChartType" [data]="lineChartData"></canvas>
-    </div>
-  </div>
-</div>
-
   <!-- Enrollment Stats -->
   <div class="row my-4">
     <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
@@ -90,35 +81,55 @@
     </div>
   </div>
 
-  <!-- Progress Circles -->
-  <div class="row my-4">
-    <div class="col-lg-6 col-md-6 col-sm-12 text-center mb-4">
-      <div class="progress-circle mx-auto">
-        <div class="circle">
-          <div class="mask full" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
-          <div class="mask half">
-            <div class="fill" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
-          </div>
-          <div class="inside-circle">
-            <span>{{ totalToComplete }}%</span>
-          </div>
-        </div>
+  <!-- graphs -->
+
+  <div class="d-flex flex-wrap">
+    <!-- Line Chart -->
+    <div class="col-lg-6 col-md-12 my-4">
+      <div class="chart-container">
+        <canvas baseChart [type]="lineChartType" [data]="lineChartData"></canvas>
       </div>
-      <h5>Total to Complete</h5>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-      <div class="progress-circle mx-auto">
-        <div class="circle">
-          <div class="mask full" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
-          <div class="mask half">
-            <div class="fill" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
+  
+    <!-- Progress Circles -->
+    <div class="col-lg-6 col-md-12 my-4">
+      <div class="row">
+        <!-- First Progress Circle -->
+        <div class="col-lg-6 col-md-6 col-sm-12 text-center mb-4">
+          <div class="progress-circle mx-auto">
+            <div class="circle">
+              <div class="mask full" [style.transform]="'rotate(' + (totalEnrollments * 1.8) + 'deg)'"></div>
+              <div class="mask half">
+                <div class="fill" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
+              </div>
+              <div class="inside-circle">
+                <span>{{ totalToComplete }}%</span>
+              </div>
+            </div>
           </div>
-          <div class="inside-circle">
-            <span>{{ totalToReading }}%</span>
+          <h5>Total to Complete</h5>
+        </div>
+  
+        <!-- Second Progress Circle -->
+        <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+          <div class="progress-circle mx-auto">
+            <div class="circle">
+              <div class="mask full" [style.transform]="'rotate(' + (totalEnrollments * 1.8) + 'deg)'"></div>
+              <div class="mask half">
+                <div class="fill" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
+              </div>
+              <div class="inside-circle">
+                <span>{{ totalToReading }}%</span>
+              </div>
+            </div>
           </div>
+          <h5>Total to Reading</h5>
         </div>
       </div>
-      <h5>Total to Reading</h5>
     </div>
   </div>
+  
+
+
+
 </div>
