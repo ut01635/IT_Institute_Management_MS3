@@ -9,6 +9,7 @@ import { PasswordRestFormComponent } from '../../../Modals/student/password-rest
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SocialMediaFormComponent } from '../../../Modals/student/social-media-form/social-media-form.component';
 import { StudentUpdateFormComponent } from '../../../Modals/student/student-update-form/student-update-form.component';
+import { ProfileUpdateFormComponent } from '../../../Modals/student/profile-update-form/profile-update-form.component';
 
 @Component({
   selector: 'app-profile',
@@ -149,7 +150,12 @@ export class ProfileComponent implements OnInit {
   // }
 
 
-  editProfileImage(){
-    
+  editProfileImage() {
+    const modalRef = this.modalService.open(ProfileUpdateFormComponent, { centered: true });
+    modalRef.componentInstance.nic = this.studentProfile.nic;
+    modalRef.componentInstance.imageUpdated.subscribe((newImagePath: string) => {
+     
+      this.studentProfile.imagePath = newImagePath;
+    });
   }
 }

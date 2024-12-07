@@ -17,17 +17,12 @@ export class AdminDashboardComponent implements OnInit {
   adminName: string = '';
   totalStudents: number = 0;
   totalCourses: number = 0;
-  totalEnrollments: number = 100;
-  completedEnrollments: number = 25;
-  readingEnrollments: number = 75;
+  totalEnrollments: number = 0;
+  completedEnrollments: number = 0;
+  readingEnrollments: number = 0;
   totalRevenue: number = 0;
   currentYearRevenue: number = 0;
   currentMonthRevenue: number = 0;
-
-
- 
- 
-
   totalToComplete: number = 0;
   totalToReading: number = 0;
 

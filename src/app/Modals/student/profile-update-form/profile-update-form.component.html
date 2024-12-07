@@ -1,1 +1,37 @@
-<p>profile-update-form works!</p>
+
+<div>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel">Update Profile Image</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('cross click')"></button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="col-12 d-flex justify-content-center">
+            <label class="custom-file-upload" for="file">
+              <div class="icon">
+                <i class="bi bi-cloud-upload fs-6" style="color: rgba(75, 85, 99, 1)"></i>
+              </div>
+              <div class="text">
+                <span>Click to Update image</span>
+              </div>
+              <div *ngIf="imageFile" class="image-preview mt-2">
+                <div class="image-preview-circle">
+                  <img [src]="studentImagePreviewUrl" alt="Image Preview" />
+                </div>
+                <p>{{ imageFile.name }}</p>
+              </div>
+              <input type="file" id="file" (change)="onImageChange($event)" accept="image/*" />
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn submit-btn" (click)="submitImage()">
+            Change Image
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
