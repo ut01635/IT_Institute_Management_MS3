@@ -17,12 +17,12 @@
               <!-- Edit Button (Using btn-outline-warning) -->
               <button 
                 type="button" 
-                class="btn btn-info position-absolute bottom-0 end-0 mb-4 me-2 p-1" 
+                class="btn btn-info position-absolute bottom-0 rounded-circle end-0 mb-4 me-2 p-1" 
                 (click)="editProfileImage()">
-                <i class="bi bi-pencil"></i> <!-- Bootstrap Icon for Edit -->
+                <i class="bi bi-pencil" id="editProfileIcon"></i> <!-- Bootstrap Icon for Edit -->
               </button>
             </div>
-            
+        
             <h4>{{studentProfile.firstName}} {{studentProfile.lastName}}</h4>
             <p class="text-secondary mb-1">Full Stack Developer</p>
             <p class="text-muted font-size-sm">{{studentProfile.address.addressLine1}}, {{studentProfile.address.city}}
