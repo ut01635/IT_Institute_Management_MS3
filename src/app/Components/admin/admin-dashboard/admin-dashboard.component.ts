@@ -168,4 +168,11 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
   
+  circleDashArray(percentage: number): string {
+    const radius = 50;
+    const circumference = 2 * Math.PI * radius;  // Circumference of the circle
+    const dashArray = (percentage / 100) * circumference;  // Calculate stroke-dasharray
+    return `${dashArray} ${circumference}`;  // The second value is the remaining length
+  }
+  
 }

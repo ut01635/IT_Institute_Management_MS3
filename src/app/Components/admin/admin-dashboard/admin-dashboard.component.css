@@ -65,7 +65,7 @@ canvas {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 10px solid #e6e6e6;
+  border: 10px solid #e6e6e6; /* Grey base color */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,7 +79,13 @@ canvas {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.progress-circle .circle-mask {
+.progress-circle .circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.progress-circle .mask {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -109,7 +115,7 @@ canvas {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #28a745;
+  background: #28a745; /* Green */
   clip: rect(0, 100px, 100px, 50px);
   border-radius: 50%;
   transform: rotate(0deg);
@@ -165,6 +171,44 @@ canvas {
   flex: 1 1 100%;
 }
 
+/* Progress Circle SVG */
+.circle-svg {
+  width: 120px;
+  height: 120px;
+  transform: rotate(-90deg); /* Start at top */
+}
+
+.circle-background {
+  fill: none;
+  stroke: #e6e6e6;
+  stroke-width: 10;
+}
+
+.circle-fill {
+  fill: none;
+  stroke: #28a745; /* Green color for the progress */
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 0; /* Initially zero, will be dynamically updated */
+  transition: stroke-dasharray 1s ease;
+}
+
+text {
+  font-size: 18px;
+  font-weight: bold;
+  fill: #333;
+}
+
+/* Text Centering */
+.text-center {
+  text-align: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (max-width: 768px) {
   .d-flex .col-md-6 {
     flex: 1 1 100%;
@@ -182,8 +226,47 @@ canvas {
   margin-right: auto;
 }
 
+
 /* Hover Effect for Progress Circles */
 .progress-circle:hover {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.card i{
+  font-size: 30px;
+  color: black;
+}
+
+#card1 {
+  background: linear-gradient(to right, #3ea1e4, #7050e6); 
+}
+
+#card2 {
+  background: linear-gradient(to right, #ff9a8b, #ff6a00); 
+}
+
+#card3 {
+  background: linear-gradient(to right, #56ccf2, #6e7dff); 
+}
+
+#card4 {
+  background: linear-gradient(to right, #ffecd2, #fcb69f); 
+}
+
+#card5 {
+  background: linear-gradient(to right, #ab83a1, #c78f76); 
+}
+
+#card8 {
+  background: linear-gradient(to right, #00c6ff, #0072ff); 
+}
+
+#card7 {
+  background: linear-gradient(to right, #f8ff00, #3ad59f); 
+}
+
+#card6 {
+  background: linear-gradient(to right, #ff7e5f, #feb47b); 
 }
