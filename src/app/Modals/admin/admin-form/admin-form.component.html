@@ -10,6 +10,39 @@
       <p class="message text-center">
         {{ adminToEdit ? 'Update admin information' : 'Add a new admin to the system.' }}
       </p>
+
+      
+    <div class="col-12 d-flex justify-content-center">
+     
+
+      <label class="custom-file-upload" for="file">
+        <div class="icon">
+         
+          <i
+            class="bi bi-cloud-upload fs-6"
+            style="color: rgba(75, 85, 99, 1)"
+          ></i>
+        </div>
+        <div class="text">
+          <span>Click to upload image</span>
+        </div>
+        <div *ngIf="imageFile" class="image-preview mt-2">
+        
+          <div class="image-preview-circle">
+            <img [src]="adminImagePreviewUrl" alt="Image Preview" />
+          </div>
+          <p>{{ imageFile.name }}</p>
+        </div>
+        <input
+          type="file"
+          id="file"
+          (change)="onImageChange($event)"
+          accept="image/*"
+        />
+      </label>
+     
+    </div>
+
   
       <div class="row">
        
@@ -74,7 +107,7 @@
         </div>
   
         
-        <div class="col-12 mb-3">
+        <!-- <div class="col-12 mb-3">
           <div class="input-field">
             <input class="input" type="file" formControlName="image" (change)="onImageChange($event)" required />
             <label class="label">Admin Image</label>
@@ -82,7 +115,7 @@
               <small *ngIf="adminForm.get('image')?.hasError('required')">Admin image is required.</small>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
   
       
