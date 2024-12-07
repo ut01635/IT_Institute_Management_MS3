@@ -14,6 +14,7 @@ export class AdminFormComponent {
   @Input() adminToEdit: admin | null = null;
   adminForm: FormGroup;
   imageFile: File | null = null;
+  adminImagePreviewUrl: string | ArrayBuffer | null = null;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -59,7 +60,26 @@ export class AdminFormComponent {
   onImageChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.imageFile = file;
+      const allowedTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/jpg',
+        'image/gif',
+        'image/svg+xml',
+      ];
+
+     
+      if (allowedTypes.includes(file.type)) {
+        this.imageFile = file;
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.adminImagePreviewUrl = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Please select a valid image file (JPG, JPEG, PNG, GIF, SVG).');
+        event.target.value = ''; 
+      }
     }
   }
 

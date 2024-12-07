@@ -1,4 +1,4 @@
-/* Styling for select dropdowns */
+
 .select {
   appearance: none;
   -webkit-appearance: none;
@@ -26,7 +26,7 @@
   height: 45px;
 }
 
-/* Label styling */
+
 .input-field .label {
   position: absolute;
   top: 25px;
@@ -49,10 +49,10 @@
 }
 
 .input-field select:invalid {
-  border-color: #000000; /* Optional: red border for invalid select */
+  border-color: #000000; 
 }
 
-/* General input styling */
+
 .input-field {
   position: relative;
   width: 100%;
@@ -94,7 +94,7 @@
   padding-right: 5px;
 }
 
-/* Styling for error messages */
+
 .error-message {
   color: #ff4d4d;
   font-size: 12px;
@@ -102,7 +102,7 @@
 }
 
 .submit-btn {
-  width: 100%; /* Full width */
+  width: 100%; 
   height: 55px;
   background: #f2f2f2;
   border-radius: 11px;
@@ -136,69 +136,84 @@
 }
 
 .custom-file-upload {
-  height: 50px; /* Smaller height */
-  width: 220px; /* Adjusted width */
+  height: 50px; 
+  width: 220px; 
   display: flex;
-  align-items: center; /* Vertically center the content */
-  justify-content: flex-start; /* Align the items to the left */
+  align-items: center; 
+  justify-content: flex-start; 
   border: 2px dashed #cacaca;
   background-color: rgba(255, 255, 255, 1);
-  padding: 0.75rem; /* Reduced padding for a more compact look */
+  padding: 0.75rem; 
   border-radius: 8px;
   box-shadow: 0px 24px 18px -24px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-/* Flexbox layout for horizontal arrangement (Icon + Text) */
+
 .custom-file-upload .icon {
   display: flex;
-  align-items: center; /* Center the icon vertically */
+  align-items: center;
   justify-content: center;
-  margin-right: 10px; /* Space between icon and text */
+  margin-right: 10px; 
 }
 
-/* Smaller Icon Size */
+
 .custom-file-upload .icon i {
-  font-size: 2rem; /* Adjust icon size */
-  color: rgba(75, 85, 99, 1); /* Icon color */
+  font-size: 2rem; 
+  color: rgba(75, 85, 99, 1); 
 }
 
-/* Adjust the text for a more compact design */
+
 .custom-file-upload .text span {
   font-weight: 400;
   color: rgba(75, 85, 99, 1);
-  font-size: 0.875rem; /* Smaller text size */
-  text-align: left; /* Align text to the left */
+  font-size: 0.875rem; 
+  text-align: left; 
 }
 
-/* Make the component responsive */
+
 @media (max-width: 576px) {
   .custom-file-upload {
-    height: 80px; /* Smaller height on small screens */
-    width: 160px; /* Smaller width on small screens */
+    height: 80px; 
+    width: 160px; 
   }
 
   .custom-file-upload .icon i {
-    font-size: 1.5rem; /* Smaller icon size */
+    font-size: 1.5rem; 
   }
 
   .custom-file-upload .text span {
-    font-size: 0.75rem; /* Smaller text size */
+    font-size: 0.75rem; 
   }
 }
 
 @media (min-width: 1200px) {
   .custom-file-upload {
-    height: 120px; /* Larger height on larger screens */
-    width: 250px; /* Larger width */
+    height: 120px; 
+    width: 250px; 
   }
 
   .custom-file-upload .icon i {
-    font-size: 2.5rem; /* Larger icon size */
+    font-size: 2.5rem; 
   }
 }
 
 .custom-file-upload input {
   display: none;
+}
+
+
+.image-preview-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.image-preview-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
 }
