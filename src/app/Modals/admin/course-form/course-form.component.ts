@@ -13,7 +13,8 @@ import { Course } from '../../../Services/Modal';
 export class CourseFormComponent implements OnInit {
   @Input() courseToEdit: Course | null = null;
   courseForm: FormGroup;
-  imageFiles: File[] = [];  
+  imageFiles: File[] = []; 
+  courseImagePreviewUrl: string | ArrayBuffer | null = null;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -39,7 +40,12 @@ export class CourseFormComponent implements OnInit {
   onImageChange(event: any): void {
     const files = event.target.files;
     if (files.length > 0) {
-      this.imageFiles = Array.from(files);  
+      this.imageFiles = Array.from(files);
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.courseImagePreviewUrl = e.target.result;
+      };
+      reader.readAsDataURL(files[0]);
       this.courseForm.patchValue({ images: this.imageFiles });
     }
   }
