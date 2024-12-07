@@ -43,7 +43,7 @@
             <div class="d-flex justify-content-around">
             <!-- Lock/Unlock Button -->
             <button type="button" class="btn btn-outline-secondary me-2 btn-sm" (click)="toggleLockOrUnlock(student)">
-              <i class="bi" [ngClass]="student.IsLocked ? 'bi-unlock' : 'bi-lock'"></i>
+              <i class="bi" [ngClass]="student.IsLocked ? 'bi-lock' : 'bi-unlock'"></i>
               <!-- {{ student.IsLocked ? 'Unlock' : 'Lock' }} -->
             </button>
             <button type="button" class="btn btn-outline-warning me-2 btn-sm"  (click)="openPasswordResetModal(student.nic)">
