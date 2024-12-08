@@ -67,6 +67,11 @@ header button:hover i {
   display: flex;
   align-items: center;
 }
+/* Active link color */
+.nav-link.active {
+  color:#007bff; /* Active link blue color */
+  /* background-color: rgba(0, 0, 255, 0.1); Optional background color */
+}
 
 .sidebar .nav-item:hover .nav-link {
   background-color: #555;

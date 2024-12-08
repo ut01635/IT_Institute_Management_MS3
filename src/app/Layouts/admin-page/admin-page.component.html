@@ -76,7 +76,7 @@
               <span class="nav-text">Payment</span>
             </a>
           </li>
-
+    
           <!-- Reports Item (with hover sub-links) -->
           <li class="nav-item report-item position-relative">
             <a class="nav-link" (click)="setActiveTab('reports')" [class.active]="activeTab === 'reports'">
@@ -87,13 +87,12 @@
               <li><a href="#" [routerLink]="['/admin/student-report']" (click)="setActiveTab('student-report')"
                   [class.active]="activeTab === 'student-report'"><i class="bi bi-person"></i> Student Report</a></li>
               <li><a href="#" [routerLink]="['/admin/enrollment-report']" (click)="setActiveTab('enrollment-report')"
-                  [class.active]="activeTab === 'enrollment-report'"><i class="bi bi-file-earmark-text"></i> Enrollment
-                  Report</a></li>
+                  [class.active]="activeTab === 'enrollment-report'"><i class="bi bi-file-earmark-text"></i> Enrollment Report</a></li>
               <li><a href="#" [routerLink]="['/admin/payment-report']" (click)="setActiveTab('payment-report')"
                   [class.active]="activeTab === 'payment-report'"><i class="bi bi-cash"> </i> Payment Report</a></li>
             </ul>
           </li>
-
+    
           <li class="nav-item" *ngIf="userRole === 'MasterAdmin'">
             <a class="nav-link" href="#" [routerLink]="['/admin/admin-list']" (click)="setActiveTab('admins')"
               [class.active]="activeTab === 'admins'">
@@ -101,7 +100,7 @@
               <span class="nav-text">Admins</span>
             </a>
           </li>
-
+    
           <li class="nav-item mt-auto">
             <a class="nav-link text-danger" href="#" (click)="logout()">
               <i class="bi bi-box-arrow-right"></i>
@@ -109,8 +108,7 @@
             </a>
           </li>
         </ul>
-
-
+    
         <!-- Dark/Light Mode Toggle Button -->
         <div class="position-fixed bottom-0 end-0 p-3 me-3">
           <button class="btn btn-toggle-mode  toggle-button" (click)="toggleTheme()">
@@ -129,6 +127,7 @@
         </div>
       </nav>
     </div>
+    
     <!-- Main Content -->
     <!-- Main Content -->
     <main class="container-fluid" style="overflow-y: auto; height: 88vh; width: 95vw;">
