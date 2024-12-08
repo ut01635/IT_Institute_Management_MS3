@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { GreetingService } from '../../../Services/greeting.service';
-import { ChartConfiguration, ChartData, ChartOptions, ChartType } from 'chart.js';
 import { StudentService } from '../../../Services/student.service';
 import { CourseService } from '../../../Services/course.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
@@ -27,22 +26,22 @@ export class AdminDashboardComponent implements OnInit {
   totalToReading: number = 0;
 
 
-  public lineChartType: 'line' = 'line';
-  public lineChartData: any = {
-    labels: [],
-    datasets: [
-      {
-        label: 'Revenue',
-        data: [],
-        borderColor: '#36A2EB',
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        pointBackgroundColor: '#36A2EB',
-        pointBorderColor: '#fff',
-        fill: true,
-        tension: 0.4
-      }
-    ]
-  };
+  // public lineChartType: 'line' = 'line';
+  // public lineChartData: any = {
+  //   labels: [],
+  //   datasets: [
+  //     {
+  //       label: 'Revenue',
+  //       data: [],
+  //       borderColor: '#36A2EB',
+  //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
+  //       pointBackgroundColor: '#36A2EB',
+  //       pointBorderColor: '#fff',
+  //       fill: true,
+  //       tension: 0.4
+  //     }
+  //   ]
+  // };
 
   constructor(
     private studentService: StudentService,
@@ -55,6 +54,11 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loadAdminName();
     this.loadDashboardData();
+
+    
+    setTimeout(() => {
+      this.completedEnrollment = 20;  // Example: Update progress to 80%
+    }, 2000);
   }
 
   loadAdminName(): void {
@@ -128,51 +132,111 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   setLineChartData(): void {
-    const currentMonth = new Date().getMonth();
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    // const currentMonth = new Date().getMonth();
+    // const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    const labels = [
-      months[(currentMonth - 3 + 12) % 12],
-      months[(currentMonth - 2 + 12) % 12],
-      months[(currentMonth - 1 + 12) % 12],
-      months[currentMonth]
-    ];
+    // const labels = [
+    //   months[(currentMonth - 3 + 12) % 12],
+    //   months[(currentMonth - 2 + 12) % 12],
+    //   months[(currentMonth - 1 + 12) % 12],
+    //   months[currentMonth]
+    // ];
 
-    const revenueData: number[] = [];
+    // const revenueData: number[] = [];
 
-    this.paymentService.getAllPayments().subscribe(payments => {
-      labels.forEach((month, index) => {
-        const monthIndex = (currentMonth - 3 + index + 12) % 12;
+    // this.paymentService.getAllPayments().subscribe(payments => {
+    //   labels.forEach((month, index) => {
+    //     const monthIndex = (currentMonth - 3 + index + 12) % 12;
 
-        const monthRevenue = payments.filter(payment => {
-          const paymentMonth = new Date(payment.paymentDate).getMonth();
-          return paymentMonth === monthIndex;
-        }).reduce((total, payment) => total + payment.amount, 0);
+    //     const monthRevenue = payments.filter(payment => {
+    //       const paymentMonth = new Date(payment.paymentDate).getMonth();
+    //       return paymentMonth === monthIndex;
+    //     }).reduce((total, payment) => total + payment.amount, 0);
 
-        revenueData.push(monthRevenue);
-      });
+    //     revenueData.push(monthRevenue);
+    //   });
 
-      this.lineChartData = {
-        labels: labels,
-        datasets: [{
-          label: 'Revenue',
-          data: revenueData,
-          borderColor: '#36A2EB',
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          pointBackgroundColor: '#36A2EB',
-          pointBorderColor: '#fff',
-          fill: true,
-          tension: 0.4
-        }]
-      };
-    });
+    //   this.lineChartData = {
+    //     labels: labels,
+    //     datasets: [{
+    //       label: 'Revenue',
+    //       data: revenueData,
+    //       borderColor: '#36A2EB',
+    //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    //       pointBackgroundColor: '#36A2EB',
+    //       pointBorderColor: '#fff',
+    //       fill: true,
+    //       tension: 0.4
+    //     }]
+    //   };
+    // });
   }
   
-  circleDashArray(percentage: number): string {
-    const radius = 50;
-    const circumference = 2 * Math.PI * radius;  // Circumference of the circle
-    const dashArray = (percentage / 100) * circumference;  // Calculate stroke-dasharray
-    return `${dashArray} ${circumference}`;  // The second value is the remaining length
+  // circleDashArray(percentage: number): string {
+  //   const radius = 50;
+  //   const circumference = 2 * Math.PI * radius;  // Circumference of the circle
+  //   const dashArray = (percentage / 100) * circumference;  // Calculate stroke-dasharray
+  //   return `${dashArray} ${circumference}`;  // The second value is the remaining length
+  // }
+
+
+
+
+
+
+  ///////////////////////////GRAPH CODES//////////////////////////////
+   // Monthly revenue data for the current year
+   monthlyRevenue = [
+    { name: 'January', value: 5000 },
+    { name: 'February', value: 7000 },
+    { name: 'March', value: 6500 },
+    { name: 'April', value: 8000 },
+    { name: 'May', value: 9500 },
+    { name: 'June', value: 10000 },
+    { name: 'July', value: 8500 },
+    { name: 'August', value: 9000 },
+    { name: 'September', value: 7500 },
+    { name: 'October', value: 11000 },
+    { name: 'November', value: 12000 },
+    { name: 'December', value: 13000 }
+  ];
+
+  // Chart settings
+  view: [number, number] = [700, 400];  // Chart size (width, height)
+  showXAxis: boolean = true;  // Show X-axis
+  showYAxis: boolean = true;  // Show Y-axis
+  showGridLines: boolean = true;  // Show grid lines
+  showLabels: boolean = true;  // Show data labels
+
+  // Color scheme for the line chart
+  colorScheme: string = 'cool';  // Using a predefined color scheme
+
+  currentYear(): number {
+    return new Date().getFullYear();
+  }
+
+
+  ////////////////////////////////////PROGRESS BAR///////////////////////////////////////////
+  // Enrollment data
+  completedEnrollment: number = 20;  // Percentage of completed enrollment
+  totalEnrollment: number = 100;     // Total enrollment (100%)
+
+
+  // Function to calculate the stroke-dasharray for the circle's progress
+  getStrokeDasharray(): string {
+    const radius = 50; // Circle radius
+    const circumference = 2 * Math.PI * radius;
+    const progress = (this.completedEnrollment / this.totalEnrollment) * circumference;
+    return `${progress} ${circumference}`;
+  }
+
+  getStrokeColor(): string {
+    if (this.completedEnrollment < 50) {
+      return 'red';  // Red for low progress
+    } else if (this.completedEnrollment < 80) {
+      return 'orange';  // Orange for medium progress
+    }
+    return '#4caf50';  // Green for high progress
   }
   
 }

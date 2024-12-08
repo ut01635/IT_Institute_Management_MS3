@@ -48,12 +48,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 import { StudentMessageFormComponent } from './Modals/student/student-message-form/student-message-form.component';
 import { SocialMediaFormComponent } from './Modals/student/social-media-form/social-media-form.component';
-import {  NgChartsModule } from 'ng2-charts';
 import { StudentUpdateFormComponent } from './Modals/student/student-update-form/student-update-form.component';
 import { PaymentPlanFormComponent } from './Modals/student/payment-plan-form/payment-plan-form.component';
 import { StudentPasswordComponent } from './Modals/admin/student-password/student-password.component';
 import { EnrollDateRangeFilterPipe } from './Pipes/enroll-date-range-filter.pipe'; // Correct import
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -118,8 +118,9 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     NgbModalModule,
     BrowserAnimationsModule,
     BsDatepickerModule,
-    NgChartsModule,
-    NgbModule
+    NgbModule,
+    NgxChartsModule
+    
   ],
   providers: [
     {

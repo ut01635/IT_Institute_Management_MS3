@@ -92,19 +92,27 @@
 
   <!-- graphs -->
 
- <!-- Graphs and Progress Circles -->
-<div class="row my-4">
-  <!-- Left Align Line Chart -->
-  <div class="col-lg-6 col-md-12">
-    <div class="chart-container">
-      <canvas baseChart [type]="lineChartType" [data]="lineChartData"></canvas>
-    </div>
-  </div>
+  <!-- Graphs and Progress Circles -->
+  <div class="row my-4">
+    <!-- Left Align Line Chart -->
+    <div class="container mt-5 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-between">
+      <div class="card">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-3">Monthly Revenue for {{ currentYear() }}</h5>
 
-  <!-- Progress Circles (Next to Each Other) -->
-  <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-between">
-    <!-- First Progress Circle (Total to Complete) -->
-    <div class="progress-circle-container text-center">
+          <!-- ngx-charts line chart -->
+          <ngx-charts-line-chart [view]="view" [scheme]="colorScheme"
+            [results]="[{ name: 'Revenue', series: monthlyRevenue }]" [legend]="true" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [showGridLines]="showGridLines" [autoScale]="true" [tooltipDisabled]="false">
+          </ngx-charts-line-chart>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Circles (Next to Each Other) -->
+    <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-between">
+      <!-- First Progress Circle (Total to Complete) -->
+      <!-- <div class="progress-circle-container text-center">
       <div class="progress-circle mx-auto mb-4">
         <svg class="circle-svg" viewBox="0 0 120 120">
           <circle class="circle-background" cx="60" cy="60" r="50"></circle>
@@ -113,10 +121,10 @@
         </svg>
       </div>
       <h5>Total to Complete</h5>
-    </div>
+    </div> -->
 
-    <!-- Second Progress Circle (Total to Reading) -->
-    <div class="progress-circle-container text-center">
+      <!-- Second Progress Circle (Total to Reading) -->
+      <!-- <div class="progress-circle-container text-center">
       <div class="progress-circle mx-auto">
         <svg class="circle-svg" viewBox="0 0 120 120">
           <circle class="circle-background" cx="60" cy="60" r="50"></circle>
@@ -125,14 +133,26 @@
         </svg>
       </div>
       <h5>Total to Reading</h5>
+    </div> -->
+      <div class="container d-flex justify-content-center mt-5">
+        <div class="card" style="width: 25rem;">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-4">Enrollment Progress</h5>
+
+            <!-- Circular Progress Bar -->
+            <div class="progress-container">
+              <svg class="progress-ring" width="120" height="120">
+                <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
+                <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
+                  [attr.stroke-dasharray]="getStrokeDasharray()" [attr.stroke]="getStrokeColor()" />
+              </svg>
+              <div class="progress-text">
+                {{ completedEnrollment }}%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-
-</div>
-
-  
-
-
-
 </div>
