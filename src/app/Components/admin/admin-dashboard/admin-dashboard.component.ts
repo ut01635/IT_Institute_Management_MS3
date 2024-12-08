@@ -24,19 +24,20 @@ export class AdminDashboardComponent implements OnInit {
   currentMonthRevenue: number = 0;
   totalToComplete: number = 0;
   totalToReading: number = 0;
+  monthlyRevenue: { name: string, value: number }[] = [];
 
 
-  // Function to calculate Completed Enrollment percentage
+  
   calculateCompletedEnrollmentPercentage(): number {
     return this.calculatePercentage(this.completedEnrollments);
   }
 
-  // Function to calculate Reading Enrollment percentage
+ 
   calculateReadingEnrollmentPercentage(): number {
     return this.calculatePercentage(this.readingEnrollments);
   }
 
-  // Helper function to calculate percentage
+
   private calculatePercentage(enrollments: number): number {
     return (enrollments / this.totalEnrollments) * 100;
   }
@@ -55,7 +56,7 @@ export class AdminDashboardComponent implements OnInit {
 
 
     setTimeout(() => {
-      this.completedEnrollment = 20;  // Example: Update progress to 80%
+      this.completedEnrollment = 20;  
     }, 2000);
 
     this.updateChartSize();
@@ -72,6 +73,7 @@ export class AdminDashboardComponent implements OnInit {
       });
     }
   }
+
 
   loadDashboardData(): void {
 
@@ -110,12 +112,14 @@ export class AdminDashboardComponent implements OnInit {
     this.paymentService.getAllPayments().subscribe(payments => {
       this.currentYearRevenue = payments.filter(payment => new Date(payment.paymentDate).getFullYear() === currentYear)
         .reduce((total, payment) => total + payment.amount, 0);
-    });
-
-    const currentMonth = new Date().getMonth();
-    this.paymentService.getAllPayments().subscribe(payments => {
+      
+      
+      const currentMonth = new Date().getMonth();
       this.currentMonthRevenue = payments.filter(payment => new Date(payment.paymentDate).getMonth() === currentMonth)
         .reduce((total, payment) => total + payment.amount, 0);
+
+      
+      this.calculateMonthlyRevenue(payments);
     });
 
 
@@ -129,103 +133,46 @@ export class AdminDashboardComponent implements OnInit {
       this.totalToReading = totalEnrollments > 0 ? Math.round((reading.length / totalEnrollments) * 100) : 0;
     });
 
-    this.setLineChartData();
+    
   }
 
-  setLineChartData(): void {
-    // const currentMonth = new Date().getMonth();
-    // const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  
 
-    // const labels = [
-    //   months[(currentMonth - 3 + 12) % 12],
-    //   months[(currentMonth - 2 + 12) % 12],
-    //   months[(currentMonth - 1 + 12) % 12],
-    //   months[currentMonth]
-    // ];
-
-    // const revenueData: number[] = [];
-
-    // this.paymentService.getAllPayments().subscribe(payments => {
-    //   labels.forEach((month, index) => {
-    //     const monthIndex = (currentMonth - 3 + index + 12) % 12;
-
-    //     const monthRevenue = payments.filter(payment => {
-    //       const paymentMonth = new Date(payment.paymentDate).getMonth();
-    //       return paymentMonth === monthIndex;
-    //     }).reduce((total, payment) => total + payment.amount, 0);
-
-    //     revenueData.push(monthRevenue);
-    //   });
-
-    //   this.lineChartData = {
-    //     labels: labels,
-    //     datasets: [{
-    //       label: 'Revenue',
-    //       data: revenueData,
-    //       borderColor: '#36A2EB',
-    //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
-    //       pointBackgroundColor: '#36A2EB',
-    //       pointBorderColor: '#fff',
-    //       fill: true,
-    //       tension: 0.4
-    //     }]
-    //   };
-    // });
+  calculateMonthlyRevenue(payments: any[]): void {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    
+    this.monthlyRevenue = months.map((month, index) => ({
+      name: month,
+      value: payments.filter(payment => new Date(payment.paymentDate).getMonth() === index)
+        .reduce((total, payment) => total + payment.amount, 0)
+    }));
   }
 
-  // circleDashArray(percentage: number): string {
-  //   const radius = 50;
-  //   const circumference = 2 * Math.PI * radius;  // Circumference of the circle
-  //   const dashArray = (percentage / 100) * circumference;  // Calculate stroke-dasharray
-  //   return `${dashArray} ${circumference}`;  // The second value is the remaining length
-  // }
+ 
+  view: [number, number] = [700, 400];  
+  showXAxis: boolean = true;  
+  showYAxis: boolean = true; 
+  showGridLines: boolean = true; 
+  showLabels: boolean = true;  
 
-
-
-
-
-
-  ///////////////////////////GRAPH CODES//////////////////////////////
-  // Monthly revenue data for the current year
-  monthlyRevenue = [
-    { name: 'January', value: 5000 },
-    { name: 'February', value: 7000 },
-    { name: 'March', value: 6500 },
-    { name: 'April', value: 8000 },
-    { name: 'May', value: 9500 },
-    { name: 'June', value: 10000 },
-    { name: 'July', value: 8500 },
-    { name: 'August', value: 9000 },
-    { name: 'September', value: 7500 },
-    { name: 'October', value: 11000 },
-    { name: 'November', value: 12000 },
-    { name: 'December', value: 13000 }
-  ];
-
-  // Chart settings
-  view: [number, number] = [700, 400];  // Chart size (width, height)
-  showXAxis: boolean = true;  // Show X-axis
-  showYAxis: boolean = true;  // Show Y-axis
-  showGridLines: boolean = true;  // Show grid lines
-  showLabels: boolean = true;  // Show data labels
-
-  // Color scheme for the line chart
-  colorScheme: string = 'cool';  // Using a predefined color scheme
+ 
+  colorScheme: string = 'cool';  
 
   currentYear(): number {
     return new Date().getFullYear();
   }
 
 
-  ////////////////////////////////////PROGRESS BAR///////////////////////////////////////////
-  // Enrollment data
-  completedEnrollment: number = 0;  // Percentage of completed enrollment
-  totalEnrollment: number = 0;     // Total enrollment (100%)
+  
+  
+  completedEnrollment: number = 0;  
+  totalEnrollment: number = 0;     
 
 
-  // Function to calculate the stroke-dasharray for the circle's progress
+  
   getStrokeDasharray(): string {
-    const radius = 50; // Circle radius
+    const radius = 50; 
     const circumference = 2 * Math.PI * radius;
     const progress = (this.completedEnrollments / this.totalEnrollments) * circumference;
     return `${progress} ${circumference}`;
@@ -233,33 +180,33 @@ export class AdminDashboardComponent implements OnInit {
 
   getStrokeColor(): string {
     if (this.calculateCompletedEnrollmentPercentage() < 50) {
-      return 'red';  // Red for low progress
+      return 'red';  
     } else if (this.calculateCompletedEnrollmentPercentage() < 80) {
-      return 'orange';  // Orange for medium progress
+      return 'orange';  
     }
-    return '#4caf50';  // Green for high progress
+    return '#4caf50';  
   }
 
 
-  // Listen to window resize event
+ 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.updateChartSize();
   }
 
-  // Method to update chart size based on window width
+  
   updateChartSize(): void {
     const width = window.innerWidth;
 
-    // Set chart size based on viewport width
-    if (width <= 576) { // Small screens (Mobile)
-      this.view = [width - 20, 200]; // Adjust the width and height for small screens
-    } else if (width <= 768) { // Medium screens (Tablets)
-      this.view = [width - 50, 300]; // Adjust the width and height for tablets
-    } else if (width <= 992) { // Large screens (Small desktops)
-      this.view = [width - 100, 350]; // Adjust the width and height for small desktops
-    } else { // Extra large screens (Desktops)
-      this.view = [700, 400]; // Default chart size
+    
+    if (width <= 576) { 
+      this.view = [width - 20, 200]; 
+    } else if (width <= 768) { 
+      this.view = [width - 50, 300]; 
+    } else if (width <= 992) { 
+      this.view = [width - 100, 350]; 
+    } else { 
+      this.view = [700, 400]; 
     }
   }
 
