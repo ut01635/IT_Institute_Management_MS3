@@ -1,4 +1,4 @@
-/* Global Styles */
+
 *,
 *::before,
 *::after {
@@ -27,7 +27,7 @@ a {
   text-decoration: none;
 }
 
-/* Card Styles */
+
 .card {
   border: none;
   border-radius: 15px;
@@ -56,7 +56,7 @@ a {
 
 
 
-/* Layout - Flexbox */
+
 .d-flex {
   display: flex;
   gap: 20px;
@@ -73,11 +73,11 @@ a {
   flex: 1 1 100%;
 }
 
-/* Progress Circle SVG */
+
 .circle-svg {
   width: 120px;
   height: 120px;
-  transform: rotate(-90deg); /* Start at top */
+  transform: rotate(-90deg);
 }
 
 .circle-background {
@@ -88,10 +88,10 @@ a {
 
 .circle-fill {
   fill: none;
-  stroke: #28a745; /* Green color for the progress */
+  stroke: #28a745; 
   stroke-width: 10;
   stroke-linecap: round;
-  stroke-dasharray: 0; /* Initially zero, will be dynamically updated */
+  stroke-dasharray: 0; 
   transition: stroke-dasharray 1s ease;
 }
 
@@ -101,7 +101,7 @@ text {
   fill: #333;
 }
 
-/* Text Centering */
+
 .text-center {
   text-align: center;
 }
@@ -118,7 +118,7 @@ text {
   }
 }
 
-/* Container for Centering Elements */
+
 .text-center {
   text-align: center;
 }
@@ -129,7 +129,7 @@ text {
 }
 
 
-/* Hover Effect for Progress Circles */
+
 .progress-circle:hover {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -193,7 +193,7 @@ text {
 }
 
 .progress-ring {
-  transform: rotate(-90deg);  /* Rotate to start from top */
+  transform: rotate(-90deg);  
 }
 
 .progress-ring-background {

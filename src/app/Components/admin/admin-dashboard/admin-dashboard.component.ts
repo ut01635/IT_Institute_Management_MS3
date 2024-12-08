@@ -29,12 +29,12 @@ export class AdminDashboardComponent implements OnInit {
 
   
   calculateCompletedEnrollmentPercentage(): number {
-    if (this.totalEnrollments === 0) return 0;  // Avoid division by zero
+    if (this.totalEnrollments === 0) return 0;  
     return (this.completedEnrollments / this.totalEnrollments) * 100;
   }
   
   calculateReadingEnrollmentPercentage(): number {
-    if (this.totalEnrollments === 0) return 0;  // Avoid division by zero
+    if (this.totalEnrollments === 0) return 0; 
     return (this.readingEnrollments / this.totalEnrollments) * 100;
   }
   
