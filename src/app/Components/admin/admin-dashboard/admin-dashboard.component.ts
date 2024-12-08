@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { GreetingService } from '../../../Services/greeting.service';
 import { StudentService } from '../../../Services/student.service';
 import { CourseService } from '../../../Services/course.service';
@@ -24,6 +24,24 @@ export class AdminDashboardComponent implements OnInit {
   currentMonthRevenue: number = 0;
   totalToComplete: number = 0;
   totalToReading: number = 0;
+  completeEnrollmentPercentage: number = this.calculateCompletedEnrollmentPercentage();
+  readingEnrollmentPercentage: number = this.calculateReadingEnrollmentPercentage();
+
+
+  // Function to calculate Completed Enrollment percentage
+  calculateCompletedEnrollmentPercentage(): number {
+    return this.calculatePercentage(this.completedEnrollments);
+  }
+
+  // Function to calculate Reading Enrollment percentage
+  calculateReadingEnrollmentPercentage(): number {
+    return this.calculatePercentage(this.readingEnrollments);
+  }
+
+  // Helper function to calculate percentage
+  private calculatePercentage(enrollments: number): number {
+    return (enrollments / this.totalEnrollments) * 100;
+  }
 
   constructor(
     private studentService: StudentService,
@@ -31,16 +49,18 @@ export class AdminDashboardComponent implements OnInit {
     private enrollmentService: EnrollmentService,
     private paymentService: PaymentService,
     private adminService: AdminService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadAdminName();
     this.loadDashboardData();
 
-    
+
     setTimeout(() => {
       this.completedEnrollment = 20;  // Example: Update progress to 80%
     }, 2000);
+
+    this.updateChartSize();
   }
 
   loadAdminName(): void {
@@ -55,19 +75,19 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   loadDashboardData(): void {
-   
+
     this.studentService.getStudents();
     this.studentService.students$.subscribe((allStudents) => {
       this.totalStudents = allStudents.length;
     });
 
-   
+
     this.courseService.getAllCourses();
     this.courseService.courses$.subscribe((courses) => {
       this.totalCourses = courses.length;
     });
 
-   
+
     this.enrollmentService.getallEnrollement().subscribe(enrollments => {
       this.totalEnrollments = enrollments.length;
     });
@@ -80,7 +100,7 @@ export class AdminDashboardComponent implements OnInit {
       this.readingEnrollments = reading.length;
     });
 
-    
+
     this.paymentService.getTotalIncome().subscribe((response: any) => {
       this.totalRevenue = response.totalIncome;
     }, error => {
@@ -90,16 +110,16 @@ export class AdminDashboardComponent implements OnInit {
     const currentYear = new Date().getFullYear();
     this.paymentService.getAllPayments().subscribe(payments => {
       this.currentYearRevenue = payments.filter(payment => new Date(payment.paymentDate).getFullYear() === currentYear)
-                                         .reduce((total, payment) => total + payment.amount, 0);
+        .reduce((total, payment) => total + payment.amount, 0);
     });
 
     const currentMonth = new Date().getMonth();
     this.paymentService.getAllPayments().subscribe(payments => {
       this.currentMonthRevenue = payments.filter(payment => new Date(payment.paymentDate).getMonth() === currentMonth)
-                                           .reduce((total, payment) => total + payment.amount, 0);
+        .reduce((total, payment) => total + payment.amount, 0);
     });
 
-    
+
     this.enrollmentService.getAllCompleted().subscribe(completed => {
       const totalEnrollments = completed.length + this.readingEnrollments;
       this.totalToComplete = totalEnrollments > 0 ? Math.round((completed.length / totalEnrollments) * 100) : 0;
@@ -153,7 +173,7 @@ export class AdminDashboardComponent implements OnInit {
     //   };
     // });
   }
-  
+
   // circleDashArray(percentage: number): string {
   //   const radius = 50;
   //   const circumference = 2 * Math.PI * radius;  // Circumference of the circle
@@ -167,8 +187,8 @@ export class AdminDashboardComponent implements OnInit {
 
 
   ///////////////////////////GRAPH CODES//////////////////////////////
-   // Monthly revenue data for the current year
-   monthlyRevenue = [
+  // Monthly revenue data for the current year
+  monthlyRevenue = [
     { name: 'January', value: 5000 },
     { name: 'February', value: 7000 },
     { name: 'March', value: 6500 },
@@ -200,25 +220,48 @@ export class AdminDashboardComponent implements OnInit {
 
   ////////////////////////////////////PROGRESS BAR///////////////////////////////////////////
   // Enrollment data
-  completedEnrollment: number = 20;  // Percentage of completed enrollment
-  totalEnrollment: number = 100;     // Total enrollment (100%)
+  completedEnrollment: number = 0;  // Percentage of completed enrollment
+  totalEnrollment: number = 0;     // Total enrollment (100%)
 
 
   // Function to calculate the stroke-dasharray for the circle's progress
   getStrokeDasharray(): string {
     const radius = 50; // Circle radius
     const circumference = 2 * Math.PI * radius;
-    const progress = (this.completedEnrollment / this.totalEnrollment) * circumference;
+    const progress = (this.completedEnrollments / this.totalEnrollments) * circumference;
     return `${progress} ${circumference}`;
   }
 
   getStrokeColor(): string {
-    if (this.completedEnrollment < 50) {
+    if (this.completeEnrollmentPercentage < 50) {
       return 'red';  // Red for low progress
-    } else if (this.completedEnrollment < 80) {
+    } else if (this.completeEnrollmentPercentage < 80) {
       return 'orange';  // Orange for medium progress
     }
     return '#4caf50';  // Green for high progress
   }
-  
+
+
+  // Listen to window resize event
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.updateChartSize();
+  }
+
+  // Method to update chart size based on window width
+  updateChartSize(): void {
+    const width = window.innerWidth;
+
+    // Set chart size based on viewport width
+    if (width <= 576) { // Small screens (Mobile)
+      this.view = [width - 20, 200]; // Adjust the width and height for small screens
+    } else if (width <= 768) { // Medium screens (Tablets)
+      this.view = [width - 50, 300]; // Adjust the width and height for tablets
+    } else if (width <= 992) { // Large screens (Small desktops)
+      this.view = [width - 100, 350]; // Adjust the width and height for small desktops
+    } else { // Extra large screens (Desktops)
+      this.view = [700, 400]; // Default chart size
+    }
+  }
+
 }
