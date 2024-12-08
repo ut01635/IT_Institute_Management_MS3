@@ -160,40 +160,6 @@ text {
   border-radius: 15px;
 }
 
-/* #card1 {
- 
-  
-}
-
-#card2 {
-  background: linear-gradient(to right, #ff9a8b, #ff6a00); 
-}
-
-#card3 {
-  background: linear-gradient(to right, #56ccf2, #6e7dff); 
-}
-
-#card4 {
-  background: linear-gradient(to right, #ffecd2, #fcb69f); 
-}
-
-#card5 {
-  background: linear-gradient(to right, #ab83a1, #c78f76); 
-}
-
-#card8 {
-  background: linear-gradient(to right, #00c6ff, #0072ff); 
-}
-
-#card7 {
-  background: linear-gradient(to right, #f8ff00, #3ad59f); 
-}
-
-#card6 {
-  background: linear-gradient(to right, #ff7e5f, #feb47b); 
-} */
-
-
 /* Progress bar */
 /* Circular progress bar styles */
 .progress-container {
@@ -231,6 +197,26 @@ text {
   font-size: 1.5rem;
   font-weight: bold;
   color: #333;
+}
+
+
+/* admin-dashboard.component.css */
+.chart-container {
+  width: 100%;         /* Full width */
+  height: 400px;       /* Default height */
+}
+
+/* Adjust chart height for different screen sizes */
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;     /* Smaller height for medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    height: 250px;     /* Even smaller height for small screens */
+  }
 }
 
 

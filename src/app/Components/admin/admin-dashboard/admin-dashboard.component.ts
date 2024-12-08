@@ -56,7 +56,7 @@ export class AdminDashboardComponent implements OnInit {
       this.completedEnrollment = 20;  
     }, 2000);
 
-    this.updateChartSize();
+    // this.updateChartSize();
 
   }
 
@@ -147,7 +147,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
  
-  view: [number, number] = [700, 400];  
+  // view: [number, number] = [600,300];  
   showXAxis: boolean = true;  
   showYAxis: boolean = true; 
   showGridLines: boolean = true; 
@@ -191,25 +191,25 @@ export class AdminDashboardComponent implements OnInit {
   
 
  
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any): void {
-    this.updateChartSize();
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: any): void {
+  //   this.updateChartSize();
+  // }
 
   
-  updateChartSize(): void {
-    const width = window.innerWidth;
+  // updateChartSize(): void {
+  //   const width = window.innerWidth;
 
     
-    if (width <= 576) { 
-      this.view = [width - 20, 200]; 
-    } else if (width <= 768) { 
-      this.view = [width - 50, 300]; 
-    } else if (width <= 992) { 
-      this.view = [width - 100, 350]; 
-    } else { 
-      this.view = [700, 400]; 
-    }
-  }
+  //   if (width <= 576) { 
+  //     this.view = [width - 50, 200]; 
+  //   } else if (width <= 768) { 
+  //     this.view = [width - 100, 300]; 
+  //   } else if (width <= 992) { 
+  //     this.view = [width - 200, 350]; 
+  //   } else { 
+  //     this.view = [700, 400]; 
+  //   }
+  // }
 
 }
