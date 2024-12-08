@@ -62,7 +62,7 @@
                   [attr.stroke-dasharray]="getStrokeDasharray()" [attr.stroke]="getStrokeColor()" />
               </svg>
               <div class="progress-text">
-                {{ completedEnrollment| number: '1.0-0' }}%
+                {{ calculateCompletedEnrollmentPercentage()| number: '1.0-0' }}%
               </div>
             </div>
           </div>
@@ -78,7 +78,7 @@
                   [attr.stroke-dasharray]="getStrokeDasharray()" [attr.stroke]="getStrokeColor()" />
               </svg>
               <div class="progress-text">
-                {{ readingEnrollments | number: '1.0-0' }}%
+                {{ calculateReadingEnrollmentPercentage() | number: '1.0-0' }}%
               </div>
             </div>
           </div>

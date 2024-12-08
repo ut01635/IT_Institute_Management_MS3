@@ -24,8 +24,6 @@ export class AdminDashboardComponent implements OnInit {
   currentMonthRevenue: number = 0;
   totalToComplete: number = 0;
   totalToReading: number = 0;
-  completeEnrollmentPercentage: number = this.calculateCompletedEnrollmentPercentage();
-  readingEnrollmentPercentage: number = this.calculateReadingEnrollmentPercentage();
 
 
   // Function to calculate Completed Enrollment percentage
@@ -61,6 +59,7 @@ export class AdminDashboardComponent implements OnInit {
     }, 2000);
 
     this.updateChartSize();
+
   }
 
   loadAdminName(): void {
@@ -233,9 +232,9 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   getStrokeColor(): string {
-    if (this.completeEnrollmentPercentage < 50) {
+    if (this.calculateCompletedEnrollmentPercentage() < 50) {
       return 'red';  // Red for low progress
-    } else if (this.completeEnrollmentPercentage < 80) {
+    } else if (this.calculateCompletedEnrollmentPercentage() < 80) {
       return 'orange';  // Orange for medium progress
     }
     return '#4caf50';  // Green for high progress
