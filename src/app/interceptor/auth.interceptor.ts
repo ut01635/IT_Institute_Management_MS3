@@ -6,12 +6,13 @@ import { Router } from '@angular/router'; // For navigation to login page
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('Token');
+    const token = localStorage.getItem('Token'); // Get token from localStorage
     let clonedRequest = req;
 
+    // Add Authorization header if token exists
     if (token) {
       clonedRequest = req.clone({
         setHeaders: {
@@ -22,22 +23,23 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(clonedRequest).pipe(
       catchError((error: HttpErrorResponse) => {
-        
         if (error.status === 401) {
-         
+          console.log(error.error);
+          
+          // If session expired or unauthorized, log out the user
           alert('Session expired. Please log in again.');
-          this.router.navigate(['/login']);
-        } else if (error.status === 0) {
-       
-          // alert('Network error. Please check your internet connection.');
-        } else {
-         
-          // alert(error.message || 'An unexpected error occurred.');
+
+          // Remove token from localStorage (logout)
+          localStorage.removeItem('Token');
+
+          // Navigate to the login page or home page
+          this.router.navigate(['/']);  // Adjust the URL to where the login page is
         }
 
-       
+        // Re-throw the error so it can be handled elsewhere if needed
         return throwError(() => error);
       })
     );
   }
 }
+
