@@ -29,18 +29,15 @@ export class AdminDashboardComponent implements OnInit {
 
   
   calculateCompletedEnrollmentPercentage(): number {
-    return this.calculatePercentage(this.completedEnrollments);
+    if (this.totalEnrollments === 0) return 0;  // Avoid division by zero
+    return (this.completedEnrollments / this.totalEnrollments) * 100;
   }
-
- 
+  
   calculateReadingEnrollmentPercentage(): number {
-    return this.calculatePercentage(this.readingEnrollments);
+    if (this.totalEnrollments === 0) return 0;  // Avoid division by zero
+    return (this.readingEnrollments / this.totalEnrollments) * 100;
   }
-
-
-  private calculatePercentage(enrollments: number): number {
-    return (enrollments / this.totalEnrollments) * 100;
-  }
+  
 
   constructor(
     private studentService: StudentService,
@@ -171,22 +168,27 @@ export class AdminDashboardComponent implements OnInit {
 
 
   
-  getStrokeDasharray(): string {
-    const radius = 50; 
+  getStrokeDasharray(completed: boolean): string {
+    const radius = 50;
     const circumference = 2 * Math.PI * radius;
-    const progress = (this.completedEnrollments / this.totalEnrollments) * circumference;
+    const percentage = completed ? this.calculateCompletedEnrollmentPercentage() : this.calculateReadingEnrollmentPercentage();
+    const progress = (percentage / 100) * circumference;
     return `${progress} ${circumference}`;
   }
+  
 
-  getStrokeColor(): string {
-    if (this.calculateCompletedEnrollmentPercentage() < 50) {
+  getStrokeColor(completed: boolean): string {
+    const percentage = completed ? this.calculateCompletedEnrollmentPercentage() : this.calculateReadingEnrollmentPercentage();
+  
+    if (percentage < 50) {
       return 'red';  
-    } else if (this.calculateCompletedEnrollmentPercentage() < 80) {
+    } else if (percentage < 80) {
       return 'orange';  
+    } else {
+      return '#4caf50';  
     }
-    return '#4caf50';  
   }
-
+  
 
  
   @HostListener('window:resize', ['$event'])

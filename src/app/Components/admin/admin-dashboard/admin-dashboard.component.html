@@ -59,7 +59,7 @@
               <svg class="progress-ring" width="120" height="120">
                 <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
                 <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
-                  [attr.stroke-dasharray]="getStrokeDasharray()" [attr.stroke]="getStrokeColor()" />
+                  [attr.stroke-dasharray]="getStrokeDasharray(true)" [attr.stroke]="getStrokeColor(true)" />
               </svg>
               <div class="progress-text">
                 {{ calculateCompletedEnrollmentPercentage()| number: '1.0-0' }}%
@@ -75,7 +75,7 @@
               <svg class="progress-ring" width="120" height="120">
                 <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
                 <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
-                  [attr.stroke-dasharray]="getStrokeDasharray()" [attr.stroke]="getStrokeColor()" />
+                  [attr.stroke-dasharray]="getStrokeDasharray(false)" [attr.stroke]="getStrokeColor(false)" />
               </svg>
               <div class="progress-text">
                 {{ calculateReadingEnrollmentPercentage() | number: '1.0-0' }}%
