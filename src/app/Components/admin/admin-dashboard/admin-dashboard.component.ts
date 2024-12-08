@@ -5,6 +5,7 @@ import { CourseService } from '../../../Services/course.service';
 import { EnrollmentService } from '../../../Services/enrollment.service';
 import { PaymentService } from '../../../Services/payment.service';
 import { AdminService } from '../../../Services/admin.service';
+import { CurrencyPipe } from '@angular/common';
 // import { Chart } from 'chart.js';
 
 @Component({
@@ -24,7 +25,7 @@ export class AdminDashboardComponent implements OnInit {
   currentMonthRevenue: number = 0;
   totalToComplete: number = 0;
   totalToReading: number = 0;
-  monthlyRevenue: { name: string, value: number }[] = [];
+  monthlyRevenue: { name: string, value: number}[] = [];
 
 
   
