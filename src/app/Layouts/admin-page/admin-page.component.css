@@ -293,3 +293,115 @@ input:not(:checked) + .slider .sun-moon  .bi-moon {
 input:checked + .slider .stars {
   opacity: 1;
 }
+
+
+/* Hide the footer on smaller screens and show it on medium and above */
+@media (max-width: 767px) {
+  footer {
+    display: none;
+  }
+}
+
+/* Show the footer for medium screens and above */
+@media (min-width: 768px) {
+  footer {
+    display: block;
+  }
+}
+
+/* Footer Tab Layout */
+footer .tab-bar__tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+footer .tab-bar__tab {
+  text-align: center;
+}
+
+footer .tab-bar__tab-name {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+footer .report-sub-links {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  border-radius: 5px;
+  padding: 5px 0;
+}
+
+footer .tab-bar__tab:hover .report-sub-links {
+  display: block;
+}
+
+footer .tab-bar__tab .active {
+  color: #0d6efd; /* Blue for active tab */
+}
+
+/* Hover effect: Change the link color to blue on hover */
+.tab-bar__tab-link:hover {
+  color: #007bff !important; /* Bootstrap's primary blue color */
+}
+
+/* Active state: Set the link color to blue when active */
+.tab-bar__tab-link.active {
+  color: #007bff !important; /* Same blue color for active links */
+}
+
+/* Optional: Change the icon color for active and hover states as well */
+.tab-bar__tab-link:hover i,
+.tab-bar__tab-link.active i {
+  color: #007bff !important;
+}
+
+.report-item{
+  color: #fff;
+}
+
+/* Base styles for the sub-links container */
+.report-item .sub-links-container {
+  display: none; /* Initially hidden */
+  position: absolute;
+  bottom: 100%; /* Position sub-links above the parent link */
+  left: 0;
+  top: 10px;
+  width: 100%; /* Match the width of the parent */
+  z-index: 2; /* Ensure sub-links appear above the Reports link */
+  background-color: #343a40; /* Dark background for sub-links */
+  padding: 5px 0; /* Add padding for spacing between the links */
+}
+
+/* Show sub-links container on hover */
+.report-item:hover .sub-links-container {
+  display: block;
+}
+
+/* Styling for each sub-link */
+.report-item .sub-links li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+}
+
+/* Hover effect for sub-links */
+.report-item .sub-links li a:hover {
+  background-color: #007bff; /* Blue background on hover */
+  color: white;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 767px) {
+  .report-item .sub-links-container {
+    position: static; /* Remove absolute positioning for small screens */
+    width: auto;
+    top: auto; /* Reset top for small screens */
+    z-index: auto; /* Remove z-index for small screens */
+  }
+}

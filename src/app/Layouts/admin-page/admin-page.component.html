@@ -8,7 +8,7 @@
 
     <div class="d-flex align-items-center">
       <!-- Notifications Icon (without text) -->
-      <button class="btn me-3 btn-lg fw-bold" aria-label="Notifications" [routerLink]="['/admin/Notification-list']">
+      <button class="btn me-3 btn-lg fw-bold d-none d-md-block" aria-label="Notifications" [routerLink]="['/admin/Notification-list']">
         <i class="bi bi-bell text-white fs-3 fw-bold"></i>
       </button>
 
@@ -23,9 +23,12 @@
       </div>
 
       <!-- Button to toggle the sidebar on small screens -->
-      <button class="navbar-toggler btn btn-outline-light d-block d-md-none" type="button" data-bs-toggle="collapse"
-        data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="bi bi-list text-white fs-3"></i>
+      <button class="btn d-block d-md-none" type="button">
+        <a class="nav-link text-danger" href="#" (click)="logout()">
+          <i class="bi bi-box-arrow-right fs-3 fw-bold"></i>
+          <!-- <span class="nav-text">Logout</span> -->
+        </a>
+  
       </button>
 
     </div>
@@ -82,11 +85,12 @@
             </a>
             <ul class="flex-column ms-0 w-100 report-sub-links position-absolute start-100 top-0 p-2 rounded shadow">
               <li><a href="#" [routerLink]="['/admin/student-report']" (click)="setActiveTab('student-report')"
-                  [class.active]="activeTab === 'student-report'"><i class="bi bi-person"></i>   Student Report</a></li>
+                  [class.active]="activeTab === 'student-report'"><i class="bi bi-person"></i> Student Report</a></li>
               <li><a href="#" [routerLink]="['/admin/enrollment-report']" (click)="setActiveTab('enrollment-report')"
-                  [class.active]="activeTab === 'enrollment-report'"><i class="bi bi-file-earmark-text"></i>  Enrollment Report</a></li>
+                  [class.active]="activeTab === 'enrollment-report'"><i class="bi bi-file-earmark-text"></i> Enrollment
+                  Report</a></li>
               <li><a href="#" [routerLink]="['/admin/payment-report']" (click)="setActiveTab('payment-report')"
-                  [class.active]="activeTab === 'payment-report'"><i class="bi bi-cash"> </i>  Payment Report</a></li>
+                  [class.active]="activeTab === 'payment-report'"><i class="bi bi-cash"> </i> Payment Report</a></li>
             </ul>
           </li>
 
@@ -135,4 +139,108 @@
       </section>
     </main>
   </div>
+
+  <!-- Footer Section -->
+  <footer class="bg-dark text-white fixed-bottom d-block d-md-none">
+    <div class="container">
+      <nav class="tab-bar">
+        <ul class="tab-bar__tabs list-unstyled d-flex justify-content-around mb-1">
+          <!-- Dashboard Tab -->
+          <li class="tab-bar__tab">
+            <a class="tab-bar__tab-link d-flex flex-column align-items-center text-white"
+              [routerLink]="['/admin/admin-dashboard']" (click)="setActiveTab('dashboard')"
+              [class.active]="activeTab === 'dashboard'">
+              <i class="bi bi-house-door"></i>
+              <span class="tab-bar__tab-name d-none d-md-block">Dashboard</span>
+            </a>
+          </li>
+
+          <!-- Students Tab -->
+          <li class="tab-bar__tab">
+            <a class="tab-bar__tab-link d-flex flex-column align-items-center text-white"
+              [routerLink]="['/admin/student-list']" (click)="setActiveTab('students')"
+              [class.active]="activeTab === 'students'">
+              <i class="bi bi-person"></i>
+              <span class="tab-bar__tab-name d-none d-md-block">Students</span>
+            </a>
+          </li>
+
+          <!-- Courses Tab -->
+          <li class="tab-bar__tab">
+            <a class="tab-bar__tab-link d-flex flex-column align-items-center text-white"
+              [routerLink]="['/admin/course-list']" (click)="setActiveTab('courses')"
+              [class.active]="activeTab === 'courses'">
+              <i class="bi bi-book"></i>
+              <span class="tab-bar__tab-name d-none d-md-block">Courses</span>
+            </a>
+          </li>
+
+          <!-- Enquiries Tab -->
+          <li class="tab-bar__tab">
+            <a class="tab-bar__tab-link d-flex flex-column align-items-center text-white"
+              [routerLink]="['/admin/enquiry-list']" (click)="setActiveTab('enquiries')"
+              [class.active]="activeTab === 'enquiries'">
+              <i class="bi bi-envelope"></i>
+              <span class="tab-bar__tab-name d-none d-md-block">Enquiries</span>
+            </a>
+          </li>
+
+          <!-- Payment Tab -->
+          <li class="tab-bar__tab">
+            <a class="tab-bar__tab-link d-flex flex-column align-items-center text-white"
+              [routerLink]="['/admin/payment']" (click)="setActiveTab('payment')"
+              [class.active]="activeTab === 'payment'">
+              <i class="bi bi-cash-coin"></i>
+              <span class="tab-bar__tab-name d-none d-md-block">Payment</span>
+            </a>
+          </li>
+
+ <!-- Reports Tab -->
+ <li class="tab-bar__tab report-item position-relative">
+  <a
+    class="tab-bar__tab-link d-flex flex-column align-items-center"
+    href="javascript:void(0);"
+    (click)="setActiveTab('reports')"
+    [class.active]="activeTab === 'reports'"
+  >
+    <i class="bi bi-file-earmark-bar-graph"></i>
+    <span class="tab-bar__tab-name d-none d-md-block">Reports</span>
+  </a>
+
+  <!-- Sub-links positioned in a separate div -->
+  <div class="sub-links-container">
+    <ul class="sub-links">
+      <li><a href="#" [routerLink]="['/admin/student-report']" (click)="setActiveTab('student-report')">Student Report</a></li>
+      <li><a href="#" [routerLink]="['/admin/enrollment-report']" (click)="setActiveTab('enrollment-report')">Enrollment Report</a></li>
+      <li><a href="#" [routerLink]="['/admin/payment-report']" (click)="setActiveTab('payment-report')">Payment Report</a></li>
+    </ul>
+  </div>
+</li>
+
+          <!-- Admins Tab (only visible for MasterAdmin) -->
+          <li class="tab-bar__tab" *ngIf="userRole === 'MasterAdmin'">
+            <a class="tab-bar__tab-link d-flex flex-column align-items-center text-white"
+              [routerLink]="['/admin/admin-list']" (click)="setActiveTab('admins')"
+              [class.active]="activeTab === 'admins'">
+              <i class="bi bi-person"></i>
+              <span class="tab-bar__tab-name d-none d-md-block">Admins</span>
+            </a>
+          </li>
+
+          <!-- Logout Tab -->
+          <li class="tab-bar__tab">
+            <!-- <a class="tab-bar__tab-link d-flex flex-column align-items-center text-white" href="#" (click)="logout()">
+              <i class="bi bi-box-arrow-right"></i>
+              <span class="tab-bar__tab-name d-none d-md-block">Logout</span>
+            </a> -->
+            <a class="tab-bar__tab-link d-flex flex-column align-items-center text-white" aria-label="Notifications" [routerLink]="['/admin/Notification-list']">
+              <i class="bi bi-bell text-white"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+
 </div>
