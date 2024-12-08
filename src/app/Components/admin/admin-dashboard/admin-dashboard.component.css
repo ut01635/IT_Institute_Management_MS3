@@ -143,6 +143,21 @@ text {
 
 .count-card{
   background: linear-gradient(to right, #4c67b1, #0d1e4c); 
+ 
+}
+
+.card-hover {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-hover:hover {
+  transform: scale(1.02); /* Adjust the scale factor as needed */
+}
+
+#design{
+  background: linear-gradient(to right, #4c67b1, #0d1e4c);
+  color: white;
+  border-radius: 15px;
 }
 
 /* #card1 {

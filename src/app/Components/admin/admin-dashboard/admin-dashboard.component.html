@@ -7,8 +7,8 @@
         <p>Welcome back to your dashboard.</p>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-      <div class="card count-card" id="card1">
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card " id="card1">
         <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-people-fill"></i>
           <div class="text-center">
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="col-lg-3 col-md-6 col-sm-12 card-hover">
       <div class="card count-card" id="card2">
         <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-book"></i>
@@ -34,7 +34,7 @@
   <!-- Monthly Revenue Graph -->
   <div class="row my-4 mb-5">
     <!-- Monthly Revenue Chart -->
-    <div class="container mt-5 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-between">
+    <div class="container mt-5 col-lg-6 col-md-6 col-sm-12  d-flex justify-content-between">
       <div class="card">
         <div class="card-body text-center">
           <h5 class="card-title mb-3">Monthly Revenue for {{ currentYear() }}</h5>
@@ -53,15 +53,15 @@
       <div class="container d-flex justify-content-center mt-5">
         <!-- Completed Enrollment -->
         <div class="rounded-4 shadow-sm" style="width: 25rem;">
-          <div class="card-body text-center">
-            <h5 class="card-title mb-4">Completed Enrollment</h5>
+          <div class="card-body text-center" id="design">
+            <h5 class="card-title mb-4 text-white">Completed Enrollment</h5>
             <div class="progress-container">
               <svg class="progress-ring" width="120" height="120">
                 <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
                 <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
                   [attr.stroke-dasharray]="getStrokeDasharray(true)" [attr.stroke]="getStrokeColor(true)" />
               </svg>
-              <div class="progress-text">
+              <div class="progress-text text-white">
                 {{ calculateCompletedEnrollmentPercentage()| number: '1.0-0' }}%
               </div>
             </div>
@@ -69,15 +69,15 @@
         </div>
         <!-- Reading Enrollment -->
         <div class="rounded-4 shadow-sm" style="width: 25rem;">
-          <div class="card-body text-center">
-            <h5 class="card-title mb-4">Reading Enrollment</h5>
+          <div class="card-body text-center" id="design">
+            <h5 class="card-title mb-4 text-white">Reading Enrollment</h5>
             <div class="progress-container">
               <svg class="progress-ring" width="120" height="120">
                 <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
                 <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
                   [attr.stroke-dasharray]="getStrokeDasharray(false)" [attr.stroke]="getStrokeColor(false)" />
               </svg>
-              <div class="progress-text">
+              <div class="progress-text text-white">
                 {{ calculateReadingEnrollmentPercentage() | number: '1.0-0' }}%
               </div>
             </div>
@@ -89,7 +89,7 @@
 
   <!-- Enrollment Stats -->
   <div class="row my-4 mt-5">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
       <div class="card count-card" id="card3">
         <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-clipboard-check"></i>
@@ -100,7 +100,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
       <div class="card count-card" id="card4">
         <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-mortarboard-fill"></i>
@@ -111,7 +111,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="col-lg-4 col-md-6 col-sm-12 card-hover">
       <div class="card count-card" id="card5">
         <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-file-earmark-text"></i>
@@ -126,7 +126,7 @@
 
   <!-- Revenue Stats -->
   <div class="row my-4">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
       <div class="card count-card" id="card6">
         <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-cash"></i>
@@ -137,7 +137,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
       <div class="card count-card" id="card7">
         <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-cash-stack"></i>
@@ -148,7 +148,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="col-lg-4 col-md-6 col-sm-12 card-hover">
       <div class="card count-card" id="card8">
         <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-currency-exchange"></i>
