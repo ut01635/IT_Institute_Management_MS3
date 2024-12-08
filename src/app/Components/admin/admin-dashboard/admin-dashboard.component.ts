@@ -25,24 +25,6 @@ export class AdminDashboardComponent implements OnInit {
   totalToComplete: number = 0;
   totalToReading: number = 0;
 
-
-  // public lineChartType: 'line' = 'line';
-  // public lineChartData: any = {
-  //   labels: [],
-  //   datasets: [
-  //     {
-  //       label: 'Revenue',
-  //       data: [],
-  //       borderColor: '#36A2EB',
-  //       backgroundColor: 'rgba(54, 162, 235, 0.2)',
-  //       pointBackgroundColor: '#36A2EB',
-  //       pointBorderColor: '#fff',
-  //       fill: true,
-  //       tension: 0.4
-  //     }
-  //   ]
-  // };
-
   constructor(
     private studentService: StudentService,
     private courseService: CourseService,

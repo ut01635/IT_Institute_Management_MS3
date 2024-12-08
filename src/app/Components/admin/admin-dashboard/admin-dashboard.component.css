@@ -44,7 +44,7 @@ a {
   padding: 20px;
 }
 
-/* Chart Container */
+/* Chart Container
 .chart-container {
   position: relative;
   height: 100%;
@@ -52,7 +52,7 @@ a {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+} */
 
 
 
@@ -137,12 +137,17 @@ text {
 
 
 .card i{
-  font-size: 30px;
-  color: black;
+  font-size: 50px;
+  color: rgb(255, 252, 252);
 }
 
-#card1 {
-  background: linear-gradient(to right, #3ea1e4, #7050e6); 
+.count-card{
+  background: linear-gradient(to right, #4c67b1, #0d1e4c); 
+}
+
+/* #card1 {
+ 
+  
 }
 
 #card2 {
@@ -171,7 +176,7 @@ text {
 
 #card6 {
   background: linear-gradient(to right, #ff7e5f, #feb47b); 
-}
+} */
 
 
 /* Progress bar */
@@ -179,6 +184,12 @@ text {
 .progress-container {
   position: relative;
   display: inline-block;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.progress-container:hover{
+  transform: scale(1.08)
 }
 
 .progress-ring {
@@ -192,7 +203,7 @@ text {
 
 .progress-ring-circle {
   fill: none;
-  stroke: #4caf50;  /* Green for the progress */
+  /* stroke: #4caf50;  Green for the progress */
   stroke-linecap: round;
   transition: stroke-dasharray 1s ease;
 }

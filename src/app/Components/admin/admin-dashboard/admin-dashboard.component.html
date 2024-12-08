@@ -8,30 +8,34 @@
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-      <div class="card" id="card1">
-        <div class="card-body text-center">
+      <div class="card count-card" id="card1">
+        <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-people-fill"></i>
 
-          <h5 class="card-title">Total Students : 0{{ totalStudents }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7</p> -->
+          <div class="text-center">
+            <h5 class="card-title text-white">Total Students</h5>
+            <p class="card-text text-white fs-2">{{ totalStudents }}</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card" id="card2">
-        <div class="card-body text-center">
-          <i class="bi bi-book-fill"></i>
-          <h5 class="card-title">Total Courses : 0{{ totalCourses }}</h5>
-          <!-- <p class="card-text text-start"> Current Month : 7</p> -->
+      <div class="card count-card" id="card2">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-book"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Total Courses</h5>
+            <p class="card-text text-white fs-2">{{ totalCourses }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-   <!-- graphs -->
+  <!-- graphs -->
 
   <!-- Graphs and Progress Circles -->
-  <div class="row my-4">
+  <div class="row my-4 mb-5">
     <!-- Left Align Line Chart -->
     <div class="container mt-5 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-between">
       <div class="card">
@@ -51,7 +55,7 @@
     <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-between">
       <div class="container d-flex justify-content-center mt-5">
         <!-- Complete enrollment -->
-        <div class="card" style="width: 25rem;">
+        <div class="rounded-4 shadow-sm" style="width: 25rem;">
           <div class="card-body text-center">
             <h5 class="card-title mb-4">Enrollment Progress</h5>
 
@@ -69,7 +73,7 @@
           </div>
         </div>
         <!-- Reading Enrollment -->
-        <div class="card" style="width: 25rem;">
+        <div class="rounded-4 shadow-sm" style="width: 25rem;">
           <div class="card-body text-center">
             <h5 class="card-title mb-4">Enrollment Progress</h5>
 
@@ -91,31 +95,39 @@
   </div>
 
   <!-- Enrollment Stats -->
-  <div class="row my-4">
+  <div class="row my-4 mt-5">
     <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card" id="card3">
-        <div class="card-body text-center">
+      <div class="card count-card" id="card3">
+        <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-clipboard-check"></i>
-          <h5 class="card-title">Total Enrollments : 0{{ totalEnrollments }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7</p> -->
+          <div class="text-center">
+            <h5 class="card-title text-white">Total Enrollments</h5>
+            <p class="card-text text-white fs-2">{{ totalEnrollments }}</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card" id="card4">
-        <div class="card-body text-center">
+      <div class="card count-card" id="card4">
+        <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-mortarboard-fill"></i>
-          <h5 class="card-title">Completed Enrollments : 0{{ completedEnrollments }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7</p> -->
+          <div class="text-center">
+            <h5 class="card-title text-white">Completed Enrollments</h5>
+            <p class="card-text text-white fs-2">{{ completedEnrollments }}</p>
+          </div>
+
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="card" id="card5">
-        <div class="card-body text-center">
+      <div class="card count-card" id="card5">
+        <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-file-earmark-text"></i>
-          <h5 class="card-title">Reading Enrollments : 0{{ readingEnrollments }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7</p> -->
+          <div class="text-center">
+            <h5 class="card-title text-white">Reading Enrollments</h5>
+            <p class="card-text text-white fs-2">{{ readingEnrollments }}</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -124,33 +136,42 @@
   <!-- Revenue Stats -->
   <div class="row my-4">
     <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card" id="card6">
-        <div class="card-body text-center">
+      <div class="card count-card" id="card6">
+        <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-cash"></i> <!-- Cash Icon -->
-          <h5 class="card-title">Total Revenue : {{ totalRevenue | currency :'LKR ' }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7 LKR</p> -->
+          <div class="text-center">
+            <h5 class="card-title text-white">Total Revenue </h5>
+            <p class="card-text text-white fs-2">{{ totalRevenue | currency :'LKR ' }}</p>
+          </div>
+
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card" id="card7">
-        <div class="card-body text-center">
+      <div class="card count-card" id="card7">
+        <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-cash-stack"></i>
-          <h5 class="card-title">Current Year Revenue : {{ currentYearRevenue | currency :'LKR ' }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7 LKR</p> -->
+          <div class="text-center">
+            <h5 class="card-title text-white">Current Year Revenue </h5>
+            <p class="card-text text-white fs-2">{{ currentYearRevenue | currency :'LKR ' }}</p>
+          </div>
+
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="card" id="card8">
-        <div class="card-body text-center">
+      <div class="card count-card" id="card8">
+        <div class="card-body text-center d-flex justify-content-around">
           <i class="bi bi-currency-exchange"></i>
-          <h5 class="card-title">Current Month Revenue : {{ currentMonthRevenue | currency :'LKR ' }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7 LKR</p> -->
+          <div class="text-center">
+            <h5 class="card-title text-white">Current Month Revenue </h5>
+            <p class="card-text text-white fs-2">{{ currentMonthRevenue | currency :'LKR ' }}</p>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 
- 
+
 </div>
