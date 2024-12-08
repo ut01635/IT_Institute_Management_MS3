@@ -172,3 +172,39 @@ text {
 #card6 {
   background: linear-gradient(to right, #ff7e5f, #feb47b); 
 }
+
+
+/* Progress bar */
+/* Circular progress bar styles */
+.progress-container {
+  position: relative;
+  display: inline-block;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);  /* Rotate to start from top */
+}
+
+.progress-ring-background {
+  fill: none;
+  stroke: #ddd;
+}
+
+.progress-ring-circle {
+  fill: none;
+  stroke: #4caf50;  /* Green for the progress */
+  stroke-linecap: round;
+  transition: stroke-dasharray 1s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+
