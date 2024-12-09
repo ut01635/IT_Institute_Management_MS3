@@ -17,7 +17,7 @@ import { ProfileUpdateFormComponent } from '../../../Modals/student/profile-upda
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
-
+  whatasppBaseURl:string = 'https://wa.me/'
   studentProfile!: StudentProfileDto;
   completeEnrollment:Enrollment[]=[];
   ReadingEnrollolment:Enrollment[]=[];
@@ -118,67 +118,41 @@ export class ProfileComponent implements OnInit {
 
 
  
-  getProgressBarWidth(enrollmentDate: Date, duration: number): string {
-    const today = new Date();
-    const startDate = new Date(enrollmentDate);
-    
-    
-    if (duration <= 0) {
-      return '0%';  
-    }
+ // Function to calculate the width of the progress bar (in percentage)
+getProgressBarWidth(enrollmentDate: Date, durationInMonths: number): string {
+  const currentDate = new Date();
   
-    
-    const endDate = new Date(startDate);
-    endDate.setMonth(startDate.getMonth() + duration);
-  
-    
-    if (today < startDate) {
-      return '0%';
-    }
-  
-    
-    const elapsedMonths = this.calculateElapsedMonths(startDate, today);
-    const totalDuration = this.calculateElapsedMonths(startDate, endDate);
-  
-    
-    if (elapsedMonths >= totalDuration) {
-      return '100%';
-    }
-  
-   
-    const percentage = Math.min((elapsedMonths / totalDuration) * 100, 100); 
-  
-    return `${percentage.toFixed(2)}%`;  
-  }
-  
-  
-  calculateElapsedMonths(startDate: Date, endDate: Date): number {
-    const yearsDifference = endDate.getFullYear() - startDate.getFullYear();
-    const monthsDifference = endDate.getMonth() - startDate.getMonth();
-    return yearsDifference * 12 + monthsDifference;
-  }
-  
+  // Calculate the number of milliseconds for the current time and the enrollment date
+  const elapsedTime = currentDate.getTime() - new Date(enrollmentDate).getTime();
 
- 
-  getProgressBarPercentage(enrollmentDate: Date, duration: number): number {
-    const today = new Date();
-    const startDate = new Date(enrollmentDate);
-    const endDate = new Date(startDate);
-    endDate.setMonth(startDate.getMonth() + duration);
+  // Convert duration in months to milliseconds (assuming 30 days per month)
+  const totalDuration = durationInMonths * 30 * 24 * 60 * 60 * 1000;
 
-    const elapsedMonths = this.calculateElapsedMonths(startDate, today);
-    const totalDuration = this.calculateElapsedMonths(startDate, endDate);
+  // Calculate the progress as a percentage of total duration
+  const progress = (elapsedTime / totalDuration) * 100;
 
-    return Math.min((elapsedMonths / totalDuration) * 100, 100); 
-  }
+  // Return the width of the progress bar, ensuring it does not exceed 100%
+  return `${Math.min(progress, 100)}%`;
+}
 
-  // /**
-  //  * Calculate the number of full months between two dates.
-  //  */
-  // private calculateElapsedMonths(startDate: Date, endDate: Date): number {
-  //   const months = endDate.getMonth() - startDate.getMonth() + (12 * (endDate.getFullYear() - startDate.getFullYear()));
-  //   return months < 0 ? 0 : months; // Return 0 if the calculated months are negative
-  // }
+// Function to calculate the percentage for aria-valuenow (used for accessibility)
+getProgressBarPercentage(enrollmentDate: Date, durationInMonths: number): number {
+  const currentDate = new Date();
+  
+  // Calculate the number of milliseconds for the current time and the enrollment date
+  const elapsedTime = currentDate.getTime() - new Date(enrollmentDate).getTime();
+
+  // Convert duration in months to milliseconds (assuming 30 days per month)
+  const totalDuration = durationInMonths * 30 * 24 * 60 * 60 * 1000;
+
+  // Calculate the percentage of the elapsed time compared to the total duration
+  const percentage = (elapsedTime / totalDuration) * 100;
+
+  // Return the percentage, ensuring it does not exceed 100%
+  return Math.min(percentage, 100);
+}
+
+  
 
 
   editProfileImage() {

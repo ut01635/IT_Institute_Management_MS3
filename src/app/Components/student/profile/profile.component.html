@@ -7,21 +7,17 @@
           <div class="card-body text-center">
             <div class="position-relative d-inline-block profile-image">
               <!-- Profile Image -->
-              <img 
-                src="https://localhost:7055{{studentProfile.imagePath}}" 
-                alt="Admin" 
-                class="rounded-circle mb-3 img-fluid" 
+              <img src="https://localhost:7055{{studentProfile.imagePath}}" alt="Admin"
+                class="rounded-circle mb-3 img-fluid"
                 onerror="this.onerror=null; this.src='https://via.placeholder.com/150';">
               <!-- Edit Button (Using btn-outline-warning) -->
-              <button 
-                type="button" 
-                class="btn btn-info position-absolute bottom-0 rounded-circle end-0 mb-4 me-2 p-1" 
+              <button type="button" class="btn btn-info position-absolute bottom-0 rounded-circle end-0 mb-4 me-2 p-1"
                 (click)="editProfileImage()">
                 <i class="bi bi-pencil" id="editProfileIcon"></i> <!-- Bootstrap Icon for Edit -->
               </button>
             </div>
-            
-        
+
+
             <h4>{{studentProfile.firstName}} {{studentProfile.lastName}}</h4>
             <p class="text-secondary mb-1">Full Stack Developer</p>
             <p class="text-muted font-size-sm">{{studentProfile.address.addressLine1}}, {{studentProfile.address.city}}
@@ -83,6 +79,12 @@
               <a class="text-secondary text-decoration-none fw-bold" [href]="studentProfile.socialMediaLinks.facebook"
                 target="_blank">View</a>
             </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+              *ngIf="studentProfile.socialMediaLinks.whatsApp">
+              <h6><i class="bi bi-whatsapp me-2 text-success"></i>WhatsApp</h6>
+              <a class="text-secondary text-decoration-none fw-bold"
+                [href]="'https://wa.me/' + studentProfile.socialMediaLinks.whatsApp" target="_blank">View</a>
+            </li>
           </ul>
           <!-- Update Button -->
           <div class="card-body text-center">
@@ -138,13 +140,20 @@
                       <small class="fw-bold">{{ enrollment.course.courseName }}</small>
                       <small>{{enrollment.course.level}}</small>
                     </div>
-                    <div class="progress mb-3" style="height: 10px">
-                      <div class="progress-bar bg-primary"
-                        [style.width]="getProgressBarWidth(enrollment.enrollmentDate, enrollment.course.duration)"
-                        role="progressbar"
-                        [attr.aria-valuenow]="getProgressBarPercentage(enrollment.enrollmentDate, enrollment.course.duration)"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress mb-3" style="height: 13px" role="progressbar" aria-label="Progress with label"
+                      [attr.aria-valuenow]="getProgressBarPercentage(enrollment.enrollmentDate, enrollment.course.duration)"
+                      aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar" [ngClass]="{
+                        'bg-danger ': getProgressBarPercentage(enrollment.enrollmentDate, enrollment.course.duration) < 30,
+                        'bg-warning text-dark': getProgressBarPercentage(enrollment.enrollmentDate, enrollment.course.duration) >= 30 && getProgressBarPercentage(enrollment.enrollmentDate, enrollment.course.duration) < 70,
+                        'bg-success': getProgressBarPercentage(enrollment.enrollmentDate, enrollment.course.duration) >= 70
+                      }" [style.width]="getProgressBarWidth(enrollment.enrollmentDate, enrollment.course.duration)">
+                        {{ getProgressBarPercentage(enrollment.enrollmentDate, enrollment.course.duration) | number:
+                        '1.0-0' }}%
+                      </div>
                     </div>
+
+
                   </div>
                 </div>
                 <ng-template #noEnrollments>
@@ -170,9 +179,9 @@
                       <small>{{ enrollment.course.courseName }}</small>
                       <small>{{enrollment.course.level}}</small>
                     </div>
-                    <div class="progress mb-3" style="height: 7px">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
-                        aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress " role="progressbar" aria-label="Example with label" aria-valuenow="100"
+                      aria-valuemin="0" aria-valuemax="100" style="height: 13px">
+                      <div class="progress-bar bg-success" style="width: 100%">100%</div>
                     </div>
                   </div>
                 </div>
