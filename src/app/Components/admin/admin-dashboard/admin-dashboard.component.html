@@ -38,7 +38,7 @@
 
     <!-- Monthly Revenue Chart -->
     <div class="col-lg-6 col-md-12 mb-3">
-      <div class="card">
+      <div class="card" id="graphBack">
         <div class="card-body text-center">
           <h5 class="card-title mb-3">Monthly Revenue for {{ currentYear() }}</h5>
           <div class="chart-container">
@@ -54,9 +54,32 @@
     <!-- Right Side Progress Circles (Completed Enrollment and Reading Enrollment) -->
     <!-- Right Side Progress Circles (Completed Enrollment and Reading Enrollment) -->
     <div class="col-lg-6 col-md-12 mb-3">
+      <!-- Reading Enrollment -->
+      <div class="card count-card  mb-3" id="card4">
+        <div class="inner_container d-flex justify-content-evenly px-4 align-items-center">
+          <i class="bi bi-x-circle"></i>
+          <div class="card-body text-center" id="cardStyle">
+            <!-- Flex container for icon and title -->
+            <div class="d-flex justify-content-center align-items-center">
+              <h5 class="card-title text-white mb-3 ms-3">Reading Enrollment</h5>
+            </div>
+
+            <div class="progress-container">
+              <svg class="progress-ring" width="120" height="120">
+                <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
+                <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
+                  [attr.stroke-dasharray]="getStrokeDasharray(false)" [attr.stroke]="getStrokeColor(false)" />
+              </svg>
+              <div class="progress-text text-white">
+                {{ calculateReadingEnrollmentPercentage() | number: '1.0-0' }}%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Completed Enrollment -->
-      <div class="card count-card mb-3" id="card3">
+      <div class="card count-card" id="card3">
 
         <div class="inner_container d-flex justify-content-evenly px-3  align-items-center">
           <i class="bi bi-check2-circle"></i>
@@ -81,30 +104,6 @@
           </div>
         </div>
 
-      </div>
-
-      <!-- Reading Enrollment -->
-      <div class="card count-card" id="card4">
-        <div class="inner_container d-flex justify-content-evenly px-4 align-items-center">
-          <i class="bi bi-x-circle"></i>
-          <div class="card-body text-center" id="cardStyle">
-            <!-- Flex container for icon and title -->
-            <div class="d-flex justify-content-center align-items-center">
-              <h5 class="card-title text-white mb-3 ms-3">Reading Enrollment</h5>
-            </div>
-
-            <div class="progress-container">
-              <svg class="progress-ring" width="120" height="120">
-                <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
-                <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
-                  [attr.stroke-dasharray]="getStrokeDasharray(false)" [attr.stroke]="getStrokeColor(false)" />
-              </svg>
-              <div class="progress-text text-white">
-                {{ calculateReadingEnrollmentPercentage() | number: '1.0-0' }}%
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>

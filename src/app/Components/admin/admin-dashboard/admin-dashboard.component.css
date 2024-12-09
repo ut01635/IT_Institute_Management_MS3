@@ -141,7 +141,7 @@ text {
   color: rgb(255, 252, 252);
 }
 
-.count-card{
+.count-card {
   background: linear-gradient(to right, #4c67b1, #0d1e4c); 
  
 }
@@ -229,14 +229,3 @@ text {
 .inner_container i{
   font-size: 100px;
 }
-/* .inner_container{
-  display: flex;
-  justify-content: space-evenly;
-}
-
-
-
-#cardStyle{
-  margin-left: 100px;
-  margin-top: 3%;
-} */
