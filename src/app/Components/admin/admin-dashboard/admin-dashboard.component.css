@@ -226,3 +226,17 @@ text {
 }
 
 
+.inner_container i{
+  font-size: 100px;
+}
+/* .inner_container{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+
+#cardStyle{
+  margin-left: 100px;
+  margin-top: 3%;
+} */
