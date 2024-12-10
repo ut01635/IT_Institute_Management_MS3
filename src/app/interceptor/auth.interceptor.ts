@@ -23,7 +23,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(clonedRequest).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log("aa"+error);
+        console.log("aa"+error.message);
+        console.log("bb"+error.status);
         if (error.status === 401) {
           console.log(error.error);
           
