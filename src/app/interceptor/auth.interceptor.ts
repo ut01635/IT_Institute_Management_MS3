@@ -6,6 +6,8 @@ import { Router } from '@angular/router'; // For navigation to login page
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  private alertShown: boolean = false; // Flag to track if the alert has already been shown
+
   constructor(private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -23,19 +25,22 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(clonedRequest).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log("aa"+error.message);
-        console.log("bb"+error.status);
-        if (error.status === 401) {
+        console.log("aa" + error.message);
+        console.log("bb" + error.status);
+        
+        if (error.status === 0 && !this.alertShown) {  // Check if alert is not already shown
           console.log(error.error);
           
-          // If session expired or unauthorized, log out the user
-          alert('Session expired. Please log in again.');
-
           // Remove token from localStorage (logout)
           localStorage.clear();
-
+          
+          // If session expired or unauthorized, log out the user
+          this.alertShown = true;  // Set the flag to true to prevent future alerts
+          alert('Session expired. Please log in again.');
+          
           // Navigate to the login page or home page
           this.router.navigate(['/']);  // Adjust the URL to where the login page is
+          this.alertShown = false;
         }
 
         // Re-throw the error so it can be handled elsewhere if needed
@@ -44,4 +49,3 @@ export class AuthInterceptor implements HttpInterceptor {
     );
   }
 }
-

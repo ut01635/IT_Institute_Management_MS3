@@ -124,19 +124,24 @@
 
             <td class="">
               <div class="d-flex" style="justify-content: center;">
-                <!-- Edit Button -->
-                <button type="button" class="btn btn-warning me-4 btn-sm"
-                  (click)="openUpdatePaymentPlanModal(enrollment)">
-                  <i class="bi bi-pencil"> Edit</i>
-                  <!--Edit -->
-                </button>
-                <!-- Delete Button -->
-                <button type="button" class="btn btn-danger  btn-sm" (click)="confirmDelete(enrollment.id)">
-                  <i class="bi bi-trash"> Delete</i>
-                </button>
+                <!-- Show 'Finished' when enrollment.isComplete is true -->
+                <span *ngIf="enrollment.isComplete === true" class="text-success fw-bolder">Finished</span>
+            
+                <!-- Edit and Delete Buttons, only visible if enrollment.isComplete is not true -->
+                <ng-container *ngIf="enrollment.isComplete !== true">
+                  <!-- Edit Button -->
+                  <button type="button" class="btn btn-warning me-4 btn-sm"
+                    (click)="openUpdatePaymentPlanModal(enrollment)">
+                    <i class="bi bi-pencil"> Edit</i>
+                  </button>
+                  <!-- Delete Button -->
+                  <button type="button" class="btn btn-danger btn-sm" (click)="confirmDelete(enrollment.id)">
+                    <i class="bi bi-trash"> Delete</i>
+                  </button>
+                </ng-container>
               </div>
-
             </td>
+            
           </tr>
         </tbody>
       </table>
