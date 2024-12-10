@@ -1,22 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest, userDetails } from '../../../Services/Modal';
 import { AuthService } from '../../../Services/auth.service';
 
 import { jwtDecode } from 'jwt-decode';
+import { AuthInterceptor } from '../../../interceptor/auth.interceptor';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   login: LoginRequest;
   message : string = ''
+  
 
   constructor(private router: Router, private loginService: AuthService) {
     this.login = { nic: '', password: '' };
+  }
+
+  ngOnInit(): void {
   }
 
   // This method will handle form submission
@@ -27,6 +32,7 @@ export class LoginComponent {
         (response: string) => {
           // Store the token in localStorage
           localStorage.setItem('Token', response);
+          // this.authInterceptor.alertShown = false;
 
           // Decode the JWT token to get user details (including the Role)
           const userDetails: userDetails = jwtDecode(response);

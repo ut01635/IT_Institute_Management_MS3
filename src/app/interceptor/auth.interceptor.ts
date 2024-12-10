@@ -25,11 +25,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(clonedRequest).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log("aa" + error.message);
-        console.log("bb" + error.status);
+        // console.log("aa" + error.message);
+        // console.log("bb" + error.status);
         
         if (error.status === 0 && !this.alertShown) {  // Check if alert is not already shown
-          console.log(error.error);
+          console.log("hello this error"+error.error);
           
           // Remove token from localStorage (logout)
           localStorage.clear();
@@ -40,7 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
           
           // Navigate to the login page or home page
           this.router.navigate(['/']);  // Adjust the URL to where the login page is
-          this.alertShown = false;
+          // this.alertShown = false;
         }
 
         // Re-throw the error so it can be handled elsewhere if needed
