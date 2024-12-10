@@ -229,3 +229,42 @@ text {
 .inner_container i{
   font-size: 100px;
 }
+
+
+
+
+.dashboard-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eaf4fc;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  max-width: 60%;
+}
+
+.alert-heading {
+  color: #2c6bfc;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.progress-status {
+  color: #ff7f00;
+  font-weight: bold;
+}
+
+.illustration img {
+  max-width: 159px;
+  border-radius: 8px;
+}

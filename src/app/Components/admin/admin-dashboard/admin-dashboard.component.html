@@ -1,12 +1,17 @@
 <div class="container">
   <!-- Welcome Alert -->
   <div class="row my-4">
-    <div class="col-lg-6 col-md-12" style="font-size: 30px;">
-      <div class="alert alert-primary" role="alert">
-        <h4 class="alert-heading">Hello, {{ adminName }} !</h4>
-        <p>Welcome back to your dashboard.</p>
+    <div class="dashboard-card col-lg-6 col-md-12" style="font-size: 30px;">
+      <div class="content">
+        <h4 class="alert-heading">Welcome back, {{ adminName }}!</h4>
+        <p>Your students completed <strong>80%</strong> of the tasks.</p>
+        <p>Progress is <span class="progress-status">very good!</span></p>
+      </div>
+      <div class="illustration">
+        <img src="/back.webp" alt="Dashboard">
       </div>
     </div>
+    
 
     <!-- Total Students and Courses Cards -->
     <div class="col-lg-3 col-md-6 col-sm-12 mb-3 card-hover">
