@@ -85,6 +85,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.clearLocalStorage();
+    localStorage.setItem('sidebar-theme', 'dark');
     this.courseService.getAllCourses();
 
 

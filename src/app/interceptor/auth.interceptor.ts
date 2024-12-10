@@ -30,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
           alert('Session expired. Please log in again.');
 
           // Remove token from localStorage (logout)
-          localStorage.removeItem('Token');
+          localStorage.clear();
 
           // Navigate to the login page or home page
           this.router.navigate(['/']);  // Adjust the URL to where the login page is
