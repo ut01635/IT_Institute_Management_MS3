@@ -25,20 +25,43 @@ export class AdminDashboardComponent implements OnInit {
   currentMonthRevenue: number = 0;
   totalToComplete: number = 0;
   totalToReading: number = 0;
-  monthlyRevenue: { name: string, value: number}[] = [];
+  monthlyRevenue: { name: string, value: number }[] = [];
+  progressLevel: string = '';
+  progressLevelClass: string = '';
 
 
-  
+
   calculateCompletedEnrollmentPercentage(): number {
-    if (this.totalEnrollments === 0) return 0;  
+    if (this.totalEnrollments === 0) return 0;
     return (this.completedEnrollments / this.totalEnrollments) * 100;
   }
-  
+
   calculateReadingEnrollmentPercentage(): number {
-    if (this.totalEnrollments === 0) return 0; 
+    if (this.totalEnrollments === 0) return 0;
     return (this.readingEnrollments / this.totalEnrollments) * 100;
   }
+
+
+  updateProgressLevel(): void {
+    const percentage = this.calculateReadingEnrollmentPercentage();
+    console.log(percentage);
   
+    if (percentage < 50) {
+      this.progressLevel = 'Needs Improvement';
+      this.progressLevelClass = 'progress-poor';
+    } else if (percentage >= 50 && percentage < 70) {
+      this.progressLevel = 'Average';
+      this.progressLevelClass = 'progress-average';
+    } else if (percentage >= 70 && percentage < 90) {
+      this.progressLevel = 'Good';
+      this.progressLevelClass = 'progress-good';
+    } else {
+      this.progressLevel = 'Excellent';
+      this.progressLevelClass = 'progress-excellent';
+    }
+  }
+
+
 
   constructor(
     private studentService: StudentService,
@@ -54,7 +77,7 @@ export class AdminDashboardComponent implements OnInit {
 
 
     setTimeout(() => {
-      this.completedEnrollment = 20;  
+      this.completedEnrollment = 20;
     }, 2000);
 
     // this.updateChartSize();
@@ -97,7 +120,10 @@ export class AdminDashboardComponent implements OnInit {
 
     this.enrollmentService.getAllReading().subscribe(reading => {
       this.readingEnrollments = reading.length;
+      this.updateProgressLevel();
     });
+
+  
 
 
     this.paymentService.getTotalIncome().subscribe((response: any) => {
@@ -110,13 +136,13 @@ export class AdminDashboardComponent implements OnInit {
     this.paymentService.getAllPayments().subscribe(payments => {
       this.currentYearRevenue = payments.filter(payment => new Date(payment.paymentDate).getFullYear() === currentYear)
         .reduce((total, payment) => total + payment.amount, 0);
-      
-      
+
+
       const currentMonth = new Date().getMonth();
       this.currentMonthRevenue = payments.filter(payment => new Date(payment.paymentDate).getMonth() === currentMonth)
         .reduce((total, payment) => total + payment.amount, 0);
 
-      
+
       this.calculateMonthlyRevenue(payments);
     });
 
@@ -131,15 +157,15 @@ export class AdminDashboardComponent implements OnInit {
       this.totalToReading = totalEnrollments > 0 ? Math.round((reading.length / totalEnrollments) * 100) : 0;
     });
 
-    
+
   }
 
-  
+
 
   calculateMonthlyRevenue(payments: any[]): void {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    
-    
+
+
     this.monthlyRevenue = months.map((month, index) => ({
       name: month,
       value: payments.filter(payment => new Date(payment.paymentDate).getMonth() === index)
@@ -147,28 +173,28 @@ export class AdminDashboardComponent implements OnInit {
     }));
   }
 
- 
-  // view: [number, number] = [600,300];  
-  showXAxis: boolean = true;  
-  showYAxis: boolean = true; 
-  showGridLines: boolean = true; 
-  showLabels: boolean = true;  
 
- 
-  colorScheme: string = 'cool';  
+  // view: [number, number] = [600,300];  
+  showXAxis: boolean = true;
+  showYAxis: boolean = true;
+  showGridLines: boolean = true;
+  showLabels: boolean = true;
+
+
+  colorScheme: string = 'cool';
 
   currentYear(): number {
     return new Date().getFullYear();
   }
 
 
-  
-  
-  completedEnrollment: number = 0;  
-  totalEnrollment: number = 0;     
 
 
-  
+  completedEnrollment: number = 0;
+  totalEnrollment: number = 0;
+
+
+
   getStrokeDasharray(completed: boolean): string {
     const radius = 50;
     const circumference = 2 * Math.PI * radius;
@@ -176,32 +202,32 @@ export class AdminDashboardComponent implements OnInit {
     const progress = (percentage / 100) * circumference;
     return `${progress} ${circumference}`;
   }
-  
+
 
   getStrokeColor(completed: boolean): string {
     const percentage = completed ? this.calculateCompletedEnrollmentPercentage() : this.calculateReadingEnrollmentPercentage();
-  
+
     if (percentage < 50) {
-      return 'red';  
+      return 'red';
     } else if (percentage < 80) {
-      return 'orange';  
+      return 'orange';
     } else {
-      return '#4caf50';  
+      return '#4caf50';
     }
   }
-  
 
- 
+
+
   // @HostListener('window:resize', ['$event'])
   // onResize(event: any): void {
   //   this.updateChartSize();
   // }
 
-  
+
   // updateChartSize(): void {
   //   const width = window.innerWidth;
 
-    
+
   //   if (width <= 576) { 
   //     this.view = [width - 50, 200]; 
   //   } else if (width <= 768) { 

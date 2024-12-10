@@ -268,3 +268,24 @@ p {
   max-width: 159px;
   border-radius: 8px;
 }
+
+
+.progress-poor {
+  color: red;
+  font-weight: bold;
+}
+
+.progress-average {
+  color: orange;
+  font-weight: bold;
+}
+
+.progress-good {
+  color: #ffcc00; 
+  font-weight: bold;
+}
+
+.progress-excellent {
+  color: #4caf50; 
+  font-weight: bold;
+}
