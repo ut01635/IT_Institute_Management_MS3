@@ -111,6 +111,9 @@ export interface StudentProfileDto {
   enrollments: Enrollment[];
 }
 
+
+
+//Request modals
 export interface SocialMediaLinks {
   id: string;
   linkedIn?: string;
@@ -120,44 +123,35 @@ export interface SocialMediaLinks {
   whatsApp?: string;
   studentNic?: string;
 }
-
 export interface EnrollmentRequest{
   studentNIC:string,
   courseId:string,
   paymentPlan:string
 }
-
 export interface EmailRequest{
   email:string,
   subject:string,
   body:string
 }
-
 export interface AnnouncementRequest{
   title: string;
   body: string;
   date: Date;
 }
-
 export interface MessageRequest{
   message: string;
   studentNIC: string;
   date: Date;
 }
-
 export interface AdminMessageRequest{
-  
     message:string,
     studentNIC:string
-  
 }
-
 export interface resetPassword{
   currentPassword:string,
   newPassword:string,
   confirmNewPassword:string
 }
-
 export interface AddressRequestDto {
   addressLine1: string;
   addressLine2?: string;
@@ -166,7 +160,6 @@ export interface AddressRequestDto {
   postalCode: string;
   country: string;
 }
-
 export interface StudentUpdateRequestDto {
   firstName: string;
   lastName: string;
@@ -174,11 +167,26 @@ export interface StudentUpdateRequestDto {
   phone: string;
   address: AddressRequestDto;
 }
-
-
-
 export interface StudentPassword {
   nic: string;
   newPassword: string;
 }
 
+
+// Summary Response Modals
+export interface SummaryResponse{
+  totalCourses:number;
+  totalStudents:number;
+}
+
+export interface RevenueSummaryResponseDto{
+  totalRevenue:number;
+  currentYearRevenue:number;
+  currentMonthRevenue:number;
+}
+
+export interface EnrollmentSummaryResponseDto{
+  totalEnrollments:number;
+  completeEnrollments:number;
+  readingEnrollments:number
+}
