@@ -44,19 +44,18 @@ export class AdminDashboardComponent implements OnInit {
 
   updateProgressLevel(): void {
     const percentage = this.calculateReadingEnrollmentPercentage();
-    console.log(percentage);
   
     if (percentage < 50) {
-      this.progressLevel = 'Needs Improvement';
+      this.progressLevel = 'Needs Improvement !';
       this.progressLevelClass = 'progress-poor';
     } else if (percentage >= 50 && percentage < 70) {
-      this.progressLevel = 'Average';
+      this.progressLevel = 'Average !';
       this.progressLevelClass = 'progress-average';
     } else if (percentage >= 70 && percentage < 90) {
-      this.progressLevel = 'Good';
+      this.progressLevel = 'Good !';
       this.progressLevelClass = 'progress-good';
     } else {
-      this.progressLevel = 'Excellent';
+      this.progressLevel = 'Excellent !';
       this.progressLevelClass = 'progress-excellent';
     }
   }
