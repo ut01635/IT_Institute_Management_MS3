@@ -68,7 +68,7 @@
       <div class="col-12 col-md-4 mb-3">
 
         <select class="form-control" id="courseFilter" [(ngModel)]="selectedCourse" (change)="applyFilters()">
-          <option value="" disabled>Select Course</option>
+          <option value="">All Courses</option>
           <option *ngFor="let course of courses" [value]="course.id">{{ course.courseName }}</option>
         </select>
       </div>
@@ -82,7 +82,7 @@
       <div class="col-12 col-md-4 mb-3">
 
         <select id="status" class="form-control" [(ngModel)]="selectedStatus" (change)="applyFilters()">
-          <option value="" disabled>Select status</option>
+          <option value="">All Status</option>
           <option value="reading">Reading</option>
           <option value="complete">Complete</option>
         </select>
