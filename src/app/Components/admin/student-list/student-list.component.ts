@@ -89,7 +89,7 @@ export class StudentListComponent implements OnInit {
 
   toggleLockOrUnlock(student: any): void {
     if (student.IsLocked) {
-      this.toggleUnlock(student); 
+      this.toggleUnlock(student);
     } else {
       this.toggleLock(student); 
     }
@@ -100,8 +100,7 @@ export class StudentListComponent implements OnInit {
       (data) => {
         alert("Account locked with NIC: " + student.nic);
        
-        student.IsLocked = true;
-       
+        student.IsLocked = true;      
       },
       (error) => {
         alert("Account locking failed for NIC: " + student.nic);

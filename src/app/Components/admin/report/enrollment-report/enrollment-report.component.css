@@ -16,3 +16,24 @@ table {
     }
   }
   
+
+
+.card-styled {
+  width: 18rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(to right, #4c67b1, #0d1e4c);
+  color: white;
+  border-radius: 15px;
+}
+
+.card-body i{
+    font-size: 45px;
+}
+
+.card-hover {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-hover:hover {
+  transform: scale(1.02); 
+}
