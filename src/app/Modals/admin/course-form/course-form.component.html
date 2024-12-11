@@ -28,8 +28,9 @@
             <div class="image-preview-circle">
               <img [src]="courseImagePreviewUrl" alt="Image Preview" />
             </div>
-            <p>{{ imageFiles ? imageFiles[0].name : '' }}</p>
+            <p>{{ imageFiles && imageFiles.length > 0 ? imageFiles[0].name : '' }}</p> 
           </div>
+          
           <input
             type="file"
             id="file"
