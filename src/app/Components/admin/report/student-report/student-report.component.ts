@@ -122,7 +122,6 @@
             this.reportData.fee = enrollmentDetails.course.fees;
             this.reportData.paymentPlan = enrollmentDetails.paymentPlan;
             this.reportData.dueAmount = enrollmentDetails.course.fees;
-
           
             this.paymentService.getPaymentsByNic(this.reportData.nic).subscribe(
               (payments: any[]) => {
@@ -143,11 +142,15 @@
                   const latestPayment = this.paymentDetails[this.paymentDetails.length - 1];
                   this.reportData.paidAmount = latestPayment.totalPaidAmount;
                   this.reportData.dueAmount = latestPayment.dueAmount;
+            
                 } else {
                 
                   this.paymentDetails = [];
                   this.reportData.paidAmount = 0;
+                 
                   this.reportData.dueAmount =enrollmentDetails.course.fees;
+
+                  
                 }
               },
               (error) => {

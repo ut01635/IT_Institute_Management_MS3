@@ -184,6 +184,21 @@
           <td><input type="text" id="dueAmount" class="form-control text-danger"
               [value]="reportData.dueAmount | currency: 'LKR ': 'symbol' " disabled></td>
         </tr>
+        <tr>
+          <td><strong>Payment Status: </strong></td>
+          <td>
+            <input type="text" id="payment-status" class="form-control" placeholder="Status"
+              [ngClass]="{
+                'text-success': reportData.paidAmount === reportData.fee && reportData.fee !== 0, 
+                'text-danger': reportData.paidAmount !== reportData.fee,
+                
+              }"
+              [value]="reportData.paidAmount === reportData.fee && reportData.fee !== 0 ? 'Completed' : 'Pending'"
+              disabled>
+          </td>
+          
+        </tr>
+        
       </table>
       <hr>
 
