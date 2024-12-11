@@ -26,13 +26,13 @@
         <div class="text">
           <span>Click to upload image</span>
         </div>
-        <div *ngIf="imageFile" class="image-preview mt-2">
-        
+        <div *ngIf="adminImagePreviewUrl" class="image-preview mt-2">
           <div class="image-preview-circle">
             <img [src]="adminImagePreviewUrl" alt="Image Preview" />
           </div>
-          <p>{{ imageFile.name }}</p>
+          <p>{{ imageFile?.name }}</p>
         </div>
+        
         <input
           type="file"
           id="file"
