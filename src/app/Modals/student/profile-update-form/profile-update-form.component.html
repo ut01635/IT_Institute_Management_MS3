@@ -16,12 +16,12 @@
               <div class="text">
                 <span>Click to Update image</span>
               </div>
-              <div *ngIf="imageFile" class="image-preview mt-2">
+              <div *ngIf="studentImagePreviewUrl" class="image-preview mt-2">
                 <div class="image-preview-circle">
                   <img [src]="studentImagePreviewUrl" alt="Image Preview" />
                 </div>
-                <p>{{ imageFile.name }}</p>
-              </div>
+                <p>{{ imageFile?.name }}</p>
+              </div>              
               <input type="file" id="file" (change)="onImageChange($event)" accept="image/*" />
             </label>
           </div>

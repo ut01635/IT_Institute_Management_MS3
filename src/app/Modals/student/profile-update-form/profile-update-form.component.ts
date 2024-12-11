@@ -15,6 +15,26 @@ export class ProfileUpdateFormComponent {
 
   constructor(private studentService: StudentService, public activeModal: NgbActiveModal) {}
 
+  ngOnInit(): void {
+    this.loadCurrentImage();
+  }
+
+  // Method to load the current image of the student
+  loadCurrentImage(): void {
+    if (this.nic) {
+      this.studentService.getStudentByNIC(this.nic).subscribe(
+        (response: any) => {
+          this.studentImagePreviewUrl = 'https://localhost:7055'+response.imagePath; 
+        },
+        (error) => {
+          console.error('Error loading current image:', error);
+        }
+      );
+    }
+  }
+
+
+
   
   onImageChange(event: any): void {
     const file = event.target.files[0];

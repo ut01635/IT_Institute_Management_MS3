@@ -60,6 +60,9 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
   ngOnInit(): void {
     if (this.studentToEdit) {
       this.studentForm.patchValue(this.studentToEdit);
+      if (this.studentToEdit.imagePath) {
+        this.imagePreviewUrl = 'https://localhost:7055'+this.studentToEdit.imagePath;
+      }
     }
   }
 

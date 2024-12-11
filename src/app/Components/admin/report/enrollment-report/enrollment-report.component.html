@@ -90,6 +90,7 @@
           <th>Name</th>
           <th>Course</th>
           <th>Fees (LKR)</th>
+          <th>Duration (Months)</th>
           <th>Payment Plan</th>
           <th>Enrollment Date</th>
           <th>Status</th>
@@ -101,6 +102,7 @@
           <td>{{ enrollment.student.firstName }} {{ enrollment.student.lastName }}</td>
           <td>{{ enrollment.course.courseName }}</td>
           <td>{{ enrollment.course.fees | currency: 'LKR ' }}</td>
+          <td>{{enrollment.course.duration}} Months</td>
           <td>
             <span [ngClass]="{
               'text-success': enrollment.paymentPlan === 'Full',
