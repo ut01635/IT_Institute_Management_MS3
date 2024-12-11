@@ -28,7 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
       
         
         if (error.status === 0 && !this.alertShown) {  
-          console.log("hello this error"+error.error);
+          console.log("hello this error "+ error.error);
           
           
           localStorage.clear();
