@@ -17,7 +17,7 @@
         <i class="bi bi-megaphone text-white fs-3 fw-bold"></i>
       </button>
 
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center" [routerLink]="['/admin/admin-list']" style="cursor: pointer;">
         <img [src]="baseUrl + admin?.imagePath" alt="User Profile Picture" class="rounded-circle img-fluid p-2"
           style="max-width: 50px; object-fit: cover;">
       </div>

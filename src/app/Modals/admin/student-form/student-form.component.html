@@ -53,25 +53,7 @@
 
     
     <div class="row">
-      <div class="col-md-6 col-12 mb-3">
-        <div class="input-field">
-          <input class="input" formControlName="nic" type="text" required />
-          <label class="label">NIC</label>
-          <div
-            *ngIf="
-              studentForm.get('nic')?.touched && studentForm.get('nic')?.invalid
-            "
-            class="error-message"
-          >
-            <small *ngIf="studentForm.get('nic')?.hasError('required')"
-              >NIC is required.</small
-            >
-            <small *ngIf="studentForm.get('nic')?.hasError('pattern')"
-              >Invalid NIC format.</small
-            >
-          </div>
-        </div>
-      </div>
+     
 
       <div class="col-md-6 col-12 mb-3">
         <div class="input-field">
@@ -154,6 +136,26 @@
             >
             <small *ngIf="studentForm.get('phone')?.hasError('pattern')"
               >Invalid phone number format.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12 mb-3">
+        <div class="input-field">
+          <input class="input" formControlName="nic" type="text" required />
+          <label class="label">NIC</label>
+          <div
+            *ngIf="
+              studentForm.get('nic')?.touched && studentForm.get('nic')?.invalid
+            "
+            class="error-message"
+          >
+            <small *ngIf="studentForm.get('nic')?.hasError('required')"
+              >NIC is required.</small
+            >
+            <small *ngIf="studentForm.get('nic')?.hasError('pattern')"
+              >Invalid NIC format.</small
             >
           </div>
         </div>
@@ -304,7 +306,7 @@
       <ng-container *ngIf="!studentToEdit">
         <i class="bi bi-person-plus"></i>
       </ng-container>
-      {{ studentToEdit ? "Update Student" : "Add Student" }}
+      {{ studentToEdit ? " Update Student" : " Add Student" }}
     </button>
   </form>
 </div>

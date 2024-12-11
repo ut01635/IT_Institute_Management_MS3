@@ -1,61 +1,43 @@
-<div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header bg-white text-black">
-        <h5 class="modal-title" id="messageModalLabel">Send Message</h5>
-        <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
-      </div>
-  
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="form-control">
-          <p class="message text-center">Enter the NIC and message to send.</p>
-  
-          <div class="row">
-            <!-- NIC Field -->
-            <div class="col-12 mb-3">
-              <div class="input-field">
-                <input
-                  class="input"
-                  formControlName="studentNIC"
-                  type="text"
-                  required
-                  placeholder=""
-                />
-                <label class="label">Enter NIC</label>
-                <div *ngIf="messageForm.get('studentNIC')?.touched && messageForm.get('nic')?.invalid" class="error-message">
-                  <small *ngIf="messageForm.get('studentNIC')?.hasError('required')">NIC is required.</small>
-                  <small *ngIf="messageForm.get('studentNIC')?.hasError('pattern')">Invalid NIC format.</small>
-                </div>
-              </div>
-            </div>
-  
-            <!-- Message Field -->
-            <div class="col-12 mb-3">
-              <div class="input-field">
-                <textarea
-                  class="input"
-                  formControlName="message"
-                  rows="5"
-                  required
-                  placeholder=""
-                ></textarea>
-                <label class="label">Enter your message</label>
-                <div *ngIf="messageForm.get('message')?.touched && messageForm.get('message')?.invalid" class="error-message">
-                  <small *ngIf="messageForm.get('message')?.hasError('required')">Message is required.</small>
-                </div>
-              </div>
-            </div>
-  
-            <!-- Submit Button -->
-            <div class="col-12 mb-3">
-              <button type="submit" class="submit-btn" [disabled]="messageForm.invalid">
-                <i class="bi bi-send"></i> Send Message
-              </button>
-            </div>
+<div class="modal-header bg-white text-black">
+  <h5 class="modal-title" id="messageModalLabel">Send Message</h5>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
+</div>
+
+<!-- Modal Body -->
+<div class="modal-body">
+  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="form-control">
+    <p class="message text-center">Enter the NIC and message to send.</p>
+
+    <div class="row">
+      <!-- NIC Field -->
+      <div class="col-12 mb-3">
+        <div class="input-field">
+          <input class="input" formControlName="studentNIC" type="text" required placeholder="" />
+          <label class="label">Enter NIC</label>
+          <div *ngIf="messageForm.get('studentNIC')?.touched && messageForm.get('nic')?.invalid" class="error-message">
+            <small *ngIf="messageForm.get('studentNIC')?.hasError('required')">NIC is required.</small>
+            <small *ngIf="messageForm.get('studentNIC')?.hasError('pattern')">Invalid NIC format.</small>
           </div>
-        </form>
+        </div>
+      </div>
+
+      <!-- Message Field -->
+      <div class="col-12 mb-3">
+        <div class="input-field">
+          <textarea class="input" formControlName="message" rows="5" required placeholder=""></textarea>
+          <label class="label">Enter your message</label>
+          <div *ngIf="messageForm.get('message')?.touched && messageForm.get('message')?.invalid" class="error-message">
+            <small *ngIf="messageForm.get('message')?.hasError('required')">Message is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-12 mb-3">
+        <button type="submit" class="submit-btn" [disabled]="messageForm.invalid">
+          <i class="bi bi-send"></i> Send Message
+        </button>
       </div>
     </div>
-  </div>
-  
+  </form>
+</div>

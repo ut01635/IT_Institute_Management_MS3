@@ -1,50 +1,47 @@
+<div class="modal-header bg-white text-black">
+  <h5 class="modal-title" id="announcementModalLabel">Add Announcement</h5>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
+</div>
 
-<div class="modal-dialog modal-dialog-centered modal-lg">
-  <div class="modal-content">
-    
-    <div class="modal-header bg-white text-black">
-      <h5 class="modal-title" id="announcementModalLabel">Add Announcement</h5>
-      <button type="button" class="btn-close" (click)="activeModal.dismiss('cross click')"></button>
-    </div>
 
-    
-    <div class="modal-body">
-    
-      <form [formGroup]="announcementForm" (ngSubmit)="onSubmit()" class="form-control">
-        <p class="message text-center">Add a new announcement.</p>
+<div class="modal-body">
 
-        <div class="row">
-         
-          <div class="col-12 mb-3">
-            <div class="input-field">
-              <input class="input" formControlName="title" type="text" required />
-              <label class="label">Title</label>
-              <div *ngIf="announcementForm.get('title')?.touched && announcementForm.get('title')?.invalid" class="error-message">
-                <small *ngIf="announcementForm.get('title')?.hasError('required')">Title is required.</small>
-                <small *ngIf="announcementForm.get('title')?.hasError('minlength')">Title must be at least 3 characters long.</small>
-              </div>
-            </div>
-          </div>
+  <form [formGroup]="announcementForm" (ngSubmit)="onSubmit()" class="form-control">
+    <p class="message text-center">Add a new announcement.</p>
 
-          
-          <div class="col-12 mb-3">
-            <div class="input-field">
-              <textarea class="input" formControlName="body" required></textarea>
-              <label class="label">Body</label>
-              <div *ngIf="announcementForm.get('body')?.touched && announcementForm.get('body')?.invalid" class="error-message">
-                <small *ngIf="announcementForm.get('body')?.hasError('required')">Body is required.</small>
-              </div>
-            </div>
-          </div>
+    <div class="row">
 
-          
-          <div class="col-12 mb-3">
-            <button type="submit" class="submit-btn" [disabled]="announcementForm.invalid">
-              <i class="bi bi-save"></i> Post Announcement
-            </button>
+      <div class="col-12 mb-3">
+        <div class="input-field">
+          <input class="input" formControlName="title" type="text" required />
+          <label class="label">Title</label>
+          <div *ngIf="announcementForm.get('title')?.touched && announcementForm.get('title')?.invalid"
+            class="error-message">
+            <small *ngIf="announcementForm.get('title')?.hasError('required')">Title is required.</small>
+            <small *ngIf="announcementForm.get('title')?.hasError('minlength')">Title must be at least 3 characters
+              long.</small>
           </div>
         </div>
-      </form>
+      </div>
+
+
+      <div class="col-12 mb-3">
+        <div class="input-field">
+          <textarea class="input" formControlName="body" required></textarea>
+          <label class="label">Body</label>
+          <div *ngIf="announcementForm.get('body')?.touched && announcementForm.get('body')?.invalid"
+            class="error-message">
+            <small *ngIf="announcementForm.get('body')?.hasError('required')">Body is required.</small>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-12 mb-3">
+        <button type="submit" class="submit-btn" [disabled]="announcementForm.invalid">
+          <i class="bi bi-save"></i> Post Announcement
+        </button>
+      </div>
     </div>
-  </div>
+  </form>
 </div>
