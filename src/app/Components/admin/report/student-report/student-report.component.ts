@@ -47,6 +47,7 @@
         courses: [],
         fee: 0,
         paymentPlan: 'Payment Plan',
+        paymentStatus : 'Status',
         paidAmount: 0,
         dueAmount: 0,
         socialMedia:[],
@@ -67,6 +68,7 @@
               courses: [], 
               fee: 0,
               paymentPlan: 'Payment Plan',
+              paymentStatus : 'Status',
               paidAmount: 0,
               dueAmount: 0,
               payments: [] 
@@ -104,61 +106,73 @@
       if (!this.selectedCourse) {
         this.reportData.fee = '';
         this.reportData.paymentPlan = '';
+        this.reportData.paymentStatus = 'Status';
         this.reportData.paidAmount = 0;
         this.reportData.dueAmount = 0;
         this.paymentDetails = []; 
         return; 
       }
-
+    
       const selectedEnrollment = this.enrollments.find(enrollment => enrollment.course.id === this.selectedCourse);
-
+    
       if (selectedEnrollment) {
         const enrollmentId = selectedEnrollment.id;
-
-      
+        const enrollmentDate = selectedEnrollment.enrollmentDate; 
+    
         this.enrollmentService.getEnrollmentById(enrollmentId).subscribe(
           (enrollmentDetails: Enrollment) => {
-            
+          
             this.reportData.fee = enrollmentDetails.course.fees;
             this.reportData.paymentPlan = enrollmentDetails.paymentPlan;
             this.reportData.dueAmount = enrollmentDetails.course.fees;
-          
+    
             this.paymentService.getPaymentsByNic(this.reportData.nic).subscribe(
               (payments: any[]) => {
-                
                 const coursePayments = payments.filter(p => p.enrollmentId === enrollmentId);
-
-              
+    
                 if (coursePayments.length > 0) {
+                 
                   this.paymentDetails = coursePayments.map(payment => ({
                     paymentDate: payment.paymentDate,
-                    fee: payment.amount, 
-                    totalPaidAmount: payment.totalPaidAmount, 
-                    amount: payment.amount, 
-                    dueAmount: payment.dueAmount 
+                    fee: payment.amount,
+                    totalPaidAmount: payment.totalPaidAmount,
+                    amount: payment.amount,
+                    dueAmount: payment.dueAmount
                   }));
-
-                
+    
                   const latestPayment = this.paymentDetails[this.paymentDetails.length - 1];
                   this.reportData.paidAmount = latestPayment.totalPaidAmount;
                   this.reportData.dueAmount = latestPayment.dueAmount;
-            
-                } else {
-                
-                  this.paymentDetails = [];
-                  this.reportData.paidAmount = 0;
+    
                  
-                  this.reportData.dueAmount =enrollmentDetails.course.fees;
-
+                  const daysSinceEnrollment = this.getDaysDifference(new Date(enrollmentDate), new Date());
+    
+                  if (this.reportData.paymentPlan === 'Full') {
                   
+                    if (this.reportData.paidAmount === this.reportData.fee) {
+                      this.reportData.paymentStatus = 'Completed';
+                    } else {
+                      this.reportData.paymentStatus = 'Pending'; 
+                    }
+                  } else if (this.reportData.paymentPlan === 'Installment') {
+                   
+                    if (this.reportData.paidAmount === 0 && daysSinceEnrollment <= 7) {
+                      this.reportData.paymentStatus = 'Pending';  
+                    } else if (this.reportData.paidAmount > 0 && daysSinceEnrollment <= 30) {
+                      this.reportData.paymentStatus = 'Completed';
+                    } else {
+                      this.reportData.paymentStatus = 'Pending'; 
+                    }
+                  }
+                } else {
+                 
+                  this.reportData.paymentStatus = 'Pending';
                 }
               },
               (error) => {
                 console.error('Error fetching payment details:', error);
               }
             );
-
-            
           },
           (error) => {
             console.error('Error fetching detailed enrollment data:', error);
@@ -166,6 +180,14 @@
         );
       }
     }
+    
+    
+   
+    getDaysDifference(date1: Date, date2: Date): number {
+      const timeDifference = Math.abs(date2.getTime() - date1.getTime());
+      return Math.ceil(timeDifference / (1000 * 3600 * 24)); 
+    }
+    
 
     refreshEnrollments(nic: string) {
       this.enrollmentService.getEnrollments(nic).subscribe(
