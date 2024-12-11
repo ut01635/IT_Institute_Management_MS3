@@ -150,7 +150,7 @@
                   if (this.reportData.paymentPlan === 'Full') {
                   
                     if (this.reportData.paidAmount === this.reportData.fee) {
-                      this.reportData.paymentStatus = 'Completed';
+                      this.reportData.paymentStatus = 'Success';
                     } else {
                       this.reportData.paymentStatus = 'Pending'; 
                     }
@@ -159,7 +159,7 @@
                     if (this.reportData.paidAmount === 0 && daysSinceEnrollment <= 7) {
                       this.reportData.paymentStatus = 'Pending';  
                     } else if (this.reportData.paidAmount > 0 && daysSinceEnrollment <= 30) {
-                      this.reportData.paymentStatus = 'Completed';
+                      this.reportData.paymentStatus = 'Success';
                     } else {
                       this.reportData.paymentStatus = 'Pending'; 
                     }

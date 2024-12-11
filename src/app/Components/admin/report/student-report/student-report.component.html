@@ -187,9 +187,9 @@
         <tr>
           <td><strong>Payment Status:</strong></td>
           <td>
-            <input type="text" id="payment-status" class="form-control" placeholder="Status"
+            <input type="text" id="payment-status" class="form-control fw-semibold" placeholder="Status"
               [ngClass]="{
-                'text-success': reportData.paymentStatus === 'Completed', 
+                'text-success': reportData.paymentStatus === 'Success', 
                 'text-danger': reportData.paymentStatus === 'Pending'
               }"
               [value]="reportData.paymentStatus"

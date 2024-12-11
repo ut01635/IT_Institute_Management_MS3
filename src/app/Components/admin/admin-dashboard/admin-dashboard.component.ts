@@ -6,6 +6,7 @@ import { EnrollmentService } from '../../../Services/enrollment.service';
 import { PaymentService } from '../../../Services/payment.service';
 import { AdminService } from '../../../Services/admin.service';
 import { CurrencyPipe } from '@angular/common';
+import { SummaryService } from '../../../Services/summary.service';
 // import { Chart } from 'chart.js';
 
 @Component({
@@ -67,7 +68,8 @@ export class AdminDashboardComponent implements OnInit {
     private courseService: CourseService,
     private enrollmentService: EnrollmentService,
     private paymentService: PaymentService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private summaryService: SummaryService
   ) { }
 
   ngOnInit(): void {
@@ -97,31 +99,17 @@ export class AdminDashboardComponent implements OnInit {
 
   loadDashboardData(): void {
 
-    this.studentService.getStudents();
-    this.studentService.students$.subscribe((allStudents) => {
-      this.totalStudents = allStudents.length;
+    this.summaryService.getSummary().subscribe((summary: any) => {
+      this.totalStudents = summary.totalStudents;
+      this.totalCourses = summary.totalCourses;
     });
 
-
-    this.courseService.getAllCourses();
-    this.courseService.courses$.subscribe((courses) => {
-      this.totalCourses = courses.length;
-    });
-
-
-    this.enrollmentService.getallEnrollement().subscribe(enrollments => {
-      this.totalEnrollments = enrollments.length;
-    });
-
-    this.enrollmentService.getAllCompleted().subscribe(completed => {
-      this.completedEnrollments = completed.length;
-    });
-
-    this.enrollmentService.getAllReading().subscribe(reading => {
-      this.readingEnrollments = reading.length;
+    this.summaryService.GetEnrollmentSummary().subscribe((enrollmentSummary: any) => {
+      this.totalEnrollments = enrollmentSummary.totalEnrollments;
+      this.completedEnrollments = enrollmentSummary.completeEnrollments;
+      this.readingEnrollments = enrollmentSummary.readingEnrollments;
       this.updateProgressLevel();
     });
-
   
 
 
@@ -143,17 +131,6 @@ export class AdminDashboardComponent implements OnInit {
 
 
       this.calculateMonthlyRevenue(payments);
-    });
-
-
-    this.enrollmentService.getAllCompleted().subscribe(completed => {
-      const totalEnrollments = completed.length + this.readingEnrollments;
-      this.totalToComplete = totalEnrollments > 0 ? Math.round((completed.length / totalEnrollments) * 100) : 0;
-    });
-
-    this.enrollmentService.getAllReading().subscribe(reading => {
-      const totalEnrollments = reading.length + this.completedEnrollments;
-      this.totalToReading = totalEnrollments > 0 ? Math.round((reading.length / totalEnrollments) * 100) : 0;
     });
 
 
