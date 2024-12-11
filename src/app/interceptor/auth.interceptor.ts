@@ -27,20 +27,20 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
       
         
-        if (error.status === 0 && !this.alertShown) {  
-          console.log("hello this error "+ error.error);
+        // if (error.status === 0 && !this.alertShown) {  
+        //   console.log("hello this error "+ error.error);
           
           
-          localStorage.clear();
+        //   localStorage.clear();
           
         
-          this.alertShown = true;  
-          alert('Session expired. Please log in again.');
+        //   this.alertShown = true;  
+        //   alert('Session expired. Please log in again.');
           
          
-          this.router.navigate(['/']);  
-          // this.alertShown = false;
-        }
+        //   this.router.navigate(['/']);  
+        //   // this.alertShown = false;
+        // }
 
        
         return throwError(() => error);
