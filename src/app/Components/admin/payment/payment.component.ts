@@ -313,7 +313,7 @@ onNicChange(): void {
   }
   
   onSubmit(): void {
-    if (!this.formData.nic || !this.formData.course || this.formData.amount <= 0) {
+    if (!this.formData.nic || !this.formData.course) {
       this.message = 'Please fill in all required fields!';
       this.isSuccess = false;
       return;
