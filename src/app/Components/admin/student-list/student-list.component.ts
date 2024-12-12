@@ -88,39 +88,51 @@ export class StudentListComponent implements OnInit {
   }
 
   toggleLockOrUnlock(student: any): void {
+    const currentLockState = student.IsLocked;
+  
+  
+    student.IsLocked = !currentLockState;
+  
+    const action = currentLockState ? 'Unlocking' : 'Locking';
+    alert(`${action} account with NIC: ${student.nic}`);
+  
+  
     if (student.IsLocked) {
-      this.toggleUnlock(student);
+      this.lockStudent(student);
     } else {
-      this.toggleLock(student); 
+      this.unlockStudent(student);
     }
   }
   
-  toggleLock(student: any) {
+  lockStudent(student: any) {
     this.studentService.lockAccount(student.nic).subscribe(
       (data) => {
-        alert("Account locked with NIC: " + student.nic);
-       
-        student.IsLocked = true;      
+        console.log(`Account locked for NIC: ${student.nic}`);
+      
       },
       (error) => {
-        alert("Account locking failed for NIC: " + student.nic);
+        alert(`Account locking failed for NIC: ${student.nic}`);
+        
+        student.IsLocked = false;
       }
     );
   }
   
-  toggleUnlock(student: any) {
+  unlockStudent(student: any) {
     this.studentService.dirrectUnlockAccount(student.nic).subscribe(
       (data) => {
-        alert("Account unlocked with NIC: " + student.nic);
-       
-        student.IsLocked = false;
+        console.log(`Account unlocked for NIC: ${student.nic}`);
        
       },
       (error) => {
-        alert("Account unlocking failed for NIC: " + student.nic);
+        alert(`Account unlocking failed for NIC: ${student.nic}`);
+       
+        student.IsLocked = true;
       }
     );
   }
+  
+  
 
 
   openPasswordResetModal(nic: string): void {
