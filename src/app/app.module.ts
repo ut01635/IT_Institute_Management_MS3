@@ -55,6 +55,7 @@ import { EnrollDateRangeFilterPipe } from './Pipes/enroll-date-range-filter.pipe
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 
@@ -120,7 +121,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     BsDatepickerModule,
     NgbModule,
     NgxChartsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
     
   ],
   providers: [
