@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from '../../../Services/student.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-student-password',
@@ -15,7 +16,8 @@ export class StudentPasswordComponent {
   constructor(
     private fb: FormBuilder,
     private studentService: StudentService,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -37,16 +39,19 @@ export class StudentPasswordComponent {
  
   onSubmit(): void {
     if (this.passwordForm.valid) {
+      this.spinner.show();
       const newPassword = this.passwordForm.value.newPassword;
       this.studentService
         .updatePassword(this.studentNic, newPassword)
         .subscribe(
           (response) => {
+            this.spinner.hide();
             alert('Password updated successfully!');
             this.activeModal.close();
            
           },
           (error) => {
+            this.spinner.hide();
             alert('An error occurred while updating the password.');
             console.error(error);
           }

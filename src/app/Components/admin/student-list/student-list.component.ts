@@ -6,6 +6,7 @@ import { Student } from '../../../Services/Modal';
 import { StudentFormComponent } from '../../../Modals/admin/student-form/student-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StudentPasswordComponent } from '../../../Modals/admin/student-password/student-password.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -22,20 +23,25 @@ export class StudentListComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private enrollmentService: EnrollmentService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
-    this.studentService.students$.subscribe((students) => {
+    this.loadStudents();
+  }
+
+  loadStudents(){
+    this.spinner.show
+    this.studentService.students$.subscribe(
+      (students) => {
+        this.spinner.hide();
       this.students = students;
       this.fetchEnrollments();
       console.log(this.students);
     });
 
     this.studentService.getStudents();
-
-    
-    
   }
 
   fetchEnrollments() {
@@ -74,12 +80,15 @@ export class StudentListComponent implements OnInit {
     const confirmDelete = window.confirm('Are you sure you want to delete this student?');
 
     if (confirmDelete) {
+      this.spinner.show();
       this.studentService.deleteStudent(studentNic).subscribe(
         () => {
+          this.spinner.hide();
           alert('Student deleted successfully!');
           this.studentService.refreshStudentList();
         },
         (error) => {
+          this.spinner.hide();
           console.error('Error deleting student:', error);
           alert('An error occurred while deleting the student.');
         }
@@ -105,29 +114,31 @@ export class StudentListComponent implements OnInit {
   }
   
   lockStudent(student: any) {
+    this.spinner.show();
     this.studentService.lockAccount(student.nic).subscribe(
       (data) => {
+        this.spinner.hide();
         console.log(`Account locked for NIC: ${student.nic}`);
-      
+      this.loadStudents();
       },
       (error) => {
+        this.spinner.hide();
         alert(`Account locking failed for NIC: ${student.nic}`);
-        
-        student.IsLocked = false;
       }
     );
   }
   
   unlockStudent(student: any) {
+    this.spinner.show();
     this.studentService.dirrectUnlockAccount(student.nic).subscribe(
       (data) => {
+        this.spinner.hide();
         console.log(`Account unlocked for NIC: ${student.nic}`);
-       
+       this.loadStudents();
       },
       (error) => {
+        this.spinner.hide();
         alert(`Account unlocking failed for NIC: ${student.nic}`);
-       
-        student.IsLocked = true;
       }
     );
   }

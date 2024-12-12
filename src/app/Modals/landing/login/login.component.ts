@@ -6,6 +6,7 @@ import { AuthService } from '../../../Services/auth.service';
 
 import { jwtDecode } from 'jwt-decode';
 import { AuthInterceptor } from '../../../interceptor/auth.interceptor';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   message : string = ''
   
 
-  constructor(private router: Router, private loginService: AuthService) {
+  constructor(private router: Router, private loginService: AuthService,private spinner: NgxSpinnerService) {
     this.login = { nic: '', password: '' };
   }
 
@@ -27,9 +28,12 @@ export class LoginComponent implements OnInit {
   // This method will handle form submission
   onSubmit(): void {
     if (this.login.nic && this.login.password) {
+
+      this.spinner.show();
       // Call the login service method
       this.loginService.login(this.login).subscribe(
         (response: string) => {
+          this.spinner.hide();
           // Store the token in localStorage
           localStorage.setItem('Token', response);
           // this.authInterceptor.alertShown = false;
@@ -57,6 +61,7 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           console.error('Login failed:', error);
+          this.spinner.hide();
           // alert(error.error);
           this.message = error.error
 

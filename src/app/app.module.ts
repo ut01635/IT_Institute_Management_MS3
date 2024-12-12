@@ -54,7 +54,7 @@ import { StudentPasswordComponent } from './Modals/admin/student-password/studen
 import { EnrollDateRangeFilterPipe } from './Pipes/enroll-date-range-filter.pipe'; // Correct import
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -119,7 +119,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     BrowserAnimationsModule,
     BsDatepickerModule,
     NgbModule,
-    NgxChartsModule
+    NgxChartsModule,
+    NgxSpinnerModule
     
   ],
   providers: [

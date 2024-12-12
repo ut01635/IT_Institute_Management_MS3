@@ -73,7 +73,7 @@
                           Log in now
                         </button>
                       </div>
-                      <p class="text-center text-danger fw-semibold m-2">
+                      <p *ngIf="message" class="text-center text-danger fw-semibold m-2">
                         {{ message }}
                       </p>
                     </div>
