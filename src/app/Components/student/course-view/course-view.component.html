@@ -1,6 +1,45 @@
 <div class="container">
   <h2 class="fs-1 fs-sm-2 fs-md-3 fs-lg-4 fs-xl-5 mb-3 text-md-start text-darkbule font-weight-bold">{{greeting}}</h2>
 
+  <div class="container">
+    <div class="row filter-container">
+      <div class="col-md-4 col-sm-12 filter-box">
+        <!-- Filter by Name -->
+        <label for="courseName" class="form-label">Course Name</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="courseName" placeholder="Enter course name">
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 filter-box">
+        <!-- Filter by Level -->
+        <label for="courseLevel" class="form-label">Course Level</label>
+        <select class="form-select" id="courseLevel">
+          <option value="">All Levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <!-- <option value="advanced">Advanced</option> -->
+        </select>
+      </div>
+
+      <div class="col-md-4 col-sm-12 filter-box">
+        <!-- Filter by Price Range -->
+        <label for="priceRange" class="form-label">Price Range (LKR)</label>
+        <div class="input-group">
+          <input type="number" class="form-control" id="minPrice" placeholder="Min">
+          <span class="input-group-text">-</span>
+          <input type="number" class="form-control" id="maxPrice" placeholder="Max">
+        </div>
+      </div>
+    </div>
+
+    <!-- Button for applying filters (for demo purposes) -->
+    <!-- <div class="text-center">
+      <button class="btn btn-primary" id="applyFilters">Apply Filters</button>
+    </div> -->
+  </div>
+
   <!-- Courses Display -->
   <div class="row">
     <div class=" g-4 pb-5" *ngIf="courses.length > 0; else noCourses">
