@@ -1,5 +1,39 @@
-/* Hover effect */
-.card:hover {
-    transform: translateY(-5px); /* Lift the card slightly */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+table {
+  font-size: 0.9rem;
+}
+
+th, td {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: scroll;
   }
+
+  .table th, .table td {
+    padding: 0.5rem;
+  }
+}
+
+
+
+.card-styled {
+width: 18rem;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+background: linear-gradient(to right, #4c67b1, #0d1e4c);
+color: white;
+border-radius: 15px;
+}
+
+.card-body i{
+  font-size: 45px;
+}
+
+.card-hover {
+transition: transform 0.3s ease-in-out;
+}
+
+.card-hover:hover {
+transform: scale(1.02); 
+}

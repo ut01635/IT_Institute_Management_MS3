@@ -73,7 +73,8 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'landing', component: LandingPageComponent },
+  { path: '**', redirectTo: '/login' }, 
+  // { path: 'landing', component: LandingPageComponent },
 ];
 
 @NgModule({

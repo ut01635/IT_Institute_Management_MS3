@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { StudentListComponent } from '../../../Components/admin/student-list/student-list.component';
 import { Router } from '@angular/router';
 import { Student } from '../../../Services/Modal';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-student-form',
@@ -21,7 +22,8 @@ export class StudentFormComponent implements OnInit {
 addIcon:string=`<i class="bi bi-person-plus"></i>`
   constructor(
     public activeModal: NgbActiveModal,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private spinner: NgxSpinnerService
   ) {
    
     this.studentForm = new FormGroup({
@@ -60,8 +62,20 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
   ngOnInit(): void {
     if (this.studentToEdit) {
       this.studentForm.patchValue(this.studentToEdit);
+      if (this.studentToEdit.imagePath) {
+        this.imagePreviewUrl = 'https://localhost:7055'+this.studentToEdit.imagePath;
+      }
     }
   }
+
+  showSpinner(name: string) {
+    this.spinner.show(name);
+  }
+
+  hideSpinner(name: string) {
+    this.spinner.hide(name);
+  }
+
 
   onImageChange(event: any): void {
     const file = event.target.files[0];
@@ -92,6 +106,7 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
   onSubmit(): void {
     if (this.studentForm.valid) {
       const formData = new FormData();
+      this.showSpinner('student')
 
       Object.keys(this.studentForm.value).forEach((key) => {
         if (key !== 'image' && this.studentForm.value[key]) {
@@ -121,22 +136,26 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
        
         this.studentService.updateStudent(this.studentToEdit.nic, formData).subscribe(
           response => {
+            this.hideSpinner('student')
             alert('Student updated successfully!');
             this.studentService.refreshStudentList();
             this.activeModal.close();
           },
           error => {
+            this.hideSpinner('student')
             alert((error.error?.message || error.message));
           }
         );
       } else {
         this.studentService.addStudent(formData).subscribe(
           (response) => {
+            this.hideSpinner('student')
             alert('Student added successfully!');
             this.studentService.refreshStudentList();
             this.activeModal.close();
           },
           (error) => {
+            this.hideSpinner('student')
             alert((error.error?.message || error.message));
           }
         );
@@ -154,7 +173,4 @@ addIcon:string=`<i class="bi bi-person-plus"></i>`
     const field = this.f[fieldName];
     return field?.invalid && (field?.touched || field?.dirty);
   }
-}
-function ngOnInit() {
-  throw new Error('Function not implemented.');
 }

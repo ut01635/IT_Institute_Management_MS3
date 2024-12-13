@@ -117,5 +117,16 @@
     }
   }
 
+
+
+  /* Optional custom styles */
+  .filter-container {
+    margin-top: 30px;
+  }
+
+  .filter-box {
+    margin-bottom: 15px;
+  }
+
  
   

@@ -4,11 +4,15 @@
     <div class="col-12 col-md-6">
       <h2 class="text-darkblue">Payment Report</h2>
     </div>
-    <div class="col-12 col-md-6 d-flex justify-content-end">
-      <div class="card shadow-lg" style="width: 18rem;">
-        <div class="card-body d-flex">
+    <div class="col-12 col-md-6 d-flex justify-content-end gap-3 mb-4">
+
+      <div class="card card-styled shadow-lg card-hover"
+        style="width: 18rem; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-currency-exchange"></i>
+          <div class="text-center">
           <h5 class="card-title">Total Income</h5>
-          <p class="card-text mx-3">{{ totalIncome | currency: 'LKR ' }}</p>
+          <p class="card-text mx-3 fs-3">{{ totalIncome | currency: 'LKR ' }}</p>
         </div>
       </div>
     </div>
@@ -33,7 +37,7 @@
     
     <div class="col-12 col-md-4 mb-3">
       <select class="form-control" id="courseFilter" [(ngModel)]="selectedCourse" (ngModelChange)="applyFilters()">
-        <option value="" disabled>Select Course</option>
+        <option value="">All Courses</option>
         <option *ngFor="let course of courses" [value]="course.id">{{ course.courseName }}</option>
       </select>
     </div>

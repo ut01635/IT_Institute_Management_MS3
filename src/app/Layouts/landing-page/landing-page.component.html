@@ -366,7 +366,7 @@
           <div class="col-md-6 mb-4 d-flex justify-content-center">
             <div class="card text-center border shadow-sm p-4 bg-light box-fact">
               <div class="card-body">
-                <h3 class="card-title">{{courses.length}}</h3>
+                <h3 class="card-title">{{summary?.totalCourses}}</h3>
                 <p class="card-text">Available Courses</p>
               </div>
             </div>
@@ -376,7 +376,7 @@
           <div class="col-md-6 mb-4 d-flex justify-content-center">
             <div class="card text-center border shadow-sm p-4 bg-light box-fact">
               <div class="card-body">
-                <h3 class="card-title">{{students.length}}</h3>
+                <h3 class="card-title">{{summary?.totalStudents}}</h3>
                 <p class="card-text">Total Students</p>
               </div>
             </div>
@@ -386,7 +386,7 @@
           <div class="col-md-6 mb-4 d-flex justify-content-center">
             <div class="card text-center border shadow-sm p-4 bg-light box-fact">
               <div class="card-body">
-                <h3 class="card-title">{{enrollments.length}}</h3>
+                <h3 class="card-title">{{enrollmentSummary?.totalEnrollments}}</h3>
                 <p class="card-text">Enrollments</p>
               </div>
             </div>
@@ -586,7 +586,7 @@
 
             <div class="text-center p-4">
               <h5 class="mb-0">Mohamed Safeek Thajudeen</h5>
-              <small>FRONTEND</small> <br />
+              <small>FULL STACK</small> ,<br />
               <small>BIIT UWUSL</small>
             </div>
           </div>
@@ -622,7 +622,7 @@
             </div>
             <div class="text-center p-4">
               <h5 class="mb-0">Mohamed Imthath Hameem</h5>
-              <small>FULLSTACK</small> , <br />
+              <small>FULL STACK</small> , <br />
               <small>AAT</small>
             </div>
           </div>
@@ -658,7 +658,7 @@
             </div>
             <div class="text-center p-4">
               <h5 class="mb-0">Piragash Pathmarasan</h5>
-              <small>BACKEND</small> , <br />
+              <small>FULL STACK</small> , <br />
               <small>BICT(Hons) UWUSL</small>
             </div>
           </div>
@@ -722,6 +722,8 @@
               {{ enquiryResults }}
             </p>
           </form>
+
+          <ngx-spinner name="enquiry" [fullScreen]="false" type="ball-fussion" size="medium"></ngx-spinner>
         </div>
       </div>
       <div class="col-lg-3 align-self-center m-1">
@@ -729,7 +731,7 @@
           <ul class="list-unstyled">
             <li class="mb-3 ">
               <h6 class="text-darkbule fw-bold">Phone Number</h6>
-              <span class="text-dark">+94-74-3773745</span>
+              <span class="text-dark">+94768210306</span>
             </li>
             <li class="mb-3">
               <h6 class="text-darkbule fw-bold">Email Address</h6>

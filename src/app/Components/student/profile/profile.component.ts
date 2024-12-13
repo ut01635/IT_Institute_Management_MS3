@@ -9,6 +9,7 @@ import { PasswordRestFormComponent } from '../../../Modals/student/password-rest
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SocialMediaFormComponent } from '../../../Modals/student/social-media-form/social-media-form.component';
 import { StudentUpdateFormComponent } from '../../../Modals/student/student-update-form/student-update-form.component';
+import { ProfileUpdateFormComponent } from '../../../Modals/student/profile-update-form/profile-update-form.component';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ import { StudentUpdateFormComponent } from '../../../Modals/student/student-upda
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
-
+  whatasppBaseURl:string = 'https://wa.me/'
   studentProfile!: StudentProfileDto;
   completeEnrollment:Enrollment[]=[];
   ReadingEnrollolment:Enrollment[]=[];
@@ -29,31 +30,66 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const nic = localStorage.getItem('NIC')|| ''
-    this.studentService.getStudentProfile(nic).subscribe(
-      (data) => {
-        this.studentProfile = data;
-        console.log(this.studentProfile);
-      },
-      (error) => {
-        console.error('Error fetching student profile', error);
-      }
-    );
-
-    this.enrollmentService.getCompletedEnrollments(nic).subscribe(data=>{
-      this.completeEnrollment = data
-    },error=>{
-      console.log(error.error);     
-    })
-
-    this.enrollmentService.getReadingEnrollments(nic).subscribe(data=>{
-      this.ReadingEnrollolment = data
-    },error=>{
-      console.log(error.error);     
-    })
-
+    
+    const nic = localStorage.getItem('NIC') || '';
+  
+   
+    this.loadStudentProfile(nic);
+  
+   
+    this.loadCompletedEnrollments(nic);
+  
+   
+    this.loadReadingEnrollments(nic);
   }
-
+  
+ 
+  loadStudentProfile(nic: string): void {
+    if (nic) {
+      this.studentService.getStudentProfile(nic).subscribe(
+        (data) => {
+          this.studentProfile = data;
+          console.log('Student profile loaded successfully', this.studentProfile);
+        },
+        (error) => {
+          console.error('Error fetching student profile', error);
+        }
+      );
+    } else {
+      console.error('No NIC found in localStorage');
+    }
+  }
+  
+ 
+  loadCompletedEnrollments(nic: string): void {
+    if (nic) {
+      this.enrollmentService.getCompletedEnrollments(nic).subscribe(
+        (data) => {
+          this.completeEnrollment = data;
+          console.log('Completed enrollments loaded successfully', this.completeEnrollment);
+        },
+        (error) => {
+          console.error('Error fetching completed enrollments', error);
+        }
+      );
+    }
+  }
+  
+  
+  loadReadingEnrollments(nic: string): void {
+    if (nic) {
+      this.enrollmentService.getReadingEnrollments(nic).subscribe(
+        (data) => {
+          this.ReadingEnrollolment = data;
+          console.log('Reading enrollments loaded successfully', this.ReadingEnrollolment);
+        },
+        (error) => {
+          console.error('Error fetching reading enrollments', error);
+        }
+      );
+    }
+  }
+  
   handleLogout() {
     this.authservice.logout()
     console.log('User logged out');
@@ -81,75 +117,51 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  /**
-   * Get the progress bar width based on enrollment date and course duration.
-   */
-  getProgressBarWidth(enrollmentDate: Date, duration: number): string {
-    const today = new Date();
-    const startDate = new Date(enrollmentDate);
-    
-    // Check for invalid duration
-    if (duration <= 0) {
-      return '0%';  // Handle invalid duration, return 0% progress
-    }
+ 
+ // Function to calculate the width of the progress bar (in percentage)
+getProgressBarWidth(enrollmentDate: Date, durationInMonths: number): string {
+  const currentDate = new Date();
   
-    // Calculate the end date by adding the duration (in months) to the start date
-    const endDate = new Date(startDate);
-    endDate.setMonth(startDate.getMonth() + duration);
+  // Calculate the number of milliseconds for the current time and the enrollment date
+  const elapsedTime = currentDate.getTime() - new Date(enrollmentDate).getTime();
+
+  // Convert duration in months to milliseconds (assuming 30 days per month)
+  const totalDuration = durationInMonths * 30 * 24 * 60 * 60 * 1000;
+
+  // Calculate the progress as a percentage of total duration
+  const progress = (elapsedTime / totalDuration) * 100;
+
+  // Return the width of the progress bar, ensuring it does not exceed 100%
+  return `${Math.min(progress, 100)}%`;
+}
+
+// Function to calculate the percentage for aria-valuenow (used for accessibility)
+getProgressBarPercentage(enrollmentDate: Date, durationInMonths: number): number {
+  const currentDate = new Date();
   
-    // If the start date is in the future, return 0% progress
-    if (today < startDate) {
-      return '0%';
-    }
-  
-    // Calculate the number of months elapsed from the enrollment date
-    const elapsedMonths = this.calculateElapsedMonths(startDate, today);
-    const totalDuration = this.calculateElapsedMonths(startDate, endDate);
-  
-    // If the course duration has already passed, set progress to 100%
-    if (elapsedMonths >= totalDuration) {
-      return '100%';
-    }
-  
-    // Calculate the percentage of progress
-    const percentage = Math.min((elapsedMonths / totalDuration) * 100, 100); // Ensure it does not exceed 100%
-  
-    return `${percentage.toFixed(2)}%`;  // Return with two decimal precision
-  }
-  
-  // Helper function to calculate elapsed months between two dates
-  calculateElapsedMonths(startDate: Date, endDate: Date): number {
-    const yearsDifference = endDate.getFullYear() - startDate.getFullYear();
-    const monthsDifference = endDate.getMonth() - startDate.getMonth();
-    return yearsDifference * 12 + monthsDifference;
-  }
+  // Calculate the number of milliseconds for the current time and the enrollment date
+  const elapsedTime = currentDate.getTime() - new Date(enrollmentDate).getTime();
+
+  // Convert duration in months to milliseconds (assuming 30 days per month)
+  const totalDuration = durationInMonths * 30 * 24 * 60 * 60 * 1000;
+
+  // Calculate the percentage of the elapsed time compared to the total duration
+  const percentage = (elapsedTime / totalDuration) * 100;
+
+  // Return the percentage, ensuring it does not exceed 100%
+  return Math.min(percentage, 100);
+}
+
   
 
-  /**
-   * Get the percentage of progress from enrollment date to current date.
-   */
-  getProgressBarPercentage(enrollmentDate: Date, duration: number): number {
-    const today = new Date();
-    const startDate = new Date(enrollmentDate);
-    const endDate = new Date(startDate);
-    endDate.setMonth(startDate.getMonth() + duration);
 
-    const elapsedMonths = this.calculateElapsedMonths(startDate, today);
-    const totalDuration = this.calculateElapsedMonths(startDate, endDate);
-
-    return Math.min((elapsedMonths / totalDuration) * 100, 100); // Ensure it does not exceed 100%
-  }
-
-  // /**
-  //  * Calculate the number of full months between two dates.
-  //  */
-  // private calculateElapsedMonths(startDate: Date, endDate: Date): number {
-  //   const months = endDate.getMonth() - startDate.getMonth() + (12 * (endDate.getFullYear() - startDate.getFullYear()));
-  //   return months < 0 ? 0 : months; // Return 0 if the calculated months are negative
-  // }
-
-
-  editProfileImage(){
-    
+  editProfileImage() {
+    const modalRef = this.modalService.open(ProfileUpdateFormComponent, { centered: true });
+    modalRef.componentInstance.nic = this.studentProfile.nic;
+    modalRef.componentInstance.imageUpdated.subscribe((newImagePath: string) => {
+     
+      this.studentProfile.imagePath = newImagePath;
+      this.loadStudentProfile(this.studentProfile.nic);
+    });
   }
 }

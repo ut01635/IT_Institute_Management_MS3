@@ -1,53 +1,159 @@
 <div class="container">
   <!-- Welcome Alert -->
   <div class="row my-4">
-    <div class="col-lg-6 col-md-12">
-      <div class="alert alert-primary" role="alert">
-        <h4 class="alert-heading">Hello , {{ adminName }} !</h4>
-        <p>Welcome back to your dashboard.</p>
+    <div class="dashboard-card col-lg-6 col-md-12 card-hover" style="font-size: 30px;">
+      <div class="content">
+        <h4 class="alert-heading">Welcome back, {{ adminName }}!</h4>
+        <p>Our students have reading  <strong>{{ calculateReadingEnrollmentPercentage() | number: '1.0-0' }}%</strong>  of the enrollments.</p>
+        
+        <p>
+          Progress is 
+          <span class="progress-status" [ngClass]="progressLevelClass">
+            {{ progressLevel }}
+          </span>
+        </p>
+      </div>
+      <div class="illustration">
+        <img src="/back.webp" alt="Dashboard">
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Total Students : 0{{ totalStudents }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7</p> -->
+    
+
+    <!-- Total Students and Courses Cards -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card" id="card1">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-people-fill"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Total Students</h5>
+            <p class="card-text text-white fs-2">{{ totalStudents }}</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Total Courses : 0{{ totalCourses }}</h5>
-          <!-- <p class="card-text text-start"> Current Month : 7</p> -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card" id="card2">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-book"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Total Courses</h5>
+            <p class="card-text text-white fs-2">{{ totalCourses }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Monthly Revenue and Progress Circles -->
+  <div class="row my-4 mb-5">
+
+    <!-- Monthly Revenue Chart -->
+    <div class="col-lg-6 col-md-12 mb-3">
+      <div class="card" id="graphBack">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-3">Monthly Revenue for {{ currentYear() }}</h5>
+          <div class="chart-container">
+            <ngx-charts-line-chart [scheme]="colorScheme" [results]="[{ name: 'Revenue', series: monthlyRevenue }]"
+              [legend]="true" [xAxis]="showXAxis" [yAxis]="showYAxis" [showGridLines]="showGridLines" [autoScale]="true"
+              [tooltipDisabled]="false">
+            </ngx-charts-line-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side Progress Circles (Completed Enrollment and Reading Enrollment) -->
+    <!-- Right Side Progress Circles (Completed Enrollment and Reading Enrollment) -->
+    <div class="col-lg-6 col-md-12 mb-3">
+      <!-- Reading Enrollment -->
+      <div class="card count-card  mb-3" id="card4">
+        <div class="inner_container d-flex justify-content-evenly px-4 align-items-center">
+          <i class="bi bi-bookmark-star"></i>
+          <div class="card-body text-center" id="cardStyle">
+            <!-- Flex container for icon and title -->
+            <div class="d-flex justify-content-center align-items-center">
+              <h5 class="card-title text-white mb-3 ms-3">Reading Enrollment</h5>
+            </div>
+
+            <div class="progress-container">
+              <svg class="progress-ring" width="120" height="120">
+                <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
+                <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
+                  [attr.stroke-dasharray]="getStrokeDasharray(false)" [attr.stroke]="getStrokeColor(false)" />
+              </svg>
+              <div class="progress-text text-white">
+                {{ calculateReadingEnrollmentPercentage() | number: '1.0-0' }}%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completed Enrollment -->
+      <div class="card count-card" id="card3">
+
+        <div class="inner_container d-flex justify-content-evenly px-3  align-items-center">
+          <i class="bi bi-file-earmark-check"></i>
+
+          <div class="card-body text-center" id="cardStyle">
+            <!-- Flex container for icon and title -->
+
+            <div class="d-flex justify-content-center align-items-center">
+              <h5 class="card-title text-white mb-3 ms-3">Completed Enrollment</h5>
+            </div>
+
+            <div class="progress-container">
+              <svg class="progress-ring" width="120" height="120">
+                <circle class="progress-ring-background" cx="60" cy="60" r="50" stroke-width="10" />
+                <circle class="progress-ring-circle" cx="60" cy="60" r="50" stroke-width="10"
+                  [attr.stroke-dasharray]="getStrokeDasharray(true)" [attr.stroke]="getStrokeColor(true)" />
+              </svg>
+              <div class="progress-text text-white">
+                {{ calculateCompletedEnrollmentPercentage() | number: '1.0-0' }}%
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
   <!-- Enrollment Stats -->
   <div class="row my-4">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Total Enrollments : 0{{ totalEnrollments }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7</p> -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card" id="card3">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-clipboard-check"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Total Enrollments</h5>
+            <p class="card-text text-white fs-2">{{ totalEnrollments }}</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Completed Enrollments : 0{{ completedEnrollments }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7</p> -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card" id="card4">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-mortarboard-fill"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Completed Enrollments</h5>
+            <p class="card-text text-white fs-2">{{ completedEnrollments }}</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Reading Enrollments : 0{{ readingEnrollments }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7</p> -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card" id="card5">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-file-earmark-text"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Reading Enrollments</h5>
+            <p class="card-text text-white fs-2">{{ readingEnrollments }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -55,81 +161,38 @@
 
   <!-- Revenue Stats -->
   <div class="row my-4">
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Total Revenue : {{ totalRevenue | currency :'LKR ' }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7 LKR</p> -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card" id="card6">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-cash"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Total Revenue</h5>
+            <p class="card-text text-white fs-2">{{ totalRevenue | currency :'LKR ' }}</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Current Year Revenue : {{ currentYearRevenue | currency :'LKR ' }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7 LKR</p> -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card" id="card7">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-cash-stack"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Current Year Revenue</h5>
+            <p class="card-text text-white fs-2">{{ currentYearRevenue | currency :'LKR ' }}</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="card">
-        <div class="card-body text-center">
-          <h5 class="card-title">Current Month Revenue : {{ currentMonthRevenue | currency :'LKR ' }}</h5>
-          <!-- <p class="card-text text-start">Current Month : 7 LKR</p> -->
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-3 card-hover">
+      <div class="card count-card" id="card8">
+        <div class="card-body text-center d-flex justify-content-around">
+          <i class="bi bi-currency-exchange"></i>
+          <div class="text-center">
+            <h5 class="card-title text-white">Current Month Revenue</h5>
+            <p class="card-text text-white fs-2">{{ currentMonthRevenue | currency :'LKR ' }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- graphs -->
-
-  <div class="d-flex flex-wrap">
-    <!-- Line Chart -->
-    <div class="col-lg-6 col-md-12 my-4">
-      <div class="chart-container">
-        <canvas baseChart [type]="lineChartType" [data]="lineChartData"></canvas>
-      </div>
-    </div>
-  
-    <!-- Progress Circles -->
-    <div class="col-lg-6 col-md-12 my-4">
-      <div class="row">
-        <!-- First Progress Circle -->
-        <div class="col-lg-6 col-md-6 col-sm-12 text-center mb-4">
-          <div class="progress-circle mx-auto">
-            <div class="circle">
-              <div class="mask full" [style.transform]="'rotate(' + (totalEnrollments * 1.8) + 'deg)'"></div>
-              <div class="mask half">
-                <div class="fill" [style.transform]="'rotate(' + (totalToComplete * 1.8) + 'deg)'"></div>
-              </div>
-              <div class="inside-circle">
-                <span>{{ totalToComplete }}%</span>
-              </div>
-            </div>
-          </div>
-          <h5>Total to Complete</h5>
-        </div>
-  
-        <!-- Second Progress Circle -->
-        <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-          <div class="progress-circle mx-auto">
-            <div class="circle">
-              <div class="mask full" [style.transform]="'rotate(' + (totalEnrollments * 1.8) + 'deg)'"></div>
-              <div class="mask half">
-                <div class="fill" [style.transform]="'rotate(' + (totalToReading * 1.8) + 'deg)'"></div>
-              </div>
-              <div class="inside-circle">
-                <span>{{ totalToReading }}%</span>
-              </div>
-            </div>
-          </div>
-          <h5>Total to Reading</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-
-
-
 </div>

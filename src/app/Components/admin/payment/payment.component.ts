@@ -4,6 +4,7 @@ import { EnrollmentService } from '../../../Services/enrollment.service';
 import { PaymentService } from '../../../Services/payment.service';
 import { CourseService } from '../../../Services/course.service';
 import { StudentService } from '../../../Services/student.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-payment',
@@ -43,12 +44,22 @@ export class PaymentComponent implements OnInit {
     private enrollmentService: EnrollmentService,
     private paymentService: PaymentService,
     private courseService: CourseService,
-    private studentService:StudentService
+    private studentService:StudentService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
     this.resetFormData(); 
   }
+
+  showSpinner(name: string) {
+    this.spinner.show(name);
+  }
+
+  hideSpinner(name: string) {
+    this.spinner.hide(name);
+  }
+
 
   resetFormData(): void {
     this.formData.dueAmount = 0;
@@ -313,7 +324,8 @@ onNicChange(): void {
   }
   
   onSubmit(): void {
-    if (!this.formData.nic || !this.formData.course || this.formData.amount <= 0) {
+    this.showSpinner('payment')
+    if (!this.formData.nic || !this.formData.course) {
       this.message = 'Please fill in all required fields!';
       this.isSuccess = false;
       return;
@@ -342,6 +354,7 @@ onNicChange(): void {
 
     this.paymentService.makePayment(paymentData).subscribe(
       (response) => {
+        this.hideSpinner('payment')
         this.message = 'Payment has been successfully processed. Thank you for your payment!';
         this.isProcessing = false;
         this.isSuccess = true;
@@ -350,6 +363,7 @@ onNicChange(): void {
 
       },
       (error) => {
+        this.hideSpinner('payment')
         this.isProcessing = false;
         this.isSuccess = false;
         this.message = error.error.message || 'An error occurred during the payment process.';

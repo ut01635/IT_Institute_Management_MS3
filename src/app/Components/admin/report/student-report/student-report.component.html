@@ -1,22 +1,21 @@
-
 <main id="student-report" class="container card mt-2">
   <h1 class="text-center mb-5">Student Report</h1>
 
-  
+
   <form [formGroup]="reportForm" (ngSubmit)="onsubmit()">
     <div id="search-container" class="container">
       <div class="row">
-       
+
         <div class="col-12 col-md-8 mb-3">
           <input type="text" id="search-by-nic" placeholder="NIC number" class="form-control" style="height: 50px;"
             formControlName="nic" />
-         
+
           <div *ngIf="reportForm.controls['nic'].invalid && reportForm.controls['nic'].touched"
             class="text-danger mt-1">
             NIC number is required.
           </div>
         </div>
-        
+
         <div class="col-12 col-md-4 mb-3">
           <button type="submit" id="report-generate-btn" class="btn btn-success w-100 " style="height: 50px;">
             <i class="bi bi-search"></i> Generate Report
@@ -26,12 +25,12 @@
     </div>
   </form>
 
-  
+
   <div id="report-container" class="mt-4" *ngIf="reportData">
 
-    
+
     <div class="personal-details">
-      <h2><i class="bi bi-person-circle"></i>  Personal Details</h2>
+      <h2><i class="bi bi-person-circle"></i> Personal Details</h2>
       <table class="table table-responsive">
         <tr>
           <td><strong>NIC Number:</strong></td>
@@ -53,6 +52,36 @@
           <td><strong>Address</strong></td>
           <td><input type="text" id="Address" class="form-control" [(ngModel)]="reportData.address" disabled></td>
         </tr>
+        <tr>
+          <td><strong>Social Media</strong></td>
+          <td>
+            <div class="d-flex justify-content-between flex-wrap">
+              <a *ngIf="reportData.socialMedia.gitHub" class="text-secondary text-decoration-none fw-bold me-3"
+                [href]="reportData.socialMedia.gitHub" target="_blank">
+                <i class="bi bi-github me-2"></i>Github
+              </a>
+              <a *ngIf="reportData.socialMedia.linkedIn" class="text-secondary text-decoration-none fw-bold me-3"
+                [href]="reportData.socialMedia.linkedIn" target="_blank">
+                <i class="bi bi-linkedin me-2 text-info"></i>LinkedIn
+              </a>
+              <a *ngIf="reportData.socialMedia.instagram" class="text-secondary text-decoration-none fw-bold me-3"
+                [href]="reportData.socialMedia.instagram" target="_blank">
+                <i class="bi bi-instagram me-2 text-danger"></i>Instagram
+              </a>
+              <a *ngIf="reportData.socialMedia.facebook" class="text-secondary text-decoration-none fw-bold me-3"
+                [href]="reportData.socialMedia.facebook" target="_blank">
+                <i class="bi bi-facebook me-2 text-primary"></i>Facebook
+              </a>
+              <a *ngIf="reportData.socialMedia.whatsApp" class="text-secondary text-decoration-none fw-bold me-3"
+                [href]="'https://wa.me/' + reportData.socialMedia.whatsApp" target="_blank">
+                <i class="bi bi-whatsapp me-2 text-success"></i>WhatsApp
+              </a>
+            </div>
+          </td>
+        </tr>
+        
+
+
       </table>
     </div>
     <hr>
@@ -66,6 +95,7 @@
           <tr>
             <th>Course</th>
             <th>Fees (LKR)</th>
+            <th>Duration (Months)</th>
             <th>Payment Plan</th>
             <th>Enrollment Date</th>
             <th>Status</th>
@@ -74,10 +104,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let enrollment of enrollments">
-            
-            
+
+
             <td>{{ enrollment.course.courseName }}</td>
             <td>{{ enrollment.course.fees | currency: 'LKR ' }}</td>
+            <td>{{enrollment.course.duration}} Months</td>
             <td>
               <span [ngClass]="{
                 'text-success': enrollment.paymentPlan === 'Full',
@@ -95,18 +126,24 @@
 
             <td class="">
               <div class="d-flex" style="justify-content: center;">
-                <!-- Edit Button -->
-                <button type="button" class="btn btn-warning me-4 btn-sm"  (click)="openUpdatePaymentPlanModal(enrollment)">
-                  <i class="bi bi-pencil"> Edit</i>
-                  <!--Edit -->
-                </button>
-                <!-- Delete Button -->
-                <button type="button" class="btn btn-danger  btn-sm" (click)="confirmDelete(enrollment.id)">
-                  <i class="bi bi-trash"> Delete</i>
-                </button>
+                <!-- Show 'Finished' when enrollment.isComplete is true -->
+                <span *ngIf="enrollment.isComplete === true" class="text-success fw-bolder">Finished</span>
+            
+                <!-- Edit and Delete Buttons, only visible if enrollment.isComplete is not true -->
+                <ng-container *ngIf="enrollment.isComplete !== true">
+                  <!-- Edit Button -->
+                  <button type="button" class="btn btn-warning me-4 btn-sm"
+                    (click)="openUpdatePaymentPlanModal(enrollment)">
+                    <i class="bi bi-pencil"> Edit</i>
+                  </button>
+                  <!-- Delete Button -->
+                  <button type="button" class="btn btn-danger btn-sm" (click)="confirmDelete(enrollment.id)">
+                    <i class="bi bi-trash"> Delete</i>
+                  </button>
+                </ng-container>
               </div>
-  
             </td>
+            
           </tr>
         </tbody>
       </table>
@@ -114,68 +151,82 @@
 
     <hr>
 
-  <div class="payment-details mt-4">
-    <h2><i class="bi bi-credit-card"></i> Payment Details</h2>
+    <div class="payment-details mt-4">
+      <h2><i class="bi bi-credit-card"></i> Payment Details</h2>
 
-   
-    <table class="table table-bordered table-responsive">
-      <tr>
-        <td><strong>Select Course:</strong></td>
-        <td><select id="EnrollCourses" class="form-select" aria-label="Course selection" [(ngModel)]="selectedCourse"
-            (change)="selectCourse()">
-            <option *ngIf="!reportData.courses?.length" disabled>No courses found</option>
-            <option value="" disabled>Select Course</option>
-            <option *ngFor="let course of reportData.courses" [value]="course.id">{{ course.courseName }}</option>
-          </select></td>
-      </tr>
-      <tr>
-        <td><strong>Course Fee:</strong></td>
-       
-        <td><input type="text" id="fee" class="form-control" [value]="reportData.fee | currency: 'LKR ': 'symbol' "
-            disabled></td>
-      </tr>
-      <tr>
-        <td><strong>Payment Plan:</strong></td>
-        <td><input type="text" id="paymentPlan" class="form-control" [(ngModel)]="reportData.paymentPlan" disabled>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>Paid Amount:</strong></td>
-        <td><input type="text" id="paidAmount" class="form-control text-success"
-            [value]="reportData.paidAmount | currency: 'LKR ': 'symbol' " disabled></td>
-      </tr>
-      <tr>
-        <td><strong>Due Amount:</strong></td>
-        <td><input type="text" id="dueAmount" class="form-control text-danger"
-            [value]="reportData.dueAmount | currency: 'LKR ': 'symbol' " disabled></td>
-      </tr>
-    </table>
-    <hr>
 
-    <h2><i class="bi bi-credit-card-fill"></i> Payment History</h2>
-   
-    <table class="table mt-4 table-responsive">
-      <thead class="table-dark">
+      <table class="table table-bordered table-responsive">
         <tr>
-          <th>Payment Date</th>
-          <th>Course Fee (LKR)</th>
-          <th>Total Paid Amount (LKR)</th>
-          <th>Amount (LKR)</th>
-          <th>Due Amount (LKR)</th>
+          <td><strong>Select Course:</strong></td>
+          <td><select id="EnrollCourses" class="form-select" aria-label="Course selection" [(ngModel)]="selectedCourse"
+              (change)="selectCourse()">
+              <option *ngIf="!reportData.courses?.length" disabled>No courses found</option>
+              <option value="" disabled>Select Course</option>
+              <option *ngFor="let course of reportData.courses" [value]="course.id">{{ course.courseName }}</option>
+            </select></td>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let payment of paymentDetails">
-         
-          <td>{{ payment.paymentDate | date: 'dd-MM-yyyy' }}</td>
-          <td>{{ reportData.fee | currency: 'LKR ': 'symbol' }}</td>
-          <td>{{ payment.totalPaidAmount | currency: 'LKR ': 'symbol' }}</td>
-          <td>{{ payment.amount | currency: 'LKR ': 'symbol' }}</td>
-          <td>{{ payment.dueAmount | currency: 'LKR ': 'symbol' }}</td>
-        </tr>
-      </tbody>
-    </table>
+        <tr>
+          <td><strong>Course Fee:</strong></td>
 
-  </div>
+          <td><input type="text" id="fee" class="form-control" [value]="reportData.fee | currency: 'LKR ': 'symbol' "
+              disabled></td>
+        </tr>
+        <tr>
+          <td><strong>Payment Plan:</strong></td>
+          <td><input type="text" id="paymentPlan" class="form-control" [(ngModel)]="reportData.paymentPlan" disabled>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Paid Amount:</strong></td>
+          <td><input type="text" id="paidAmount" class="form-control text-success"
+              [value]="reportData.paidAmount | currency: 'LKR ': 'symbol' " disabled></td>
+        </tr>
+        <tr>
+          <td><strong>Due Amount:</strong></td>
+          <td><input type="text" id="dueAmount" class="form-control text-danger"
+              [value]="reportData.dueAmount | currency: 'LKR ': 'symbol' " disabled></td>
+        </tr>
+        <tr>
+          <td><strong>Payment Status:</strong></td>
+          <td>
+            <input type="text" id="payment-status" class="form-control fw-semibold" placeholder="Status"
+              [ngClass]="{
+                'text-success': reportData.paymentStatus === 'Success', 
+                'text-danger': reportData.paymentStatus === 'Pending'
+              }"
+              [value]="reportData.paymentStatus"
+              disabled>
+          </td>
+        </tr>
+        
+        
+      </table>
+      <hr>
+
+      <h2><i class="bi bi-credit-card-fill"></i> Payment History</h2>
+
+      <table class="table mt-4 table-responsive">
+        <thead class="table-dark">
+          <tr>
+            <th>Payment Date</th>
+            <th>Course Fee (LKR)</th>
+            <th>Total Paid Amount (LKR)</th>
+            <th>Amount (LKR)</th>
+            <th>Due Amount (LKR)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of paymentDetails">
+
+            <td>{{ payment.paymentDate | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ reportData.fee | currency: 'LKR ': 'symbol' }}</td>
+            <td>{{ payment.totalPaidAmount | currency: 'LKR ': 'symbol' }}</td>
+            <td>{{ payment.amount | currency: 'LKR ': 'symbol' }}</td>
+            <td>{{ payment.dueAmount | currency: 'LKR ': 'symbol' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
   </div>
 </main>

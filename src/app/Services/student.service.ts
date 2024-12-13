@@ -114,4 +114,17 @@ export class StudentService {
     const payload = { nic,newPassword };
     return this.http.put(`${this.BaseStudentURL}/${nic}/unlock`, payload);
   }
+
+  updateStudentImage(nic: string, formData: FormData): Observable<any> {
+    const url = `${this.BaseStudentURL}/${nic}/update-image`;
+    return this.http.put(url, formData).pipe(
+      catchError((error) => {
+        console.error('Error updating student image', error);
+        throw error;
+      })
+    );
+  }
+
+  
+  
 }

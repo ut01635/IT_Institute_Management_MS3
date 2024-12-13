@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseService } from '../../../Services/course.service';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../../../Services/Modal';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-course-form',
@@ -19,7 +20,8 @@ export class CourseFormComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private courseService: CourseService,  
-    private http: HttpClient
+    private http: HttpClient,
+    private spinner: NgxSpinnerService
   ) {
     this.courseForm = new FormGroup({
       courseName: new FormControl('', [Validators.required, Validators.maxLength(100)]),
@@ -31,9 +33,21 @@ export class CourseFormComponent implements OnInit {
     });
   }
 
+  showSpinner(name: string) {
+    this.spinner.show(name);
+  }
+
+  hideSpinner(name: string) {
+    this.spinner.hide(name);
+  }
+
+
   ngOnInit(): void {
     if (this.courseToEdit) {
-      this.courseForm.patchValue(this.courseToEdit); 
+      this.courseForm.patchValue(this.courseToEdit);
+      if (this.courseToEdit.imagePaths) {
+        this.courseImagePreviewUrl = 'https://localhost:7055'+this.courseToEdit.imagePaths;
+      }
     }
   }
  
@@ -54,6 +68,7 @@ export class CourseFormComponent implements OnInit {
   onSubmit(): void {
     if (this.courseForm.valid) {
       const formData = new FormData();
+      this.showSpinner('course')
 
      
       Object.keys(this.courseForm.value).forEach(key => {
@@ -73,12 +88,14 @@ export class CourseFormComponent implements OnInit {
         
         this.courseService.updateCourse(this.courseToEdit.id, formData).subscribe(
           (response) => {
+            this.hideSpinner('course')
             alert('Course updated successfully');
             this.courseService.refreshCourseList();
             this.activeModal.close();
             
           },
           (error) => {
+            this.hideSpinner('course')
             alert('Error updating course , ' + error.message);
           }
         );
@@ -86,11 +103,13 @@ export class CourseFormComponent implements OnInit {
       else{
         this.courseService.addCourse(formData).subscribe(
           (response) => {
+            this.hideSpinner('course')
             alert('Course added successfully');
             this.courseService.refreshCourseList();  
             this.activeModal.close(); 
           },
           (error) => {
+            this.hideSpinner('course')
             alert('Error adding course , '+ error);
           }
         );

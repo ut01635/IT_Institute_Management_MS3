@@ -92,8 +92,10 @@ export class EnrollmentReportComponent implements OnInit {
 
   applyFilters(): void {
     this.filteredEnrollments = this.enrollments.filter(enrollment => {
-      const matchSearch = this.studentSearch ? 
+
+        const matchSearch = this.studentSearch ? 
         (enrollment.student.firstName.toLowerCase().includes(this.studentSearch.toLowerCase()) || 
+        enrollment.student.lastName.toLowerCase().includes(this.studentSearch.toLowerCase()) ||
         enrollment.student.nic.toLowerCase().includes(this.studentSearch.toLowerCase())) : true;
   
       // Date range comparison fix

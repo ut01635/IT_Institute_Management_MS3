@@ -1,0 +1,243 @@
+
+.select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1.5px solid #ecedec;
+    background-color: transparent;
+    color: #333;
+    width: 100%;
+    outline: none;
+    /* height: 100px; */
+  }
+  
+  .select:focus {
+    border-color: #2d79f3;
+  }
+  
+  .input-field select:focus {
+    border-color: #2d79f3;
+  }
+  
+  .input-field select {
+    padding-left: 10px;
+    height: 50px;
+  }
+  
+  .input-field .label {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .input-field select:focus ~ .label,
+  .input-field select:valid ~ .label {
+    top: -10px;
+    left: 5px;
+    font-size: 12px;
+    color: #2d79f3;
+    background-color: #ffffff;
+    padding-left: 5px;
+    padding-right: 5px;
+  } 
+  
+  .input-field select:invalid {
+    border-color: #000000; 
+  }
+
+  .input-field {
+    position: relative;
+    width: 100%;
+  }
+  
+  .input {
+    margin-top: 15px;
+    width: 100%;
+    outline: none;
+    border-radius: 8px;
+    height: 45px;
+    border: 1.5px solid #000000;
+    background: transparent;
+    padding-left: 10px;
+  }
+  
+  .input:focus {
+    border: 1.5px solid #2d79f3;
+  }
+  
+  /* .input-field .label {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    color: #ccc;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .input-field .input:focus ~ .label,
+  .input-field .input:valid ~ .label {
+    top: 0px;
+    left: 5px;
+    font-size: 12px;
+    color: #2d79f3;
+    background-color: #ffffff;
+    padding-left: 5px;
+    padding-right: 5px;
+  } */
+  
+
+  .error-message {
+    color: #ff4d4d;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .submit-btn {
+    width: 100%; 
+    height: 55px;
+    background: #f2f2f2;
+    border-radius: 11px;
+    border: 0;
+    outline: none;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(180deg, #223146 0%, #0d1b2c 50%, #0B1B32 100%);
+    box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
+  }
+  
+  @media (max-width: 768px) {
+    .form-control {
+      padding: 15px;
+    }
+  
+    .input {
+      height: 40px;
+    }
+  
+    .submit-btn {
+      height: 50px;
+    }
+  }
+  
+
+
+    
+.custom-file-upload {
+    height: 50px;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 2px dashed #cacaca;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0px 24px 18px -24px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-file-upload .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  .custom-file-upload .icon i {
+    font-size: 2rem;
+    color: rgba(75, 85, 99, 1);
+  }
+  
+  .custom-file-upload .text span {
+    font-weight: 400;
+    color: rgba(75, 85, 99, 1);
+    font-size: 0.875rem;
+    text-align: left;
+  }
+  
+  .custom-file-upload input {
+    display: none;
+  }
+  
+  .image-preview-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  
+  .image-preview-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+  
+  
+  @media (max-width: 576px) {
+    .custom-file-upload {
+      height: 80px; 
+      width: 160px; 
+    }
+  
+    .custom-file-upload .icon i {
+      font-size: 1.5rem;  
+    }
+  
+    .custom-file-upload .text span {
+      font-size: 0.75rem; 
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .custom-file-upload {
+      height: 120px; 
+      width: 250px;   
+    }
+  
+    .custom-file-upload .icon i {
+      font-size: 2.5rem; 
+    }
+  }
+  
+  .custom-file-upload input {
+    display: none;
+  }
+  
+
+
+  .modal-dialog {
+    max-width: 500px;
+    margin-top: -50px;
+    margin-bottom: -50px;
+}
+
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
