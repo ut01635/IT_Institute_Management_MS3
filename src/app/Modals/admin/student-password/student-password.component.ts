@@ -20,6 +20,14 @@ export class StudentPasswordComponent {
     private spinner: NgxSpinnerService
   ) {}
 
+  showSpinner(name: string) {
+    this.spinner.show(name);
+  }
+
+  hideSpinner(name: string) {
+    this.spinner.hide(name);
+  }
+
   ngOnInit(): void {
     this.passwordForm = this.fb.group({
       newPassword: [
@@ -39,19 +47,19 @@ export class StudentPasswordComponent {
  
   onSubmit(): void {
     if (this.passwordForm.valid) {
-      this.spinner.show();
+      this.showSpinner('passwordresett');
       const newPassword = this.passwordForm.value.newPassword;
       this.studentService
         .updatePassword(this.studentNic, newPassword)
         .subscribe(
           (response) => {
-            this.spinner.hide();
+            this.hideSpinner('passwordresett');
             alert('Password updated successfully!');
             this.activeModal.close();
            
           },
           (error) => {
-            this.spinner.hide();
+            this.hideSpinner('passwordresett');
             alert('An error occurred while updating the password.');
             console.error(error);
           }

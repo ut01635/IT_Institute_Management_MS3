@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from '../../../Services/admin.service';
 import { HttpClient } from '@angular/common/http';
 import { admin } from '../../../Services/Modal';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-admin-form',
@@ -20,7 +21,8 @@ export class AdminFormComponent {
     public activeModal: NgbActiveModal,
     private adminService: AdminService,
     private http: HttpClient,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {
     this.adminForm = this.fb.group({
       nic: new FormControl('', [
@@ -48,6 +50,15 @@ export class AdminFormComponent {
 
     });
   }
+
+  showSpinner(name: string) {
+    this.spinner.show(name);
+  }
+
+  hideSpinner(name: string) {
+    this.spinner.hide(name);
+  }
+
 
   ngOnInit(): void {
     
@@ -88,6 +99,7 @@ export class AdminFormComponent {
 
   onSubmit(): void {
     if (this.adminForm.valid) {
+      this.showSpinner('admin')
       const formData = new FormData();
       Object.keys(this.adminForm.value).forEach(key => {
         formData.append(key, this.adminForm.value[key]);
@@ -109,11 +121,13 @@ export class AdminFormComponent {
        
         this.adminService.updateAdmin(this.adminToEdit.nic, formData).subscribe(
           response => {
+            this.hideSpinner('admin')
             alert('Admin updated successfully!');
             this.adminService.refreshAdminList();
             this.activeModal.close();
           },
           error => {
+            this.hideSpinner('admin')
             alert((error.error?.message || error.message));
           }
         );
@@ -121,11 +135,13 @@ export class AdminFormComponent {
        
         this.adminService.addAdmin(formData).subscribe(
           response => {
+            this.hideSpinner('admin')
             alert('Admin added successfully!');
             this.adminService.refreshAdminList();
             this.activeModal.close();
           },
           (error) => {
+            this.hideSpinner('admin')
             alert((error.error?.message || error.message));
           }
         );
