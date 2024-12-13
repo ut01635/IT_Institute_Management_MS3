@@ -30,10 +30,15 @@ export class AuthService {
     return localStorage.getItem('Role');
   }
 
-  logout(){
-    localStorage.removeItem("Token");
-    localStorage.removeItem("NIC");
-    localStorage.removeItem("Role");
-    this.router.navigate(['/'])
+  logout() {
+    if (confirm('Are you sure you want to logout from DevHub?')) {
+      localStorage.removeItem("Token");
+      localStorage.removeItem("NIC");
+      localStorage.removeItem("Role");
+      
+      // Navigate to the home page or login page after logout
+      this.router.navigate(['/']);
+    }
   }
+  
 }

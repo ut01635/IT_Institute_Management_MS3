@@ -6,6 +6,7 @@ import { EnquiryService } from '../../Services/enquiry.service';
 import { EnrollmentService } from '../../Services/enrollment.service';
 import { StudentService } from '../../Services/student.service';
 import { SummaryService } from '../../Services/summary.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private enquiryService: EnquiryService,
     private renderer: Renderer2,
-    private summaryService: SummaryService
+    private summaryService: SummaryService,
+    private spinner: NgxSpinnerService
   ) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -57,11 +59,21 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
     }
   }
 
+  showSpinner(name: string) {
+    this.spinner.show(name);
+  }
+
+  hideSpinner(name: string) {
+    this.spinner.hide(name);
+  }
+
   onSubmit() {
     const enquiry = this.contactForm.value;
     if (this.contactForm.valid) {
+      this.showSpinner('enquiry');
       this.enquiryService.postEnquiry(enquiry)?.subscribe(
         data => {
+          this.hideSpinner('enquiry')
           this.enquiryResults = 'Your message was sent successfully';
           this.contactForm.reset();
           console.log('Form Submitted', data);
@@ -72,6 +84,7 @@ export class LandingPageComponent implements OnInit, AfterViewInit {
           }, 5000);
         },
         error => {
+          this.hideSpinner('enquiry')
           this.enquiryResults = 'Your message failed to send';
 
           // Clear the message after 10 seconds

@@ -25,15 +25,24 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  showSpinner(name: string) {
+    this.spinner.show(name);
+  }
+
+  hideSpinner(name: string) {
+    this.spinner.hide(name);
+  }
+
   // This method will handle form submission
   onSubmit(): void {
     if (this.login.nic && this.login.password) {
 
-      this.spinner.show();
+      this.showSpinner('sp2');
       // Call the login service method
       this.loginService.login(this.login).subscribe(
         (response: string) => {
-          this.spinner.hide();
+          this.hideSpinner('sp2');
           // Store the token in localStorage
           localStorage.setItem('Token', response);
           // this.authInterceptor.alertShown = false;
@@ -61,7 +70,7 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           console.error('Login failed:', error);
-          this.spinner.hide();
+          this.hideSpinner('sp2');
           // alert(error.error);
           this.message = error.error
 
