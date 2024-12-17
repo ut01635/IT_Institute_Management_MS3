@@ -1,6 +1,6 @@
 <!-- Modal for Payment Plan Selection -->
 <div>
-  <div class="modal-dialog modal-dialog-centered">
+
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="paymentModalLabel">{{ isNewPlan ? 'Select Payment Plan' : 'Update Payment Plan' }}</h5>
@@ -8,7 +8,7 @@
           (click)="activeModal.dismiss('cross click')"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="paymentForm">
+        <form [formGroup]="paymentForm" class="form-control">
           <div class="mb-3">
             <div class="input-field">
               <!-- <label for="paymentPlan" class="label">Choose Payment Plan</label> -->
@@ -24,14 +24,14 @@
               </div>
             </div>
           </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+            <button type="button" class="btn submit-btn" (click)="isNewPlan ? submitPaymentPlan() : updatePaymentPlan()">
+              {{ isNewPlan ? 'Submit' : 'Update' }}
+            </button>
+          </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-        <button type="button" class="btn submit-btn" (click)="isNewPlan ? submitPaymentPlan() : updatePaymentPlan()">
-          {{ isNewPlan ? 'Submit' : 'Update' }}
-        </button>
-      </div>
+      
     </div>
   </div>
-</div>
