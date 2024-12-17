@@ -3,7 +3,7 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('cross click')"></button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="socialMediaForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="socialMediaForm" (ngSubmit)="onSubmit()" class="form-control-style">
       <div class="mb-3">
         <label for="linkedIn" class="form-label">
           <i class="bi bi-linkedin text-info me-2"></i> LinkedIn
@@ -88,7 +88,7 @@
       <input type="hidden" formControlName="studentNIC" />
   
       <button type="submit" class="btn submit-btn text-white w-100">
-        <i class="bi bi-save me-2"></i> Save Changes
+        <i class="bi bi-floppy"></i> Save Changes
       </button>
     </form>
   </div>
